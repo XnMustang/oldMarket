@@ -14,21 +14,22 @@ import lombok.experimental.Accessors;
 @NoArgsConstructor
 @ToString
 @Accessors(chain = true)
+
 @TableName(value = "user")
 public class User {
 
-    @TableId(value = "id",type = IdType.AUTO)
-    private  Integer id;
-    private  String username;
-    private  String password;
-    private  String email;
-    private  String phone;
-    private  String gender;
-    private  String qq;
-    private  String google;
-    private  String   intro;
-    private  String  headimg;
-    private  String status;
-    private  String vip;
-    private  Integer goodscount;
+    @TableId(type = IdType.AUTO)
+    private Integer id;
+    private String username;
+    private String password;
+    private String email;
+    private String phone;
+    private String gender;
+    private String qq;
+    private String google;
+    private String intro;
+    private String headimg;
+    private String status;
+    private String vip;
+    private Integer goodscount;
 }

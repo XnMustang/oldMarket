@@ -32,7 +32,5 @@ public class MvcConfig implements WebMvcConfigurer {
         registry.addViewController("/search-results.html").setViewName("search-results");
         registry.addViewController("/my-sales.html").setViewName("my-sales");
 
-
-
     }
 }

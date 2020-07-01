@@ -1,8 +1,8 @@
 package com.wlrss.oldmarket.oldmarket;
 
+import com.wlrss.oldmarket.entity.User;
 import com.wlrss.oldmarket.mapper.UserMapper;
 import lombok.ToString;
-import org.apache.catalina.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -23,11 +23,15 @@ class OldmarketApplicationTests {
     @Autowired
     UserMapper userMapper;
 
+    /**
+     * 测试查询所有用户
+     */
     @Test
-    public  void  findBoss(){
-        //User boss = userMapper.selectById(1);
-       // System.out.println(boss);
+    public void findBoss(){
         List<User> users = userMapper.selectList(null);
-        users.forEach(user -> System.out.println(user));
+        for (User user : users) {
+            System.out.println(user);
+        }
+
     }
 }

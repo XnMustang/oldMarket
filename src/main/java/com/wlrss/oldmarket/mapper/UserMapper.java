@@ -2,7 +2,7 @@ package com.wlrss.oldmarket.mapper;
 
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import org.apache.catalina.User;
+import com.wlrss.oldmarket.entity.User;
 import org.springframework.stereotype.Repository;
 
 @Repository
