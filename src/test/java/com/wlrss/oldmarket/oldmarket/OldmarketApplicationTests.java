@@ -26,12 +26,12 @@ class OldmarketApplicationTests {
     /**
      * 测试查询所有用户
      */
-    @Test
-    public void findBoss(){
-        List<User> users = userMapper.selectList(null);
-        for (User user : users) {
-            System.out.println(user);
-        }
-
-    }
+//    @Test
+//    public void findBoss(){
+//        List<User> users = userMapper.selectList(null);
+//        for (User user : users) {
+//            System.out.println(user);
+//        }
+//
+//    }
 }

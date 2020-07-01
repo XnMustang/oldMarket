@@ -16,7 +16,7 @@ public class LoginServiceImpl implements LoginService {
     UserMapper userMapper;
 
     /**
-     * 根据姓名查询用户信息，验证是否登录
+     * 根据姓名查询用户信息，验证登录
      * @param username
      * @return
      */
