@@ -13,7 +13,7 @@
 
     <!--end meta tags-->
 
-    <title>OldsMarket Search Results</title>
+    <title>二手交易市场</title>
     <!--stylesheets-->
     <link rel="stylesheet" href="/vendor/css/bootstrap.min.css">
     <link rel="stylesheet" href="/vendor/css/animate.min.css">
@@ -31,66 +31,67 @@
 
 
 <!--navigation bars-->
-
 <nav class="site-top-nav">
     <div class="logo">
         <a href="index.html">
             <img src="/img/logo.png" alt="">
-            <strong>OldsMarket</strong>
+            <strong>二手市场</strong>
         </a>
     </div>
     <ul class="site-menu">
         <li>
-            <a href="#">Home <i class="fa fa-angle-down"></i></a>
+            <a href="index.html">首页</a>
+        </li>
+        <li>
+            <a href="#">导航</a>
             <ul class="nav-dropdown">
-                <li><a href="index.html">Version 1</a></li>
-                <li><a href="index_one.html">Version 2</a></li>
+                <li><a href="items.html">最新商品</a></li>
+                <li><a href="search-results.html">搜索</a></li>
+            </ul>
+        </li>
+        <li><a href="#">个人中心 </i></a>
+            <ul class="nav-dropdown">
+                <li><a href="dashboard.html">主页</a></li>
+                <li><a href="dash-messages.html">留言内容</a></li>
+                <li><a href="dash-reviews.html">评论</a></li>
+                <li><a href="dash-items.html">物品</a></li>
+                <li><a href="dash-sales.html">销售信息</a></li>
+                <li><a href="my-sales.html">我的订单</a></li>
+                <li><a href="dash-profile.html">个人资料</a></li>
+                <li><a href="dash-accountHistory.html">账户记录</a></li>
+            </ul>
+        </li>
+
+        <li>
+            <a href="cart.html">
+                购物车
+            </a>
+        </li>
+
+        <li><a href="pricing.html">会员</a></li>
+        <li>
+            <a href="#">博客 </i></a>
+            <ul class="nav-dropdown">
+                <li><a href="blog.html">看博客</a></li>
+                <li><a href="blog-single.html">写博客</a></li>
             </ul>
         </li>
         <li>
-            <a href="#">Explore <i class="fa fa-angle-down"></i></a>
+            <a href="pricing.html">其他</i></a>
             <ul class="nav-dropdown">
-                <li><a href="items.html">Items 1</a></li>
-                <li><a href="index_two.html">Items 2</a></li>
-                <li><a href="search-results.html">Search</a></li>
-                <li><a href="item-detail.html">Item Detail</a></li>
+                <li><a href="contact.html">联系我</a></li>
+                <li><a href="about.html">关于我们</a></li>
+                <li><a href="payment-info.html">付款信息</a></li>
+                <li><a href="order-success.html">订单确认</a></li>
+                <li><a href="404.html">404</a></li>
             </ul>
         </li>
-        <li><a href="#">Dashboard <i class="fa fa-angle-down"></i></a>
-            <ul class="nav-dropdown">
-                <li><a href="dashboard.html">Dashboard Index</a></li>
-                <li><a href="dash-messages.html">Messages</a></li>
-                <li><a href="dash-reviews.html">Reviews</a></li>
-                <li><a href="dash-items.html">Items</a></li>
-                <li><a href="dash-sales.html">Sales</a></li>
-                <li><a href="dash-profile.html">Profile</a></li>
-                <li><a href="dash-accountHistory.html">Account History</a></li>
-            </ul>
-        </li>
-        <li><a href="pricing.html">Pricing</a></li>
-        <li>
-            <a href="#">Blog <i class="fa fa-angle-down"></i></a>
-            <ul class="nav-dropdown">
-                <li><a href="blog.html">Posts</a></li>
-                <li><a href="blog-single.html">Single Post</a></li>
-            </ul>
-        </li>
-        <li>
-            <a href="pricing.html">Other Pages <i class="fa fa-angle-down"></i></a>
-            <ul class="nav-dropdown">
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="cart.html">Cart</a></li>
-                <li><a href="payment-info.html">payment Info</a></li>
-                <li><a href="order-success.html">Order Confirmation</a></li>
-                <li><a href="404.html">404 Page</a></li>
-            </ul>
-        </li>
-        <li><a href="login-register.html" class="ui-btn ui-btn-info">Get Started</a></li>
+        <li><a href="login-register.html" class="ui-btn ui-btn-info">开始</a></li>
     </ul>
     <i class="nav-toggle fa fa-bars"></i>
 </nav>
 
+<!--此处为登录成功之后导航栏，带有注销按钮-->
 <div id="side-nav" class="side-nav">
     <div class="side-nav-menu perfect-scroll">
         <div class="text-logo">
@@ -119,10 +120,10 @@
 
 <!--banner-->
 <div class="search-banner back-photo">
-    <h5>The Easiest Way to find <strong class="ui-text-info">Items</strong> on the Market</h5>
+    <h5>最简单的方法 <strong class="ui-text-info">卖出</strong> 物品</h5>
     <form action="#" method="post">
         <div class="mega-search">
-            <input class="form-control" type="text" placeholder="Search Item Here...">
+            <input class="form-control" type="text" placeholder="在这里搜索...">
             <i class="fa fa-search"></i>
         </div>
     </form>
@@ -133,90 +134,71 @@
 <div class="results-wrapper">
     <div class="filter-section">
         <div class="filter-group">
-            <strong>By Price:</strong>
+            <strong>按价格:</strong>
             <label class="label--radio">
                 <input id="radio1" type="radio" name="radios" class="radio" checked>
                 <span class="outer"><span class="inner"></span></span>
-                <i>Lowest Price</i>
+                <i>最低价格</i>
             </label>
             <label class="label--radio">
                 <input id="radio2" type="radio" name="radios" class="radio">
                 <span class="outer"><span class="inner"></span></span>
-                <i>Medium price</i>
+                <i>中等价位</i>
             </label>
             <label class="label--radio">
                 <input id="radio3" type="radio" name="radios" class="radio">
                 <span class="outer"><span class="inner"></span></span>
-                <i>Highest price</i>
+                <i>最高价格</i>
             </label>
             <label class="label--radio">
                 <input id="radio4" type="radio" name="radios" class="radio">
                 <span class="outer"><span class="inner"></span></span>
-                <i>Below $50</i>
+                <i>低于 $50</i>
             </label>
             <label class="label--radio">
                 <input id="radio5" type="radio" name="radios" class="radio">
                 <span class="outer"><span class="inner"></span></span>
-                <i>Above $50</i>
+                <i>高于 $50</i>
             </label>
         </div>
         <div class="filter-group">
-            <strong>By Date:</strong>
+            <strong>按日期:</strong>
             <label class="label--radio">
                 <input id="radio6" type="radio" name="radios2" class="radio">
                 <span class="outer"><span class="inner"></span></span>
-                <i>Newest</i>
+                <i>最新</i>
             </label>
             <label class="label--radio">
                 <input id="radio7" type="radio" name="radios2" class="radio">
                 <span class="outer"><span class="inner"></span></span>
-                <i>Last Week</i>
+                <i>上周</i>
             </label>
             <label class="label--radio">
                 <input id="radio8" type="radio" name="radios2" class="radio" checked>
                 <span class="outer"><span class="inner"></span></span>
-                <i>Last Month</i>
+                <i>上个月</i>
             </label>
             <label class="label--radio">
                 <input id="radio9" type="radio" name="radios2" class="radio">
                 <span class="outer"><span class="inner"></span></span>
-                <i>This Year</i>
+                <i>今年</i>
             </label>
             <label class="label--radio">
                 <input id="radio10" type="radio" name="radios2" class="radio">
                 <span class="outer"><span class="inner"></span></span>
-                <i>Oldest</i>
-            </label>
-        </div>
-        <div class="filter-group">
-            <strong>By Area:</strong>
-            <label class="label--checkbox">
-                <input type="checkbox" class="checkbox">
-                <i>Nearest</i>
-            </label>
-            <label class="label--checkbox">
-                <input type="checkbox" class="checkbox">
-                <i>Within 50 Sqkm</i>
-            </label>
-            <label class="label--checkbox">
-                <input type="checkbox" class="checkbox" checked>
-                <i>Within 250 Sqkm</i>
-            </label>
-            <label class="label--checkbox">
-                <input type="checkbox" class="checkbox">
-                <i>Farthest</i>
+                <i>最旧的</i>
             </label>
         </div>
     </div>
     <div class="results-section">
         <div class="sort-sec">
             <div>
-                <strong>Sort By:</strong>
-                <a href="#">Date Listed</a>|
-                <a href="#">Price Ascending</a>|
-                <a href="#">Price Descending</a>
+                <strong>排序方式:</strong>
+                <a href="#">上市日期</a>|
+                <a href="#">价格上升</a>|
+                <a href="#">价格下降</a>
             </div>
-            <a href="#"><span>Refresh</span><i class="fa fa-refresh"></i></a>
+            <a href="#"><span>刷新</span><i class="fa fa-refresh"></i></a>
         </div>
         <div class="result-item">
             <div class="result-item-img">
@@ -225,17 +207,17 @@
                 </div>
             </div>
             <div class="result-item-info">
-                <a href="item-detail.html"><strong>Your Item title here</strong></a>
+                <a href="item-detail.html"><strong>98年拖拉机</strong></a>
                 <p>
-                    Rham beef ribs jowl kevin. Doner sirloin boudin filet mignon capicola.
-                    Rham beef ribs jowl kevin. Doner sirloin boudin filet .
+                    非常有劲，非常强悍 .
+                    非常有劲，非常强悍 .
                 </p>
-                <span>Listed: <em class="ui-text-info">04 Jan, 2017</em></span> <span><i class="fa fa-map-marker"></i> 10100-91, Texas</span>
+                <span>上市时间: <em class="ui-text-info">04 Jan, 2017</em></span> <span><i class="fa fa-map-marker"></i> 10100-91, 台湾</span>
             </div>
             <div class="result-item-price">
-                <span>Sale At:</span>
+                <span>价格:</span>
                 <h3>$126.00</h3>
-                <a href="cart.html" class="add-to-cart">Add to Cart <i class="fa fa-cart-plus"></i></a>
+                <a href="cart.html" class="add-to-cart">加入购物车 <i class="fa fa-cart-plus"></i></a>
             </div>
         </div>
         <div class="result-item">
@@ -297,11 +279,11 @@
         </div>
         <!--site pagination-->
         <div class="site-pagination">
-            <a href="#"><i class="fa fa-angle-left"></i>&nbsp;<em>Prev</em></a>
+            <a href="#"><i class="fa fa-angle-left"></i>&nbsp;<em>上一页</em></a>
             <a href="#"><span><i>1</i></span></a>
             <a href="#" class="current"><span><i>2</i></span></a>
             <a href="#"><span><i>3</i></span></a>
-            <a href="#"><em>Next</em>&nbsp;<i class="fa fa-angle-right"></i></a>
+            <a href="#"><em>下一页</em>&nbsp;<i class="fa fa-angle-right"></i></a>
         </div>
         <!--end site pagination-->
     </div>
@@ -311,10 +293,11 @@
 <!--chat box-->
 <a href="#" class="chat-box-btn"><i class="fa fa-comment icon-sw"></i></a>
 
+<!--咨询窗口-->
 <div class="chat-box">
     <div class="chat-top">
         <section>
-            <strong>OldsMarket</strong>
+            <h6 class="org-name">二手交易平台</h6>
             <div class="repliers">
                 <div class="r-img">
                     <img src="/img/avatar2.jpg" alt="">
@@ -329,17 +312,16 @@
     </div>
     <div class="chat-flow" id="chat-flow">
         <p class="outbound">
-            Hallo, Anyone there?
+            Hallo, 有人在吗？
         </p>
         <p class="inbound">
-            Hi, Vincent here. How may I be of service.
+            嗨, 在的，很乐意为您效劳.
         </p>
     </div>
     <form class="chat-form" action="#">
-        <input type="text" class="form-control chat-message" placeholder="Send a Message">
+        <input type="text" class="form-control chat-message" placeholder="回复">
     </form>
 </div>
-
 <!--end chat box-->
 
 <!--page loader-->
@@ -349,44 +331,11 @@
 <!--end page loader-->
 
 <!--footer section-->
-<footer class="footer">
-    <div class="footer-item">
-        <strong>Get In Touch</strong>
-        <a href="#"><i class="fa fa-angle-right"></i> Get Support</a>
-        <a href="#"><i class="fa fa-angle-right"></i> Advertise</a>
-        <a href="#"><i class="fa fa-angle-right"></i> Community Forum</a>
-        <a href="#"><i class="fa fa-angle-right"></i> Affiliate Program</a>
-        <a href="#"><i class="fa fa-angle-right"></i> Contact Us</a>
-    </div>
-    <div class="footer-item">
-        <strong>Questions?</strong>
-        <a href="#"><i class="fa fa-angle-right"></i> Help</a>
-        <a href="#"><i class="fa fa-angle-right"></i> Contact</a>
-        <a href="#"><i class="fa fa-angle-right"></i> Live Support</a>
-    </div>
-    <div class="footer-item">
-        <strong>Follow OldsMarket</strong>
-        <a href="#"><i class="fa fa-angle-right"></i> Facebook</a>
-        <a href="#"><i class="fa fa-angle-right"></i> Twitter</a>
-        <a href="#"><i class="fa fa-angle-right"></i> Flickr</a>
-        <a href="#"><i class="fa fa-angle-right"></i> Youtube</a>
-        <a href="#"><i class="fa fa-angle-right"></i> LinkedIn</a>
-    </div>
-    <div class="footer-item">
-        <strong>Important Links</strong>
-        <a href="#"><i class="fa fa-angle-right"></i> Home</a>
-        <a href="#"><i class="fa fa-angle-right"></i> Products</a>
-        <a href="#"><i class="fa fa-angle-right"></i> Services</a>
-        <a href="#"><i class="fa fa-angle-right"></i> About Us</a>
-    </div>
-</footer>
 <div class="bottom-strip">
-    <div class="cards-accepted">
-        <em>Cards Accepted:</em>
-        <img src="/img/card-logos.png" alt="">
+    <div class="copyright" style="margin: 0 auto">
+        <i class="fa fa-copyright"></i>
+        <span>二手交易平台. 保留所有解释权利</span>
     </div>
-    <div class="copyright"><i class="fa fa-copyright"></i> <span>OldsMarket. All Rights Reserved</span></div>
-    <div class="country"><span>U.S.A.</span><img src="/img/USAFlag.png" alt=""></div>
 </div>
 <!--end footer section-->
 
