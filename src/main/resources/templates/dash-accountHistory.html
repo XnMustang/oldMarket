@@ -12,7 +12,7 @@
 
     <!--end meta tags-->
 
-    <title>OldsMarket Dashboard</title>
+    <title>二手交易市场</title>
 
     <!--stylesheets-->
     <link rel="stylesheet" href="/vendor/css/bootstrap.min.css">
@@ -30,10 +30,8 @@
 </head>
 <body class="dashboard">
 
-     
-
-
 <!--top navigation-->
+<!--对应右上角提示信息数量-->
 <div class="top-nav">
     <i class="fa fa-bars toggle-dash-menu"></i>
     <ul class="list-inline">
@@ -49,27 +47,28 @@
 <div class="dash-side-nav-wrapper" id="dash-side-menu">
     <div class="dash-side-nav perfect-scroll">
         <div class="dash-logo">
-            <h5><a href="dashboard.html">OldsMarket</a></h5>
-            <span>Dashboard</span>
+            <h5><a href="dashboard.html">二手市场</a></h5>
+            <span>仪表盘</span>
         </div>
         <div class="user-info">
             <div class="dash-user-img"><img src="/img/user2.jpg" alt=""></div>
             <div class="dash-user-info">
-                <strong>Murethi Brian  N.</strong>
-                <span>Backend Developer</span>
+                <strong>张三丰.</strong>
+                <span>后台开发</span>
             </div>
             <a href="dash-profile.html" class="dash-edit-user"><i class="fa fa-pencil"></i></a>
         </div>
         <ul class="list-unstyled dash-menu">
-            <li><a href="dashboard.html"><i class="fa fa-home"></i><span>Home</span></a></li>
-            <li><a href="dash-messages.html"><i class="fa fa-envelope-o"></i><span>Messages</span></a></li>
-            <li><a href="dash-reviews.html"><i class="fa fa-star-o"></i><span>Reviews</span></a></li>
-            <li><a href="dash-sales.html"><i class="fa fa-money"></i><span>Sales</span></a></li>
-            <li><a href="dash-items.html"><i class="fa fa-user"></i><span>Items</span></a></li>
-            <li><a href="http://oldsmarket.neonweb.me/dash-addItem.html"><i class="fa fa-plus-circle"></i><span>Add Item</span></a></li>
-            <li><a href="dash-profile.html"><i class="fa fa-user"></i><span>Profile</span></a></li>
-            <li><a href="dash-accountHistory.html" class="current"><i class="fa fa-history"></i><span>Account History</span></a></li>
-            <li><a href="login-register.html"><i class="fa fa-sign-out"></i><span>Sign Out</span></a></li>
+            <li><a href="dashboard.html"><i class="fa fa-home"></i><span>主页</span></a></li>
+            <li><a href="dash-messages.html"><i class="fa fa-envelope-o"></i><span>留言</span></a></li>
+            <li><a href="dash-reviews.html"><i class="fa fa-star-o"></i><span>评论</span></a></li>
+            <li><a href="dash-sales.html"><i class="fa fa-money"></i><span>销售信息</span></a></li>
+            <li><a href="my-sales.html"><i class="fa fa-money"></i><span>我的订单</span></a></li>
+            <li><a href="dash-items.html"><i class="fa fa-user"></i><span>物品</span></a></li>
+            <li><a href="http://oldsmarket.neonweb.me/dash-addItem.html"><i class="fa fa-plus-circle"></i><span>新增项目</span></a></li>
+            <li><a href="dash-profile.html"><i class="fa fa-user"></i><span>个人资料</span></a></li>
+            <li><a href="dash-accountHistory.html" class="current"><i class="fa fa-history"></i><span>账户记录</span></a></li>
+            <li><a href="login-register.html"><i class="fa fa-sign-out"></i><span>登出</span></a></li>
         </ul>
     </div>
 </div>
@@ -102,7 +101,7 @@
     <!--account history-->
     <div class="account-history">
         <div class="date-pane">
-            <strong>Today - Thursday, June 21, 2018</strong>
+            <strong>今天——2018年6月21日，星期四</strong>
         </div>
         <div class="history-item">
             <label class="label--checkbox">
@@ -111,7 +110,7 @@
             </label>
             <div class="history-info">
                 <i class="fa fa-edit"></i>
-                <span>Edited Username and password for your account</span>
+                <span>为您的帐户编辑用户名和密码</span>
             </div>
         </div>
         <div class="history-item">
@@ -121,7 +120,7 @@
             </label>
             <div class="history-info">
                 <i class="fa fa-cloud-upload"></i>
-                <span>Submitted item for listing</span>
+                <span>提交上市项目</span>
             </div>
         </div>
         <div class="history-item">
@@ -131,13 +130,13 @@
             </label>
             <div class="history-info">
                 <i class="fa fa-envelope-o"></i>
-                <span>Sent a message to megan</span>
+                <span>给梅根发了条消息</span>
             </div>
         </div>
     </div>
     <div class="account-history">
         <div class="date-pane">
-            <strong>Yesterday - Wednesday, June 20, 2018</strong>
+            <strong>昨天-- 2018年6月20日星期三</strong>
         </div>
         <div class="history-item">
             <label class="label--checkbox">
@@ -146,7 +145,7 @@
             </label>
             <div class="history-info">
                 <i class="fa fa-trash-o"></i>
-                <span>Deleted a review marked as inappropriate</span>
+                <span>删除标记为不适当的评论</span>
             </div>
         </div>
         <div class="history-item">
@@ -156,7 +155,7 @@
             </label>
             <div class="history-info">
                 <i class="fa fa-dollar"></i>
-                <span>Requested withdrawal</span>
+                <span>要求退出</span>
             </div>
         </div>
         <div class="history-item">
@@ -166,67 +165,7 @@
             </label>
             <div class="history-info">
                 <i class="fa fa-pencil"></i>
-                <span>Edited listing item info</span>
-            </div>
-        </div>
-        <div class="history-item">
-            <label class="label--checkbox">
-                <input type="checkbox" class="checkbox">
-                <strong>2:55 PM</strong>
-            </label>
-            <div class="history-info">
-                <i class="fa fa-edit"></i>
-                <span>Edited Username and password for your account</span>
-            </div>
-        </div>
-        <div class="history-item">
-            <label class="label--checkbox">
-                <input type="checkbox" class="checkbox">
-                <strong>1:02 PM</strong>
-            </label>
-            <div class="history-info">
-                <i class="fa fa-cloud-upload"></i>
-                <span>Submitted item for listing</span>
-            </div>
-        </div>
-        <div class="history-item">
-            <label class="label--checkbox">
-                <input type="checkbox" class="checkbox">
-                <strong>00:13 PM</strong>
-            </label>
-            <div class="history-info">
-                <i class="fa fa-envelope-o"></i>
-                <span>Sent a message to megan</span>
-            </div>
-        </div>
-        <div class="history-item">
-            <label class="label--checkbox">
-                <input type="checkbox" class="checkbox">
-                <strong>1:02 PM</strong>
-            </label>
-            <div class="history-info">
-                <i class="fa fa-dollar"></i>
-                <span>Requested withdrawal</span>
-            </div>
-        </div>
-        <div class="history-item">
-            <label class="label--checkbox">
-                <input type="checkbox" class="checkbox">
-                <strong>00:13 PM</strong>
-            </label>
-            <div class="history-info">
-                <i class="fa fa-pencil"></i>
-                <span>Edited listing item info</span>
-            </div>
-        </div>
-        <div class="history-item">
-            <label class="label--checkbox">
-                <input type="checkbox" class="checkbox">
-                <strong>2:55 PM</strong>
-            </label>
-            <div class="history-info">
-                <i class="fa fa-edit"></i>
-                <span>Edited Username and password for your account</span>
+                <span>编辑列表项信息</span>
             </div>
         </div>
     </div>

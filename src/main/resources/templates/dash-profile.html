@@ -12,7 +12,7 @@
 
     <!--end meta tags-->
 
-    <title>OldsMarket Dashboard</title>
+    <title>二手交易市场</title>
 
     <!--stylesheets-->
     <link rel="stylesheet" href="/vendor/css/bootstrap.min.css">
@@ -29,11 +29,9 @@
     <!--end google fonts-->
 </head>
 <body class="dashboard">
-     
-
-
 
 <!--top navigation-->
+<!--对应右上角提示信息数量-->
 <div class="top-nav">
     <i class="fa fa-bars toggle-dash-menu"></i>
     <ul class="list-inline">
@@ -49,27 +47,28 @@
 <div class="dash-side-nav-wrapper" id="dash-side-menu">
     <div class="dash-side-nav perfect-scroll">
         <div class="dash-logo">
-            <h5><a href="dashboard.html">OldsMarket</a></h5>
-            <span>Dashboard</span>
+            <h5><a href="dashboard.html">二手市场</a></h5>
+            <span>仪表盘</span>
         </div>
         <div class="user-info">
             <div class="dash-user-img"><img src="/img/user2.jpg" alt=""></div>
             <div class="dash-user-info">
-                <strong>Murethi Brian  N.</strong>
-                <span>Backend Developer</span>
+                <strong>张三丰.</strong>
+                <span>后台开发</span>
             </div>
             <a href="dash-profile.html" class="dash-edit-user"><i class="fa fa-pencil"></i></a>
         </div>
         <ul class="list-unstyled dash-menu">
-            <li><a href="dashboard.html"><i class="fa fa-home"></i><span>Home</span></a></li>
-            <li><a href="dash-messages.html"><i class="fa fa-envelope-o"></i><span>Messages</span></a></li>
-            <li><a href="dash-reviews.html"><i class="fa fa-star-o"></i><span>Reviews</span></a></li>
-            <li><a href="dash-sales.html"><i class="fa fa-money"></i><span>Sales</span></a></li>
-            <li><a href="dash-items.html"><i class="fa fa-user"></i><span>Items</span></a></li>
-            <li><a href="http://oldsmarket.neonweb.me/dash-addItem.html"><i class="fa fa-plus-circle"></i><span>Add Item</span></a></li>
-            <li><a href="dash-profile.html" class="current"><i class="fa fa-user"></i><span>Profile</span></a></li>
-            <li><a href="dash-accountHistory.html"><i class="fa fa-history"></i><span>Account History</span></a></li>
-            <li><a href="login-register.html"><i class="fa fa-sign-out"></i><span>Sign Out</span></a></li>
+            <li><a href="dashboard.html"><i class="fa fa-home"></i><span>主页</span></a></li>
+            <li><a href="dash-messages.html"><i class="fa fa-envelope-o"></i><span>留言</span></a></li>
+            <li><a href="dash-reviews.html"><i class="fa fa-star-o"></i><span>评论</span></a></li>
+            <li><a href="dash-sales.html"><i class="fa fa-money"></i><span>销售信息</span></a></li>
+            <li><a href="my-sales.html"><i class="fa fa-money"></i><span>我的订单</span></a></li>
+            <li><a href="dash-items.html"><i class="fa fa-user"></i><span>物品</span></a></li>
+            <li><a href="http://oldsmarket.neonweb.me/dash-addItem.html"><i class="fa fa-plus-circle"></i><span>新增项目</span></a></li>
+            <li><a href="dash-profile.html" class="current"><i class="fa fa-user"></i><span>个人资料</span></a></li>
+            <li><a href="dash-accountHistory.html"><i class="fa fa-history"></i><span>账户记录</span></a></li>
+            <li><a href="login-register.html"><i class="fa fa-sign-out"></i><span>登出</span></a></li>
         </ul>
     </div>
 </div>
@@ -80,7 +79,7 @@
     <div class="d-search-box">
         <form action="#" method="post">
             <div class="form-group">
-                <input required list="ui-list" class="form-control" type="search" placeholder="Search">
+                <input required list="ui-list" class="form-control" type="search" placeholder="搜索">
             </div>
             <button class="btn"><i class="fa fa-search"></i></button>
         </form>
@@ -99,19 +98,19 @@
 <!--ux-box-->
 <div id="ux-box" class="ux-box-wrapper">
     <div class="ux-box">
-        <strong>Change Password</strong>
+        <strong>修改密码</strong>
         <form action="#">
             <div class="form-group">
-                <label for="pass1">New Password</label>
-                <input required id="pass1" type="password" class="form-control" value="mystrongpassword">
+                <label for="pass1">新密码</label>
+                <input required id="pass1" type="password" name="password1" class="form-control" value="mystrongpassword">
             </div>
             <div class="form-group">
-                <label for="pass2">Confirm New Password</label>
-                <input required id="pass2" type="password" class="form-control" value="mystrongpassword">
+                <label for="pass2">确认密码</label>
+                <input required id="pass2" type="password" name="password2" class="form-control" value="mystrongpassword">
             </div>
             <div>
-                <a href="#" class="ui-btn ui-btn-danger close-box">Cancel</a>
-                <button type="submit" class="ui-btn ui-btn-info">Save Password</button>
+                <a href="#" class="ui-btn ui-btn-danger close-box">取消</a>
+                <button type="submit" class="ui-btn ui-btn-info">保存密码</button>
             </div>
         </form>
     </div>
@@ -133,92 +132,80 @@
             <div class="row">
                 <div class="col-lg-6 col-md-6">
                     <div class="form-group">
-                        <label for="fname">First Name</label>
-                        <input class="form-control" type="text" id="fname" placeholder="Brandon">
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6">
-                    <div class="form-group">
-                        <label for="lname">Last Name</label>
-                        <input class="form-control" type="text" id="lname" placeholder="Zentom">
+                        <label for="username">姓名</label>
+                        <input class="form-control" type="text" id="username" placeholder="姓名">
                     </div>
                 </div>
             </div>
             <div class="form-group">
-                <label for="password">Password</label>
+                <label for="password">密码</label>
                 <div class="change-psd show-box">
-                    <span class="pswd">Change Password</span>
-                    <input class="form-control" disabled type="password" id="password" value="Zentom123565545">
+                    <span class="pswd">修改密码</span>
+                    <input class="form-control" disabled type="password" id="password" value="123456">
                 </div>
             </div>
             <div class="form-group">
-                <label for="email">Email</label>
-                <input class="form-control" type="email" id="email" placeholder="you@example.com">
+                <label for="email">邮箱</label>
+                <input class="form-control" type="email" id="email" placeholder="abc123@126.com">
             </div>
             <div class="form-group">
-                <label for="phone">Phone</label>
+                <label for="phone">手机</label>
                 <input class="form-control" type="tel" id="phone" placeholder="+1 686 398689 55">
             </div>
             <div class="form-group">
-                <label for="adr">Address</label>
-                <input class="form-control" type="text" id="adr" value="91 - 10100 Miami">
+                <label for="address">地址</label>
+                <input class="form-control" type="text" id="address" value="91 - 10100 Miami">
             </div>
             <div class="form-group">
-                <label for="country">Country</label>
-                <input class="form-control" type="text" id="country" value="United States">
+                <label for="country">国家</label>
+                <input class="form-control" type="text" id="country" value="中国">
             </div>
         </div>
         <div class="secondary-info">
             <div class="row">
                 <div class="col-lg-6 col-md-6">
                     <div class="form-group">
-                        <label for="gender">Gender</label>
+                        <label for="gender">性别</label>
                         <input class="form-control" type="text" id="gender" placeholder="Male">
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6">
                     <div class="form-group">
-                        <label for="lang">Language</label>
-                        <input class="form-control" type="text" id="lang" placeholder="English">
+                        <label for="lang">语言</label>
+                        <input class="form-control" type="text" id="lang" placeholder="中文">
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-6 col-md-6">
                     <div class="form-group">
-                        <label for="tw">Twitter</label>
-                        <input class="form-control" type="url" id="tw" placeholder="www.twitter.com/@username">
+                        <label for="tw">QQ</label>
+                        <input class="form-control" type="url" id="tw" placeholder="qq">
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6">
                     <div class="form-group">
-                        <label for="fb">Facebook</label>
-                        <input class="form-control" type="url" id="fb" placeholder="www.facebook.com/username">
+                        <label for="fb">微信</label>
+                        <input class="form-control" type="url" id="fb" placeholder="weixin">
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6">
                     <div class="form-group">
-                        <label for="gg">Google+</label>
+                        <label for="gg">Google</label>
                         <input class="form-control" type="url" id="gg" placeholder="www.google.com/username">
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6">
-                    <div class="form-group">
-                        <label for="ln">Linked In</label>
-                        <input class="form-control" type="url" id="ln" placeholder="www.linkedin.com/username">
                     </div>
                 </div>
             </div>
             <div class="form-group">
-                <label for="msg">Brief Bio</label>
-                <textarea name="msg" id="msg" rows="5" class="form-control" placeholder="Say a little about you..."></textarea>
+                <label for="msg">简介</label>
+                <textarea name="msg" id="msg" rows="5" class="form-control" placeholder="简单介绍一下你..."></textarea>
             </div>
             <br>
             <hr>
             <div class="row">
                 <div class="col-lg-8 col-md-6"></div>
                 <div class="col-lg-4 col-md-6">
-                    <button type="submit" class="ui-btn ui-btn-info">Save <i class="fa fa-save"></i></button>
+                    <button type="submit" class="ui-btn ui-btn-info">保存 <i class="fa fa-save"></i></button>
                 </div>
             </div>
         </div>
