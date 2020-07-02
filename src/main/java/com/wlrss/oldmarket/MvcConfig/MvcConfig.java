@@ -4,6 +4,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+/**
+ * @author jamesBond
+ */
 @Configuration
 public class MvcConfig implements WebMvcConfigurer {
 
@@ -31,6 +34,7 @@ public class MvcConfig implements WebMvcConfigurer {
         registry.addViewController("/pricing.html").setViewName("pricing");
         registry.addViewController("/search-results.html").setViewName("search-results");
         registry.addViewController("/my-sales.html").setViewName("my-sales");
+        registry.addViewController("/dash-addItem.html").setViewName("dash-addItem");
 
     }
 }

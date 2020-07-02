@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <!--meta tags-->
     <meta charset="UTF-8">
@@ -54,24 +54,47 @@
     <div class="item-details">
         <img src="/img/items/item-detail.jpg" alt="">
         <div class="title-price">
-            <strong class="titlet">商品名称goodname</strong>
-            <span>价格: <strong class="price">$price</strong></span>
+            <script type="text/javascript">
+                function f() {
+                    var txt = document.getElementById("elm").value;
+                    document.getElementById("lyny").innerHTML = txt;
+                }
+            </script>
+            <strong class="titlet">商品名称:<span th:id="lyny"></span></strong>
+
+            <script type="text/javascript">
+                function f1() {
+                    var tst1 = document.getElementById("elm1").value;
+                    document.getElementById("lyny1").innerHTML = tst1;
+                }
+            </script>
+            <span>价格:$<strong class="price" th:id="lyny1"></strong></span>
         </div>
 
 
         <p class="description">
+            <script type="text/javascript">
+                function f2() {
+                    var ts2 = document.getElementById("a").value;
+                    document.getElementById("bbb").innerHTML = ts2;
+                }
+            </script>
             <strong>物品说明</strong>
+            <span th:id="bbb"></span>
             <br>
-            三弟撒谎对啊啥都i啊首单岁的八四u的
-            <br>
-            <a href="#" class="show-more"><i class="fa fa-angle-double-down"></i></a>
         </p>
         <div class="owner-msg">
+            <script type="text/javascript">
+                function f3() {
+                    var ts3 = document.getElementById("weu").value;
+                    document.getElementById("sd").innerHTML = ts3;
+                }
+            </script>
             <strong>来自卖家的留言</strong>
             <p>
                 <i class="fa fa-quote-left ui-text-success"></i>
-                <span>
-                    这里是描述described
+                <span th:id="sd">
+
                 </span>
                 <i class="fa fa-quote-right ui-text-success"></i>
             </p>
@@ -83,26 +106,24 @@
 
     <!--item aside details-->
     <div class="item-detail-aside">
-
-
         <div class="contact-lister">
             <strong>商品的详细信息</strong>
             <form action="#" method="post">
                 <div class="form-group">
-                    <input id="text" type="email" placeholder="商品名称" class="form-control">
+                    <input id="text" type="email" th:id="elm" onkeyup="f()" placeholder="商品名称" class="form-control">
                 </div>
                 <div class="form-group">
-                    <input id="sub" type="text" placeholder="价格" class="form-control">
+                    <input id="sub" type="text" placeholder="价格" th:id="elm1" onkeyup="f1()" class="form-control">
                 </div>
                 <div class="form-group">
                     <label for="msg">物品说明:</label>
                     <textarea id="msg" name="msg" placeholder="在这里写描述" rows="6"
-                              class="form-control"></textarea>
+                              class="form-control" th:id="a" onkeyup="f2()"></textarea>
                 </div>
                 <div class="form-group">
                     <label for="msg">留言:</label>
                     <textarea id="msg2" name="msg" placeholder="在这里写留言" rows="6"
-                              class="form-control"></textarea>
+                              class="form-control" th:id="weu" onkeyup="f3()"></textarea>
                 </div>
                 <div class="form-group">
                     <button class="ui-btn ui-btn-info form-control" type="submit">保存发布 <i
@@ -112,7 +133,6 @@
         </div>
     </div>
     <!--end item aside details-->
-
 </div>
 <!--end item-->
 
