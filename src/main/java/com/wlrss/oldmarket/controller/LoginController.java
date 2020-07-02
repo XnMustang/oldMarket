@@ -15,16 +15,4 @@ public class LoginController {
     @Autowired
     LoginService loginService;
 
-    /**
-     * 测试传参读取数据库是否正常
-     */
-    @RequestMapping("/login")
-    @ResponseBody
-    public void login(){
-        List<User> users = loginService.findUserByName("张三");
-        for (User user : users) {
-            System.out.println(user);
-        }
-    }
-
 }
