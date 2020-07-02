@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wlrss.oldmarket.mapper.OrderDetailMapper">
+
+    <select id="findAllOrdersDetail" resultType="com.wlrss.oldmarket.entity.vo.MyOrders">
+        SELECT g.`goodsname`,o.`date`,u.`email`,o.`orderno`,o.`money`,o.`status`
+        FROM goods g,orders o,USER u
+        WHERE u.`id` = g.`userid` AND u.`id` = o.`userid` AND u.`id` = 1;
+    </select>
+
+</mapper>

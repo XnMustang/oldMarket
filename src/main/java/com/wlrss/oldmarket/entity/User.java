@@ -1,6 +1,7 @@
 package com.wlrss.oldmarket.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
@@ -20,16 +21,21 @@ public class User {
 
     @TableId(type = IdType.AUTO)
     private Integer id;
-    private String username;
-    private String password;
+    @TableField(value = "username")
+    private String userName;
+    @TableField(value = "password")
+    private String passWord;
     private String email;
     private String phone;
     private String gender;
     private String qq;
     private String google;
     private String intro;
-    private String headimg;
+    @TableField(value = "headimg")
+    private String headImg;
     private String status;
     private String vip;
+
     private Integer goodscount;
+    private Integer goodscountyet;
 }

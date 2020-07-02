@@ -1,19 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 
     <!--meta tags-->
-
     <meta charset="UTF-8">
     <meta name="description" content="Services Listing HTML5 CSS3 template">
     <meta name="keywords" content="HTML,CSS,XML,JavaScript, services, listing">
     <meta name="author" content="Ui-DesignLab">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <!--end meta tags-->
-
     <title>二手交易市场</title>
-
     <!--stylesheets-->
     <link rel="stylesheet" href="/vendor/css/bootstrap.min.css">
     <link rel="stylesheet" href="/vendor/css/animate.min.css">
@@ -29,7 +25,6 @@
 
 </head>
 <body class="dashboard">
-
 
 <!--top navigation-->
 <div class="top-nav">
@@ -63,7 +58,7 @@
             <li><a href="dash-messages.html"><i class="fa fa-envelope-o"></i><span>留言</span></a></li>
             <li><a href="dash-reviews.html"><i class="fa fa-star-o"></i><span>评论</span></a></li>
             <li><a href="dash-sales.html"><i class="fa fa-money"></i><span>销售信息</span></a></li>
-            <li><a href="my-sales.html" class="current"><i class="fa fa-money"></i><span>我的订单</span></a></li>
+            <li><a th:href="@{/order/findAllOrder}" class="current"><i class="fa fa-money"></i><span>我的订单</span></a></li>
             <li><a href="dash-items.html"><i class="fa fa-user"></i><span>物品</span></a></li>
             <li><a href="http://oldsmarket.neonweb.me/dash-addItem.html"><i class="fa fa-plus-circle"></i><span>新增项目</span></a></li>
             <li><a href="dash-profile.html"><i class="fa fa-user"></i><span>个人资料</span></a></li>
@@ -97,38 +92,60 @@
 
 <!--content container-->
 <div class="content-wrapper">
-
     <!--sales records-->
     <div class="sales-records">
         <div class="sort-search">
             <h6 class="st"><strong>我的订单</strong></h6>
             <div class="sort st">
-                <select name="sort" class="form-control" title="">
+                <select name="sort" class="form-control" title="" style="width: 400px;">
                     <option value="all">所有记录</option>
-                    <option value="date1">上市日期</option>
-                    <option value="date2">卖出日期</option>
+                    <option value="date1">订单状态</option>
+                    <option value="date2">订单编号</option>
                     <option value="price">价格</option>
                 </select>
+                <br>
+                <input type="text" id="test1" placeholder="选择时间范围开始">
+                &nbsp;&nbsp;-&nbsp;&nbsp;
+                <input type="text" id="test2" placeholder="选择时间范围结束">
+
+                <script src="js/laydate/laydate.js"></script>
+                <script>
+                    //执行一个laydate实例
+                    laydate.render({
+                        elem: '#test1' //指定元素
+                    });
+                    //执行一个laydate实例
+                    laydate.render({
+                        elem: '#test2' //指定元素
+                    });
+                </script>
             </div>
+<!--            <div class="sort st">-->
+<!--                <select name="sort" class="form-control" title="">-->
+<!--                    <option value="price">状态</option>-->
+<!--                    <option value="price">已发货</option>-->
+<!--                    <option value="price">未发货</option>-->
+<!--                    <option value="price">已取消</option>-->
+<!--                    <option value="price">已完成</option>-->
+<!--                </select>-->
+<!--            </div>-->
             <div class="search-rec st">
-                <input type="search" placeholder="搜索出售" class="form-control">
+                <input type="search" placeholder="请输入" class="form-control">
+            </div>
+            <div>
+                <a class="btn btn-default" href="#" role="button" style="color: white;background-color: cadetblue">搜索</a>
             </div>
         </div>
         <hr>
         <section>
-            <div class="s-record"><strong>1)</strong> <span>跑车</span></div>
-            <div class="s-record"><em>上架日期</em><span>12 Jan, 2017</span></div>
-            <div class="s-record"><em>出售日期</em><span>17 Feb, 2017</span></div>
-            <div class="s-record"><em>买家邮箱</em><span>buyer@eg.com</span></div>
-            <div class="s-record"><em>价钱</em><span>$5625.00</span></div>
-        </section>
-        <hr>
-        <section>
-            <div class="s-record"><strong>2)</strong> <span>飞机</span></div>
-            <div class="s-record"><em>上架日期</em><span>12 Jan, 2017</span></div>
-            <div class="s-record"><em>出售日期</em><span>17 Feb, 2017</span></div>
-            <div class="s-record"><em>买家邮箱</em><span>buyer@eg.com</span></div>
-            <div class="s-record"><em>价钱</em><span>$5625.00</span></div>
+            <tr th:each="orders : ${allOrdersDetail}">
+                <div class="s-record"><strong>1)</strong><span th:text="${orders.getGoodsName()}"></span></div>
+                <div class="s-record"><em>日期</em><span th:text="${#dates.format(orders.getDate(),'yyyy-MM-dd')}"></span></div>
+                <div class="s-record"><em>卖家邮箱</em><span th:text="${orders.getEmail()}"></span></div>
+                <div class="s-record"><em>订单编号</em><span th:text="${orders.getOrderNo()}"></span></div>
+                <div class="s-record"><em>价钱</em><span th:text="${orders.getMoney()}"></span></div>
+                <div class="s-record"><em>状态</em><span th:text="${orders.getStatus()}"></span></div>
+            </tr>
         </section>
         <hr>
     </div>

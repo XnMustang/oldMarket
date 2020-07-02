@@ -6,12 +6,11 @@ import java.util.List;
 
 public interface LoginService {
 
-
     /**
      * 查询用户
-     * @param username
+     * @param userName
      * @return
      */
-    List<User> findUserByName(String username);
+    List<User> findUserByName(String userName);
 
 }

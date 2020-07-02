@@ -272,7 +272,7 @@ $(document).ready(function () {
 
     var element = $(".title-style2 span");
     element.typed({
-        strings: ["Get what you want", "Sell Your old items.", "Find what you need.", "Join Millions of Sellers & Buyers."],
+        strings: ["得到你想要的", "卖掉你不需要的.", "各取所需.", "加入数以百万计的卖家和买家."],
         typeSpeed: 100,
         loop: true,
         smartBackspace: true
