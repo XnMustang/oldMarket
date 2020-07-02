@@ -4,10 +4,12 @@
 
 <mapper namespace="com.wlrss.oldmarket.mapper.OrderDetailMapper">
 
-    <select id="findAllOrdersDetail" resultType="com.wlrss.oldmarket.entity.vo.MyOrders">
-        SELECT g.`goodsname`,o.`date`,u.`email`,o.`orderno`,o.`money`,o.`status`
-        FROM goods g,orders o,USER u
-        WHERE u.`id` = g.`userid` AND u.`id` = o.`userid` AND u.`id` = 1;
+    <select id="findAllOrdersDetail" resultType="MyOrders">
+       SELECT g.`goodsname`,o.`date`,u.`email`,o.`orderno`,o.`status`,
+       g.`price`,od.`nums`,(g.`price` * od.`nums`) totalPrice
+        FROM USER u, goods g, order_details od, orders o
+        WHERE od.`goodsid` = g.`id` AND od.`ordersid` = o.`id`
+        AND g.`userid` = u.`id` AND u.`id` = 1;
     </select>
 
 </mapper>

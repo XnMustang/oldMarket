@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 import lombok.experimental.Accessors;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -25,6 +26,8 @@ public class MyOrders {
     private Date date;
     private String email;
     private String orderNo;
-    private Integer money;
     private String status;
+    private BigDecimal price;
+    private Integer nums;
+    private BigDecimal totalPrice;
 }

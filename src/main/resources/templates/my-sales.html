@@ -94,76 +94,74 @@
 <div class="content-wrapper">
     <!--sales records-->
     <div class="sales-records">
-        <div class="sort-search">
-            <h6 class="st"><strong>我的订单</strong></h6>
-            <div class="sort st">
-                <select name="sort" class="form-control" title="" style="width: 400px;">
-                    <option value="all">所有记录</option>
-                    <option value="date1">订单状态</option>
-                    <option value="date2">订单编号</option>
-                    <option value="price">价格</option>
-                </select>
-                <br>
-                <input type="text" id="test1" placeholder="选择时间范围开始">
-                &nbsp;&nbsp;-&nbsp;&nbsp;
-                <input type="text" id="test2" placeholder="选择时间范围结束">
-
-                <script src="js/laydate/laydate.js"></script>
-                <script>
-                    //执行一个laydate实例
-                    laydate.render({
-                        elem: '#test1' //指定元素
-                    });
-                    //执行一个laydate实例
-                    laydate.render({
-                        elem: '#test2' //指定元素
-                    });
-                </script>
-            </div>
-<!--            <div class="sort st">-->
-<!--                <select name="sort" class="form-control" title="">-->
-<!--                    <option value="price">状态</option>-->
-<!--                    <option value="price">已发货</option>-->
-<!--                    <option value="price">未发货</option>-->
-<!--                    <option value="price">已取消</option>-->
-<!--                    <option value="price">已完成</option>-->
-<!--                </select>-->
-<!--            </div>-->
-            <div class="search-rec st">
-                <input type="search" placeholder="请输入" class="form-control">
-            </div>
+        <p class="st"><strong>我的订单</strong></p>
+        <form class="form-inline">
             <div>
-                <a class="btn btn-default" href="#" role="button" style="color: white;background-color: cadetblue">搜索</a>
+                <input style="font-size: 14px" type="text" id="orderName_orderNum" placeholder="输入名称或订单号搜索">
             </div>
-        </div>
+            <button type="submit" style="font-size: 14px">搜索</button>
+
+            <label style="margin-left: 100px">交易状态</label>&nbsp;
+            <select style="font-size: 14px">
+                <option>全部</option>
+                <option>已签收</option>
+                <option>未签收</option>
+                <option>已发货</option>
+                <option>已付款</option>
+            </select>
+
+            <label style="margin-left: 65px">成交时间</label>&nbsp;
+            <input style="font-size:14px;" type="text" id="test1" placeholder="选择时间范围开始">
+            &nbsp;-&nbsp;
+            <input style="font-size: 14px" type="text" id="test2" placeholder="选择时间范围结束">
+            <script src="/js/laydate/laydate.js"></script>
+            <script>
+                laydate.render({
+                    elem: '#test1'
+                });
+                //执行一个laydate实例
+                laydate.render({
+                    elem: '#test2'
+                });
+            </script>
+        </form>
+
         <hr>
-        <table>
+        <table class="table table-striped" style="font-size: 14px">
             <thead>
                 <tr>
-                    <th style="width: 70px">id</th>
-                    <th style="width: 100px">名称</th>
-                    <th style="width: 270px">日期</th>
-                    <th style="width: 170px">卖家邮箱</th>
-                    <th style="width: 170px">订单编号</th>
-                    <th style="width: 100px">价格</th>
+                    <th style="width: 80px">编号</th>
+                    <th style="width: 140px">名称</th>
+                    <th style="width: 200px">日期</th>
+                    <th style="width: 210px">卖家邮箱</th>
+                    <th style="width: 150px">订单编号</th>
+                    <th style="width: 100px">单价</th>
+                    <th style="width: 100px">数量</th>
+                    <th style="width: 100px">总价</th>
                     <th style="width: 100px">状态</th>
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="orders : ${allOrdersDetail}">
-                    <td><strong>1)</strong></td>
+                <tr th:each="orders,obj : ${allOrdersDetail}">
+                    <td><strong th:text="${obj.count}"></strong></td>
                     <td class="s-record" th:text="${orders.getGoodsName()}"></td>
-                    <td class="s-record" th:text="${#dates.format(orders.getDate(),'yyyy年MM月dd日 HH:mm:ss')}"></td>
+                    <td class="s-record" th:text="${#dates.format(orders.getDate(),'yyyy年MM月dd日')}"></td>
                     <td class="s-record" th:text="${orders.getEmail()}"></td>
                     <td class="s-record" th:text="${orders.getOrderNo()}"></td>
-                    <td class="s-record" th:text="${orders.getMoney()}"></td>
-                    <td class="s-record" th:text="${orders.getStatus()}"></td>
+                    <td class="s-record" th:text="${orders.getPrice()}"></td>
+                    <td class="s-record" th:text="${orders.getNums()}"></td>
+                    <td class="s-record" th:text="${orders.getTotalPrice()}"></td>
+                    <td class="s-record" th:switch="${orders.getStatus()}">
+                        <span th:case="'1'">已签收</span>
+                        <span th:case="'2'">未签收</span>
+                        <span th:case="'3'">已发货</span>
+                        <span th:case="'4'">未发货</span>
+                    </td>
                 </tr>
             </tbody>
         </table>
         <hr>
     </div>
-    <!--end sales records-->
 
 </div>
 <!--end content container-->
