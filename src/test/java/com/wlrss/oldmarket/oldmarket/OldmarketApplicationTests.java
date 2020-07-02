@@ -43,6 +43,9 @@ class OldmarketApplicationTests {
         }
     }
 
+    /**
+     * 测试我的订单功能
+     */
     @Test
     public void findMyOrders(){
         List<MyOrders> detail = ordersDetailService.findAllOrdersDetail(1);

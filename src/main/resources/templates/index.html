@@ -25,107 +25,20 @@
 </head>
 <body>
 
-
-<!--navigation bars-->
-<!--此处为登录成功之后导航栏，带有注销按钮-->
-<div id="side-nav" class="side-nav">
-    <div class="side-nav-menu perfect-scroll">
-        <div class="text-logo">
-            <a href="index.html"><h3>OldsMarket</h3></a>
-        </div>
-        <div class="site-user">
-            <div class="site-user-img">
-                <img src="/img/avatar2.jpg" alt="">
-                <span class="online"></span>
-            </div>
-            <a href="#" class="user-name"><strong>Emma Viola</strong></a>
-        </div>
-        <ul class="menu">
-            <li><a href="index.html" class="current">Home</a></li>
-            <li><a href="items.html">Explore</a></li>
-            <li><a href="pricing.html">Pricing</a></li>
-            <li><a href="blog.html">Blog</a></li>
-            <li><a href="dashboard.html">Dashboard</a></li>
-            <li><a href="contact.html">Contact</a></li>
-            <li><a href="about.html">About</a></li>
-        </ul>
-        <div class="logout"><a href="login-register.html">Log Out</a></div>
-    </div>
-</div>
-<!--end navigation bars-->
-
 <!--banner-->
 <div class="landing-banner">
-    <nav class="site-top-nav transparent">
-        <div class="logo">
-            <a href="index.html">
-                <img src="/img/logo.png" alt="">
-                <strong>二手市场</strong>
-            </a>
-        </div>
-        <ul class="site-menu">
-            <li>
-                <a href="index.html">首页</a>
-            </li>
-            <li>
-                <a href="#">导航</a>
-                <ul class="nav-dropdown">
-                    <li><a href="items.html">最新商品</a></li>
-                    <li><a href="search-results.html">搜索</a></li>
-                </ul>
-            </li>
-            <li><a href="#">个人中心 </i></a>
-                <ul class="nav-dropdown">
-                    <li><a href="dashboard.html">主页</a></li>
-                    <li><a href="dash-messages.html">留言内容</a></li>
-                    <li><a href="dash-reviews.html">评论</a></li>
-                    <li><a href="dash-items.html">物品</a></li>
-                    <li><a href="dash-sales.html">销售信息</a></li>
-                    <li><a th:href="@{/order/findAllOrder}">我的订单</a></li>
-                    <li><a href="dash-profile.html">个人资料</a></li>
-                    <li><a href="dash-accountHistory.html">账户记录</a></li>
-                </ul>
-            </li>
+    <div th:insert="~{commons/commons::navigation}">
+    </div>
 
-            <li>
-                <a href="cart.html">
-                    购物车
-                </a>
-            </li>
-
-            <li><a href="pricing.html">会员</a></li>
-            <li>
-                <a href="#">博客 </i></a>
-                <ul class="nav-dropdown">
-                    <li><a href="blog.html">看博客</a></li>
-                    <li><a href="blog-single.html">写博客</a></li>
-                </ul>
-            </li>
-            <li>
-                <a href="pricing.html">其他</i></a>
-                <ul class="nav-dropdown">
-                    <li><a href="contact.html">联系我</a></li>
-                    <li><a href="about.html">关于我们</a></li>
-                    <li><a href="payment-info.html">付款信息</a></li>
-                    <li><a href="order-success.html">订单确认</a></li>
-                    <li><a href="404.html">404</a></li>
-                </ul>
-            </li>
-            <li><a href="login-register.html" class="ui-btn ui-btn-info">开始</a></li>
-        </ul>
-        <i class="nav-toggle fa fa-bars"></i>
-    </nav>
-
-
-<div class="banner-content">
-    <h1 class="title-style1">欢迎来到 <strong>二手交易市场</strong> </h1>
-    <h2 class="title-style2"><span>这里有你想要的一切</span></h2>
-    <p>
-        <span>一个出售旧物品的市场. 你的手机、电脑等不需要的在这里都不用担心！</span>
-        <span>在这里有我们在，你可以完全放心的交易！</span>
-    </p>
-    <div><a href="pricing.html" class="ui-btn ui-btn-info">开始</a></div>
-</div>
+    <div class="banner-content">
+        <h1 class="title-style1">欢迎来到 <strong>二手交易市场</strong> </h1>
+        <h2 class="title-style2"><span>这里有你想要的一切</span></h2>
+        <p>
+            <span>一个出售旧物品的市场. 你的手机、电脑等不需要的在这里都不用担心！</span>
+            <span>在这里有我们在，你可以完全放心的交易！</span>
+        </p>
+        <div><a href="pricing.html" class="ui-btn ui-btn-info">开始</a></div>
+    </div>
 
 </div>
 <!--end banner-->
@@ -359,7 +272,6 @@
 <script src="/vendor/js/dropzone.js"></script>
 <script src="/vendor/OwlCarousel2-2.2.1/owl.carousel.min.js"></script>
 <script src="/vendor/perfect-scrollbar/js/perfect-scrollbar.jquery.min.js"></script>
-<script src="/vendor/js/typed.js"></script>
 <script src="/vendor/js/typed.js"></script>
 <script src="/js/app.js"></script>
 <!--end scripts-->
