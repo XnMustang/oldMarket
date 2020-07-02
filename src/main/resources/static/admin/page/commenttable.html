@@ -19,27 +19,21 @@
                 <form class="layui-form layui-form-pane" action="">
                     <div class="layui-form-item">
                         <div class="layui-inline">
-                            <label class="layui-form-label">用户姓名</label>
+                            <label class="layui-form-label">卖家ID</label>
                             <div class="layui-input-inline">
-                                <input type="text" name="username" autocomplete="off" class="layui-input">
+                                <input type="text" name="selluserid" autocomplete="off" class="layui-input">
                             </div>
                         </div>
                         <div class="layui-inline">
-                            <label class="layui-form-label">用户性别</label>
+                            <label class="layui-form-label">买家ID</label>
                             <div class="layui-input-inline">
-                                <input type="text" name="sex" autocomplete="off" class="layui-input">
+                                <input type="text" name="buyuserid" autocomplete="off" class="layui-input">
                             </div>
                         </div>
                         <div class="layui-inline">
-                            <label class="layui-form-label">用户城市</label>
+                            <label class="layui-form-label">商品ID</label>
                             <div class="layui-input-inline">
-                                <input type="text" name="city" autocomplete="off" class="layui-input">
-                            </div>
-                        </div>
-                        <div class="layui-inline">
-                            <label class="layui-form-label">用户职业</label>
-                            <div class="layui-input-inline">
-                                <input type="text" name="classify" autocomplete="off" class="layui-input">
+                                <input type="text" name="goodsid" autocomplete="off" class="layui-input">
                             </div>
                         </div>
                         <div class="layui-inline">
@@ -50,11 +44,6 @@
             </div>
         </fieldset>
 
-        <script type="text/html" id="toolbarDemo">
-            <div class="layui-btn-container">
-                <button class="layui-btn layui-btn-sm layui-btn-danger data-delete-btn" lay-event="delete"> 删除 </button>
-            </div>
-        </script>
 
         <table class="layui-hide" id="currentTableId" lay-filter="currentTableFilter"></table>
 
@@ -82,7 +71,7 @@
                 icon: 'layui-icon-tips'
             }],
             cols: [[
-                {type: "checkbox", width: 50},
+
                 {field: 'id', width: 100, title: 'ID', sort: true},
                 {field: 'content', width: 250, title: '评论内容'},
                 {field: 'selluserid', width: 150, title: '卖家ID', sort: true},
@@ -99,6 +88,7 @@
         // 监听搜索操作
         form.on('submit(data-search-btn)', function (data) {
             var result = JSON.stringify(data.field);
+            alert(data.field.selluserid+"++"+data.field.buyuserid+"++"+data.field.goodsid)
             layer.alert(result, {
                 title: '最终的搜索信息'
             });
@@ -109,8 +99,13 @@
                     curr: 1
                 }
                 , where: {
-                    searchParams: result
-                }
+                    selluserid:data.field.selluserid,
+                    buyuserid:data.field.buyuserid,
+                    goodsid:data.field.goodsid
+                },
+                method: 'post',
+                contentType: "application/json;charset=utf-8",
+                url: '../../../searchComment',
             }, 'data');
 
             return false;

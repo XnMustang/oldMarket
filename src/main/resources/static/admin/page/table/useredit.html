@@ -20,17 +20,17 @@
     <div class="layui-form-item">
         <label class="layui-form-label required">用户状态</label>
         <div class="layui-input-block">
-            <input type="radio" name="status" value="正常" title="正常" checked="">
-            <input type="radio" name="status" value="封停" title="封停">
+            <input type="radio" name="status" value="1" title="正常" checked="">
+            <input type="radio" name="status" value="0" title="封停">
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label required">VIP等级</label>
+        <label class="layui-form-label">VIP等级</label>
         <div class="layui-input-block">
-            <input type="radio" name="status" value="0" title="普通" checked="">
-            <input type="radio" name="status" value="1" title="VIP1">
-            <input type="radio" name="status" value="2" title="VIP2">
-            <input type="radio" name="status" value="3" title="VIP3">
+            <input type="radio" name="vip" value="0" title="普通" checked="">
+            <input type="radio" name="vip" value="1" title="VIP1">
+            <input type="radio" name="vip" value="2" title="VIP2">
+            <input type="radio" name="vip" value="3" title="VIP3">
         </div>
     </div>
 
@@ -45,6 +45,7 @@
 <script src="../../js/jquery-2.2.3.min.js"></script>
 <script src="../../lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
 <script>
+
     layui.use(['form'], function () {
         var form = layui.form,
             layer = layui.layer,
@@ -52,6 +53,9 @@
 
         //监听提交
         form.on('submit(saveBtn)', function (data) {
+
+
+
             var index = layer.alert(JSON.stringify(data.field), {
                 title: '最终的提交信息'
             }, function () {
@@ -62,6 +66,7 @@
                 var iframeIndex = parent.layer.getFrameIndex(window.name);
                 parent.layer.close(iframeIndex);
 
+
             });
 
             return false;
@@ -69,13 +74,19 @@
 
     });
 
-    function deleteUser(index) {
-
+    function updateUser(index) {
+        var id=window.location.search.split("=")[1];
         $.ajax({
-            url:"../../../updateUser",
+            url:"../../../updateUser?id="+id,
             type:"post",
             data:index,
-            dataType:"json"
+            dataType:"json",
+            contentType : "application/json",
+            success:function () {
+                window.location.reload("index.html");
+
+
+            }
 
         })
 

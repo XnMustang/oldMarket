@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
@@ -19,19 +20,34 @@ public class UserController {
     @RequestMapping(value = "getAllUser", produces = {"application/text;charset=UTF-8"})
     @ResponseBody
     public String listAllUser(){
-        System.out.println(JSON.toJSONString(userService.listAllUser()));
         String s="{\n" +
                 "  \"code\": 0,\n" +
                 "  \"msg\": \"\",\n" +
                 "  \"count\": 1000,\n" +
                 "  \"data\":"+JSON.toJSONString(userService.listAllUser())+"}";
-        System.out.println(s);
+        System.out.println("userLIst"+JSON.toJSONString(userService.listAllUser()));
         return s;
     }
     @RequestMapping("/updateUser")
     @ResponseBody
-    public void updateUser(User user){
+    public String updateUser(int id,@RequestBody User user){
+        user.setId(id);
+        System.out.println("打印的user"+user);
         userService.updateUser(user);
+        return "usertable";
+    }
+
+    @RequestMapping("/searchUser")
+    @ResponseBody
+    public String searchUser(@RequestBody User user){
+        System.out.println("searchUser..."+user);
+        String s="{\n" +
+                "  \"code\": 0,\n" +
+                "  \"msg\": \"\",\n" +
+                "  \"count\": 1000,\n" +
+                "  \"data\":"+JSON.toJSONString(userService.searchUser(user))+"}";
+        System.out.println(s);
+        return s;
     }
 
 }

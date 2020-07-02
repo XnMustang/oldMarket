@@ -10,4 +10,7 @@ public interface UserService {
 
     //修改用户权限
     void updateUser(User user);
+
+    //条件搜索用户
+    List<User> searchUser(User user);
 }
