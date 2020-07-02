@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <!--meta tags-->
 
@@ -28,90 +28,11 @@
 
 <!--navigation bars-->
 
-<nav class="site-top-nav">
-    <div class="logo">
-        <a href="index.html">
-            <img src="/img/logo.png" alt="">
-            <strong>二手市场</strong>
-        </a>
-    </div>
-    <ul class="site-menu">
-        <li>
-            <a href="index.html">首页</a>
-        </li>
-        <li>
-            <a href="#">导航</a>
-            <ul class="nav-dropdown">
-                <li><a href="items.html">最新商品</a></li>
-                <li><a href="search-results.html">搜索</a></li>
-            </ul>
-        </li>
-        <li><a href="#">个人中心 </i></a>
-            <ul class="nav-dropdown">
-                <li><a href="dashboard.html">主页</a></li>
-                <li><a href="dash-messages.html">留言内容</a></li>
-                <li><a href="dash-reviews.html">评论</a></li>
-                <li><a href="dash-items.html">物品</a></li>
-                <li><a href="dash-sales.html">销售信息</a></li>
-                <li><a href="my-sales.html">我的订单</a></li>
-                <li><a href="dash-profile.html">个人资料</a></li>
-                <li><a href="dash-accountHistory.html">账户记录</a></li>
-            </ul>
-        </li>
-        <li>
-            <a href="cart.html">
-                购物车
-            </a>
-        </li>
-        <li><a href="pricing.html">会员</a></li>
-        <li>
-            <a href="#">博客 </i></a>
-            <ul class="nav-dropdown">
-                <li><a href="blog.html">看博客</a></li>
-                <li><a href="blog-single.html">写博客</a></li>
-            </ul>
-        </li>
-        <li>
-            <a href="pricing.html">其他</i></a>
-            <ul class="nav-dropdown">
-                <li><a href="contact.html">联系我</a></li>
-                <li><a href="about.html">关于我们</a></li>
-                <li><a href="payment-info.html">付款信息</a></li>
-                <li><a href="order-success.html">订单确认</a></li>
-                <li><a href="404.html">404</a></li>
-            </ul>
-        </li>
-        <li><a href="login-register.html" class="ui-btn ui-btn-info">开始</a></li>
-    </ul>
-    <i class="nav-toggle fa fa-bars"></i>
-</nav>
-
-<!--此处为登录成功成功之后显示带有退出按钮的页面-->
-<div id="side-nav" class="side-nav">
-    <div class="side-nav-menu perfect-scroll">
-        <div class="text-logo">
-            <a href="index.html"><h3>OldsMarket</h3></a>
-        </div>
-        <div class="site-user">
-            <div class="site-user-img">
-                <img src="/img/avatar2.jpg" alt="">
-                <span class="online"></span>
-            </div>
-            <a href="#" class="user-name"><strong>Emma Viola</strong></a>
-        </div>
-        <ul class="menu">
-            <li><a href="index.html" class="current">Home</a></li>
-            <li><a href="items.html">Explore</a></li>
-            <li><a href="pricing.html">Pricing</a></li>
-            <li><a href="blog.html">Blog</a></li>
-            <li><a href="dashboard.html">Dashboard</a></li>
-            <li><a href="contact.html">Contact</a></li>
-            <li><a href="about.html">About</a></li>
-        </ul>
-        <div class="logout"><a href="login-register.html">Log Out</a></div>
+<!--导航栏-->
+<div class="site-top-nav transparent">
+    <div th:insert="~{commons/commons::navigation}">
     </div>
 </div>
-<!--end navigation bars-->
 
 <!--login/register form-->
 <div class="forms-wrapper">

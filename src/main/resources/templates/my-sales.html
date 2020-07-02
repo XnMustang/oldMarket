@@ -63,7 +63,7 @@
             <li><a href="dash-addItem.html"><i class="fa fa-plus-circle"></i><span>新增项目</span></a></li>
             <li><a href="dash-profile.html"><i class="fa fa-user"></i><span>个人资料</span></a></li>
             <li><a href="dash-accountHistory.html"><i class="fa fa-history"></i><span>账户记录</span></a></li>
-            <li><a href="login-register.html"><i class="fa fa-sign-out"></i><span>登出</span></a></li>
+            <li><a href="items.html"><i class="fa fa-sign-out"></i><span>回到首页</span></a></li>
         </ul>
     </div>
 </div>
@@ -137,16 +137,30 @@
             </div>
         </div>
         <hr>
-        <section>
-            <tr th:each="orders : ${allOrdersDetail}">
-                <div class="s-record"><strong>1)</strong><span th:text="${orders.getGoodsName()}"></span></div>
-                <div class="s-record"><em>日期</em><span th:text="${#dates.format(orders.getDate(),'yyyy-MM-dd')}"></span></div>
-                <div class="s-record"><em>卖家邮箱</em><span th:text="${orders.getEmail()}"></span></div>
-                <div class="s-record"><em>订单编号</em><span th:text="${orders.getOrderNo()}"></span></div>
-                <div class="s-record"><em>价钱</em><span th:text="${orders.getMoney()}"></span></div>
-                <div class="s-record"><em>状态</em><span th:text="${orders.getStatus()}"></span></div>
-            </tr>
-        </section>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 70px">id</th>
+                    <th style="width: 100px">名称</th>
+                    <th style="width: 270px">日期</th>
+                    <th style="width: 170px">卖家邮箱</th>
+                    <th style="width: 170px">订单编号</th>
+                    <th style="width: 100px">价格</th>
+                    <th style="width: 100px">状态</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="orders : ${allOrdersDetail}">
+                    <td><strong>1)</strong></td>
+                    <td class="s-record" th:text="${orders.getGoodsName()}"></td>
+                    <td class="s-record" th:text="${#dates.format(orders.getDate(),'yyyy年MM月dd日 HH:mm:ss')}"></td>
+                    <td class="s-record" th:text="${orders.getEmail()}"></td>
+                    <td class="s-record" th:text="${orders.getOrderNo()}"></td>
+                    <td class="s-record" th:text="${orders.getMoney()}"></td>
+                    <td class="s-record" th:text="${orders.getStatus()}"></td>
+                </tr>
+            </tbody>
+        </table>
         <hr>
     </div>
     <!--end sales records-->
