@@ -31,20 +31,20 @@
 <!--navigation bars-->
 
 
-<div id="side-nav" class="side-nav">
-    <div class="side-nav-menu perfect-scroll">
-        <div class="text-logo">
-            <a href="index.html"><h3>OldsMarket</h3></a>
-        </div>
-        <div class="site-user">
-            <div class="site-user-img">
-                <img src="/img/avatar.jpg" alt="此处上传图片显示">
-                <span class="online"></span>
-            </div>
-            <a href="#" class="user-name"><strong>Emma Viola</strong></a>
-        </div>
-    </div>
-</div>
+<!--<div id="side-nav" class="side-nav">-->
+<!--    <div class="side-nav-menu perfect-scroll">-->
+<!--        <div class="text-logo">-->
+<!--            <a href="index.html"><h3>OldsMarket</h3></a>-->
+<!--        </div>-->
+<!--        <div class="site-user">-->
+<!--            <div class="site-user-img">-->
+<!--                <img src="/img/avatar.jpg" alt="此处上传图片显示">-->
+<!--                <span class="online"></span>-->
+<!--            </div>-->
+<!--            <a href="#" class="user-name"><strong>Emma Viola</strong></a>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
 <!--end navigation bars-->
 
 
@@ -52,7 +52,13 @@
 <div class="detail-wrapper">
     <!--item details-->
     <div class="item-details">
-        <img src="/img/items/item-detail.jpg" alt="">
+        <form method="post" action="fileUpload" enctype="multipart/form-data">
+            <input type="file" name="file"/>
+            <input type="submit" value="确定">
+        </form>
+        <p>图片显示：</p>
+        <img th:src="${filename }" style="width: 400px;height: 500px"/>
+        <!--和文件上传无关-->
         <div class="title-price">
             <script type="text/javascript">
                 function f() {
@@ -108,21 +114,21 @@
     <div class="item-detail-aside">
         <div class="contact-lister">
             <strong>商品的详细信息</strong>
-            <form action="#" method="post">
+            <form action="/goods/addGood" method="post" >
                 <div class="form-group">
-                    <input id="text" type="email" th:id="elm" onkeyup="f()" placeholder="商品名称" class="form-control">
+                    <input id="text" type="text" th:id="elm" onkeyup="f()" placeholder="商品名称" class="form-control"/>
                 </div>
                 <div class="form-group">
-                    <input id="sub" type="text" placeholder="价格" th:id="elm1" onkeyup="f1()" class="form-control">
+                    <input name="price" id="sub" type="number" placeholder="价格" th:id="elm1" onkeyup="f1()" class="form-control">
                 </div>
                 <div class="form-group">
                     <label for="msg">物品说明:</label>
-                    <textarea id="msg" name="msg" placeholder="在这里写描述" rows="6"
+                    <textarea id="msg"  placeholder="在这里写描述" rows="6"
                               class="form-control" th:id="a" onkeyup="f2()"></textarea>
                 </div>
                 <div class="form-group">
                     <label for="msg">留言:</label>
-                    <textarea id="msg2" name="msg" placeholder="在这里写留言" rows="6"
+                    <textarea id="msg2" name="sellmassage" placeholder="在这里写留言" rows="6"
                               class="form-control" th:id="weu" onkeyup="f3()"></textarea>
                 </div>
                 <div class="form-group">

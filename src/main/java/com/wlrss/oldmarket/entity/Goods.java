@@ -1,34 +1,42 @@
 package com.wlrss.oldmarket.entity;
 
 import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableName;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import lombok.experimental.Accessors;
+import org.hibernate.validator.constraints.Range;
+import org.springframework.validation.annotation.Validated;
 
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
 import java.math.BigDecimal;
 import java.util.Date;
 
+/**
+ * 商品实体类
+ *
+ * @author jamesBond
+ * @createTime 2020/7/1/001 14:13
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
 @Accessors(chain = true)
-
-@TableName(value = "goods")
+@Validated
 public class Goods {
-
     private Integer id;
-    private String goodsName;
+    @NotEmpty(message = "商品名不能为空")
+    private String goodsname;
+    @Range(min = 0, message = "价格不能小于0")
+    @NotEmpty(message = "价格不能为空")
     private BigDecimal price;
+    @NotEmpty(message = "商品描述不能为空")
     private String described;
-    private String goodsImg;
-    private Integer userId;
+    private String goodsimg;
+    private Integer userid;
     private Date date;
-    private String sellMassage;
+    @NotEmpty(message = "留言不能为空")
+    private String sellmassage;
     private Integer status;
-
-
 }

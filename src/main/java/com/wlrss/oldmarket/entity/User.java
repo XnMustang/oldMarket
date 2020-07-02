@@ -10,16 +10,20 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 import lombok.experimental.Accessors;
 
+import javax.persistence.Entity;
+
+/**
+ * @author jamesBond
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
 @Accessors(chain = true)
-
 @TableName(value = "user")
 public class User {
 
-    @TableId(type = IdType.AUTO)
+    @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
     @TableField(value = "username")
     private String userName;
