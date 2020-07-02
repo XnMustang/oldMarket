@@ -41,6 +41,31 @@
             }
           ]
         },
+
+        {
+          "title": "用户管理",
+          "href": "page/usertable.html",
+          "icon": "fa fa-window-maximize",
+          "target": "_self"
+        },
+        {
+          "title": "评论管理",
+          "href": "page/commenttable.html",
+          "icon": "fa fa-window-maximize",
+          "target": "_self"
+        },
+        {
+          "title": "商品管理",
+          "href": "page/table.html",
+          "icon": "fa fa-window-maximize",
+          "target": "_self"
+        },
+        {
+          "title": "论坛管理",
+          "href": "page/table.html",
+          "icon": "fa fa-window-maximize",
+          "target": "_self"
+        },
         {
           "title": "菜单管理",
           "href": "page/menu.html",

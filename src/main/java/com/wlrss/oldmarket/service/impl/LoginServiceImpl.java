@@ -27,4 +27,5 @@ public class LoginServiceImpl implements LoginService {
         List<User> users = userMapper.selectList(queryWrapper);
         return users;
     }
+
 }
