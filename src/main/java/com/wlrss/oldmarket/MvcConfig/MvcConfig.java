@@ -1,6 +1,7 @@
 package com.wlrss.oldmarket.MvcConfig;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -37,5 +38,49 @@ public class MvcConfig implements WebMvcConfigurer {
         registry.addViewController("/dash-addItem.html").setViewName("dash-addItem");
         registry.addViewController("/activation-success.html").setViewName("activation-success");
 
+    }
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(new LoginHandlerInterceptor()).
+                addPathPatterns("/**").
+                excludePathPatterns(
+                        "/404.html",
+                        "/about.html",
+                        "/activation-success.html",
+                        "/blog.html",
+                        "/blog-single.html",
+                        "/cart.html",
+                        "/contact.html",
+                        "/index.html",
+                        "/item-detail.html",
+                        "/items.html",
+                        "/login-register.html",
+                        "/moreclick.html",
+                        "/my-sales.html",
+                        "/order-success.html",
+                        "/payment_gaoji.html",
+                        "/payment_putong.html",
+                        "/payment_zungui.html",
+                        "/pricing.html",
+                        "/search-results.html",
+                        "/",
+                        "/login",
+                        "/logout",
+                        "/activation",
+                        "/register",
+                        "/goods/**",
+                        "/order/**",
+                        "/user/**",
+                        "/Comment/**",
+                        "/file",
+                        "/fileUpload"
+                ).excludePathPatterns(
+                        "/admin/**",
+                        "/css/**",
+                        "/img/**",
+                        "/js/**",
+                        "/vendor/**"
+                );
     }
 }
