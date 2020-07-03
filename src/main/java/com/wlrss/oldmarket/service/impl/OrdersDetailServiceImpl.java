@@ -1,6 +1,4 @@
 package com.wlrss.oldmarket.service.impl;
-
-import com.wlrss.oldmarket.entity.User;
 import com.wlrss.oldmarket.mapper.OrderDetailMapper;
 import com.wlrss.oldmarket.service.OrdersDetailService;
 import com.wlrss.oldmarket.entity.vo.MyOrders;
@@ -20,8 +18,16 @@ public class OrdersDetailServiceImpl implements OrdersDetailService {
         return orderDetailMapper.findAllOrdersDetail(userId);
     }
 
+    /**
+     *
+     * @param userId                查看哪个用户的订单明细
+     * @param orderNameOrderNum     根据订单或者商品名称查询订单
+     * @param flag                  标志位,动态SQL判断输入的是订单编号还是商品名称
+     * @return
+     */
     @Override
     public List<MyOrders> findAllOptionCondition(int userId,String orderNameOrderNum,boolean flag) {
+        //判断输入的是订单还是商品名称，执行不同的SQL
         for(int i = orderNameOrderNum.length();--i>= 0;){
             int chr = orderNameOrderNum.charAt(i);
             if(chr < 48 || chr > 57) {
@@ -34,8 +40,23 @@ public class OrdersDetailServiceImpl implements OrdersDetailService {
         return orderDetailMapper.findAllOptionCondition(userId,orderNameOrderNum,flag);
     }
 
+    /**
+     * 根据邮箱获取id
+     * @param email
+     * @return
+     */
     @Override
-    public User findUserIdByEmail(String email) {
+    public int findUserIdByEmail(String email) {
         return orderDetailMapper.findUserIdByEmail(email);
+    }
+
+    /**
+     *
+     * @param optionValue   订单的交易状态
+     * @return
+     */
+    @Override
+    public List<MyOrders> findStatus(int userId,String optionValue) {
+        return orderDetailMapper.findStatus(userId,optionValue);
     }
 }

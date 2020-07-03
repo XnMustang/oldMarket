@@ -9,7 +9,7 @@
        g.`price`,od.`nums`,(g.`price` * od.`nums`) totalPrice
         FROM USER u, goods g, order_details od, orders o
         WHERE od.`goodsid` = g.`id` AND od.`ordersid` = o.`id`
-        AND g.`userid` = u.`id` AND u.`id` = #{userId};
+        AND g.`userid` = u.`id` AND u.`id` = #{userId}
     </select>
 
     <select id="findAllOptionCondition" resultType="myOrders">
@@ -27,8 +27,20 @@
         </where>
     </select>
 
-    <select id="findUserIdByEmail" resultType="user">
-        select * from user where email = #{email}
+    <select id="findUserIdByEmail" resultType="int">
+        select id from user where email = #{email}
+    </select>
+
+    <select id="findStatus" resultType="myOrders">
+        SELECT g.`goodsname`,o.`date`,u.`email`,o.`orderno`,o.`status`,g.`price`,od.`nums`,(g.`price` * od.`nums`) totalPrice
+        FROM USER u, goods g, order_details od, orders o
+        <where>
+            od.`goodsid` = g.`id` AND od.`ordersid` = o.`id`
+            AND g.`userid` = u.`id` AND u.`id` = #{userId}
+            <if test="optionValue != null">
+                and o.`status` = #{optionValue}
+            </if>
+        </where>
     </select>
 
 </mapper>

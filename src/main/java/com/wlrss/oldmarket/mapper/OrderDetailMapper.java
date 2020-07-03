@@ -21,9 +21,12 @@ public interface OrderDetailMapper {
      */
     List<MyOrders> findAllOrdersDetail(@Param("userId") int userId);
 
+
     /**
-     * 根据不同条件查询当前用户的所有订单
-     * @param orderNameOrderNum  商品名称或者订单编号查询
+     *  根据不同条件查询当前用户的所有订单
+     * @param userId                    查看哪个用户的订单明细
+     * @param orderNameOrderNum         商品名称或者订单编号查询
+     * @param flag                      标志位,动态SQL判断输入的是订单编号还是商品名称
      * @return
      */
     List<MyOrders> findAllOptionCondition(int userId,String orderNameOrderNum,boolean flag);
@@ -33,5 +36,12 @@ public interface OrderDetailMapper {
      * @param email
      * @return
      */
-    User findUserIdByEmail(@Param("email") String email);
+    int findUserIdByEmail(@Param("email") String email);
+
+    /**
+     * 获取订单的状态
+     * @param optionValue
+     * @return
+     */
+    List<MyOrders> findStatus(int userId,String optionValue);
 }
