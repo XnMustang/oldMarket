@@ -63,7 +63,7 @@
 
         table.render({
             elem: '#currentTableId',
-            url: '../../../commentList',
+            url: '../../../comment/commentList',
             toolbar: '#toolbarDemo',
             defaultToolbar: ['filter', 'exports', 'print', {
                 title: '提示',
@@ -88,7 +88,7 @@
         // 监听搜索操作
         form.on('submit(data-search-btn)', function (data) {
             var result = JSON.stringify(data.field);
-            alert(data.field.selluserid+"++"+data.field.buyuserid+"++"+data.field.goodsid)
+           // alert(data.field.selluserid+"++"+data.field.buyuserid+"++"+data.field.goodsid)
             layer.alert(result, {
                 title: '最终的搜索信息'
             });
@@ -105,7 +105,7 @@
                 },
                 method: 'post',
                 contentType: "application/json;charset=utf-8",
-                url: '../../../searchComment',
+                url: '../../../comment/searchComment',
             }, 'data');
 
             return false;
@@ -160,7 +160,7 @@
             } else if (obj.event === 'delete') {
                 layer.confirm('真的删除行么', function (index) {
                     //alert(JSON.stringify(data));
-                    alert(data.id);
+                    //alert(data.id);
                     deleteUser(data.id);
                     obj.del();
                     layer.close(index);
@@ -171,9 +171,9 @@
     });
 
     function deleteUser(index) {
-        alert("id=="+index);
+        //alert("id=="+index);
         $.ajax({
-            url:"../../../deleteById?id="+index,
+            url:"../../../comment/deleteById?id="+index,
             type:"post",
             dataType:"json"
 

@@ -6,9 +6,11 @@ import com.wlrss.oldmarket.mapper.CommentMapper;
 import com.wlrss.oldmarket.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 @Service
+@RequestMapping("/comment")
 public class CommentServiceImpl implements CommentService {
 
     @Autowired

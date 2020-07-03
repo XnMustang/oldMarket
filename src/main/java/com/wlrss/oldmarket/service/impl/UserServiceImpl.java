@@ -1,5 +1,6 @@
 package com.wlrss.oldmarket.service.impl;
 
+import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.wlrss.oldmarket.entity.User;
 import com.wlrss.oldmarket.mapper.UserMapper;
@@ -38,5 +39,14 @@ public class UserServiceImpl implements UserService {
        }
 
         return userMapper.selectList(queryWrapper);
+    }
+
+    @Override
+    public String findUserByEmail(String email) {
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("email",email);
+        User user=userMapper.selectOne(queryWrapper);
+        String str= JSON.toJSONString(user);
+        return str;
     }
 }

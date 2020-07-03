@@ -78,7 +78,7 @@
         //alert(window.location.search);
         var id=window.location.search.split("=")[1].slice(0,1);
         $.ajax({
-            url:"../../../updateUser?id="+id,
+            url:"../../../user/updateUser?id="+id,
             type:"post",
             data:index,
             dataType:"json",

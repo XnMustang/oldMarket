@@ -225,7 +225,27 @@
 <script src="/vendor/perfect-scrollbar/js/perfect-scrollbar.jquery.min.js"></script>
 <script src="/vendor/js/typed.js"></script>
 <script src="/js/app.js"></script>
-<!--end scripts-->
 
+<script>
+    $(function () {
+        $.ajax({
+            url:"/user/updatePersonalData",
+            method: "post",
+            dataType:"json",
+            success:function (data) {
+                console.log(data);
+                $("#email").val(data.email);
+                $("#gender").val(data.gender);
+                $("#username").val(data.username);
+                $("#phone").val(data.phone);
+                $("#tw").val(data.qq);
+                $("#gg").val(data.google);
+                $("#msg").val(data.intro);
+
+            }
+        })
+        
+    })
+</script>
 </body>
 </html>

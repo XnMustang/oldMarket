@@ -13,4 +13,7 @@ public interface UserService {
 
     //条件搜索用户
     List<User> searchUser(User user);
+
+    //根据邮箱查找个人用户信息
+    String findUserByEmail(String email);
 }
