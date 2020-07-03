@@ -20,14 +20,14 @@
     <div class="layui-form-item">
         <label class="layui-form-label required">用户状态</label>
         <div class="layui-input-block">
-            <input type="radio" name="status" value="1" title="正常" checked="">
-            <input type="radio" name="status" value="0" title="封停">
+            <input type="radio" name="status" value="1" title="正常" >
+            <input type="radio" name="status" value="0" title="封号">
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">VIP等级</label>
         <div class="layui-input-block">
-            <input type="radio" name="vip" value="0" title="普通" checked="">
+            <input type="radio" name="vip" value="0" title="普通">
             <input type="radio" name="vip" value="1" title="VIP1">
             <input type="radio" name="vip" value="2" title="VIP2">
             <input type="radio" name="vip" value="3" title="VIP3">
@@ -75,7 +75,8 @@
     });
 
     function updateUser(index) {
-        var id=window.location.search.split("=")[1];
+        //alert(window.location.search);
+        var id=window.location.search.split("=")[1].slice(0,1);
         $.ajax({
             url:"../../../updateUser?id="+id,
             type:"post",
@@ -91,6 +92,29 @@
         })
 
     }
+
+    $(function(){
+            //回显
+            //var id=window.location.search.split("=")[1].slice(0,1);
+            var status=window.location.search.split("=")[2].slice(0,1);
+            var vip=window.location.search.split("=")[3];
+
+
+            var radios = $("input[name=status]");
+            radios.each(function () {
+                if ($(this).val() == status) {
+                    this.checked = true ;
+                }
+            })
+            var radio = $("input[name=vip]");
+            radio.each(function () {
+                if ($(this).val() == vip) {
+                    this.checked = true ;
+                }
+            })
+
+        })
+
 </script>
 </body>
 </html>

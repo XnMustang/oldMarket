@@ -75,7 +75,7 @@
                 }],
                 cols: [[
                     {field: 'id', width: 80, title: 'ID', sort: true},
-                    {field: 'userName', width: 100, title: '用户名'},
+                    {field: 'username', width: 100, title: '用户名'},
                     {field: 'gender', width: 80, title: '性别', sort: true},
                     {field: 'email', width: 100, title: '邮箱'},
                     {field: 'phone', title: '电话', width: 100},
@@ -153,13 +153,27 @@
                 var data = obj.data;
                 if (obj.event === 'edit') {
                     var index = layer.open({
-                        title: '编辑用户',
+                        title: '用户状态管理',
                         type: 2,
                         shade: 0.2,
                         maxmin:true,
                         shadeClose: true,
                         area: ['100%', '100%'],
-                        content: '../page/table/useredit.html?id='+data.id,
+                        content: '../page/table/useredit.html?id='+data.id+"&status="+data.status+"&vip="+data.vip,
+                        end:function(){
+                            table.reload('currentTableId', {//testReload是组件名称,表格名
+                                page: {//page参数是指重新刷新后从第几页开始
+                                    curr: 1 //重新从第 1 页开始
+                                }
+                                ,where: {//where是指你要往后台发的参数的键值对,可以不加key{}
+
+                                },
+                                method: 'post',
+                                contentType: "application/json;charset=utf-8",
+                                url: '../../../getAllUser',
+                            }, 'data');//data是默认值
+
+                        }
                     });
                     $(window).on("resize", function () {
                         layer.full(index);
