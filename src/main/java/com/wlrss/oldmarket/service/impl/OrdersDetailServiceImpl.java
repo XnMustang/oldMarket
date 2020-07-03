@@ -51,12 +51,23 @@ public class OrdersDetailServiceImpl implements OrdersDetailService {
     }
 
     /**
-     *
+     * 根据状态查询当前用户订单
      * @param optionValue   订单的交易状态
      * @return
      */
     @Override
     public List<MyOrders> findStatus(int userId,String optionValue) {
         return orderDetailMapper.findStatus(userId,optionValue);
+    }
+
+    /**
+     * 根据时间查询当用户的订单
+     * @param time1     开始时间
+     * @param time2     结束时间
+     * @return
+     */
+    @Override
+    public List<MyOrders> findTimeOrder(int userId,String time1, String time2) {
+        return orderDetailMapper.findTimeOrder(userId,time1,time2);
     }
 }

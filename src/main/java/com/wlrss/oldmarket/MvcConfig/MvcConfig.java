@@ -80,7 +80,8 @@ public class MvcConfig implements WebMvcConfigurer {
                         "/css/**",
                         "/img/**",
                         "/js/**",
-                        "/vendor/**"
+                        "/vendor/**",
+                        "/layui/**"
                 );
     }
 }

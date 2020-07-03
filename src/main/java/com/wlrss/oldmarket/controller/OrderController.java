@@ -94,4 +94,19 @@ public class OrderController {
         return "my-sales::div1";
     }
 
+    @RequestMapping("/findTimeOrder")
+    public String findTimeOrder(String time1,String time2,HttpSession session,Model model){
+        int userId = getUserId(session);
+
+        List<MyOrders> timeOrder = ordersDetailService.findTimeOrder(userId,time1, time2);
+        System.out.println("根据时间查询的订单：");
+        for (MyOrders orders : timeOrder) {
+            System.out.println(orders);
+        }
+        model.addAttribute("time1",time1);
+        model.addAttribute("time2",time2);
+        model.addAttribute("allOrdersDetail",timeOrder);
+        return "my-sales::div1";
+    }
+
 }

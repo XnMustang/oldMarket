@@ -37,4 +37,13 @@ public interface OrdersDetailService {
      * @return
      */
     List<MyOrders> findStatus(int userId,String optionValue);
+
+
+    /**
+     * 根据时间查询订单
+     * @param time1     开始时间
+     * @param time2     结束时间
+     * @return
+     */
+    List<MyOrders> findTimeOrder(int userId,String time1, String time2);
 }

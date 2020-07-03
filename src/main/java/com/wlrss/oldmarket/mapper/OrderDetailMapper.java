@@ -44,4 +44,12 @@ public interface OrderDetailMapper {
      * @return
      */
     List<MyOrders> findStatus(int userId,String optionValue);
+
+    /**
+     * 根据时间查询订单
+     * @param time1
+     * @param time2
+     * @return
+     */
+    List<MyOrders> findTimeOrder(int userId,String time1, String time2);
 }

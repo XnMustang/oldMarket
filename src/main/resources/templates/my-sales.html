@@ -117,22 +117,36 @@
                         }
                     });
                 }
+                //根据时间查看订单
+                function findTimeOrder() {
+                    var time1 = $("#test1").val();
+                    var time2 = $("#test2").val();
+                    $.ajax({
+                        type: "get",
+                        url: "/order/findTimeOrder",
+                        data: time1,time2,
+                        success: function (data) {
+                            alert("选择的时间：" + time1 +"---" + time2)
+                            console.log("根据时间查询完成！"+JSON.stringify(data));
+                            var html = $("#div1").html(data);
+                        }
+                    });
+                }
             </script>
-            &nbsp;
             <label style="margin-left: 100px">交易状态</label> &nbsp;
             <select style="font-size: 14px" onchange="statusValue()" id="optionValue" th:value="${optionValue}">
-<!--                <option th:value="0">全部</option>-->
-                <option>--全部--</option>
+                <option th:value="0">全部</option>
                 <option th:value="1">已签收</option>
                 <option th:value="2">未签收</option>
                 <option th:value="3">已发货</option>
                 <option th:value="4">已付款</option>
             </select>
-
             <label style="margin-left: 65px">成交时间</label>&nbsp;
-            <input style="font-size:14px;" name="startTime" type="text" id="test1" placeholder="选择时间范围开始">
-            &nbsp;-&nbsp;
-            <input style="font-size: 14px" name="endTime" type="text" id="test2" placeholder="选择时间范围结束">
+            <input style="font-size:14px;" th:value="${time1}" name="startTime" type="text" id="test1" placeholder="选择时间范围开始">
+            -
+            <input style="font-size: 14px" th:value="${time2}" name="endTime" type="text" id="test2" placeholder="选择时间范围结束">
+            <button type="button" style="font-size: 14px" onclick="findTimeOrder()">搜索</button>
+
             <script src="/js/laydate/laydate.js"></script>
             <script>
                 laydate.render({
