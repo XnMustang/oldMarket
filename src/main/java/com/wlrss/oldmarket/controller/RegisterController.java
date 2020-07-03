@@ -28,8 +28,7 @@ public class RegisterController {
         //数据验证
         if(EmailCheck.emailFormat(email)){
             //查询邮箱是否被注册
-            boolean b = registerService.emailIsExist(email);
-            if (b){
+            if (registerService.emailIsExist(email)){
                 //前后密码验证
                 if(password.equals(rePassword)){
                     //数据验证通过
@@ -66,11 +65,10 @@ public class RegisterController {
     @RequestMapping(value = "/activation/{email}")
     public String activationMail(@PathVariable("email") String email,Model model){
         //判断邮箱是否存在
-        boolean flag = registerService.emailIsExist(email);
-        if (!flag){
+        if (!registerService.emailIsExist(email)){
             //激活
             registerService.activation(email);
-            return "redirect:/";
+            return "activation-success";
         }else {
             model.addAttribute("msg","邮箱不存在");
             return  "login-register";

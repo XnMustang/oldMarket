@@ -24,19 +24,7 @@
                     <li><a href="search-results.html">搜索</a></li>
                 </ul>
             </li>
-            <li><a href="#">个人中心 </i></a>
-                <ul class="nav-dropdown">
-                    <li><a href="dashboard.html">主页</a></li>
-                    <li><a href="dash-messages.html">留言内容</a></li>
-                    <li><a href="dash-reviews.html">评论</a></li>
-                    <li><a href="dash-items.html">物品</a></li>
-                    <li><a href="dash-addItem.html">新增项目</a></li>
-                    <li><a href="dash-sales.html">销售信息</a></li>
-                    <li><a th:href="@{/order/findAllOrder}">我的订单</a></li>
-                    <li><a href="dash-profile.html">个人资料</a></li>
-                    <li><a href="dash-accountHistory.html">账户记录</a></li>
-                </ul>
-            </li>
+
 
             <li>
                 <a href="cart.html">
@@ -62,7 +50,25 @@
                     <li><a href="404.html">404</a></li>
                 </ul>
             </li>
-            <li><a href="login-register.html" class="ui-btn ui-btn-info">开始</a></li>
+
+            <li ><a href="#" th:text="${session.email==null}?'':'个人中心'"> </i></a>
+                <ul th:style="${session.email==null}?'display:none;':'display:block;'" class="nav-dropdown">
+                    <li><a href="dashboard.html">主页</a></li>
+                    <li><a href="dash-messages.html">留言内容</a></li>
+                    <li><a href="dash-reviews.html">评论</a></li>
+                    <li><a href="dash-items.html">物品</a></li>
+                    <li><a href="dash-addItem.html">新增项目</a></li>
+                    <li><a href="dash-sales.html">销售信息</a></li>
+                    <li><a th:href="@{/order/findAllOrder}">我的订单</a></li>
+                    <li><a href="dash-profile.html">个人资料</a></li>
+                    <li><a href="dash-accountHistory.html">账户记录</a></li>
+                </ul>
+            </li>
+
+            <li th:switch="${session.status}">
+                <a th:case="null"  href="login-register.html" class="ui-btn ui-btn-info">登录</a>
+                <a th:case="'1'"  th:href="@{/logout}" class="ui-btn ui-btn-info">登出</a>
+            </li>
         </ul>
         <i class="nav-toggle fa fa-bars"></i>
     </nav>

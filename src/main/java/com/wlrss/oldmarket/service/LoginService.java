@@ -14,5 +14,7 @@ public interface LoginService {
     List<User> findUserByName(String userName);
 
 
+    boolean checkStatus(String email);
 
+    boolean checkPwd(String ma5);
 }

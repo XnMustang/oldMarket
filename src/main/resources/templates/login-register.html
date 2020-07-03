@@ -88,11 +88,11 @@
             </div>
             <div class="forms-c">
                 <!--登录-->
-                <form action="#" method="post" class="login-form animated">
+                <form th:action="@{/login}" method="post" class="login-form animated">
                     <div class="form-group">
                         <div th:style="${msg==null}?'display:none;':'display:block;'" class="alert alert-danger" role="alert"><span th:text="${msg}==null?'':${msg}"></span></div>
-                        <label for="username">用户名</label>
-                        <input type="username" id="username" name="username" class="form-control" placeholder="请输入用户名">
+                        <label for="username">邮箱</label>
+                        <input type="username" id="username" name="email" class="form-control" placeholder="请输入用户名">
                     </div>
                     <div class="form-group">
                         <label for="password">密码</label>
