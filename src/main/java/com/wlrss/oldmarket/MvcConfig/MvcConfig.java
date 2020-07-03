@@ -67,7 +67,7 @@ public class MvcConfig implements WebMvcConfigurer {
                         "/",
                         "/login",
                         "/logout",
-                        "/activation",
+                        "/activation/**",
                         "/register",
                         "/goods/**",
                         "/order/**",

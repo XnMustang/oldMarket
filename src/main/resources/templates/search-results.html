@@ -111,6 +111,9 @@
             </div>
             <a href="#"><span>刷新</span><i class="fa fa-refresh"></i></a>
         </div>
+
+        <!--查询结果 页面显示位置-->
+        <!--图片，名字，单价-->
         <div class="result-item">
             <div class="result-item-img">
                 <div>
@@ -118,7 +121,7 @@
                 </div>
             </div>
             <div class="result-item-info">
-                <a href="item-detail.html"><strong>98年拖拉机</strong></a>
+                <a href="item-detail.html"><strong id="goodname">98年拖拉机</strong></a>
                 <p>
                     非常有劲，非常强悍 .
                     非常有劲，非常强悍 .
@@ -131,63 +134,75 @@
                 <a href="cart.html" class="add-to-cart">加入购物车 <i class="fa fa-cart-plus"></i></a>
             </div>
         </div>
-        <div class="result-item">
-            <div class="result-item-img">
-                <div>
-                    <img src="/img/items/l-item4.png" alt="">
-                </div>
-            </div>
-            <div class="result-item-info">
-                <a href="item-detail.html"><strong>Your Item title here</strong></a>
-                <p>
-                    Rham beef ribs jowl kevin. Doner sirloin boudin filet mignon capicola.
-                    Rham beef ribs jowl kevin. Doner sirloin boudin filet .
-                </p>
-            </div>
-            <div class="result-item-price">
-                <span>Sale At:</span>
-                <h3>$99.99</h3>
-                <a href="cart.html" class="add-to-cart">Add to Cart <i class="fa fa-cart-plus"></i></a>
-            </div>
-        </div>
-        <div class="result-item">
-            <div class="result-item-img">
-                <div>
-                    <img src="/img/items/l-item.png" alt="">
-                </div>
-            </div>
-            <div class="result-item-info">
-                <a href="item-detail.html"><strong>Your Item title here</strong></a>
-                <p>
-                    Rham beef ribs jowl kevin. Doner sirloin boudin filet mignon capicola.
-                    Rham beef ribs jowl kevin. Doner sirloin boudin filet .
-                </p>
-            </div>
-            <div class="result-item-price">
-                <span>Sale At:</span>
-                <h3>$45.00</h3>
-                <a href="cart.html" class="add-to-cart">Add to Cart <i class="fa fa-cart-plus"></i></a>
-            </div>
-        </div>
-        <div class="result-item">
-            <div class="result-item-img">
-                <div>
-                    <img src="/img/items/l-item3.png" alt="">
-                </div>
-            </div>
-            <div class="result-item-info">
-                <a href="item-detail.html"><strong>Your Item title here</strong></a>
-                <p>
-                    Rham beef ribs jowl kevin. Doner sirloin boudin filet mignon capicola.
-                    Rham beef ribs jowl kevin. Doner sirloin boudin filet .
-                </p>
-            </div>
-            <div class="result-item-price">
-                <span>Sale At:</span>
-                <h3>$212.00</h3>
-                <a href="cart.html" class="add-to-cart">Add to Cart <i class="fa fa-cart-plus"></i></a>
-            </div>
-        </div>
+<script th:src="@{/js/jquery-2.2.3.min.js}"></script>
+<script>
+    $(function () {
+
+    })
+</script>
+
+
+<!--        <div class="result-item">-->
+<!--            <div class="result-item-img">-->
+<!--                <div>-->
+<!--                    <img src="/img/items/l-item4.png" alt="">-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="result-item-info">-->
+<!--                <a href="item-detail.html"><strong>Your Item title here</strong></a>-->
+<!--                <p>-->
+<!--                    Rham beef ribs jowl kevin. Doner sirloin boudin filet mignon capicola.-->
+<!--                    Rham beef ribs jowl kevin. Doner sirloin boudin filet .-->
+<!--                </p>-->
+<!--            </div>-->
+<!--            <div class="result-item-price">-->
+<!--                <span>Sale At:</span>-->
+<!--                <h3>$99.99</h3>-->
+<!--                <a href="cart.html" class="add-to-cart">Add to Cart <i class="fa fa-cart-plus"></i></a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="result-item">-->
+<!--            <div class="result-item-img">-->
+<!--                <div>-->
+<!--                    <img src="/img/items/l-item.png" alt="">-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="result-item-info">-->
+<!--                <a href="item-detail.html"><strong>Your Item title here</strong></a>-->
+<!--                <p>-->
+<!--                    Rham beef ribs jowl kevin. Doner sirloin boudin filet mignon capicola.-->
+<!--                    Rham beef ribs jowl kevin. Doner sirloin boudin filet .-->
+<!--                </p>-->
+<!--            </div>-->
+<!--            <div class="result-item-price">-->
+<!--                <span>Sale At:</span>-->
+<!--                <h3>$45.00</h3>-->
+<!--                <a href="cart.html" class="add-to-cart">Add to Cart <i class="fa fa-cart-plus"></i></a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="result-item">-->
+<!--            <div class="result-item-img">-->
+<!--                <div>-->
+<!--                    <img src="/img/items/l-item3.png" alt="">-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="result-item-info">-->
+<!--                <a href="item-detail.html"><strong>Your Item title here</strong></a>-->
+<!--                <p>-->
+<!--                    Rham beef ribs jowl kevin. Doner sirloin boudin filet mignon capicola.-->
+<!--                    Rham beef ribs jowl kevin. Doner sirloin boudin filet .-->
+<!--                </p>-->
+<!--            </div>-->
+<!--            <div class="result-item-price">-->
+<!--                <span>Sale At:</span>-->
+<!--                <h3>$212.00</h3>-->
+<!--                <a href="cart.html" class="add-to-cart">Add to Cart <i class="fa fa-cart-plus"></i></a>-->
+<!--            </div>-->
+<!--        </div>-->
+
+
+
+
         <!--site pagination-->
         <div class="site-pagination">
             <a href="#"><i class="fa fa-angle-left"></i>&nbsp;<em>上一页</em></a>
