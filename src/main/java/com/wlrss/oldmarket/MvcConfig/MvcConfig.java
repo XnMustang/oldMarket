@@ -37,6 +37,9 @@ public class MvcConfig implements WebMvcConfigurer {
         registry.addViewController("/my-sales.html").setViewName("my-sales");
         registry.addViewController("/dash-addItem.html").setViewName("dash-addItem");
         registry.addViewController("/activation-success.html").setViewName("activation-success");
+        registry.addViewController("/payment_putong.html").setViewName("payment_putong");
+        registry.addViewController("/payment_gaoji.html").setViewName("payment_gaoji");
+        registry.addViewController("/payment_zungui.html").setViewName("payment_zungui");
 
     }
 

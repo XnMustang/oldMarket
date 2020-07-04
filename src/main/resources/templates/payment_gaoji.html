@@ -34,22 +34,22 @@
     <div class="payment">
         <h6><strong>订单信息</strong></h6>
         <div class="payment-info-box">
-            <form action="order-success.html" method="post">
+            <form action="/alipay/pay1" method="get">
                 <div class="form-group">
                     <label>高级会员服务<i class="fa ui-text-danger"></i></label>
                     <p class="form-control">高级会员x1</p>
                 </div>
                 <div class="form-group">
-                    <label>姓名 <i class="fa ui-text-danger"></i></label>
-                    <p class="form-control">陈曦</p>
+                    <label>当前登录账户<i class="fa ui-text-danger"></i></label>
+                    <p class="form-control" th:text="${user.email}"></p>
                 </div>
                 <div class="form-group">
                     <label>共计 <i class="fa ui-text-danger"></i></label>
-                    <p class="form-control">$299</p>
+                    <p class="form-control">299</p>
                 </div>
                 <hr>
                 <div class="payment-bottom">
-                    <button type="submit" class="ui-btn ui-btn-info-outline">付款 <i class="fa fa-credit-card"></i></button>
+                    <input type="submit" value="付款" class="ui-btn ui-btn-info-outline">
                 </div>
             </form>
         </div>
