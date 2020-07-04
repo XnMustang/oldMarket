@@ -36,6 +36,11 @@
             height: 400px;
             width: 800px;
         }
+        .dd{
+            width: 800px;
+            height: 600px;
+            margin:  0 auto;
+        }
 
         .r{
             text-align: center;
@@ -51,25 +56,31 @@
 <!--end main post section-->
 
 <!--chat box-->
-<form action="" method="post">
-<div id="div1" class="toolbar">
+
+
+<div class="dd">
+    <div >
+        <form action="" method="post">
+            <div id="div1" class="toolbar" style="text-align:center">
+            </div >
+            <div style="padding: 5px 0; color: #ccc"></div>
+
+            <div style="text-align:center"><input class="r" th:placeholder="请输入标题"></div>
+            <select >
+                <option>选择博客分区</option>
+                <option>选择博客分区</option>
+                <option>选择博客分区</option>
+                <option>选择博客分区</option>
+                <option>选择博客分区</option>
+            </select>
+            <div id="div2" class="text" th:placeholder="请输入内容"> <!--可使用 min-height 实现编辑区域自动增加高度-->
+
+            </div>
+            <div style="text-align:center"> <input type="submit" value="确认发布"> </div>
+
+        </form>
+    </div>
 </div>
-<div style="padding: 5px 0; color: #ccc"></div>
-
-<input class="r" th:placeholder="请输入标题">
-    <select>
-        <option>选择博客分区</option>
-        <option>选择博客分区</option>
-        <option>选择博客分区</option>
-        <option>选择博客分区</option>
-        <option>选择博客分区</option>
-    </select>
-<div id="div2" class="text" th:placeholder="请输入内容"> <!--可使用 min-height 实现编辑区域自动增加高度-->
-
-</div>
-    <input type="submit" value="确认发布">
-</form>
-
 
 
 
