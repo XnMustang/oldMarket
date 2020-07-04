@@ -21,17 +21,17 @@
                 <a href="#">导航</a>
                 <ul class="nav-dropdown">
                     <li><a href="items.html">最新商品</a></li>
-                    <li><a href="search-results.html">搜索</a></li>
+                    <li>
+                        <a th:href="@{/goods/findAll}">搜索</a>
+<!--                        <a href="search-results.html">搜索</a>-->
+                    </li>
                 </ul>
             </li>
-
-
             <li>
                 <a href="cart.html">
                     购物车
                 </a>
             </li>
-
             <li><a href="pricing.html">会员</a></li>
             <li>
                 <a href="#">博客 </i></a>

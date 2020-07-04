@@ -7,9 +7,7 @@
     <meta name="keywords" content="HTML,CSS,XML,JavaScript, services, listing">
     <meta name="author" content="Ui-DesignLab">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <!--end meta tags-->
-
     <title>二手交易市场</title>
     <!--stylesheets-->
     <link rel="stylesheet" href="/vendor/css/bootstrap.min.css">
@@ -32,11 +30,11 @@
 <!--banner-->
 <div class="search-banner back-photo">
     <h5>最简单的方法 <strong class="ui-text-info">卖出</strong> 物品</h5>
-    <form action="#" method="post">
-        <div class="mega-search">
-            <input class="form-control" type="text" placeholder="在这里搜索...">
-            <i class="fa fa-search"></i>
+    <form class="form-inline" th:action="@{/goods/findAll}" method="get">
+        <div class="form-group mx-sm-3 mb-2">
+            <input type="text" name="queryGoods" class="form-control" placeholder="在这里搜索..." style="width: 600px">
         </div>
+        <button type="submit" class="btn btn-primary mb-2">搜索</button>
     </form>
 </div>
 <!--end banner-->
@@ -114,104 +112,75 @@
 
         <!--查询结果 页面显示位置-->
         <!--图片，名字，单价-->
-        <div class="result-item">
+
+        <div class="result-item" th:each="good :${records}">
             <div class="result-item-img">
                 <div>
                     <img src="/img/items/l-item2.png" alt="">
                 </div>
             </div>
             <div class="result-item-info">
-                <a href="item-detail.html"><strong id="goodname">98年拖拉机</strong></a>
-                <p>
-                    非常有劲，非常强悍 .
-                    非常有劲，非常强悍 .
+                <a href="item-detail.html">
+                    <strong id="goodname" th:text="${good.getGoodsname()}"></strong>
+                </a>
+                <p th:text="${good.getDescribed()}">
+
                 </p>
-                <span>上市时间: <em class="ui-text-info">04 Jan, 2017</em></span> <span><i class="fa fa-map-marker"></i> 10100-91, 台湾</span>
+                <span>上市时间:
+                    <em class="ui-text-info" th:text="${#dates.format(good.getDate(),'yyyy-MM-dd')}"></em>
+                </span>
+                <span>
+                    <i class="fa fa-map-marker"></i> 10100-91, 台湾
+                </span>
             </div>
             <div class="result-item-price">
                 <span>价格:</span>
-                <h3>$126.00</h3>
+                <h3 th:text="'$'+${good.getPrice()}"></h3>
                 <a href="cart.html" class="add-to-cart">加入购物车 <i class="fa fa-cart-plus"></i></a>
             </div>
         </div>
-<script th:src="@{/js/jquery-2.2.3.min.js}"></script>
-<script>
-    $(function () {
 
-    })
-</script>
+        <script th:src="@{/js/jquery-2.2.3.min.js}"></script>
+        <script>
+            $(function () {
+
+            })
+        </script>
+        <nav aria-label="Page navigation example" style="margin-top: 100px">
+            <ul class="pagination justify-content-end">
+                <li class="page-item" th:classappend="${goodsIPage.getCurrent()==1}?' disabled'">
+                    <a th:href="@{/goods/findAll/(pageNum=${goodsIPage.getCurrent()-1})}" class="page-link">上一页</a>
+                </li>
+                <li class="page-item" th:classappend="${goodsIPage.getCurrent()==1}?' disabled'">
+                    <a class="page-link" th:href="@{/goods/findAll/(pageNum=1)}">1</a>
+                </li>
+                <li class="page-item" th:classappend="${goodsIPage.getCurrent()==2}?' disabled'">
+                    <a class="page-link" th:href="@{/goods/findAll/(pageNum=2)}">2</a>
+                </li>
+                <li class="page-item" th:classappend="${goodsIPage.getCurrent()==3}?' disabled'">
+                    <a class="page-link" th:href="@{/goods/findAll/(pageNum=3)}">3</a>
+                </li>
+                <li class="page-item"><span class="page-link">...</span></li>
+                <li class="page-item" th:classappend="${goodsIPage.getCurrent() == goodsIPage.getPages()}?' disabled'">
+                    <a th:href="@{/goods/findAll/(pageNum=${goodsIPage.getCurrent()+1})}" class="page-link">下一页</a>
+                </li>
+                <li class="page-item"><span class="page-link" th:text="'共'+${goodsIPage.getPages()}+'页'"></span></li>
+            </ul>
+        </nav>
 
 
-<!--        <div class="result-item">-->
-<!--            <div class="result-item-img">-->
-<!--                <div>-->
-<!--                    <img src="/img/items/l-item4.png" alt="">-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div class="result-item-info">-->
-<!--                <a href="item-detail.html"><strong>Your Item title here</strong></a>-->
-<!--                <p>-->
-<!--                    Rham beef ribs jowl kevin. Doner sirloin boudin filet mignon capicola.-->
-<!--                    Rham beef ribs jowl kevin. Doner sirloin boudin filet .-->
-<!--                </p>-->
-<!--            </div>-->
-<!--            <div class="result-item-price">-->
-<!--                <span>Sale At:</span>-->
-<!--                <h3>$99.99</h3>-->
-<!--                <a href="cart.html" class="add-to-cart">Add to Cart <i class="fa fa-cart-plus"></i></a>-->
-<!--            </div>-->
+
+
+<!--        <div class="site-pagination">-->
+<!--            <a th:href="@{/goods/findAll/(pageNum=${goodsIPage.getCurrent()-1})}">-->
+<!--                <i class="fa fa-angle-left"></i>&nbsp;-->
+<!--                <em>上一页</em>-->
+<!--            </a>-->
+<!--            <a th:href="@{/goods/findAll/(pageNum=${goodsIPage.getCurrent()+1})}">-->
+<!--                <em>下一页</em>&nbsp;-->
+<!--                <i class="fa fa-angle-right"></i>-->
+<!--            </a>-->
 <!--        </div>-->
-<!--        <div class="result-item">-->
-<!--            <div class="result-item-img">-->
-<!--                <div>-->
-<!--                    <img src="/img/items/l-item.png" alt="">-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div class="result-item-info">-->
-<!--                <a href="item-detail.html"><strong>Your Item title here</strong></a>-->
-<!--                <p>-->
-<!--                    Rham beef ribs jowl kevin. Doner sirloin boudin filet mignon capicola.-->
-<!--                    Rham beef ribs jowl kevin. Doner sirloin boudin filet .-->
-<!--                </p>-->
-<!--            </div>-->
-<!--            <div class="result-item-price">-->
-<!--                <span>Sale At:</span>-->
-<!--                <h3>$45.00</h3>-->
-<!--                <a href="cart.html" class="add-to-cart">Add to Cart <i class="fa fa-cart-plus"></i></a>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        <div class="result-item">-->
-<!--            <div class="result-item-img">-->
-<!--                <div>-->
-<!--                    <img src="/img/items/l-item3.png" alt="">-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div class="result-item-info">-->
-<!--                <a href="item-detail.html"><strong>Your Item title here</strong></a>-->
-<!--                <p>-->
-<!--                    Rham beef ribs jowl kevin. Doner sirloin boudin filet mignon capicola.-->
-<!--                    Rham beef ribs jowl kevin. Doner sirloin boudin filet .-->
-<!--                </p>-->
-<!--            </div>-->
-<!--            <div class="result-item-price">-->
-<!--                <span>Sale At:</span>-->
-<!--                <h3>$212.00</h3>-->
-<!--                <a href="cart.html" class="add-to-cart">Add to Cart <i class="fa fa-cart-plus"></i></a>-->
-<!--            </div>-->
-<!--        </div>-->
-
-
-
-
-        <!--site pagination-->
-        <div class="site-pagination">
-            <a href="#"><i class="fa fa-angle-left"></i>&nbsp;<em>上一页</em></a>
-            <a href="#"><span><i>1</i></span></a>
-            <a href="#" class="current"><span><i>2</i></span></a>
-            <a href="#"><span><i>3</i></span></a>
-            <a href="#"><em>下一页</em>&nbsp;<i class="fa fa-angle-right"></i></a>
-        </div>
-        <!--end site pagination-->
     </div>
 </div>
 <!--end search results-->
