@@ -110,9 +110,9 @@
                         type: "get",
                         url: "/order/findStatus/"+optionValue,
                         success: function (data) {
-                            console.log("接收到了参数"+optionValue);
+                            // console.log("接收到了参数"+optionValue);
                             dataStr = JSON.stringify(data);
-                            console.log("接收返回的数据" + dataStr)
+                            // console.log("接收返回的数据" + dataStr)
                             var html = $("#div1").html(data);
                         }
                     });
@@ -126,7 +126,7 @@
                         url: "/order/findTimeOrder",
                         data: time1,time2,
                         success: function (data) {
-                            alert("选择的时间：" + time1 +"---" + time2)
+                            // alert("选择的时间：" + time1 +"---" + time2)
                             console.log("根据时间查询完成！"+JSON.stringify(data));
                             var html = $("#div1").html(data);
                         }

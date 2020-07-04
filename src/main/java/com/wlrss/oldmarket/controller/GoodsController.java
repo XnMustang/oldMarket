@@ -44,6 +44,7 @@ public class GoodsController {
         System.out.println("共" + goodsIPage.getTotal() + "条记录,当前" + goodsIPage.getCurrent() + ",每页：" + goodsIPage.getSize() + "条");
         model.addAttribute("records",records);
         model.addAttribute("goodsIPage",goodsIPage);
+        model.addAttribute("queryGoods",queryGoods);
         return "search-results";
     }
 
