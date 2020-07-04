@@ -32,9 +32,9 @@
     <h5>最简单的方法 <strong class="ui-text-info">卖出</strong> 物品</h5>
     <form class="form-inline" th:action="@{/goods/findAll}" method="get">
         <div class="form-group mx-sm-3 mb-2">
-            <input type="text" name="queryGoods" class="form-control" placeholder="在这里搜索..." style="width: 600px">
+            <input th:text="${queryGoods}" type="text" name="queryGoods" class="form-control" placeholder="在这里搜索..." style="width: 600px">
         </div>
-        <button th:text="${queryGoods}" type="submit" class="btn btn-primary mb-2">搜索</button>
+        <button type="submit" class="btn btn-primary mb-2">搜索</button>
     </form>
 </div>
 <!--end banner-->
