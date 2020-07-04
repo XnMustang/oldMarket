@@ -32,7 +32,7 @@
     <h5>最简单的方法 <strong class="ui-text-info">卖出</strong> 物品</h5>
     <form class="form-inline" th:action="@{/goods/findAll}" method="get">
         <div class="form-group mx-sm-3 mb-2">
-            <input th:text="${queryGoods}" type="text" name="queryGoods" class="form-control" placeholder="在这里搜索..." style="width: 600px">
+            <input th:value="${queryGoods}" type="text" name="queryGoods" class="form-control" placeholder="在这里搜索..." style="width: 540px">
         </div>
         <button type="submit" class="btn btn-primary mb-2">搜索</button>
     </form>
@@ -103,9 +103,14 @@
         <div class="sort-sec">
             <div>
                 <strong>排序方式:</strong>
+                <a th:href="@{/goods/findAll}">综合</a>|
                 <a href="#">上市日期</a>|
-                <a href="#">价格上升</a>|
-                <a href="#">价格下降</a>
+                <span>
+                    <a th:href="@{/goods/priceSort}">价格</a>
+                     <svg width="1em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-expand" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M3.646 9.146a.5.5 0 0 1 .708 0L8 12.793l3.646-3.647a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 0-.708zm0-2.292a.5.5 0 0 0 .708 0L8 3.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708z"/>
+                     </svg>
+                </span>
             </div>
             <a href="#"><span>刷新</span><i class="fa fa-refresh"></i></a>
         </div>

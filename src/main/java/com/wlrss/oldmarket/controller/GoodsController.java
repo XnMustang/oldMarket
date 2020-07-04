@@ -21,6 +21,8 @@ public class GoodsController {
     @Autowired
     GoodsMapper goodsMapper;
 
+    static Integer flag = 1;
+
     @RequestMapping("/findAll")
     public String selectByPage(@RequestParam(value = "queryGoods",required = false) String queryGoods,@RequestParam(value = "pageNum",required = false,defaultValue = "1") Integer pageNum, Model model) {
         IPage<Goods> goodsIPage = new Page<>(pageNum, 2);
@@ -45,6 +47,32 @@ public class GoodsController {
         model.addAttribute("records",records);
         model.addAttribute("goodsIPage",goodsIPage);
         model.addAttribute("queryGoods",queryGoods);
+        return "search-results";
+    }
+
+    @RequestMapping("/priceSort")
+    public String priceSort(@RequestParam(value = "pageNum",required = false,defaultValue = "1") Integer pageNum,Model model){
+        System.out.println("执行了价格排序！");
+        QueryWrapper<Goods> queryWrapper =new QueryWrapper<>();
+
+        IPage<Goods> goodsIPage = new Page<>(pageNum, 2);
+        if (flag == 1) {
+            queryWrapper.orderByDesc("price");
+            goodsIPage = goodsMapper.selectPage(goodsIPage, queryWrapper);
+            flag = 0;
+        } else {
+            queryWrapper.orderByAsc("price");
+            goodsIPage = goodsMapper.selectPage(goodsIPage, queryWrapper);
+            flag = 1;
+        }
+
+        System.out.println("分页查询结果：");
+        List<Goods> records = goodsIPage.getRecords();
+        for (Goods record : records) {
+            System.out.println(record);
+        }
+        model.addAttribute("records",records);
+        model.addAttribute("goodsIPage",goodsIPage);
         return "search-results";
     }
 
