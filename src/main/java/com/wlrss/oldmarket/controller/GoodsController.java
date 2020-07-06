@@ -25,6 +25,7 @@ public class GoodsController {
 
     @RequestMapping("/findAll")
     public String selectByPage(@RequestParam(value = "queryGoods",required = false) String queryGoods,@RequestParam(value = "pageNum",required = false,defaultValue = "1") Integer pageNum, Model model) {
+
         IPage<Goods> goodsIPage = new Page<>(pageNum, 2);
         QueryWrapper<Goods> queryWrapper =new QueryWrapper<>();
 
@@ -71,6 +72,19 @@ public class GoodsController {
         for (Goods record : records) {
             System.out.println(record);
         }
+        model.addAttribute("records",records);
+        model.addAttribute("goodsIPage",goodsIPage);
+        return "search-results";
+    }
+
+    @RequestMapping("/timeQuery")
+    public String timeQuery(@RequestParam(value = "pageNum",required = false,defaultValue = "1") Integer pageNum,Model model){
+        IPage<Goods> goodsIPage = new Page<>(pageNum,2);
+        QueryWrapper queryWrapper = new QueryWrapper();
+        queryWrapper.orderByDesc("date");
+        goodsIPage = goodsMapper.selectPage(goodsIPage,queryWrapper);
+        List<Goods> records = goodsIPage.getRecords();
+
         model.addAttribute("records",records);
         model.addAttribute("goodsIPage",goodsIPage);
         return "search-results";

@@ -18,5 +18,5 @@ public interface UserMapper extends BaseMapper<User> {
     @Select("SELECT `user`.id,username,email,`user`.phone,accept,acceptid,address,isdefault,acceptphone,gender,qq,google,intro FROM `user` INNER JOIN address ON `user`.id=address.userid WHERE `user`.email=#{email} ORDER BY isdefault DESC")
     List<MyUser> findMyUserByEmail(@Param("email") String email);
 
-
+    
 }

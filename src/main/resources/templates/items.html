@@ -3,7 +3,6 @@
 <head>
 
     <!--meta tags-->
-
     <meta charset="UTF-8">
     <meta name="description" content="Services Listing HTML5 CSS3 template">
     <meta name="keywords" content="HTML,CSS,XML,JavaScript, services, listing">
@@ -11,7 +10,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!--end meta tags-->
-
     <title>二手交易市场</title>
     <!--stylesheets-->
     <link rel="stylesheet" href="/vendor/css/bootstrap.min.css">
@@ -27,21 +25,18 @@
 </head>
 <body>
 
-
-
 <!--导航栏-->
 <div class="site-top-nav" th:insert="~{commons/commons::navigation}">
 </div>
 
 <!--banner-->
-<div class="items-banner back-img">
+<div class="search-banner back-photo">
     <h5>最简单的方法 <strong class="ui-text-info">卖出</strong> 物品</h5>
-    <form action="#" method="post">
-        <div class="mega-search">
-            <input class="form-control" type="text" placeholder="在这里搜索...">
-            <i class="fa fa-search"></i>
+    <form class="form-inline" th:action="@{/items/queryAllGoods}" method="get">
+        <div class="form-group mx-sm-3 mb-2">
+            <input type="text" th:value="${queryGoods}" name="queryGoods" class="form-control" placeholder="在这里搜索..." style="width: 540px">
         </div>
-        <button type="submit" class="ui-btn ui-btn-info btn-shadow"><strong>搜索</strong></button>
+        <button type="submit" class="btn btn-primary mb-2">搜索</button>
     </form>
 </div>
 <!--end banner-->
@@ -59,171 +54,57 @@
         </div>
     </div>
     <div class="items">
-        <div class="sale-item">
+        <div class="sale-item" th:each="good:${pageInfo.list}">
             <div class="sale-item-img">
                 <img src="/img/items/app3.jpg" alt="">
                 <div class="sale-info">
-                    <strong>物品名称</strong>
-                    <span class="sale-price">$637.00</span>
+                    <strong th:text="${good.goodsName}"></strong>
+                    <span class="sale-price" th:text="${'$'+good.price}"></span>
                 </div>
             </div>
             <div class="sale-lister">
                 <div class="lister-pic">
                     <div><img src="/img/lister.jpg" alt=""></div>
                     <div>
-                        <strong>张三丰</strong>
-                        <span><i class="fa fa-map-marker"></i><em>澳门</em></span>
+                        <strong th:text="${good.userName}"></strong>
+                        <span><em th:text="'上市日期：'+${good.date}"></em></span>
                     </div>
                 </div>
-                <a href="item-detail.html"><i class="fa fa-angle-right fa-2x"></i></a>
-            </div>
-        </div>
-        <div class="sale-item">
-            <div class="sale-item-img">
-                <img src="/img/items/app4.jpg" alt="">
-                <div class="sale-info">
-                    <strong>物品名称</strong>
-                    <span class="sale-price">$9996.00</span>
-                </div>
-            </div>
-            <div class="sale-lister">
-                <div class="lister-pic">
-                    <div><img src="/img/avatar2.jpg" alt=""></div>
-                    <div>
-                        <strong>光明顶</strong>
-                        <span><i class="fa fa-map-marker"></i><em>香港</em></span>
-                    </div>
-                </div>
-                <a href="item-detail.html"><i class="fa fa-angle-right fa-2x"></i></a>
-            </div>
-        </div>
-        <div class="sale-item">
-            <div class="sale-item-img">
-                <img src="/img/items/app5.jpg" alt="">
-                <div class="sale-info">
-                    <strong>Item Name</strong>
-                    <span class="sale-price">$63.00</span>
-                </div>
-            </div>
-            <div class="sale-lister">
-                <div class="lister-pic">
-                    <div><img src="/img/avatar.jpg" alt=""></div>
-                    <div>
-                        <strong>Viola Wat</strong>
-                        <span><i class="fa fa-map-marker"></i><em>Nairobi, KE</em></span>
-                    </div>
-                </div>
-                <a href="item-detail.html"><i class="fa fa-angle-right fa-2x"></i></a>
-            </div>
-        </div>
-        <div class="sale-item">
-            <div class="sale-item-img">
-                <img src="/img/items/app.jpg" alt="">
-                <div class="sale-info">
-                    <strong>Item Name</strong>
-                    <span class="sale-price">$120.00</span>
-                </div>
-            </div>
-            <div class="sale-lister">
-                <div class="lister-pic">
-                    <div><img src="/img/user2.jpg" alt=""></div>
-                    <div>
-                        <strong>Brandon Kan</strong>
-                        <span><i class="fa fa-map-marker"></i><em>New Orleans, US</em></span>
-                    </div>
-                </div>
-                <a href="item-detail.html"><i class="fa fa-angle-right fa-2x"></i></a>
-            </div>
-        </div>
-        <div class="sale-item">
-            <div class="sale-item-img">
-                <img src="/img/items/app2.jpg" alt="">
-                <div class="sale-info">
-                    <strong>Item Name</strong>
-                    <span class="sale-price">$96.00</span>
-                </div>
-            </div>
-            <div class="sale-lister">
-                <div class="lister-pic">
-                    <div><img src="/img/user.jpg" alt=""></div>
-                    <div>
-                        <strong>Mike Boss</strong>
-                        <span><i class="fa fa-map-marker"></i><em>New York, US</em></span>
-                    </div>
-                </div>
-                <a href="item-detail.html"><i class="fa fa-angle-right fa-2x"></i></a>
-            </div>
-        </div>
-        <div class="sale-item">
-            <div class="sale-item-img">
-                <img src="/img/items/electronics.jpg" alt="">
-                <div class="sale-info">
-                    <strong>Item Name</strong>
-                    <span class="sale-price">$71.99</span>
-                </div>
-            </div>
-            <div class="sale-lister">
-                <div class="lister-pic">
-                    <div><img src="/img/avatar.jpg" alt=""></div>
-                    <div>
-                        <strong>Emma Mil</strong>
-                        <span><i class="fa fa-map-marker"></i><em>Carlifonia, US</em></span>
-                    </div>
-                </div>
-                <a href="item-detail.html"><i class="fa fa-angle-right fa-2x"></i></a>
-            </div>
-        </div>
-        <div class="sale-item">
-            <div class="sale-item-img">
-                <img src="/img/items/app4.jpg" alt="">
-                <div class="sale-info">
-                    <strong>Item Name</strong>
-                    <span class="sale-price">$9996.00</span>
-                </div>
-            </div>
-            <div class="sale-lister">
-                <div class="lister-pic">
-                    <div><img src="/img/avatar2.jpg" alt=""></div>
-                    <div>
-                        <strong>Carol Mitch</strong>
-                        <span><i class="fa fa-map-marker"></i><em>Wales, CA</em></span>
-                    </div>
-                </div>
-                <a href="item-detail.html"><i class="fa fa-angle-right fa-2x"></i></a>
-            </div>
-        </div>
-        <div class="sale-item">
-            <div class="sale-item-img">
-                <img src="/img/items/app5.jpg" alt="">
-                <div class="sale-info">
-                    <strong>Item Name</strong>
-                    <span class="sale-price">$63.00</span>
-                </div>
-            </div>
-            <div class="sale-lister">
-                <div class="lister-pic">
-                    <div><img src="/img/avatar.jpg" alt=""></div>
-                    <div>
-                        <strong>Viola Wat</strong>
-                        <span><i class="fa fa-map-marker"></i><em>Nairobi, KE</em></span>
-                    </div>
-                </div>
-                <a href="item-detail.html"><i class="fa fa-angle-right fa-2x"></i></a>
+                <a href="/item-detail.html"><i class="fa fa-angle-right fa-2x"></i></a>
             </div>
         </div>
     </div>
+
+    <!--site pagination-->
+    <nav aria-label="Page navigation example" style="margin-top: 80px">
+        <ul class="pagination justify-content-end">
+            <li class="page-item">
+                <a href="#" class="page-link">上一页</a>
+            </li>
+            <li href="#">
+                <a class="page-link" href="#">1</a>
+            </li>
+            <li class="page-item" href="#">
+                <a class="page-link" href="#">2</a>
+            </li>
+            <li class="page-item" href="#">
+                <a class="page-link" href="#">3</a>
+            </li>
+            <li class="page-item"><span class="page-link">...</span></li>
+            <li class="page-item" href="#">
+                <a href="#" class="page-link">下一页</a>
+            </li>
+            <li class="page-item">
+                <span class="page-link" th:text="'共'+${pageInfo.getPages()}+'页'"></span>
+            </li>
+        </ul>
+    </nav>
+    <!--end site pagination-->
+
 </div>
 <!--end items wrapper-->
 
-<!--site pagination-->
-<div class="site-pagination">
-    <a href="#"><i class="fa fa-angle-left"></i>&nbsp;<em>上一页</em></a>
-    <a href="#"><span><i>1</i></span></a>
-    <a href="#" class="current"><span><i>2</i></span></a>
-    <a href="#"><span><i>3</i></span></a>
-    <a href="#"><em>下一页</em>&nbsp;<i class="fa fa-angle-right"></i></a>
-</div>
-<!--end site pagination-->
+
 
 <!--start here-->
 <div class="start-here">
