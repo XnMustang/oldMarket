@@ -60,18 +60,14 @@
 
 <div class="dd">
     <div >
-        <form action="" method="post">
+        <form action="/blog/add" method="get">
             <div id="div1" class="toolbar" style="text-align:center">
             </div >
             <div style="padding: 5px 0; color: #ccc"></div>
 
-            <div style="text-align:center"><input class="r" th:placeholder="请输入标题" style="width: 550px"></div>
-            <select >
-                <option>选择博客分区</option>
-                <option>选择博客分区</option>
-                <option>选择博客分区</option>
-                <option>选择博客分区</option>
-                <option>选择博客分区</option>
+            <div style="text-align:center"><input th:name="title" class="r" th:placeholder="请输入标题" style="width: 550px"></div>
+            <select th:name="type">
+                <option th:each="b :${blogTypeList}" th:text="${b.type}"></option>
             </select>
             <div id="div2" class="text" th:placeholder="请输入内容"> <!--可使用 min-height 实现编辑区域自动增加高度-->
 
@@ -85,7 +81,17 @@
 
 
 
-<script type="text/javascript" src="js/wangEditor.js"></script>
+<!-- 注意， 只需要引用 JS，无需引用任何 CSS ！！！-->
+<script type="text/javascript" src="/js/wangEditor.js"></script>
+<script type="text/javascript">
+    var E = window.wangEditor
+    var editor = new E('#editor')
+    // 或者 var editor = new E( document.getElementById('editor') )
+    editor.create()
+</script>
+
+
+<script type="text/javascript" src="/js/wangEditor.js"></script>
 <script type="text/javascript">
     var E = window.wangEditor
     var editor1 = new E('#div1', '#div2')  // 两个参数也可以传入 elem 对象，class 选择器

@@ -46,8 +46,8 @@
         <div class="user-info">
             <div class="dash-user-img"><img src="/img/user2.jpg" alt=""></div>
             <div class="dash-user-info">
-                <strong>张三丰.</strong>
-                <span>后台开发</span>
+                <span>当前账户:</span>
+                <strong th:text="${session.email}"></strong>
             </div>
             <a href="dash-profile.html" class="dash-edit-user"><i class="fa fa-pencil"></i></a>
         </div>
