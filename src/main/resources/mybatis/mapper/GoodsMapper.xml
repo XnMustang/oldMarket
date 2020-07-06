@@ -5,7 +5,8 @@
 <mapper namespace="com.wlrss.oldmarket.mapper.GoodsMapper">
 
     <select id="queryAllGoods" resultType="MyNewGoodsVo">
-        SELECT g.`goodsname`,g.`price`,u.`username`,g.`date` FROM USER u,goods g
+        /*切记：这里的所有关乎与表名的  全部都和数据库表名一一对应*/
+        SELECT g.`goodsname`,g.`price`,u.`username`,g.`date` FROM user u,goods g
         <where>
             u.`id` = g.`userid`
             <if test="queryGoods != null and queryGoods != ''">

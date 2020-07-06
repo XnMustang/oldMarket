@@ -7,14 +7,14 @@
     <select id="findAllOrdersDetail" resultType="myOrders">
        SELECT g.`goodsname`,o.`date`,u.`email`,o.`orderno`,o.`status`,
        g.`price`,od.`nums`,(g.`price` * od.`nums`) totalPrice
-        FROM USER u, goods g, order_details od, orders o
+        FROM user u, goods g, order_details od, orders o
         WHERE od.`goodsid` = g.`id` AND od.`ordersid` = o.`id`
         AND g.`userid` = u.`id` AND u.`id` = #{userId}
     </select>
 
     <select id="findAllOptionCondition" resultType="myOrders">
         SELECT g.`goodsname`,o.`date`,u.`email`,o.`orderno`,o.`status`,g.`price`,od.`nums`,(g.`price` * od.`nums`) totalPrice
-        FROM USER u, goods g, order_details od, orders o
+        FROM user u, goods g, order_details od, orders o
         <where>
             od.`goodsid` = g.`id` AND od.`ordersid` = o.`id`
             AND g.`userid` = u.`id` AND u.`id` = #{userId}
@@ -33,7 +33,7 @@
 
     <select id="findStatus" resultType="myOrders">
         SELECT g.`goodsname`,o.`date`,u.`email`,o.`orderno`,o.`status`,g.`price`,od.`nums`,(g.`price` * od.`nums`) totalPrice
-        FROM USER u, goods g, order_details od, orders o
+        FROM user u, goods g, order_details od, orders o
         <where>
             <if test="optionValue == 0">
                 and od.`goodsid` = g.`id` AND od.`ordersid` = o.`id`
@@ -49,7 +49,7 @@
 
     <select id="findTimeOrder" resultType="myOrders">
         SELECT g.`goodsname`,o.`date`,u.`email`,o.`orderno`,o.`status`,g.`price`,od.`nums`,(g.`price` * od.`nums`) totalPrice
-        FROM USER u, goods g, order_details od, orders o
+        FROM user u, goods g, order_details od, orders o
         WHERE od.`goodsid` = g.`id` AND od.`ordersid` = o.`id`
         AND g.`userid` = u.`id` AND u.`id` = 1
         AND o.`date` &gt; "2020-06-01" AND o.`date` &lt; "2020-07-02";

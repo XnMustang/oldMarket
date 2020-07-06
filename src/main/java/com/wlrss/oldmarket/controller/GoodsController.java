@@ -87,7 +87,7 @@ public class GoodsController {
 
         model.addAttribute("records",records);
         model.addAttribute("goodsIPage",goodsIPage);
-        return "search-results";
+        return "search-results::div1";
     }
 
 }
