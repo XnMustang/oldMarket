@@ -3,12 +3,13 @@ package com.wlrss.oldmarket.service.impl;
 import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.wlrss.oldmarket.entity.User;
+import com.wlrss.oldmarket.entity.vo.MyUser;
 import com.wlrss.oldmarket.mapper.UserMapper;
 import com.wlrss.oldmarket.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
+
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -42,11 +43,38 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String findUserByEmail(String email) {
+    public String findMyUserByEmail(String email) {
+        List<MyUser> myUser=userMapper.findMyUserByEmail(email);
+        String str= JSON.toJSONString(myUser);
+        System.out.println("两表查询myuser"+str);
+        return str;
+    }
+
+    @Override
+    public User findUserByEmail(String email) {
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("email",email);
         User user=userMapper.selectOne(queryWrapper);
-        String str= JSON.toJSONString(user);
-        return str;
+        return user;
     }
+
+    @Override
+    public void updateUserData(MyUser myUser) {
+        User user=new User();
+        user.setId(myUser.getId()).setEmail(myUser.getEmail()).setGender(myUser.getGender()).setGoogle(myUser.getGoogle()).setUsername(myUser.getUsername()).setPhone(myUser.getPhone()).setIntro(myUser.getIntro()).setHeadimg(myUser.getHeadimg()).setQq(myUser.getQq());
+        userMapper.updateById(user);
+
+       // 插入log
+
+    }
+
+    @Override
+    public void updatePwById(int id,String password) {
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("id",id);
+        User user=userMapper.selectOne(queryWrapper);
+        user.setPassword(password);
+        userMapper.updateById(user);
+    }
+
 }

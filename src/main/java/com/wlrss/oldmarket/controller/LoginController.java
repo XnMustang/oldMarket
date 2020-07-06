@@ -46,6 +46,7 @@ public class LoginController {
                    //密码正确
                    session.setAttribute("email",email);
                    session.setAttribute("status","1");
+
                    return "redirect:/";
                }else {
                    //密码错误
