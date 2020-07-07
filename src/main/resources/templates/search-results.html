@@ -143,14 +143,14 @@
             <div class="result-item-info">
                 <a href="item-detail.html">
                     <!--goodsId   根据goodsId查询userId nums date-->
-                    <input type="hidden" id="goodsid" th:value="${good.getId()}">
+                    <input type="hidden" id="goodsid" th:value="${good.getGoodsid()}">
                     <strong id="goodname" th:text="${good.getGoodsname()}"></strong>
                 </a>
                 <p th:text="${good.getDescribed()}">
 
                 </p>
                 <span>上市时间:
-                    <em class="ui-text-info" th:text="${#dates.format(good.getDate(),'yyyy-MM-dd')}"></em>
+                    <em class="ui-text-info" th:text="${#dates.format(good.getDateUp(),'yyyy-MM-dd')}"></em>
                 </span>
                 <span>
                     <i class="fa fa-map-marker"></i> 10100-91, 台湾

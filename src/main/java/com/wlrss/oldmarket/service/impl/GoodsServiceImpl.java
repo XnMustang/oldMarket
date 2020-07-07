@@ -25,7 +25,7 @@ public class GoodsServiceImpl implements GoodsService {
     @Override
     public Goods findGoodsById(String goodsid) {
         QueryWrapper<Goods> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("id",goodsid);
+        queryWrapper.eq("goodsid",goodsid);
         Goods goods = goodsMapper.selectOne(queryWrapper);
         return  goods;
     }

@@ -67,7 +67,7 @@
                     <div><img src="/img/lister.jpg" alt=""></div>
                     <div>
                         <strong th:text="${good.userName}"></strong>
-                        <span><em th:text="'上市日期：'+${good.date}"></em></span>
+                        <span><em th:text="'上市日期：'+${good.dateUp}"></em></span>
                     </div>
                 </div>
                 <a th:href="@{/item-detail.html?id=}+${good.goodsid}"><i class="fa fa-angle-right fa-2x"></i></a>

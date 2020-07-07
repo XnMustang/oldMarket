@@ -34,7 +34,7 @@ public class Goods {
     @NotEmpty(message = "商品描述不能为空")
     private String described;
     private String goodsimg;
-    private Date date;
+    private Date dateUp;
     @NotEmpty(message = "留言不能为空")
     private String sellmassage;
     private Integer status;

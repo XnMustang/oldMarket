@@ -21,6 +21,6 @@ public class MyNewGoodsVo {
     private String goodsName;
     private BigDecimal price;
     private String userName;
-    private Date date;
+    private Date dateUp;
 
 }

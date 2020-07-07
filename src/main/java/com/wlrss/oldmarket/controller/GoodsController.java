@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
 @Controller
@@ -41,8 +42,18 @@ public class GoodsController {
         System.out.println("分页查询结果：");
         List<Goods> records = goodsIPage.getRecords();
         for (Goods record : records) {
+            //截取重新赋值
+            int i =record.getDescribed().length();
+            double v = i - i / 1.15;
+            int index = (int) Math.floor(v);
+            String add = ".....";
+            String substring = record.getDescribed().substring(0,index);
+            substring+=substring+add;
+            record.setDescribed(substring);
+
             System.out.println(record);
         }
+
 
         System.out.println("共" + goodsIPage.getTotal() + "条记录,当前" + goodsIPage.getCurrent() + ",每页：" + goodsIPage.getSize() + "条");
         model.addAttribute("records",records);
