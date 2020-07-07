@@ -39,6 +39,7 @@ public class ItemsController {
         System.out.println("分页的结果：");
         for (MyNewGoodsVo good : goodList) {
             System.out.println(good);
+            System.out.println(good.getGoodsid());
         }
 
         PageInfo<MyNewGoodsVo> pageInfo = new PageInfo<>(goodList);

@@ -25,7 +25,7 @@ import java.util.Date;
 @Accessors(chain = true)
 @Validated
 public class Goods {
-    private Integer id;
+    private Integer goodsid;
     @NotEmpty(message = "商品名不能为空")
     private String goodsname;
     @Range(min = 0, message = "价格不能小于0")
@@ -34,9 +34,9 @@ public class Goods {
     @NotEmpty(message = "商品描述不能为空")
     private String described;
     private String goodsimg;
-    private Integer userid;
     private Date date;
     @NotEmpty(message = "留言不能为空")
     private String sellmassage;
     private Integer status;
+    private User userid;
 }

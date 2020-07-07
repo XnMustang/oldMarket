@@ -1,7 +1,8 @@
 package com.wlrss.oldmarket.mapper;
 
-import com.wlrss.oldmarket.entity.User;
+import com.wlrss.oldmarket.entity.Goods;
 import com.wlrss.oldmarket.entity.vo.MyOrders;
+import com.wlrss.oldmarket.entity.vo.OrderDateilUserVo;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
 
@@ -52,4 +53,11 @@ public interface OrderDetailMapper {
      * @return
      */
     List<MyOrders> findTimeOrder(int userId,String time1, String time2);
+
+    /**
+     * 根据商品id查询用户和商品信息
+     * @param goodId
+     * @return
+     */
+    List<OrderDateilUserVo> queryOrderDetail(Integer goodId);
 }

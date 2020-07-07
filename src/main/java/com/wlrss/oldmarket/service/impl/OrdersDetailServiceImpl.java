@@ -1,4 +1,6 @@
 package com.wlrss.oldmarket.service.impl;
+import com.wlrss.oldmarket.entity.Goods;
+import com.wlrss.oldmarket.entity.vo.OrderDateilUserVo;
 import com.wlrss.oldmarket.mapper.OrderDetailMapper;
 import com.wlrss.oldmarket.service.OrdersDetailService;
 import com.wlrss.oldmarket.entity.vo.MyOrders;
@@ -69,5 +71,15 @@ public class OrdersDetailServiceImpl implements OrdersDetailService {
     @Override
     public List<MyOrders> findTimeOrder(int userId,String time1, String time2) {
         return orderDetailMapper.findTimeOrder(userId,time1,time2);
+    }
+
+    /**
+     * 根据商品的id 联合用户表 查询出双方信息展示
+     * @param goodId    商品id
+     * @return
+     */
+    @Override
+    public  List<OrderDateilUserVo> queryOrderDetail(Integer goodId) {
+        return orderDetailMapper.queryOrderDetail(goodId);
     }
 }

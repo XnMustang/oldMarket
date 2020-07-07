@@ -17,6 +17,7 @@ import java.util.Date;
 @Accessors(chain = true)
 public class MyNewGoodsVo {
 
+    private Integer goodsid;
     private String goodsName;
     private BigDecimal price;
     private String userName;

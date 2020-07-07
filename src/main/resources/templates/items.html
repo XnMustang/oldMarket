@@ -70,7 +70,7 @@
                         <span><em th:text="'上市日期：'+${good.date}"></em></span>
                     </div>
                 </div>
-                <a href="/item-detail.html"><i class="fa fa-angle-right fa-2x"></i></a>
+                <a th:href="@{/item-detail.html?id=}+${good.goodsid}"><i class="fa fa-angle-right fa-2x"></i></a>
             </div>
         </div>
     </div>

@@ -1,7 +1,9 @@
 package com.wlrss.oldmarket.service;
 
+import com.wlrss.oldmarket.entity.Goods;
 import com.wlrss.oldmarket.entity.User;
 import com.wlrss.oldmarket.entity.vo.MyOrders;
+import com.wlrss.oldmarket.entity.vo.OrderDateilUserVo;
 
 import java.util.List;
 
@@ -46,4 +48,12 @@ public interface OrdersDetailService {
      * @return
      */
     List<MyOrders> findTimeOrder(int userId,String time1, String time2);
+
+
+    /**
+     * 根据商品的id 联合用户表 查询出双方信息展示
+     * @param goodId    商品id
+     * @return
+     */
+    List<OrderDateilUserVo> queryOrderDetail(Integer goodId);
 }

@@ -19,7 +19,6 @@
     <link rel="stylesheet" href="/vendor/perfect-scrollbar/css/perfect-scrollbar.min.css">
     <link rel="stylesheet" href="/css/app.css">
     <!--end stylesheets-->
-
     <!--google fonts-->
     <link href="https://fonts.googleapis.com/css?family=Cairo%7CNosifer%7CPoppins%7CQuicksand:700%7CRaleway%7CTangerine%7CHind+Vadodara" rel="stylesheet">
     <!--end google fonts-->
@@ -36,14 +35,16 @@
     <div class="item-details">
         <img src="/img/items/item-detail.jpg" alt="">
         <div class="title-price">
-            <strong class="titlet">老式大众</strong>
-            <span>价格: <strong class="price">$4999</strong></span>
+            <strong class="titlet" id="goods_name"></strong><!--商品名称-->
+            <span>
+                价格: <strong class="price" id="good_price"></strong> <!--商品价格-->
+            </span>
         </div>
 
         <div class="item-status">
             <div class="status-box">
-                <strong>购买日期</strong>
-                <span>12, Jan 2017</span>
+                <strong>上架时间</strong>
+                <span id="goods_date"></span>   <!--商品上架时间-->
             </div>
             <div class="status-box">
                 <strong>地址</strong>
@@ -54,23 +55,8 @@
 
         <p class="description">
             <strong>物品说明</strong>
-            很棒的一辆车<i class="ui-text-info">真的很棒</i>
             <br>
-            相信我 很棒相信我 很棒相信我 很棒相信我 很棒相信我 很棒相信我 很棒
-            相信我 很棒相信我 很棒相信我 很棒相信我 很棒相信我 很棒相信我 很棒
-            相信我 很棒相信我 很棒相信我 很棒相信我 很棒相信我 很棒相信我 很棒
-            相信我 很棒相信我 很棒相信我 很棒相信我 很棒相信我 很棒相信我 很棒
-            相信我 很棒相信我 很棒相信我 很棒相信我 很棒相信我 很棒
-            相信我 很棒相信我 很棒相信我 很棒相信我 很棒相信我 很棒
-            相信我 很棒相信我 很棒相信我 很棒相信我 很棒相信我 很棒相信我 很棒
-            <br>
-            <br>
-            相信我 很棒相信我 很棒相信我 很棒相信我 很棒相信我 很棒相信我 很棒
-            相信我 很棒相信我 很棒相信我 很棒相信我 很棒相信我 很棒相信我 很棒
-            相信我 很棒相信我 很棒相信我 很棒相信我 很棒相信我 很棒相信我 很棒
-            相信我 很棒相信我 很棒相信我 很棒相信我 很棒相信我 很棒相信我 很棒
-            相信我 很棒相信我 很棒相信我 很棒相信我 很棒相信我 很棒相信我 很棒
-            相信我 很棒相信我 很棒相信我 很棒相信我 很棒相信我 很棒相信我 很棒
+            <span id="good_described"></span> <!--商品描述-->
             <a href="#" class="show-more"><i class="fa fa-angle-double-down"></i></a>
         </p>
         <div class="item-features">
@@ -96,9 +82,8 @@
             <strong>卖家留言</strong>
             <p>
                 <i class="fa fa-quote-left ui-text-success"></i>
-                <span>
-                    你好，谢谢你观看我的项目。如果你对买这辆车感兴趣
-                    ，请用旁边的表格联系我，我会尽快回复你!
+                <span id="sellmassage"> <!--卖家留言-->
+
                 </span>
                 <i class="fa fa-quote-right ui-text-success"></i>
             </p>
@@ -131,31 +116,21 @@
     <!--item aside details-->
     <div class="item-detail-aside">
         <div class="listed-by">
-            <strong>xxxx:</strong>
             <div class="lister">
                 <img src="/img/lister.jpg" alt="">
             </div>
         </div>
         <div class="lister-info">
-            <strong>张三丰</strong>
+            <strong id="user_name"></strong>    <!--用户名-->
             <hr>
-            <span><i class="fa fa-phone ui-text-warn"></i> <em>+1 2568 752 819, +254 728101752</em></span>
-            <span><i class="fa fa-map-marker ui-text-success"></i> <em>10100, 台湾</em></span>
-            <span><i class="fa fa-globe ui-text-info"></i> <a href="#">www.example.com</a></span>
-            <span><i class="fa fa-envelope-o ui-text-danger"></i> <a href="mailto:megan@example.com">megan@example.com</a></span>
+            <span><i class="fa fa-phone ui-text-warn"></i> <em id="user_phone"></em></span> <!--用户电话-->
+<!--            <span><i class="fa fa-map-marker ui-text-success"></i> <em>10100, 台湾</em></span>-->
+<!--            <span><i class="fa fa-globe ui-text-info"></i> <a href="#">www.example.com</a></span>-->
+            <span><i class="fa fa-envelope-o ui-text-danger"></i> <a href="mailto:megan@example.com" id="user_email"></a></span>    <!--用户邮箱-->
             <hr>
         </div>
         <div class="contact-lister">
-            <strong>了解三丰</strong>
             <form action="#" method="post">
-                <div class="form-group">
-                    <label for="email">email:</label>
-                    <input id="email" type="email" placeholder="megan@example.com" class="form-control" disabled>
-                </div>
-                <div class="form-group">
-                    <label for="sub">主题:</label>
-                    <input id="sub" type="text" placeholder="" class="form-control">
-                </div>
                 <div class="form-group">
                     <label for="msg">留言:</label>
                     <textarea id="msg" name="msg" placeholder="请留言..." rows="6" class="form-control"></textarea>
@@ -235,6 +210,36 @@
 <script src="/vendor/js/typed.js"></script>
 <script src="/js/app.js"></script>
 <!--end scripts-->
+
+<script>
+    $(function () {
+        //获取到商品的id
+        var goodId = window.location.search.split("=")[1];
+
+        //初始化查询当前页面所有数据。通过商品id联合user表
+        $.ajax({
+            type: "get",
+            url: "/orderDetail/queryOrderDetail/"+goodId,
+            dataType: "json",
+            success: function (data) {
+                console.log("接收到的商品id："+ goodId);
+                //log内容不允许加字符拼接，会出现转换问题。切记
+                console.log(data);
+
+                //返回的data是一个数组，data[0]获取的是较多JSON对象中的第一个。
+                var username = $("#user_name").html(data[0].username);   //用户名
+                var userphone = $("#user_phone").html(data[0].phone);//用户联系方式
+                var userEmail = $("#user_email").html(data[0].email);//用户邮箱
+                var goodsName = $("#goods_name").html(data[0].goodsname);//商品名称
+                var goodDate = $("#goods_date").html(data[0].date);//商品时间
+                var goodPrice = $("#good_price").html('$'+data[0].price);  //商品价格
+                var goodDescribed = $("#good_described").html(data[0].described);//商品描述
+                var sellmassage = $("#sellmassage").html(data[0].sellmassage);//卖家留言
+            }
+        });
+    })
+
+</script>
 
 </body>
 </html>
