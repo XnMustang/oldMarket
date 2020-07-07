@@ -38,5 +38,5 @@ public class Goods {
     @NotEmpty(message = "留言不能为空")
     private String sellmassage;
     private Integer status;
-    private User userid;
+    private Integer userid;
 }

@@ -2,8 +2,10 @@ package com.wlrss.oldmarket.service.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.wlrss.oldmarket.entity.Goods;
 import com.wlrss.oldmarket.entity.User;
 import com.wlrss.oldmarket.entity.vo.MyUser;
+import com.wlrss.oldmarket.mapper.GoodsMapper;
 import com.wlrss.oldmarket.mapper.UserMapper;
 import com.wlrss.oldmarket.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,8 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     UserMapper userMapper;
+    @Autowired
+    GoodsMapper goodsMapper;
     //查询全部用户
     @Override
     public List<User> listAllUser() {
@@ -75,6 +79,14 @@ public class UserServiceImpl implements UserService {
         User user=userMapper.selectOne(queryWrapper);
         user.setPassword(password);
         userMapper.updateById(user);
+    }
+
+    @Override
+    public int findUserIdByGoodsId(String goodsid) {
+        QueryWrapper<Goods> queryWrapper =new QueryWrapper<>();
+        queryWrapper.eq("goodsid",goodsid);
+        Goods goods = goodsMapper.selectOne(queryWrapper);
+        return goods.getUserid();
     }
 
 }

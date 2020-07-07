@@ -7,13 +7,15 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.*;
 import lombok.experimental.Accessors;
 
+import java.io.Serializable;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
 @Accessors(chain = true)
 @TableName(value = "user")
-public class User {
+public class User implements Serializable {
 
     @TableId(type = IdType.AUTO)
     private Integer id;

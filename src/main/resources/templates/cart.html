@@ -46,33 +46,34 @@
 
             <!--查询位置 -->
             <tbody>
-                <tr>
+                <tr th:each="good:${cartItems}">
                     <td>
                         <div>
                             <i class="fa fa-times-circle remove-item ui-text-danger"></i>
                                 <!--图片-->
-                            <div class="item-img"><img src="/img/items/l-item2.png" alt=""></div>
+                            <div class="item-img"><img th:src="${good.getGoodsimg()}" alt=""></div>
                         </div>
                     </td>
                     <td>
-                        <strong>商品名称</strong>
+                        <strong th:text="${good.getGoodsname()}">商品名称</strong>
                     </td>
                     <td>
                         <div class="price-control">
-                            <strong class="unit-price">$ <span data-price="72">72.00</span></strong>
+                            <strong class="unit-price">$ <span data-price="72"  th:text="${good.getPrice()}">72.00</span></strong>
                             <span>x</span>
 
-                            <div class="quantity-change">
-                                <span class="minus-item"><i class="fa fa-minus"></i></span>
+<!--                            <div class="quantity-change">-->
+<!--                                <span class="minus-item"><i class="fa fa-minus"></i></span>-->
                                 <!--数量-->
-                                <input class="quantity-input" title="" type="text" value="1">
-                                <span class="add-item"><i class="fa fa-plus"></i></span>
-                            </div>
+                            <strong th:text="${cartCacheItems}"></strong>
+<!--                                <input class="" title="" type="text" value="1">-->
+<!--                                <span class="add-item"><i class="fa fa-plus"></i></span>-->
+<!--                            </div>-->
 
                         </div>
                     </td>
                     <td>
-                        <strong>$<span class="total">72.00</span></strong>
+                        <strong>$<span class="total" th:text="${good.getPrice()}">72.00</span></strong>
                     </td>
                 </tr>
 <!--                <tr>-->
@@ -178,7 +179,7 @@
             </tbody>
         </table>
         <div class="cart-bottom">
-            <h3><span>小计:</span>$<strong class="sub-total ui-text-success">1080</strong></h3>
+            <h3><span>小计:</span>$<strong class="sub-total ui-text-success"></strong></h3>
             <p class="cart-bt-act">
                 <a href="items.html"><i class="fa fa-angle-left"></i> 继续购物</a>
                 <a href="payment-info.html" class="continue">付款信息 <i class="fa fa-angle-right"></i></a>

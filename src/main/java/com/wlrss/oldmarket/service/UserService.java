@@ -27,4 +27,6 @@ public interface UserService {
 
     //根据id修改密码
     void updatePwById(int id,String password);
+
+    int findUserIdByGoodsId(String goodsid);
 }

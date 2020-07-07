@@ -1,6 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <!--meta tags-->
     <meta charset="UTF-8">
     <meta name="description" content="Services Listing HTML5 CSS3 template">
@@ -15,6 +16,7 @@
     <link rel="stylesheet" href="/vendor/font-awesome-4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/vendor/perfect-scrollbar/css/perfect-scrollbar.min.css">
     <link rel="stylesheet" href="/css/app.css">
+    <link rel="stylesheet" href="layui/css/layui.css">
     <!--end stylesheets-->
 
     <!--google fonts-->
@@ -140,6 +142,8 @@
             </div>
             <div class="result-item-info">
                 <a href="item-detail.html">
+                    <!--goodsId   根据goodsId查询userId nums date-->
+                    <input type="hidden" id="goodsid" th:value="${good.getId()}">
                     <strong id="goodname" th:text="${good.getGoodsname()}"></strong>
                 </a>
                 <p th:text="${good.getDescribed()}">
@@ -155,15 +159,38 @@
             <div class="result-item-price">
                 <span>价格:</span>
                 <h3 th:text="'$'+${good.getPrice()}"></h3>
-                <a href="cart.html" class="add-to-cart">加入购物车 <i class="fa fa-cart-plus"></i></a>
+                <a href="javascript:void(0)" class="add-to-cart" onclick="add()">加入购物车 <i class="fa fa-cart-plus"></i></a>
             </div>
         </div>
 
+        <script th:src="@{/layui/layui.js}"></script>
         <script th:src="@{/js/jquery-2.2.3.min.js}"></script>
         <script>
-            $(function () {
 
-            })
+                function add(){
+                    $.ajax({
+                        type: 'POST',
+                        url: "/shopping/add",
+                        data: {
+                            "goodsid" : $("#goodsid").val()
+                        },
+                        success: function () {
+                            layui.use(['layer','form'],function () {
+                                var  layer = layui.layer,
+                                    form = layui.form;
+                                layer.msg("加入购物车成功！")
+                            })
+                        },
+                        error: function () {
+                            layui.use(['layer','form'],function () {
+                                var  layer = layui.layer,
+                                    form = layui.form;
+                                layer.msg("加入购物车失败！")
+                            })
+                        }
+                    })
+                }
+
         </script>
         <nav aria-label="Page navigation example" style="margin-top: 100px">
             <ul class="pagination justify-content-end">
