@@ -140,12 +140,27 @@
                     <textarea id="msg" name="msg" placeholder="请留言..." rows="6" class="form-control"></textarea>
                 </div>
                 <div class="form-group">
-                    <button class="ui-btn ui-btn-info form-control" type="submit">发送 <i class="fa fa-send-o"></i></button>
+                    <button class="ui-btn ui-btn-info form-control" type="button" onclick="goodsMessage()">发送 <i class="fa fa-send-o"></i></button>
                 </div>
             </form>
         </div>
     </div>
     <!--end item aside details-->
+    <script>
+        //发送商品留言给商家
+        function goodsMessage() {
+            var messageInfo = $("#msg").val();  //留言内容
+            $.ajax({
+                type: "get",
+                url: "/goodsMessage/sendMessage?messageInfo="+messageInfo,
+                success: function (data) {
+                    alert("来自商品的留言：" + data);
+                    alert("发送留言成功！")
+                    location.reload();  //刷新当前页面
+                }
+            });
+        }
+    </script>
 
 </div>
 <!--end item-->

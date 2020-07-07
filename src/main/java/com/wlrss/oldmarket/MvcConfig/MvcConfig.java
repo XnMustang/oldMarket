@@ -80,7 +80,8 @@ public class MvcConfig implements WebMvcConfigurer {
                         "/file",
                         "/fileUpload",
                         "/address/**",
-                        "/orderDetail/**"
+                        "/orderDetail/**",
+                        "/goodsMessage/**"
                 ).excludePathPatterns(
                         "/admin/**",
                         "/css/**",
