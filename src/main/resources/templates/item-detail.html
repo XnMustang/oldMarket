@@ -87,6 +87,10 @@
                 </span>
                 <i class="fa fa-quote-right ui-text-success"></i>
             </p>
+            <br>
+            <div>
+                <button type="button" class="btn btn-success" style="margin-left: 700px">加入购物车</button>
+            </div>
         </div>
         <hr>
         <div class="similar-items">
@@ -231,12 +235,16 @@
                 var userphone = $("#user_phone").html(data[0].phone);//用户联系方式
                 var userEmail = $("#user_email").html(data[0].email);//用户邮箱
                 var goodsName = $("#goods_name").html(data[0].goodsname);//商品名称
-                var goodDate = $("#goods_date").html(data[0].date);//商品时间
+                var goodDate = $("#goods_date").html(getLocalTime(data[0].dateUp));//商品时间
                 var goodPrice = $("#good_price").html('$'+data[0].price);  //商品价格
                 var goodDescribed = $("#good_described").html(data[0].described);//商品描述
                 var sellmassage = $("#sellmassage").html(data[0].sellmassage);//卖家留言
             }
         });
+
+        function getLocalTime(nS) {
+            return new Date(parseInt(nS) * 1000).toLocaleString().replace(/:\d{1,2}$/,' ');
+        }
     })
 
 </script>

@@ -34,7 +34,7 @@ public class OrderDateilUserVo {
     private String goodsname;
     private BigDecimal price;
     private String described;
-    private Date date;
+    private Date dateUp;
     private String sellmassage;
 
 

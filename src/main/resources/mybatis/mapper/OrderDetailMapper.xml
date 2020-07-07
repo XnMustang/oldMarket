@@ -77,7 +77,7 @@
         FROM user u,goods g
         WHERE u.`id` = g.`userid`
         AND
-        g.`goodsid`=108
+        g.`goodsid`= #{goodId}
     </select>
 
 </mapper>
