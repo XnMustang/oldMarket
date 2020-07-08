@@ -131,48 +131,23 @@
                 <a href="#"><i class="fa fa-check-circle-o text-success"></i> <span><em>已售出</em> <em>02</em></span></a>
                 <a href="#"><i class="fa fa-trash-o text-danger"></i> <span><em>已删除</em> <em>01</em></span></a>
             </div>
+
         </div>
-        <div class="product-item">
-            <div class="item-img"><img src="/img/item.jpg" alt=""></div>
-            <div class="item-info">
-                <h5>苹果超音速耳机</h5>
-                <p>
-                    苹果超音速耳机苹果超音速耳机苹果超音速耳机苹果超音速耳机苹果超音速耳机苹果超音速耳机
-                </p>
-                <span class="text-success">0 售出</span>, <span>库存: 12</span>, <span class="text-info">发售: 12, Jan 2017</span>
-            </div>
-            <div class="item-action">
-                <a href="http://oldsmarket.neonweb.me/dash-addItem.html"><span><i class="fa fa-pencil"></i></span><em>编辑</em></a>
-                <a href="item-detail.html"><span><i class="fa fa-eye"></i></span><em>详情</em></a>
-                <a href="#" class="show-box"><span><i class="fa fa-bar-chart"></i></span><em>统计</em></a>
-                <a href="#" class="delete-item"><span><i class="fa fa-trash-o"></i></span><em>删除</em></a>
-            </div>
+
+        <div id="goodsList">
+
         </div>
-        <div class="product-item">
-            <div class="item-img"><img src="/img/item2.jpg" alt=""></div>
-            <div class="item-info">
-                <h5>98年奥拓</h5>
-                <p>
-                    奥拓是一个时代很厉害的车，奥拓是一个时代很厉害的车，奥拓是一个时代很厉害的车
-                </p>
-                <span class="text-success">1 售出</span>, <span>库存: 112</span>, <span class="text-info">发售: 12, Jan 2017</span>
-            </div>
-            <div class="item-action">
-                <a href="http://oldsmarket.neonweb.me/dash-addItem.html"><span><i class="fa fa-pencil"></i></span><em>Edit</em></a>
-                <a href="item-detail.html"><span><i class="fa fa-eye"></i></span><em>View</em></a>
-                <a href="#" class="show-box"><span><i class="fa fa-bar-chart"></i></span><em>Stats</em></a>
-                <a href="#" class="delete-item"><span><i class="fa fa-trash-o"></i></span><em>Trash</em></a>
-            </div>
-        </div>
+
+
     </div>
     <!--end items-->
 
     <!--分页-->
     <div class="dash-pagination">
         <a href="#"><i class="fa fa-angle-left"></i></a>
-        <a href="#" class="current">1</a>
-        <a href="#">2</a>
-        <a href="#">3</a>
+        <a href="/go/list?now=1" class="current" id="p" >1</a>
+        <a href="/go/list?now=2">2</a>
+        <a href="javascript:p1(3)">3</a>
         <a href="#"><i class="fa fa-angle-right"></i></a>
     </div>
 </div>
@@ -199,6 +174,44 @@
 <script src="/vendor/js/typed.js"></script>
 <script src="/js/app.js"></script>
 <!--end scripts-->
+<script>
+
+    function p1(t) {
+
+    }
+
+    $(function () {
+        $.ajax({
+            url:"/go/list",
+            method:"post",
+            dataType:"json",
+            data:{size:3},
+            success:function (data) {
+                console.log(data);
+                var str = "";
+                for (var i = 0; i < data.length; i++) {
+                    str+="<div class=\"product-item\">\n" +
+                        "\n" +
+                        "            <div class=\"item-img\"><img src=\""+data[i].goodsimg+"\" alt=\"\"></div>\n" +
+                        "            <div class=\"item-info\">\n" +
+                        "                <h5>"+data[i].goodsname+"</h5>\n" +
+                        "                <p>\n" +
+                        "                    "+data[i].described.substring(0,40)+"\n" +
+                        "                ...</p>\n" +
+                        "                <span class=\"text-success\"></span><span></span><span class=\"text-info\">发售:"+data[i].dateup+"</span>\n" +
+                        "            </div>\n" +
+                        "            <div class=\"item-action\">\n" +
+                        "                <a href=\"http://oldsmarket.neonweb.me/dash-addItem.html\"><span><i class=\"fa fa-pencil\"></i></span><em>编辑</em></a>\n" +
+                        "                <a href=\"item-detail.html\"><span><i class=\"fa fa-eye\"></i></span><em>详情</em></a>\n" +
+                        "                <a href=\"#\" class=\"show-box\"><span><i class=\"fa fa-bar-chart\"></i></span><em>统计</em></a>\n" +
+                        "                <a href=\"#\" class=\"delete-item\"><span><i class=\"fa fa-trash-o\"></i></span><em>删除</em></a>\n" +
+                        "            </div></div>"
+                }
+                $("#goodsList").html(str);
+            }
+        })
+    })
+</script>
 
 </body>
 </html>

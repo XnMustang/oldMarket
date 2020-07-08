@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wlrss.oldmarket.mapper.GoodsListMapper">
+    <select id="findAll" resultType="goodsList">
+        SELECT goods.`goodsimg`,goods.`goodsname`,goods.`described`,goods.`date_up` AS dateup FROM goods
+    </select>
+</mapper>
