@@ -24,6 +24,8 @@ import java.util.Date;
 @ToString
 @Accessors(chain = true)
 @Validated
+@Getter
+@Setter
 public class Goods {
     private Integer goodsid;
     @NotEmpty(message = "商品名不能为空")
