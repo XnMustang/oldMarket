@@ -59,7 +59,7 @@ public class QiniuUpload {
             DefaultPutRet putRet = new Gson().fromJson(response.bodyString(), DefaultPutRet.class);
             System.out.println(putRet.key);
             System.out.println(putRet.hash);
-            return VariableName.domain+FileName;
+            return VariableName.domain+"/"+FileName;
 
         }catch (QiniuException ex){
             Response r = ex.response;

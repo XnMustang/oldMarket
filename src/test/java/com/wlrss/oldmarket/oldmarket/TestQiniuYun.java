@@ -13,7 +13,12 @@ public class TestQiniuYun {
     @Test
     public void test01(){
         QiniuUpload qiniuUpload = new QiniuUpload();
-        String uploadPic = QiniuUpload.UploadPic("C:\\Users\\Acer\\Desktop\\七牛云图片测试\\下载.jpg", "布加迪1");
+        /**
+         * FilePath: 文件本地的绝对路径
+         * FileName: 文件上传到七牛云的名称
+         * 建议两个名称一致，这里可以通过控制台网址直接访问
+         */
+        String uploadPic = QiniuUpload.UploadPic("C:\\Users\\Acer\\Desktop\\world6.jpg", "world6.jpg");
         System.out.println(uploadPic);
 
     }
