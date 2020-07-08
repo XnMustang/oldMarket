@@ -15,7 +15,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
@@ -48,19 +47,22 @@ public class CartController {
         List<Goods> goods = new ArrayList<>();
         for (int i = 0 ; i<cacheCart.getCartItems().size(); i++){
             //根据商品id查询
-            goods.add(goodsService.findGoodsById(cacheCart.getCartItems().get(i).getGoodsid()));
+            Goods goodsById = goodsService.findGoodsById(cacheCart.getCartItems().get(i).getGoodsid());
+            goodsById.setNums(cacheCart.getCartItems().get(i).getNums());
+            goods.add(goodsById);
         }
         model.addAttribute("cartItems",goods);
-        if (cacheCart.getCartItems().size() > 0){
-            model.addAttribute("cartCacheItems",cacheCart.getCartItems().get(0).getNums());
-        }else {
-            model.addAttribute("cartCacheItems",null);
-        }
+//        if (cacheCart.getCartItems().size() > 0){
+//            model.addAttribute("cartCacheItems",cacheCart.getCartItems().get(0).getNums());
+//        }else {
+//            model.addAttribute("cartCacheItems",null);
+//        }
         return "cart";
     }
 
     @PostMapping("/add")
     public  void     add(HttpServletResponse response, HttpServletRequest request, CartItem cartItem){
+        System.out.println(cartItem.getGoodsid());
         String email =(String) request.getSession().getAttribute("email");
         int userId = userService.findUserIdByGoodsId(cartItem.getGoodsid());
         cartItem.setNums(1).setAddtime(new Date()).setUserid(userId);
@@ -74,5 +76,10 @@ public class CartController {
         int userId = userService.findUserIdByGoodsId(cartItem.getGoodsid());
         cartItem.setNums(1).setAddtime(new Date()).setUserid(userId);
         shoppingCartService.removeCart(response,request,email,cartItem);
+    }
+
+    @RequestMapping("/settlement")
+    public String settlement(){
+        return null;
     }
 }

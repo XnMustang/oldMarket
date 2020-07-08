@@ -164,9 +164,10 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
             long count = cacheCart.getCartItems().stream().filter(it -> it.getGoodsid().equals(item.getGoodsid())).count();
             if (count == 1) {//⑵
                 CartItem ci = cacheCart.getCartItems().stream().filter(it -> it.getGoodsid().equals(item.getGoodsid())).findFirst().orElse(null);
-                if (ci.getNums() > item.getNums()) {//⑶
-                    ci.setNums(ci.getNums() - item.getNums());
-                } else if (ci.getNums() <= item.getNums()) {
+//                if (ci.getNums() > item.getNums()) {//⑶
+//                    ci.setNums(ci.getNums() - item.getNums());
+//                } else
+                    if(ci.getNums() >= item.getNums()) {
                     cacheCart.getCartItems().remove(ci);
                 }
                 //1.满足缓存购物车中必须有商品才能减购物车

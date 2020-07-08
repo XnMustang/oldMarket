@@ -135,6 +135,7 @@
         <!--图片，名字，单价-->
 
         <div class="result-item" th:each="good :${records}">
+
             <div class="result-item-img">
                 <div>
                     <img src="/img/items/l-item2.png" alt="">
@@ -143,7 +144,6 @@
             <div class="result-item-info">
                 <a href="item-detail.html">
                     <!--goodsId   根据goodsId查询userId nums date-->
-                    <input type="hidden" id="goodsid" th:value="${good.getGoodsid()}">
                     <strong id="goodname" th:text="${good.getGoodsname()}"></strong>
                 </a>
                 <p th:text="${good.getDescribed()}">
@@ -159,37 +159,42 @@
             <div class="result-item-price">
                 <span>价格:</span>
                 <h3 th:text="'$'+${good.getPrice()}"></h3>
-                <a href="javascript:void(0)" class="add-to-cart" onclick="add()">加入购物车 <i class="fa fa-cart-plus"></i></a>
+                <a href="javascript:void(0)" class="add-to-cart"  id="btn" >加入购物车
+                  </a>
+                <input type="hidden" class="goodsId" th:value="${good.getGoodsid()}">
             </div>
         </div>
 
         <script th:src="@{/layui/layui.js}"></script>
         <script th:src="@{/js/jquery-2.2.3.min.js}"></script>
         <script>
+           $(".add-to-cart").click(function () {
+                    let val = $(this).next().val();
+                   $.ajax({
+                       type: 'POST',
+                       url: "/shopping/add",
+                       data: {
+                           "goodsid" :  val
+                       },
+                       success: function () {
+                           layui.use(['layer','form'],function () {
+                               var  layer = layui.layer,
+                                   form = layui.form;
+                               layer.msg("加入购物车成功！")
+                           })
+                       },
+                       error: function () {
+                           layui.use(['layer','form'],function () {
+                               var  layer = layui.layer,
+                                   form = layui.form;
+                               layer.msg("加入购物车失败！")
+                           })
+                       }
+                   })
+               })
 
-                function add(){
-                    $.ajax({
-                        type: 'POST',
-                        url: "/shopping/add",
-                        data: {
-                            "goodsid" : $("#goodsid").val()
-                        },
-                        success: function () {
-                            layui.use(['layer','form'],function () {
-                                var  layer = layui.layer,
-                                    form = layui.form;
-                                layer.msg("加入购物车成功！")
-                            })
-                        },
-                        error: function () {
-                            layui.use(['layer','form'],function () {
-                                var  layer = layui.layer,
-                                    form = layui.form;
-                                layer.msg("加入购物车失败！")
-                            })
-                        }
-                    })
-                }
+
+
 
         </script>
         <nav aria-label="Page navigation example" style="margin-top: 100px">

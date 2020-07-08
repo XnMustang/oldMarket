@@ -39,4 +39,6 @@ public class Goods {
     private String sellmassage;
     private Integer status;
     private Integer userid;
+    private  Integer nums;
+
 }

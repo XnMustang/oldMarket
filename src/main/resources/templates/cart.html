@@ -22,6 +22,7 @@
     <!--google fonts-->
     <link href="https://fonts.googleapis.com/css?family=Cairo%7CNosifer%7CPoppins%7CQuicksand:700%7CRaleway%7CTangerine%7CHind+Vadodara" rel="stylesheet">
     <!--end google fonts-->
+    <link rel="stylesheet" href="layui/css/layui.css">
 </head>
 <body>
 
@@ -33,7 +34,6 @@
 <!--cart section-->
 <div class="cart-wrapper">
     <div class="cart">
-        <div class="items-count">你有 <strong class="ui-text-success">3</strong> 个订单未结算</div>
         <table class="table table-responsive cart-table">
             <thead>
                 <tr>
@@ -45,11 +45,43 @@
             </thead>
 
             <!--查询位置 -->
-            <tbody>
+            <tbody id="t">
                 <tr th:each="good:${cartItems}">
                     <td>
                         <div>
                             <i class="fa fa-times-circle remove-item ui-text-danger"></i>
+                            <input type="hidden" th:value="${good.getGoodsid()}">
+                            <script th:src="@{/layui/layui.js}"></script>
+                            <script th:src="@{/js/jquery-2.2.3.min.js}"></script>
+                            <script>
+                                $(".fa").click(function () {
+                                        let  val = $(this).next().val();
+                                    $.ajax({
+                                        type: 'POST',
+                                        url: "/shopping/remove",
+                                        data: {
+                                            "goodsid" :  val
+                                        },
+                                        success: function () {
+                                            layui.use(['layer','form'],function () {
+                                                var  layer = layui.layer,
+                                                    form = layui.form;
+                                                layer.msg("删除成功！")
+                                            })
+                                            setTimeout(function () {
+                                                    location.reload();
+                                            },2500)
+                                        },
+                                        error: function () {
+                                            layui.use(['layer','form'],function () {
+                                                var  layer = layui.layer,
+                                                    form = layui.form;
+                                                layer.msg("删除失败！")
+                                            })
+                                        }
+                                    })
+                                })
+                            </script>
                                 <!--图片-->
                             <div class="item-img"><img th:src="${good.getGoodsimg()}" alt=""></div>
                         </div>
@@ -65,7 +97,7 @@
 <!--                            <div class="quantity-change">-->
 <!--                                <span class="minus-item"><i class="fa fa-minus"></i></span>-->
                                 <!--数量-->
-                            <strong th:text="${cartCacheItems}"></strong>
+                            <strong th:text="${good.getNums()}"></strong>
 <!--                                <input class="" title="" type="text" value="1">-->
 <!--                                <span class="add-item"><i class="fa fa-plus"></i></span>-->
 <!--                            </div>-->
@@ -73,117 +105,36 @@
                         </div>
                     </td>
                     <td>
-                        <strong>$<span class="total" th:text="${good.getPrice()}">72.00</span></strong>
+                        <strong>$<span class="total" >[[${good.getPrice()*good.getNums()}]]</span></strong>
                     </td>
                 </tr>
-<!--                <tr>-->
-<!--                    <td>-->
-<!--                        <div>-->
-<!--                            <i class="fa fa-times-circle remove-item ui-text-danger"></i>-->
-<!--                            <div class="item-img"><img src="/img/items/l-item3.png" alt=""></div>-->
-<!--                        </div>-->
-<!--                    </td>-->
-<!--                    <td>-->
-<!--                        <strong>Item name goes here</strong>-->
-<!--                    </td>-->
-<!--                    <td>-->
-<!--                        <div class="price-control">-->
-<!--                            <strong class="unit-price">$ <span data-price="72">72.00</span></strong>-->
-<!--                            <span>x</span>-->
-<!--                            <div class="quantity-change">-->
-<!--                                <span class="minus-item"><i class="fa fa-minus"></i></span>-->
-<!--                                <input class="quantity-input" title="" type="text" value="3">-->
-<!--                                <span class="add-item"><i class="fa fa-plus"></i></span>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </td>-->
-<!--                    <td>-->
-<!--                        <strong>$<span class="total">216</span></strong>-->
-<!--                    </td>-->
-<!--                </tr>-->
-<!--                <tr>-->
-<!--                    <td>-->
-<!--                        <div>-->
-<!--                            <i class="fa fa-times-circle remove-item ui-text-danger"></i>-->
-<!--                            <div class="item-img"><img src="/img/items/l-item4.png" alt=""></div>-->
-<!--                        </div>-->
-<!--                    </td>-->
-<!--                    <td>-->
-<!--                        <strong>Item name goes here</strong>-->
-<!--                    </td>-->
-<!--                    <td>-->
-<!--                        <div class="price-control">-->
-<!--                            <strong class="unit-price">$ <span data-price="72">72.00</span></strong>-->
-<!--                            <span>x</span>-->
-<!--                            <div class="quantity-change">-->
-<!--                                <span class="minus-item"><i class="fa fa-minus"></i></span>-->
-<!--                                <input class="quantity-input" title="" type="text" value="3">-->
-<!--                                <span class="add-item"><i class="fa fa-plus"></i></span>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </td>-->
-<!--                    <td>-->
-<!--                        <strong>$<span class="total">216</span></strong>-->
-<!--                    </td>-->
-<!--                </tr>-->
-<!--                <tr>-->
-<!--                    <td>-->
-<!--                        <div>-->
-<!--                            <i class="fa fa-times-circle remove-item ui-text-danger"></i>-->
-<!--                            <div class="item-img"><img src="/img/items/l-item3.png" alt=""></div>-->
-<!--                        </div>-->
-<!--                    </td>-->
-<!--                    <td>-->
-<!--                        <strong>Item name goes here</strong>-->
-<!--                    </td>-->
-<!--                    <td>-->
-<!--                        <div class="price-control">-->
-<!--                            <strong class="unit-price">$ <span data-price="72">72.00</span></strong>-->
-<!--                            <span>x</span>-->
-<!--                            <div class="quantity-change">-->
-<!--                                <span class="minus-item"><i class="fa fa-minus"></i></span>-->
-<!--                                <input class="quantity-input" title="" type="text" value="3">-->
-<!--                                <span class="add-item"><i class="fa fa-plus"></i></span>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </td>-->
-<!--                    <td>-->
-<!--                        <strong>$<span class="total">216</span></strong>-->
-<!--                    </td>-->
-<!--                </tr>-->
-<!--                <tr>-->
-<!--                    <td>-->
-<!--                        <div>-->
-<!--                            <i class="fa fa-times-circle remove-item ui-text-danger"></i>-->
-<!--                            <div class="item-img"><img src="/img/items/l-item4.png" alt=""></div>-->
-<!--                        </div>-->
-<!--                    </td>-->
-<!--                    <td>-->
-<!--                        <strong>Item name goes here</strong>-->
-<!--                    </td>-->
-<!--                    <td>-->
-<!--                        <div class="price-control">-->
-<!--                            <strong class="unit-price">$ <span data-price="72">72.00</span></strong>-->
-<!--                            <span>x</span>-->
-<!--                            <div class="quantity-change">-->
-<!--                                <span class="minus-item"><i class="fa fa-minus"></i></span>-->
-<!--                                <input class="quantity-input" title="" type="text" value="3">-->
-<!--                                <span class="add-item"><i class="fa fa-plus"></i></span>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </td>-->
-<!--                    <td>-->
-<!--                        <strong>$<span class="total">216</span></strong>-->
-<!--                    </td>-->
-<!--                </tr>-->
             </tbody>
         </table>
-        <div class="cart-bottom">
-            <h3><span>小计:</span>$<strong class="sub-total ui-text-success"></strong></h3>
+        <div class="cart-bottom"  >
+
+            <div th:switch="${cartItems.size()}">
+                <p th:case="'0'" style="text-align: center; color: #dc3545;font-size: 18px">购物车空空如也！！！</p>
+                <h3 th:case="*">
+                    <span>小计:</span>$<strong class="sub-total ui-text-success" id="sum"></strong>
+                </h3>
+            </div>
+
+            <script>
+                let sum=0 ;
+            $(".total").each(function () {
+                    let a= parseInt($(this).text());
+                    sum+=a;
+            })
+            $("#sum").text(sum);
+            </script>
+
             <p class="cart-bt-act">
                 <a href="items.html"><i class="fa fa-angle-left"></i> 继续购物</a>
-                <a href="payment-info.html" class="continue">付款信息 <i class="fa fa-angle-right"></i></a>
+                <a th:href="@{/shopping/settlement}" class="continue">立即支付 <i class="fa fa-angle-right"></i></a>
             </p>
+            <script>
+
+            </script>
         </div>
     </div>
 </div>
