@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+
+<mapper namespace="com.wlrss.oldmarket.mapper.DashSalesMapper">
+    <select id="findAll" resultType="dashSales">
+        SELECT goods.`goodsname`, goods.`date_up` as dateup,orders.`date_down` as datedown,user.`email`,goods.`price` FROM
+	goods,orders,user WHERE goods.`userid` = orders.`userid` AND orders.`userid` = user.`id`
+    </select>
+
+    <select id="findAllByDateUpDesc" resultType="dashSales">
+        SELECT goods.`goodsname`, goods.`date_up` as dateup,orders.`date_down` as datedown,user.`email`,goods.`price` FROM
+	goods,orders,user WHERE goods.`userid` = orders.`userid` AND orders.`userid` = user.`id` order by dateup desc
+    </select>
+    <select id="findAllByDateDownDesc" resultType="dashSales">
+        SELECT goods.`goodsname`, goods.`date_up` as dateup,orders.`date_down` as datedown,user.`email`,goods.`price` FROM
+	goods,orders,user WHERE goods.`userid` = orders.`userid` AND orders.`userid` = user.`id` order by datedown desc
+    </select>
+    <select id="findAllByPriceDesc" resultType="dashSales">
+        SELECT goods.`goodsname`, goods.`date_up` as dateup,orders.`date_down` as datedown,user.`email`,goods.`price` FROM
+	goods,orders,user WHERE goods.`userid` = orders.`userid` AND orders.`userid` = user.`id` order by price desc
+    </select>
+    <select id="findAllByPriceAsc" resultType="dashSales">
+        SELECT goods.`goodsname`, goods.`date_up` as dateup,orders.`date_down` as datedown,user.`email`,goods.`price` FROM
+	goods,orders,user WHERE goods.`userid` = orders.`userid` AND orders.`userid` = user.`id` order by price asc
+    </select>
+
+
+    <select id="findAllByName" resultType="dashSales">
+        SELECT goods.`goodsname`, goods.`date_up` as dateup,orders.`date_down` as datedown,user.`email`,goods.`price` FROM
+	goods,orders,user
+	<where>
+        goods.`userid` = orders.`userid` AND orders.`userid` = user.`id`
+        <if test="goodsname!= null and goodsname!= ''">
+            and goods.goodsname like '%${goodsname}%'
+        </if>
+    </where>
+
+
+    </select>
+
+</mapper>
