@@ -32,7 +32,7 @@
         let webSocket = null;
 
         if ('WebSocket' in window) {
-            webSocket = new WebSocket("ws://127.0.0.1:9002/ws");
+            webSocket = new WebSocket("ws://127.0.0.1:8080/ws");
         } else {
             console.log('webSocket not support')
         }
