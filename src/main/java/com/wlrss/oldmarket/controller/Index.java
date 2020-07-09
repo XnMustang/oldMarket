@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class Index {
 
-    @GetMapping("/")
+    @GetMapping("/k")
     public String index() {
         return "item-detail";
     }
