@@ -17,4 +17,8 @@ spring:
     properties.mail.smtp.ssl.enable: true
     default-encoding: utf-8
 
-
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql

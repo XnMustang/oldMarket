@@ -8,11 +8,14 @@
         SELECT g.goodsid,g.`goodsname`,g.`price`,u.`username`,g.`date_up` FROM user u,goods g
         <where>
             u.`id` = g.`userid`
-            <if test="queryGoods != null and queryGoods != ''">
-                and g.`goodsname` LIKE '%${queryGoods}%'
+            <if test="keyword != null and keyword != ''">
+                and g.`goodsname` LIKE '%${keyword}%'
             </if>
+
+            ORDER BY ${type}
+
         </where>
-        ORDER BY g.`date_up` DESC
+
     </select>
 
 </mapper>

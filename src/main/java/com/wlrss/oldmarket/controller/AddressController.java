@@ -48,6 +48,6 @@ public class AddressController {
         Address a= new Address();
         a.setAccept(acceptname).setAcceptphone(acceptphone).setUserid(user.getId()).setAddress(address).setIsdefault(0);
         addressService.addAcceptAddress(a);
-        return "dash-profile";
+        return "redirect:/dash-profile.html";
     }
 }

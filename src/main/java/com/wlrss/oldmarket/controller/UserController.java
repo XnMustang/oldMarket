@@ -79,7 +79,7 @@ public class UserController {
     public String updatePersonalData(MyUser myUser){
         System.out.println(myUser);
         userService.updateUserData(myUser);
-        return "dash-profile";
+        return "redirect:/dash-profile.html";
     }
 
     //

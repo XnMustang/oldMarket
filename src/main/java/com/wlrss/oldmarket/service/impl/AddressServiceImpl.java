@@ -5,9 +5,11 @@ import com.wlrss.oldmarket.entity.Address;
 import com.wlrss.oldmarket.mapper.AddressMapper;
 import com.wlrss.oldmarket.service.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 @Service
+@Repository
 public class AddressServiceImpl implements AddressService {
     @Autowired
     AddressMapper addressMapper;

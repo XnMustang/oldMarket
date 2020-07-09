@@ -16,5 +16,5 @@ public interface GoodsMapper extends BaseMapper<Goods> {
      * 查询所有商品按照时间倒序
      * @return
      */
-    List<MyNewGoodsVo> queryAllGoods(String queryGoods);
+    List<MyNewGoodsVo> queryAllGoods(String keyword,String type);
 }

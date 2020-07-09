@@ -17,8 +17,8 @@ public class GoodsServiceImpl implements GoodsService {
     GoodsMapper goodsMapper;
 
     @Override
-    public List<MyNewGoodsVo> queryAllGoods(String queryGoods) {
-        return goodsMapper.queryAllGoods(queryGoods);
+    public List<MyNewGoodsVo> queryAllGoods(String keyword,String type) {
+        return goodsMapper.queryAllGoods(keyword,type);
     }
 
 

@@ -15,7 +15,7 @@ import java.util.List;
  */
 @Repository
 public interface UserMapper extends BaseMapper<User> {
-    @Select("SELECT `user`.id,username,email,`user`.phone,accept,acceptid,address,isdefault,acceptphone,gender,qq,google,intro FROM `user` INNER JOIN address ON `user`.id=address.userid WHERE `user`.email=#{email} ORDER BY isdefault DESC")
+    @Select("SELECT `user`.id,username,email,`user`.phone,accept,acceptid,address,isdefault,acceptphone,gender,qq,google,intro FROM `user` INNER JOIN address ON `user`.id=address.userid WHERE `user`.email=#{email} ORDER BY isdefault DESC,acceptid asc")
     List<MyUser> findMyUserByEmail(@Param("email") String email);
 
     
