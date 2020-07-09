@@ -26,6 +26,53 @@
 
     <script th:src="@{/layui/layui.js}"></script>
     <script th:src="@{/js/jquery-2.2.3.min.js}"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        let webSocket = null;
+
+        if ('WebSocket' in window) {
+            webSocket = new WebSocket("ws://127.0.0.1:9002/ws");
+        } else {
+            console.log('webSocket not support')
+        }
+
+        webSocket.onopen = function () {
+            show("已连接");
+        };
+
+        webSocket.onmessage = function (event) {
+            $('#message').append('<div class="ms">' + event.data + '</div>')
+        };
+
+        webSocket.onclose = function () {
+            show("已关闭");
+        };
+
+        webSocket.onerror = function () {
+            show("连接错误");
+        };
+
+        function closeWebSocket() {
+            webSocket.close();
+        }
+
+        function show(innerHTML) {
+            document.getElementById('status').innerHTML = innerHTML;
+        }
+
+        function send() {
+            let message = document.getElementById('ta').value;
+            webSocket.send(message);
+            document.getElementById('ta').value = '';
+        }
+
+        window.onbeforeunload = function () {
+            webSocket.close();
+        };
+
+    </script>
+
 </head>
 <body>
 
@@ -173,32 +220,23 @@
 
 <!--咨询窗口-->
 <div class="chat-box">
-    <div class="chat-top">
-        <section>
-            <h6 class="org-name">二手交易平台</h6>
-            <div class="repliers">
-                <div class="r-img">
-                    <img src="/img/avatar2.jpg" alt="">
-                    <strong class="name">Megan</strong>
-                </div>
-                <div class="r-img">
-                    <img src="/img/user2.jpg" alt="">
-                    <strong class="name">Brandon</strong>
-                </div>
-            </div>
-        </section>
+    <div class="container" style="padding: 20px">
+        <div class="status">
+            连接状态：<span id="status">未连接</span>
+            <a href="javascript:void(0)" onclick="closeWebSocket()">关闭连接</a>
+        </div>
+        <hr>
+        <div id="message" style="min-height: 200px; margin: 20px 0 10px">
+
+        </div>
+        <hr>
+        <div class="text">
+            <textarea name="" id="ta" cols="37" rows="6"></textarea>
+            <br>
+            <button onclick="send()">发送</button>
+        </div>
     </div>
-    <div class="chat-flow" id="chat-flow">
-        <p class="outbound">
-            Hallo, 有人在吗？
-        </p>
-        <p class="inbound">
-            嗨, 在的，很乐意为您效劳.
-        </p>
-    </div>
-    <form class="chat-form" action="#">
-        <input type="text" class="form-control chat-message" placeholder="回复">
-    </form>
+
 </div>
 <!--end chat box-->
 
