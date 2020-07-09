@@ -247,7 +247,12 @@
 <script>
 
     $(function () {
+
+
         listGoods();
+
+
+
 
 
     })
@@ -265,44 +270,45 @@
             data:{keyword:keyword,type:type,pageNum:nowPage,pageSize:size},
             success:function (data) {
                 console.log(data);
-                var v="";
-                for (var i = 0; i <data.list.length ; i++) {
-                    v+="<div class=\"sale-item\">\n" +
+                var v = "";
+                for (var i = 0; i < data.list.length; i++) {
+                    v += "<div class=\"sale-item\">\n" +
                         "<div class=\"sale-item-img\">\n" +
                         "<img src=\"/img/items/app3.jpg\" alt=\"\">\n" +
                         "<div class=\"sale-info\">\n" +
-                        "<strong>"+data.list[i].goodsName+"</strong>\n" +
-                        "<span class=\"sale-price\">$"+data.list[i].price+"</span>\n" +
+                        "<strong>" + data.list[i].goodsName + "</strong>\n" +
+                        "<span class=\"sale-price\">$" + data.list[i].price + "</span>\n" +
                         "</div>\n" +
                         "</div>\n" +
                         "<div class=\"sale-lister\">\n" +
                         "<div class=\"lister-pic\">\n" +
                         "<div><img src=\"/img/lister.jpg\" alt=\"\"></div>\n" +
                         "<div>\n" +
-                        "<strong>"+data.list[i].userName+"</strong>\n" +
-                        "<span><i class=\"fa fa-map-marker\"></i><em>"+data.list[i].price+"</em></span>\n" +
+                        "<strong>" + data.list[i].userName + "</strong>\n" +
+                        "<span><i class=\"fa fa-map-marker\"></i><em>" + data.list[i].price + "</em></span>\n" +
                         "</div>\n" +
                         "</div>\n" +
-                        "<a href=\"item-detail.html?id="+data.list[i].goodsid+"\"><i class=\"fa fa-angle-right fa-2x\"></i></a>\n" +
+                        "<a href=\"item-detail.html?id=" + data.list[i].goodsid + "\"><i class=\"fa fa-angle-right fa-2x\"></i></a>\n" +
                         "</div>\n" +
                         "</div>"
                 }
                 $("#items").html(v);
 
-
+                //当前页
+                var now = data.pageNum;
                 //页数
-                var pageCount=data.pages;
+                var pageCount = data.pages;
 
                 var temp = "";
                 //上一页
-                temp += "<a href=\"javascript:listGoods("+(data.pageNum-1)+")\" type=\"upPage\" nowPage='-1'><i class=\"fa fa-angle-left\"></i>&nbsp;<em>上一页</em></a>";
+                temp += "<a href=\"javascript:listGoods(" + (data.pageNum - 1) + ")\" type=\"upPage\" nowPage='-1'><i class=\"fa fa-angle-left\"></i>&nbsp;<em>上一页</em></a>";
 
                 //加载数字  1- pageCount
                 for (var i = 1; i <= pageCount; i++) {
-                    temp +=  "<a href=\"javascript:listGoods("+i+")\" nowPage='"+i+"' type='num'><span><i>"+i+"</i></span></a>";
+                    temp += "<a href=\"javascript:listGoods(" + i + ")\" class=\"current\" nowPage='" + i + "' type='num'><span><i>" + i + "</i></span></a>";
                 }
                 //下一页
-                temp += "<a href=\"javascript:listGoods("+(data.pageNum+1)+")\"  type='downPage' nowPage='-1'><em>下一页</em>&nbsp;<i class=\"fa fa-angle-right\"></i></a>\n" +
+                temp += "<a href=\"javascript:listGoods(" + (data.pageNum + 1) + ")\"  type='downPage' nowPage='-1'><em>下一页</em>&nbsp;<i class=\"fa fa-angle-right\"></i></a>\n" +
                     "                ;\n" +
                     "  ";
 
@@ -310,22 +316,33 @@
 
                 var link = document.createElement("link");
 
+                $(".current").removeAttr("class", "current");
+                var a = $("[type='num']");
+                alert(a.length);
 
 
+                for (i = 0, len = a.length; i < len; i++) {
+                    if (a[i].href == window.location.href) {
+                        $(this).attr("class", "current");
+                    }
 
 
-
-
+                }
             }
-        });
+        })
     }
-    /*//点击分页进行 显示数据
-    $("#pageId a").click(function() {
-        var n =  $("#pageId a").attr("nowPage");
-        var s =  $("#pageId a").attr("type");
-        alert(n+'----'+s)
-        listGoods(n,s);
+    //点击分页进行 显示数据
+   /* $("#pageId a").(function() {
+        $(this).attr("class","current");
+
     });*/
+
+   /* var a =  $(".current");
+    for(i=0,len=a.length;i<len;i++){
+        if (a[i].href == window.location.href ) {
+            $(this).attr("class","current");
+        }
+    }*/
 </script>
 
 </body>

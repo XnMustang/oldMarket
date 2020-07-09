@@ -46,8 +46,6 @@ public class ItemsController {
         System.out.println(pageInfo);
         String p=JSON.toJSONString(pageInfo);
         System.out.println("pageInfo<>JSON<>==="+p);
-        String s= JSON.toJSONString(goodList);
-        System.out.println("goodlistJSON===="+s);
         return p;
 
     }
