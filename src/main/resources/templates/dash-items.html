@@ -143,11 +143,11 @@
     <!--end items-->
 
     <!--分页-->
-    <div class="dash-pagination">
+    <div class="dash-pagination" id="qaq">
         <a href="#"><i class="fa fa-angle-left"></i></a>
-        <a href="/go/list?now=1" class="current" id="p" >1</a>
-        <a href="/go/list?now=2">2</a>
-        <a href="javascript:p1(3)">3</a>
+        <a href="javascript:p1(1,'as7d6')" class="pagebtn" id="as7d6">1</a>
+        <a href="javascript:p1(2,'as7d1')" class="pagebtn" id="as7d1">2</a>
+        <a href="javascript:p1(3,'as7d2')" class="pagebtn" id="as7d2">3</a>
         <a href="#"><i class="fa fa-angle-right"></i></a>
     </div>
 </div>
@@ -176,29 +176,30 @@
 <!--end scripts-->
 <script>
 
-    function p1(t) {
+</script>
+<script>
 
-    }
-
-    $(function () {
+    function p1(t,id) {
+        $(".pagebtn").removeAttr("class","current")
+        $("#"+id).attr("class","current pagebtn")
         $.ajax({
             url:"/go/list",
             method:"post",
             dataType:"json",
-            data:{size:3},
+            data:{now:t,size:3},
             success:function (data) {
                 console.log(data);
                 var str = "";
-                for (var i = 0; i < data.length; i++) {
+                for (var i = 0; i < data.records.length; i++) {
                     str+="<div class=\"product-item\">\n" +
                         "\n" +
-                        "            <div class=\"item-img\"><img src=\""+data[i].goodsimg+"\" alt=\"\"></div>\n" +
+                        "            <div class=\"item-img\"><img src=\""+data.records[i].goodsimg+"\" alt=\"\"></div>\n" +
                         "            <div class=\"item-info\">\n" +
-                        "                <h5>"+data[i].goodsname+"</h5>\n" +
+                        "                <h5>"+data.records[i].goodsname+"</h5>\n" +
                         "                <p>\n" +
-                        "                    "+data[i].described.substring(0,40)+"\n" +
+                        "                    "+data.records[i].described.substring(0,40)+"\n" +
                         "                ...</p>\n" +
-                        "                <span class=\"text-success\"></span><span></span><span class=\"text-info\">发售:"+data[i].dateup+"</span>\n" +
+                        "                <span class=\"text-success\"></span><span></span><span class=\"text-info\">发售:"+data.records[i].dateup+"</span>\n" +
                         "            </div>\n" +
                         "            <div class=\"item-action\">\n" +
                         "                <a href=\"http://oldsmarket.neonweb.me/dash-addItem.html\"><span><i class=\"fa fa-pencil\"></i></span><em>编辑</em></a>\n" +
@@ -208,8 +209,27 @@
                         "            </div></div>"
                 }
                 $("#goodsList").html(str);
+                let pageNum= data.pages;
+
+                let pageNow = data.current;
+
+
+                let temp = "";
+                temp+="<a href=\"javascript:p1("+(pageNow-1)+",'as7d6')\"><i class=\"fa fa-angle-left\"></i></a>"
+
+                for (let i = 0; i < pageNum; i++) {
+                    temp+="<a href=\"javascript:p1("+(i+1)+",'as7d1')\" class=\"pagebtn\" id=\"as7d6\">"+(i+1)+"</a>"
+                }
+
+                temp+="<a href=\"javascript:p1("+(pageNow+1)+",'as7d2')\"><i class=\"fa fa-angle-right\"></i></a>"
+
+                $("#qaq").html(temp);
             }
         })
+    }
+
+    $(function () {
+        p1();
     })
 </script>
 

@@ -33,9 +33,9 @@ public class GoodsListController {
 
     @RequestMapping("/list")
     @ResponseBody
-    public List<GoodsList> selectAll(Model model, Integer now, Integer size) {
-        if (now == null){
-            now = 1;
+    public Page<GoodsList> selectAll(Model model, Integer now, Integer size) {
+        if (now == null || now ==0){
+            now =  1;
         }
         if (size == null){
             size = 3;
@@ -52,6 +52,6 @@ public class GoodsListController {
         System.out.println("这是查询到的goods列表————————————————————————————————"+page.getRecords());
         System.out.println("这是ipage的值"+iPage.toString());
         System.out.println("==================================================");
-        return page.getRecords();
+        return page;
     }
 }
