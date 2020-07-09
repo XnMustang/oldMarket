@@ -81,7 +81,6 @@ public class MvcConfig implements WebMvcConfigurer {
                         "/fileUpload",
                         "/address/**",
                         "/orderDetail/**",
-                        "/goodsMessage/**",
                         "/shopping/**",
                         "/pay/**"
                 ).excludePathPatterns(
