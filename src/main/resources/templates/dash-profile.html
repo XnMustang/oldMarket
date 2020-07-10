@@ -1,4 +1,4 @@
-﻿﻿<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 
@@ -149,15 +149,15 @@
             </div>
             <div id="add">
 
-                <form action="/address/addAccept" method="post">
-                        <div class="add-form-group ">
-                            <label for="name">收货人:</label>
-                            <input type="text" id="name" name="acceptname" />
-                        </div>
-                        <div class="add-form-group ">
-                            <label for="phone">手机:</label>
-                            <input type="text" id="phones" name="acceptphone"/>
-                        </div>
+                <form action="/address/addAccept">
+                    <div class="add-form-group ">
+                        <label for="name">收货人:</label>
+                        <input type="text" id="name" name="acceptname" />
+                    </div>
+                    <div class="add-form-group ">
+                        <label for="phone">手机:</label>
+                        <input type="text" id="phones" name="acceptphone"/>
+                    </div>
                     <div class="add-form-group " >
 
                         <label for="ad">地址:</label>
@@ -165,10 +165,39 @@
                         <input type="text" id="ad" name="address"/>
                     </div>
 
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button type="submit" class="btn btn-primary">提交更改</button>
-            </div>
+                    <!--<div class="add-form-group">-->
+                    <!--<label for="province">省份:</label>-->
+                    <!--<select id="province" name="p">-->
+                    <!--<option value =""  selected="selected">四川</option>-->
+                    <!--</select>-->
+                    <!--</div>-->
+                    <!--<div class="add-form-group" name="c">-->
+                    <!--<label for="city">城市:</label>-->
+                    <!--<select id="city">-->
+                    <!--<option value =""  selected="selected">成都</option>-->
+                    <!--</select>-->
+                    <!--</div>-->
+                    <!--<div class="add-form-group">-->
+                    <!--<label for="county">区县:</label>-->
+                    <!--<select id="county" name="d">-->
+                    <!--<option value ="" selected="selected">高新区</option>-->
+                    <!--</select>-->
+                    <!--</div>-->
+                    <!--<div class="add-form-group">-->
+                    <!--<label for="street">街道:</label>-->
+                    <!--<select id="street" name="s">-->
+                    <!--<option value ="" selected="selected">孵化园</option>-->
+                    <!--</select>-->
+                    <!--</div>-->
+                    <!--<div class="add-form-group address-detail">-->
+                    <!--<label for="name">详细地址:</label>-->
+                    <!--<textarea id="detail" name="t"></textarea>-->
+                    <!--</div>-->
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        <button type="submit" class="btn btn-primary">提交更改</button>
+                    </div>
                 </form>
             </div>
         </div><!-- /.modal-content -->
@@ -177,7 +206,7 @@
 <!--content container-->
 <div class="content-wrapper">
 
-<!--user profile-->
+    <!--user profile-->
     <form action="/user/updatePersonalData" method="post" class="profile-wrapper">
         <div class="primary-info">
             <div class="user-pic">
@@ -202,18 +231,20 @@
                 </div>
             </div>
 
-            <div th:style="${msg==null}?'display:none;':'display:block;'" class="alert alert-danger" role="alert"><span th:text="${msg}==null?'':${msg}"></span></div>
+
             <div class="form-group">
-                <label for="address">我的收货地址</label>
+                <div th:style="${msg==null}?'display:none;':'display:block;'" class="alert alert-danger" role="alert"><span th:text="${msg}==null?'':${msg}"></span></div>
+
+                <label for="address">我的全部收货地址</label>
                 <!--<input class="form-control" type="text" id="address" name="address" value="91 - 10100 Miami">-->
                 <table class="table table-condensed" id="address">
                     <thead style="font-weight:bolder">
-                        <td>ID</td>
-                        <td>收货人</td>
-                        <td>电话</td>
-                        <td>地址</td>
-                        <td>默认</td>
-                        <td>操作</td>
+                    <td>ID</td>
+                    <td>收货人</td>
+                    <td>电话</td>
+                    <td>地址</td>
+                    <td>默认</td>
+                    <td>操作</td>
                     </thead>
                     <tbody id="addresstable">
 
@@ -291,7 +322,7 @@
             </div>
         </div>
     </form>
-<!--end user profile-->
+    <!--end user profile-->
 
 </div>
 <!--end content container-->
@@ -319,86 +350,85 @@
 
 <script>
     $(function () {
+
+
+
+
             $.ajax({
-            url:"/user/showPersonalData",
-            method: "post",
-            dataType:"json",
-            success:function (data) {
-                console.log(data);
+                url:"/user/showPersonalData",
+                method: "post",
+                dataType:"json",
+                success:function (data) {
+                    console.log(data);
+                    $("#email").val(data[0].email);
+                    $("#gender").val(data[0].gender);
+                    $("#username").val(data[0].username);
+                    $("#phone").val(data[0].phone);
+                    $("#tw").val(data[0].qq);
+                    $("#gg").val(data[0].google);
+                    $("#msg").val(data[0].intro);
+                    $("#id").val(data[0].id);
+                    $("#ids").val(data[0].id);
+                    $("#uName").html("<strong>"+data[0].username+"</strong>");
 
-                $("#email").val(data[0].email);
-                $("#gender").val(data[0].gender);
-                $("#username").val(data[0].username);
-                $("#phone").val(data[0].phone);
-                $("#tw").val(data[0].qq);
-                $("#gg").val(data[0].google);
-                $("#msg").val(data[0].intro);
-                $("#id").val(data[0].id);
-                $("#ids").val(data[0].id);
+                    for (var i=0;i<data.length;i++){
+                        $("#addresstable").append(
+                            "<tr><td>"+data[i].acceptid+"</td>" +
+                            "<td>"+data[i].accept+"</td>"+
+                            "<td>"+data[i].acceptPhone+"</td>" +
+                            "<td>"+data[i].address+"</td>" +
+                            "<td><input class='q' type='radio' name='isdefault' value="+data[i].isdefault+">" +
+                            "<input  type='hidden'  value="+data[i].acceptid+"></td>"+
+                            "<td>"+
+                            "<input type='hidden' class='q' type='radio' name='isdefault' value="+data[i].isdefault+">"+
+                            "<button  style='height: 25px;font-size: 8px;font-weight: bolder' type=\"button\"  class=\"btn btn-default\">删除</button><input  type='hidden'  value="+data[i].acceptid+"><td>"+
 
-                $("#uName").html("<strong>"+data[0].username+"</strong>");
-
-                for (var i=0;i<data.length;i++){
-                    $("#addresstable").append(
-                        "<tr><td>"+data[i].acceptid+"</td>" +
-                        "<td>"+data[i].accept+"</td>"+
-                        "<td>"+data[i].acceptPhone+"</td>" +
-                        "<td>"+data[i].address+"</td>" +
-                        "<td><input class='q' type='radio' name='isdefault' value="+data[i].isdefault+">" +
-                        "<input  type='hidden'  value="+data[i].acceptid+"></td>"+
-                        "<td>"+
-                        "<input type='hidden' class='q' type='radio' name='isdefault' value="+
-                         data[i].isdefault+">"+
-                        "<button  style='height: 25px;font-size: 8px;font-weight: bolder' type=\"button\"                               class=\"btn btn-default\">删除</button>" +
-                        "<input  type='hidden'  value="+data[i].acceptid+"><td>"+
-
-                        "<tr>")
-                }
-
-                $("[name='isdefault']").each(function () {
-                    if ($(this).val()==1){
-                        this.checked=true;
-                        $(this).parent().parent().css("color","red");
-                        $(this).parent().parent().css("font-weight","bold");
+                            "<tr>")
                     }
-                })
-
-                //默认地址单选框修改
-                $(".q").click(function() {
-                    //alert( $(this).next().val());
-                 var v=$(this).next().val();
-                    $.ajax({
-                        url:"/address/updateAccept",
-                        data:"acceptid="+v,
-                        method:"post",
-                        success:function () {
-                            location.reload();
+                    $("[name='isdefault']").each(function () {
+                        if ($(this).val()==1){
+                            this.checked=true;
+                            $(this).parent().parent().css("color","red");
+                            $(this).parent().parent().css("font-weight","bold");
                         }
                     })
-                })
-                //删除地址
-                $("td .btn").click(function () {
-                    var i=$(this).next().val();
-                    var p=$(this).prev().val();
 
-                   // alert(i);
-                    if (confirm("确定要删除吗?")) {
-                        if (p==0){
-                            $.ajax({
-                                url:"/address/deleteAcceptById?acceptid="+i,
-                                method:"post",
-                                success:function () {
-                                    location.reload();
-                                }
-                            })
-                        } else {
-                            alert("不能删除默认地址!!!")
+
+                    //默认地址单选框修改
+                    $(".q").click(function() {
+                        //alert( $(this).next().val());
+                        var v=$(this).next().val();
+                        $.ajax({
+                            url:"/address/updateAccept",
+                            data:"acceptid="+v,
+                            method:"post",
+                            success:function () {
+                                location.reload();
+                            }
+                        })
+                    })
+                    //删除地址
+                    $("td .btn").click(function () {
+                        var i=$(this).next().val();
+                        var p=$(this).prev().val();
+
+                        // alert(i);
+                        if (confirm("确定要删除吗?")) {
+                            if (p==0){
+                                $.ajax({
+                                    url:"/address/deleteAcceptById?acceptid="+i,
+                                    method:"post",
+                                    success:function () {
+                                        location.reload();
+                                    }
+                                })
+                            } else {
+                                alert("不能删除默认地址!!!")
+                            }
                         }
-                    }
-                })
-            }
-
-        })
+                    })
+                }
+            })
 
 
 
@@ -426,6 +456,7 @@
 
     });
 
+ 
     //省市级联
     var data = getData();
     var address_picker;
