@@ -149,7 +149,7 @@
             </div>
             <div id="add">
 
-                <form action="/address/addAccept" method="post">
+                <form action="/address/addAccept">
                         <div class="add-form-group ">
                             <label for="name">收货人:</label>
                             <input type="text" id="name" name="acceptname" />
@@ -164,6 +164,35 @@
                         <span id="test" style="cursor:pointer;">选择</span><div class="triangle"></div>
                         <input type="text" id="ad" name="address"/>
                     </div>
+
+                        <!--<div class="add-form-group">-->
+                            <!--<label for="province">省份:</label>-->
+                            <!--<select id="province" name="p">-->
+                                <!--<option value =""  selected="selected">四川</option>-->
+                            <!--</select>-->
+                        <!--</div>-->
+                        <!--<div class="add-form-group" name="c">-->
+                            <!--<label for="city">城市:</label>-->
+                            <!--<select id="city">-->
+                                <!--<option value =""  selected="selected">成都</option>-->
+                            <!--</select>-->
+                        <!--</div>-->
+                        <!--<div class="add-form-group">-->
+                            <!--<label for="county">区县:</label>-->
+                            <!--<select id="county" name="d">-->
+                                <!--<option value ="" selected="selected">高新区</option>-->
+                            <!--</select>-->
+                        <!--</div>-->
+                        <!--<div class="add-form-group">-->
+                            <!--<label for="street">街道:</label>-->
+                            <!--<select id="street" name="s">-->
+                                <!--<option value ="" selected="selected">孵化园</option>-->
+                            <!--</select>-->
+                        <!--</div>-->
+                        <!--<div class="add-form-group address-detail">-->
+                            <!--<label for="name">详细地址:</label>-->
+                            <!--<textarea id="detail" name="t"></textarea>-->
+                        <!--</div>-->
 
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
@@ -204,7 +233,9 @@
 
 
             <div class="form-group">
-                <label for="address">我的收货地址</label>
+                <div th:style="${msg==null}?'display:none;':'display:block;'" class="alert alert-danger" role="alert"><span th:text="${msg}==null?'':${msg}"></span></div>
+
+                <label for="address">我的全部收货地址</label>
                 <!--<input class="form-control" type="text" id="address" name="address" value="91 - 10100 Miami">-->
                 <table class="table table-condensed" id="address">
                     <thead style="font-weight:bolder">
@@ -319,13 +350,16 @@
 
 <script>
     $(function () {
+
+        init();
+
+        function init(){
             $.ajax({
             url:"/user/showPersonalData",
             method: "post",
             dataType:"json",
             success:function (data) {
                 console.log(data);
-
                 $("#email").val(data[0].email);
                 $("#gender").val(data[0].gender);
                 $("#username").val(data[0].username);
@@ -335,7 +369,6 @@
                 $("#msg").val(data[0].intro);
                 $("#id").val(data[0].id);
                 $("#ids").val(data[0].id);
-
                 $("#uName").html("<strong>"+data[0].username+"</strong>");
 
                 for (var i=0;i<data.length;i++){
@@ -347,19 +380,14 @@
                         "<td><input class='q' type='radio' name='isdefault' value="+data[i].isdefault+">" +
                         "<input  type='hidden'  value="+data[i].acceptid+"></td>"+
                         "<td>"+
-                        "<input type='hidden' class='q' type='radio' name='isdefault' value="+
-                         data[i].isdefault+">"+
-                        "<button  style='height: 25px;font-size: 8px;font-weight: bolder' type=\"button\"                               class=\"btn btn-default\">删除</button>" +
-                        "<input  type='hidden'  value="+data[i].acceptid+"><td>"+
+                        "<input type='hidden' class='q' type='radio' name='isdefault' value="+data[i].isdefault+">"+
+                        "<button  style='height: 25px;font-size: 8px;font-weight: bolder' type=\"button\"  class=\"btn btn-default\">删除</button><input  type='hidden'  value="+data[i].acceptid+"><td>"+
 
                         "<tr>")
                 }
-
                 $("[name='isdefault']").each(function () {
                     if ($(this).val()==1){
                         this.checked=true;
-                        $(this).parent().parent().css("color","red");
-                        $(this).parent().parent().css("font-weight","bold");
                     }
                 })
 
@@ -397,9 +425,8 @@
                     }
                 })
             }
-
         })
-
+        }
 
 
     })
