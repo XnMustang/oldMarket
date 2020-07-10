@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wlrss.oldmarket.mapper.GoodsMessageMapper">
+
+    <!--通过邮箱获取当前登录的用户名-->
+    <select id="getUserNameByEmail" resultType="int">
+       SELECT id FROM user WHERE email = #{email}
+    </select>
+
+    <!--通过商品id获取商家id，他就是接收留言的人-->
+    <select id="getAcceptMsgByGoodsId" resultType="int">
+        SELECT u.`id` FROM user u,goods g
+        WHERE g.`userid` = u.`id`
+        AND g.`goodsid` = #{goodsId}
+    </select>
+
+    <!--插入留言-->
+    <insert id="addMessage">
+        INSERT INTO message
+        (send_person,msg_content,msg_content_time,goodsid,accept_person,info_state)
+        VALUE
+        (#{userId},#{messageInfo},#{date},#{goodsId},#{acceptMsgId},#{infoState})
+    </insert>
+
+    <!--查看都是谁给我留言了-->
+    <select id="findHowMessageByAcceptPerson" resultType="messageInfoVo">
+         SELECT m.`send_person`, u.`username`, m.`msg_content_time`,m.`msg_content`,m.`accept_person`
+         FROM message m,user u
+         WHERE
+         u.`id` = m.`send_person`
+         AND
+         m.`accept_person` = #{userId};
+    </select>
+
+    <!--留言板上方留言者信息-->
+    <select id="findMsgTopSendPerson" resultType="messageInfoVo">
+         SELECT m.`send_person`, u.`username`, m.`msg_content_time`,m.`msg_content`,m.`accept_person`
+         FROM message m,user u
+         WHERE
+         u.`id` = m.`send_person`
+         AND m.`accept_person` = #{userId}
+         AND m.`send_person` = #{sendPerson}
+    </select>
+
+    <select id="findMsgTopAcceptPerson" resultType="acceptMsgInfoVo">
+        SELECT m.`accept_person`,u.`username`,m.`msg_reply_time`,m.`msg_reply`,m.`send_person`
+        FROM message m,user u
+        WHERE
+        m.`accept_person` = u.`id`
+        AND m.`send_person` = #{sendPerson}
+        AND m.`accept_person` = #{userId}
+    </select>
+
+
+</mapper>

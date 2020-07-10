@@ -48,20 +48,13 @@
 
 
 <!--items wrapper-->
-<div class="items-wrapper">
-
-        <strong>新上市产品</strong>
-        <!--<div>-->
-            <!--<span>排序方式 :</span>-->
-            <!--<a href="#">时间</a>-->
-            <!--<a href="#">价格</a>-->
-            <!--<a href="#">名称</a>-->
-        <!--</div>-->
-        <div class="row" style="position:absolute;left:1300px;top:450px">
+<div class="items-wrapper" style="position: relative">
+        <strong style="padding-left: 12px">新上市产品</strong>
+        <div class="row" style="position:absolute;right: 90px;top: 35px">
             <div class="col-lg-6 col-md-6">
                 <div class="form-group">
-                    <i style="position:relative;left:-100px;top:30px">排序方式 :</i>
-                    <select class="form-control" style="width: 200px; " name="sortByType" id="sortByType" onchange="listGoods()">
+                    <i style="position:absolute;left:-70px;top:7px">排序方式 :</i>
+                    <select class="form-control" style="width: 110px;height: 35px;font-size: 14px" name="sortByType" id="sortByType" onchange="listGoods()">
                         <option value=" g.`date_up` DESC">最新上架</option>
                         <option value="g.`price` DESC">价格降序</option>
                         <option value="g.`price` asc">价格升序</option>
@@ -71,7 +64,7 @@
 
         </div>
 
-    <div class="items" id="items">
+    <div class="items" id="items" style="padding-top: 40px">
         <div class="sale-item">
             <div class="sale-item-img">
                 <img src="/img/items/app3.jpg" alt="">

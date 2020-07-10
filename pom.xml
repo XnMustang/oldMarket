@@ -21,6 +21,18 @@
     </properties>
 
     <dependencies>
+        <!--爬虫jar-->
+        <dependency>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>1.10.2</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.68</version>
+        </dependency>
+
         <!--以下为七牛云服务器图片管理-所需要的jar-->
         <!--start-->
         <dependency>
