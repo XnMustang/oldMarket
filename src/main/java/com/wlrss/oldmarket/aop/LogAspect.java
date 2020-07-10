@@ -17,9 +17,9 @@ public class LogAspect {
     @Autowired
     private ILogManager logManager;
 
-//    @Pointcut("execution(*")
-//    public void managerLogPoint() {
-//    }
+    @Pointcut("execution(com.wlrss.oldmarket.service.impl.UserServiceImpl")
+    public void managerLogPoint() {
+    }
 
 //    @Around("managerLogPoint()")
 //    public Object aroundManagerLogPoint(ProceedingJoinPoint jp) throws Throwable {

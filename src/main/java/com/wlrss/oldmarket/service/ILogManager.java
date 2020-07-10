@@ -1,6 +1,8 @@
 package com.wlrss.oldmarket.service;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.wlrss.oldmarket.entity.LogAdmModel;
+import org.jsoup.Connection;
 
 /**
  * 定义日志处理的接口类ILogManager
@@ -8,7 +10,7 @@ import com.wlrss.oldmarket.entity.LogAdmModel;
  * 也可以将日志发送到开中间件，如果redis, mq等等。
  * 每一种日志处理类都是此接口的实现类
  */
-public interface ILogManager {
+public interface ILogManager extends BaseMapper<LogAdmModel> {
     /**
      * 日志处理模块
      * @param paramLogAdmBean

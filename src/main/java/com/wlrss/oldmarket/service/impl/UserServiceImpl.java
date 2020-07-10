@@ -2,7 +2,12 @@ package com.wlrss.oldmarket.service.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.wlrss.oldmarket.annotation.LogEnable;
+import com.wlrss.oldmarket.annotation.LogEvent;
+import com.wlrss.oldmarket.annotation.LogKey;
+import com.wlrss.oldmarket.entity.EventType;
 import com.wlrss.oldmarket.entity.Goods;
+import com.wlrss.oldmarket.entity.ModuleType;
 import com.wlrss.oldmarket.entity.User;
 import com.wlrss.oldmarket.entity.vo.MyUser;
 import com.wlrss.oldmarket.mapper.GoodsMapper;
@@ -13,6 +18,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
+@LogEnable // 启动日志拦截
+@LogEvent(module = ModuleType.USER)
 public class UserServiceImpl implements UserService {
 
     @Autowired
@@ -26,7 +33,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void updateUser(User user) {
+    @LogEvent(event = EventType.UPDATE,desc = "修改了用户资料")
+    public void updateUser(@LogKey(keyName = "user") User user) {
         userMapper.updateById(user);
     }
 
@@ -50,7 +58,7 @@ public class UserServiceImpl implements UserService {
     public String findMyUserByEmail(String email) {
         List<MyUser> myUser=userMapper.findMyUserByEmail(email);
         String str= JSON.toJSONString(myUser);
-        System.out.println("两表查询myuser"+str);
+        System.out.println("查询myuser"+str);
         return str;
     }
 
@@ -67,8 +75,6 @@ public class UserServiceImpl implements UserService {
         User user=new User();
         user.setId(myUser.getId()).setEmail(myUser.getEmail()).setGender(myUser.getGender()).setGoogle(myUser.getGoogle()).setUsername(myUser.getUsername()).setPhone(myUser.getPhone()).setIntro(myUser.getIntro()).setHeadimg(myUser.getHeadimg()).setQq(myUser.getQq());
         userMapper.updateById(user);
-
-       // 插入log
 
     }
 
