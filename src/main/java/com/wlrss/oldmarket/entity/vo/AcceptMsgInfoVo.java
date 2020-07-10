@@ -27,5 +27,6 @@ public class AcceptMsgInfoVo {
     private Date msgReplyTime;
     private String msgReply;
     private Integer sendPerson;
+    private Integer goodsid;
 
 }

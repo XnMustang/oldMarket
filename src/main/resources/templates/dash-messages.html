@@ -132,6 +132,7 @@
         <!--留言信息具体展示页面（右侧）-->
         <div class="message-details">
             <div class="msg">
+                <!--发送留言-->
                 <div class="sender-info">
                     <div class="sender-img">
 <!--                        <img src="/img/user.jpg" alt="">-->
@@ -145,7 +146,9 @@
                 <p class="message-info" id="msg_centent">
                     <!--留言内容-->
                 </p>
+
                 <br>
+                <!--回复留言-->
                 <div class="sender-info">
                     <div class="sender-img">
 <!--                        <img src="/img/user2.jpg" alt="">-->
@@ -159,12 +162,22 @@
 
                     <br>
                 </p>
+                <br>
+                <!--新增留言框-->
+                <div id="msgNewInfo">
+
+                </div>
+
+                <!--回复信息填写框-->
                 <form id="msg_board" hidden="hidden" action="#" method="post" class="reply-frm">
                     <div class="form-group">
                         <textarea required name="msg" rows="5" class="form-control" placeholder="输入你要回复的内容!"></textarea>
                     </div>
                     <div class="form-action">
-                        <button type="submit"><i class="fa fa-send-o"></i> 发送</button>
+                        <button onclick="submit_msg()">
+                            <i class="fa fa-send-o"></i>
+                            发送
+                        </button>
                     </div>
                 </form>
             </div>
@@ -214,10 +227,11 @@
                         msgStr += " " +
                             "<li class=\"msg-item\">\n" +
                             // "  <a href=\"javascript:sendMsgLeftRight("+data[i].sendPerson+")\">\n" +
-                            "  <a href='javascript:sendMsgLeftRight("+data[i].sendPerson+")\'>\n" +
+                            "  <a href='javascript:sendMsgLeftRight("+data[i].sendPerson+","+data[i].goodsid+")\'>\n" +
                             "      <strong id=\"msg_name\">"+data[i].username+"</strong>\n" +
                             "      <span id=\"msg_content\">"+data[i].msgContent+"</span>\n" +
                             "      <em id=\"msg_content_time\">"+data[i].msgContentTime+"</em>\n" +
+                            "      <p id=\"msg_goodsid\" hidden='hidden'>"+data[i].goodsid+"</p>\n" +
                             "  </a>\n" +
                             "</li>"
                     }
@@ -226,11 +240,15 @@
             });
         }
     })
-    function sendMsgLeftRight(sendPerson){
+    function sendMsgLeftRight(sendPerson,goodsid){
         /*发送请求，查询右侧发送人信息*/
         $.ajax({
             type: "get",
-            url: "/goodsMessage/showMsgInfoRightTop?sendPerson=" + sendPerson,
+            url: "/goodsMessage/showMsgInfoRightTop",
+            data: {
+                sendPerson : sendPerson,
+                goodsid : goodsid,
+            },
             success: function (data) {
                 console.log("留言者返回信息：======================");
                 console.log(data);
@@ -238,23 +256,52 @@
                 $("#msg_time").html(data.msgContentTime);
                 $("#msg_centent").html(data.msgContent);
                 $("#msg_board").removeAttr("hidden");
-                sendMsgLeftRightbottom(sendPerson);
+                sendMsgLeftRightbottom(sendPerson,goodsid);
             }
         });
         /*发送请求，查询右侧接收人信息*/
-        function sendMsgLeftRightbottom(sendPerson){
+        function sendMsgLeftRightbottom(sendPerson,goodsid){
             $.ajax({
                 type: "get",
-                url: "/goodsMessage/sendMsgLeftRightBottom?sendPerson=" + sendPerson,
+                url: "/goodsMessage/sendMsgLeftRightBottom",
+                data: {
+                    sendPerson : sendPerson,
+                    goodsid : goodsid,
+                },
                 success: function (data) {
                     console.log("接收者返回信息：==========");
                     console.log(data);
-                    $("#accept_name").html(data.username);
-                    $("#accept_time").html(data.msgReplyTime);
-                    $("#accept_centent").html(data.msgReply);
+                    if(data.msgReply == null){
+                        $("#accept_name").html(null);
+                        $("#accept_time").html(null);
+                        $("#accept_centent").html(null);
+                    }else {
+                        $("#accept_name").html(data.username);
+                        $("#accept_time").html(data.msgReplyTime);
+                        $("#accept_centent").html(data.msgReply);
+                    }
                 }
             });
         }
+    }
+
+    //发送请求  添加一个留言框
+    function submit_msg() {
+        var msgNew = "";
+        msgNew += "<div class=\"sender-info\" style=\"background-color: #9F9F9F\">\n" +
+            "           <div class=\"sender-img\">\n" +
+            "               </div>\n" +
+            "                   <p>\n" +
+            "                       <strong id=\"msg_name_right\">张三</strong><!--留言时间-->\n" +
+            "                       <span id=\"msg_time\">2020-03-23</span> <!--留言时间-->\n" +
+            "                   </p>\n" +
+            "               </div>\n" +
+            "           <br>\n" +
+            "           <p class=\"message-info\" id=\"msg_centent\">\n" +
+            "               哈哈哈哈哈<!--留言内容-->\n" +
+            "           </p>";
+        $("#msgNewInfo").html(msgNew);
+
     }
 </script>
 

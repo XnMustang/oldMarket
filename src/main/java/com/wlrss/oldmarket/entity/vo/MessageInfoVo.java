@@ -27,5 +27,6 @@ public class MessageInfoVo {
     private Date msgContentTime;    //发送留言时间
     private String msgContent;      //发送内容
     private Integer acceptPerson;   //接收人id
+    private Integer goodsid;        //针对哪个商品留言
 
 }

@@ -8,6 +8,7 @@ import com.qiniu.storage.Configuration;
 import com.qiniu.storage.UploadManager;
 import com.qiniu.storage.model.DefaultPutRet;
 import com.qiniu.util.Auth;
+import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.ByteArrayOutputStream;
@@ -17,6 +18,7 @@ import java.io.UnsupportedEncodingException;
 /**
  * 七牛云上传文件到服务器
  */
+@Component
 public class QiniuUpload {
 
     //设置好账号的ACCESS_KEY和SECRET_KEY

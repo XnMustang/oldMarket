@@ -67,8 +67,8 @@ public class GoodsMessageServiceImpl implements GoodsMessageService {
      * @return
      */
     @Override
-    public MessageInfoVo findMsgTopSendPerson(Integer sendPerson, int userId) {
-        return goodsMessageMapper.findMsgTopSendPerson(sendPerson,userId);
+    public MessageInfoVo findMsgTopSendPerson(Integer sendPerson, int userId,Integer goodsid) {
+        return goodsMessageMapper.findMsgTopSendPerson(sendPerson,userId,goodsid);
     }
 
     /**
@@ -78,7 +78,7 @@ public class GoodsMessageServiceImpl implements GoodsMessageService {
      * @return
      */
     @Override
-    public AcceptMsgInfoVo findMsgTopAcceptPerson(Integer sendPerson, int userId) {
-        return goodsMessageMapper.findMsgTopAcceptPerson(sendPerson,userId);
+    public AcceptMsgInfoVo findMsgTopAcceptPerson(Integer sendPerson, int userId,Integer goodsid) {
+        return goodsMessageMapper.findMsgTopAcceptPerson(sendPerson,userId,goodsid);
     }
 }

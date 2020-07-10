@@ -26,7 +26,7 @@
 
     <!--查看都是谁给我留言了-->
     <select id="findHowMessageByAcceptPerson" resultType="messageInfoVo">
-         SELECT m.`send_person`, u.`username`, m.`msg_content_time`,m.`msg_content`,m.`accept_person`
+         SELECT m.`send_person`, u.`username`, m.`msg_content_time`,m.`msg_content`,m.`accept_person`,m.`goodsid`
          FROM message m,user u
          WHERE
          u.`id` = m.`send_person`
@@ -36,21 +36,23 @@
 
     <!--留言板上方留言者信息-->
     <select id="findMsgTopSendPerson" resultType="messageInfoVo">
-         SELECT m.`send_person`, u.`username`, m.`msg_content_time`,m.`msg_content`,m.`accept_person`
+         SELECT m.`send_person`, u.`username`, m.`msg_content_time`,m.`msg_content`,m.`accept_person`,m.`goodsid`
          FROM message m,user u
          WHERE
          u.`id` = m.`send_person`
          AND m.`accept_person` = #{userId}
          AND m.`send_person` = #{sendPerson}
+         and m.`goodsid` = #{goodsid}
     </select>
 
     <select id="findMsgTopAcceptPerson" resultType="acceptMsgInfoVo">
-        SELECT m.`accept_person`,u.`username`,m.`msg_reply_time`,m.`msg_reply`,m.`send_person`
+        SELECT m.`accept_person`,u.`username`,m.`msg_reply_time`,m.`msg_reply`,m.`send_person`,m.`goodsid`
         FROM message m,user u
         WHERE
         m.`accept_person` = u.`id`
         AND m.`send_person` = #{sendPerson}
         AND m.`accept_person` = #{userId}
+        and m.`goodsid` = #{goodsid}
     </select>
 
 

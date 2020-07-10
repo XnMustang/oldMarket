@@ -27,7 +27,9 @@ public class ParseUtils {
 
         //在js中能用到的方法，在这里都能用
         Element element = document.getElementById("J_goodsList");
-        System.out.println(element.html());
+
+        //打印出所有dom元素
+//        System.out.println(element.html());
         //获取所有的li标签
         Elements elements = element.getElementsByTag("li");
 
@@ -53,7 +55,7 @@ public class ParseUtils {
     //测试一把
     public static void main(String[] args) throws IOException {
         ParseUtils parseUtils = new ParseUtils();
-        ArrayList<Content> contents = parseUtils.parseJD("阿里巴巴");
+        ArrayList<Content> contents = parseUtils.parseJD("日用百货");
         for (Content content : contents) {
             System.out.println(content);
         }

@@ -95,15 +95,15 @@ public class GoodsMessageController {
      */
     @RequestMapping("/showMsgInfoRightTop")
     @ResponseBody
-    public MessageInfoVo showMsgInfoRightTop(Integer sendPerson, HttpSession session){
+    public MessageInfoVo showMsgInfoRightTop(Integer sendPerson,Integer goodsid, HttpSession session){
         //获取当前登录人的id
         int userId = getUserIdByEmail(session);
         System.out.println("用户id:--"+userId);
-        System.out.println("留言者id：" + sendPerson);
+        System.out.println("留言者id：" + sendPerson+",留言商品id：" + goodsid);
 
         //现在还有问题，思考是否需要返回一个集合的问题（一个人留了多条，现在为了测试返回一条）
-        MessageInfoVo messageInfo =  goodsMessageService.findMsgTopSendPerson(sendPerson,userId);
-        System.out.println("留言者信息：========");
+        MessageInfoVo messageInfo =  goodsMessageService.findMsgTopSendPerson(sendPerson,userId,goodsid);
+        System.out.println("留言者信息：================");
         System.out.println(messageInfo);
 
         return messageInfo;
@@ -117,14 +117,15 @@ public class GoodsMessageController {
      */
     @RequestMapping("/sendMsgLeftRightBottom")
     @ResponseBody
-    public AcceptMsgInfoVo sendMsgLeftRightBottom(Integer sendPerson,HttpSession session){
+    public AcceptMsgInfoVo sendMsgLeftRightBottom(Integer sendPerson,HttpSession session,Integer goodsid){
         //获取当前登录人的id
         int userId = getUserIdByEmail(session);
         System.out.println("用户id:++"+userId);
-        System.out.println("接收者id：" + sendPerson);
+        System.out.println("接收者id：" + sendPerson + ",商品id:" + goodsid);
 
-        AcceptMsgInfoVo acceptMsgInfo = goodsMessageService.findMsgTopAcceptPerson(sendPerson,userId);
-        System.out.println("接收者信息+++++++++：" + acceptMsgInfo);
+        AcceptMsgInfoVo acceptMsgInfo = goodsMessageService.findMsgTopAcceptPerson(sendPerson,userId,goodsid);
+        System.out.println("接收者信息+++++++++：");
+        System.out.println(acceptMsgInfo);
 
         return acceptMsgInfo;
     }

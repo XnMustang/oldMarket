@@ -52,7 +52,7 @@ public interface GoodsMessageMapper {
      * @param userId        接收人id
      * @return
      */
-    MessageInfoVo findMsgTopSendPerson(Integer sendPerson, int userId);
+    MessageInfoVo findMsgTopSendPerson(Integer sendPerson, int userId,Integer goodsid);
 
     /**
      * 查询出右侧下方留言者信息显示
@@ -60,5 +60,5 @@ public interface GoodsMessageMapper {
      * @param userId
      * @return
      */
-    AcceptMsgInfoVo findMsgTopAcceptPerson(Integer sendPerson, int userId);
+    AcceptMsgInfoVo findMsgTopAcceptPerson(Integer sendPerson, int userId,Integer goodsid);
 }

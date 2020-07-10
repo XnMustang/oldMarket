@@ -50,7 +50,7 @@ public interface GoodsMessageService {
      * @param userId        接收人id
      * @return
      */
-    MessageInfoVo findMsgTopSendPerson(Integer sendPerson, int userId);
+    MessageInfoVo findMsgTopSendPerson(Integer sendPerson, int userId,Integer goodsid);
 
     /**
      * 查询出右侧详细信息的下部分（接收者信息）
@@ -58,5 +58,5 @@ public interface GoodsMessageService {
      * @param userId
      * @return
      */
-    AcceptMsgInfoVo findMsgTopAcceptPerson(Integer sendPerson, int userId);
+    AcceptMsgInfoVo findMsgTopAcceptPerson(Integer sendPerson, int userId,Integer goodsid);
 }
