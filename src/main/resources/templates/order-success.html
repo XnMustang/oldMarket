@@ -39,6 +39,10 @@
         <div class="check"><i class="fa fa-check ui-text-success animated zoomIn"></i></div>
         <h3 class="ui-text-info animated fadeInUp">支付成功！</h3>
         <p class="animated fadeInUp">非常感谢您的购买.</p>
+        <div>
+            <p style="color: #01AAED;font-size: 16px" >激活成功！还有<span id="sp"style="color: red;font-size: 16px" >5</span>秒跳转到OldMarket.......</p>
+            <p style="color: #01AAED;font-size: 16px" >如页面未跳转请点击<a href="http://localhost:8080/">http://localhost:8080/</a></p>
+        </div>
     </div>
 </div>
 <!--end order success-->
@@ -83,6 +87,22 @@
     <div class="loader"><img src="/img/logo.png" alt=""></div>
 </div>
 <!--end page loader-->
+<script type="text/javascript">
+    let i = 5 ;
+    function changeTime(){
+        document.getElementById("sp").innerHTML=i;
+        i--;
+    }
+    changeTime();
+    let inId = window.setInterval("changeTime()",1000);
+    function stop() {
+        window.clearInterval(inId);
+    }
+    function autoRedirect() {
+        window.location="http://localhost:8080/";
+    }
+    window.setInterval("autoRedirect()",5000);
+</script>
 
 <!--footer section-->
 <div class="bottom-strip">

@@ -35,19 +35,28 @@
 <div class="payment-info-wrapper">
     <div class="payment">
         <h6><strong>订单信息</strong></h6>
+
+        <div class="payment-info-box">
+            <div class="form-group">
+                <label>收货人 <i class="fa fa-star ui-text-danger"></i></label>
+                <p class="form-control"> 陈曦</p>
+            </div>
+            <div class="form-group">
+                <label>收货地址 <i class="fa fa-star ui-text-danger"></i></label>
+                <p class="form-control">上海市</p>
+            </div>
+            <a th:href="@{/payment.html}" class="continue">修改地址 <i class="fa fa-angle-right"></i></a>
+        </div>
+
         <div class="payment-info-box">
             <form action="order-success.html" method="post">
                 <div class="form-group">
-                    <label>订单编号 <i class="fa fa-star ui-text-danger"></i></label>
-                    <p class="form-control">189898891293129371298</p>
+                    <label>订单编号<i class="fa fa-star ui-text-danger"></i></label>
+                    <p class="form-control"> 111111111111</p>
                 </div>
                 <div class="form-group">
                     <label>下单时间 <i class="fa fa-star ui-text-danger"></i></label>
                     <p class="form-control">2020-10-10</p>
-                </div>
-                <div class="form-group">
-                    <label>收货人 <i class="fa fa-star ui-text-danger"></i></label>
-                    <p class="form-control">陈曦</p>
                 </div>
                 <div class="form-group">
                     <label>总金额 <i class="fa fa-star ui-text-danger"></i></label>
@@ -59,7 +68,7 @@
                 </div>
                 <hr>
                 <div class="payment-bottom">
-                    <a href="cart.html"><i class="fa fa-angle-left"></i>购物车</a>
+                    <a th:href="@{/shopping/cart}"><i class="fa fa-angle-left"></i>购物车</a>
                     <button type="submit" class="ui-btn ui-btn-info-outline">付款 <i class="fa fa-credit-card"></i></button>
                 </div>
             </form>
@@ -105,41 +114,7 @@
         </div>
     </div>
 </div>
-<!--end payment info-->
 
-<!--chat box-->
-<a href="#" class="chat-box-btn"><i class="fa fa-comment icon-sw"></i></a>
-
-<div class="chat-box">
-    <div class="chat-top">
-        <section>
-            <h6 class="org-name">二手交易平台</h6>
-            <div class="repliers">
-                <div class="r-img">
-                    <img src="/img/avatar2.jpg" alt="">
-                    <strong class="name">Megan</strong>
-                </div>
-                <div class="r-img">
-                    <img src="/img/user2.jpg" alt="">
-                    <strong class="name">Brandon</strong>
-                </div>
-            </div>
-        </section>
-    </div>
-    <div class="chat-flow" id="chat-flow">
-        <p class="outbound">
-            Hallo, 有人在吗？
-        </p>
-        <p class="inbound">
-            嗨, 在的，很乐意为您效劳.
-        </p>
-    </div>
-    <form class="chat-form" action="#">
-        <input type="text" class="form-control chat-message" placeholder="回复">
-    </form>
-</div>
-
-<!--end chat box-->
 
 <!--page loader-->
 <div class="page-loader">
