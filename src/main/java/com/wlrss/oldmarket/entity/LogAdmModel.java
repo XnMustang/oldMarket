@@ -14,6 +14,7 @@ import java.util.Date;
 /**
  * 保存日志信息的类
  */
+
 public class LogAdmModel {
     private Long id;
     private String userId; // 操作用户

@@ -160,12 +160,45 @@
                  $.post("/settlement", {
                         "goodsId" : JSON.stringify(goodsId),
                         "goodsNums" : JSON.stringify(goodsNums),
-                    },function () {
-                     layui.use(['layer','form'],function () {
-                         var  layer = layui.layer,
-                             form = layui.form;
-                         layer.msg("进入结算页面.........")
-                     })
+                    },function (data) {
+                     if(data.code==200){
+                             layui.use(['layer','form'],function () {
+                                 var  layer = layui.layer,
+                                     form = layui.form;
+                                 layer.msg("进入结算页面.........")
+                             })
+                             setTimeout(function () {
+                                 window.location.href="/payment-info.html"
+                             },1500)
+                        }else if (data.code==300) {
+                         //登录
+                            window.location.href="/login-register.html"
+                        }else if (data.code==400) {
+                         //地址
+                         layui.use(['layer','form'],function () {
+                             layer.open({
+                                 type: 2,
+                                 title : '完善收货地址',
+                                 content: ['/addAddress.html','no'],
+                                 area : ['700px','480px'],
+                                 anim : 5,
+                                 success : function () {
+                                 },
+                                 cancel : function (index,layero) {
+                                    if (confirm('确定关闭吗 ？')){
+                                        layer.close(index)
+                                    }
+                                    return false;
+                                 }
+                             });
+                         })
+                        }else {
+                             layui.use(['layer','form'],function () {
+                                 var  layer = layui.layer,
+                                     form = layui.form;
+                                 layer.msg("生成订单失败")
+                             })
+                         }
                     }
                 )
             }

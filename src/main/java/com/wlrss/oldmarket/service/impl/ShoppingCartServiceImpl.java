@@ -38,6 +38,8 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     @Autowired
     private AddressMapper addressMapper;
 
+
+
     /**
      * 获得用户key
      *
@@ -216,6 +218,16 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         List<Address> addresses = addressMapper.selectList(queryWrapper);
         return  addresses;
 
+    }
+
+    @Override
+    public void addAddress(Address addAddress) {
+        addressMapper.insert(addAddress);
+    }
+
+    @Override
+    public void addOrder(Orders orders) {
+        orderMapper.insert(orders);
     }
 
 }

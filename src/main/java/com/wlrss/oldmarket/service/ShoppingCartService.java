@@ -1,9 +1,6 @@
 package com.wlrss.oldmarket.service;
 
-import com.wlrss.oldmarket.entity.Address;
-import com.wlrss.oldmarket.entity.CartItem;
-import com.wlrss.oldmarket.entity.OrderDetails;
-import com.wlrss.oldmarket.entity.ShoppingCart;
+import com.wlrss.oldmarket.entity.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -68,4 +65,8 @@ public interface ShoppingCartService {
      * @return
      */
     List<Address> findAddressById(int id);
+
+    void addAddress(Address addAddress);
+
+    void addOrder(Orders orders);
 }
