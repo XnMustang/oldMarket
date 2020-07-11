@@ -81,4 +81,18 @@ public class GoodsMessageServiceImpl implements GoodsMessageService {
     public AcceptMsgInfoVo findMsgTopAcceptPerson(Integer sendPerson, int userId,Integer goodsid) {
         return goodsMessageMapper.findMsgTopAcceptPerson(sendPerson,userId,goodsid);
     }
+
+    /**
+     * 将回复留言信息更新到表中
+     * @param msgValue      回复内容
+     * @param date          回复时间
+     * @param msgSendPersonId 留言id
+     * @param msgGoodsid        针对商品的
+     * @param userId        接收人id
+     * @return
+     */
+    @Override
+    public int updateMessageInfo(String msgValue, Date date, Integer msgSendPersonId, Integer msgGoodsid, int userId) {
+        return goodsMessageMapper.updateMessageInfo(msgValue,date,msgSendPersonId,msgGoodsid,userId);
+    }
 }

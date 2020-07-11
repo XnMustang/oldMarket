@@ -55,5 +55,17 @@
         and m.`goodsid` = #{goodsid}
     </select>
 
+    <update id="updateMessageInfo" parameterType="acceptMsgInfoVo">
+        UPDATE message SET
+            msg_reply=#{msgValue},
+            msg_reply_time=#{date}
+        WHERE
+            accept_person = #{userId}
+        AND
+            goodsid = #{msgGoodsid}
+        AND
+            send_person = #{msgSendPersonId}
+    </update>
+
 
 </mapper>

@@ -130,6 +130,26 @@ public class GoodsMessageController {
         return acceptMsgInfo;
     }
 
+    @RequestMapping("/updateMessageInfo")
+    @ResponseBody
+    public AcceptMsgInfoVo updateMessageInfo(String msgValue,Integer msgSendPersonId,Integer msgGoodsid,HttpSession session){
+        //获取当前登录人的id
+        int userId = getUserIdByEmail(session);
+        System.out.println("用户id:++"+userId);
+
+        System.out.println("回复内容：" + msgValue+",发送人id：" + msgSendPersonId+",针对商品id：" + msgGoodsid);
+
+        //执行更新留言表操作
+        int result = goodsMessageService.updateMessageInfo(msgValue,new Date(),msgSendPersonId,msgGoodsid,userId);
+        //更新成功之后查询出来返回前端显示
+        if(result > 0){
+            AcceptMsgInfoVo acceptInfo = goodsMessageService.findMsgTopAcceptPerson(msgSendPersonId, userId, msgGoodsid);
+            System.out.println("更新之后的信息"+acceptInfo);
+            return acceptInfo;
+        }
+        return null;
+    }
+
 
     /**
      * 公共方法：获取用户id

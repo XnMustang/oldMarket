@@ -61,4 +61,16 @@ public interface GoodsMessageMapper {
      * @return
      */
     AcceptMsgInfoVo findMsgTopAcceptPerson(Integer sendPerson, int userId,Integer goodsid);
+
+    /**
+     * 将回复留言信息更新到表中
+     * @param msgValue      回复内容
+     * @param date          回复时间
+     * @param msgSendPersonId 留言id
+     * @param msgGoodsid        针对商品的
+     * @param userId        接收人id
+     * @return
+     */
+    int updateMessageInfo(String msgValue, Date date, Integer msgSendPersonId, Integer msgGoodsid, int userId);
+
 }
