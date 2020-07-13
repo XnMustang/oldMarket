@@ -29,27 +29,6 @@
 </head>
 <body>
 
-
-<!--navigation bars-->
-
-
-<!--<div id="side-nav" class="side-nav">-->
-<!--    <div class="side-nav-menu perfect-scroll">-->
-<!--        <div class="text-logo">-->
-<!--            <a href="index.html"><h3>OldsMarket</h3></a>-->
-<!--        </div>-->
-<!--        <div class="site-user">-->
-<!--            <div class="site-user-img">-->
-<!--                <img src="/img/avatar.jpg" alt="此处上传图片显示">-->
-<!--                <span class="online"></span>-->
-<!--            </div>-->
-<!--            <a href="#" class="user-name"><strong>Emma Viola</strong></a>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-<!--end navigation bars-->
-
-
 <!--item-->
 <div class="detail-wrapper">
     <div class="layui-upload">
@@ -63,14 +42,13 @@
     <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
     <script>
         layui.use('upload', function() {
-            var $ = layui.jquery
-                , upload = layui.upload;
+            var $ = layui.jquery,
+                upload = layui.upload;
             //普通图片上传
             var uploadInst = upload.render({
-                elem: '#test1'
-                , url: 'https://httpbin.org/post' //改成您自己的上传接口
-                , before: function (obj) {
-                    //预读本地文件示例，不支持ie8
+                elem: '#test1',
+                url: 'https://httpbin.org/post', //改成您自己的上传接口
+                before: function (obj) {
                     obj.preview(function (index, file, result) {
                         $('#demo1').attr('src', result); //图片链接（base64）
                     });
@@ -93,66 +71,6 @@
             })
         })
     </script>
-
-
-    <!--item details-->
-<!--    <div class="item-details">-->
-<!--        <form method="post" action="fileUpload" enctype="multipart/form-data">-->
-<!--            <input type="file" name="file"/>-->
-<!--            <input type="submit" value="确定">-->
-<!--        </form>-->
-<!--        <p>图片显示：</p>-->
-<!--        <img th:src="${filename }" style="width: 400px;height: 500px"/>-->
-<!--        &lt;!&ndash;和文件上传无关&ndash;&gt;-->
-<!--        <div class="title-price">-->
-<!--            <script type="text/javascript">-->
-<!--                function f() {-->
-<!--                    var txt = document.getElementById("elm").value;-->
-<!--                    document.getElementById("lyny").innerHTML = txt;-->
-<!--                }-->
-<!--            </script>-->
-<!--            <strong class="titlet">商品名称:<span th:id="lyny"></span></strong>-->
-
-<!--            <script type="text/javascript">-->
-<!--                function f1() {-->
-<!--                    var tst1 = document.getElementById("elm1").value;-->
-<!--                    document.getElementById("lyny1").innerHTML = tst1;-->
-<!--                }-->
-<!--            </script>-->
-<!--            <span>价格:$<strong class="price" th:id="lyny1"></strong></span>-->
-<!--        </div>-->
-
-
-<!--        <p class="description">-->
-<!--            <script type="text/javascript">-->
-<!--                function f2() {-->
-<!--                    var ts2 = document.getElementById("a").value;-->
-<!--                    document.getElementById("bbb").innerHTML = ts2;-->
-<!--                }-->
-<!--            </script>-->
-<!--            <strong>物品说明</strong>-->
-<!--            <span th:id="bbb"></span>-->
-<!--            <br>-->
-<!--        </p>-->
-<!--        <div class="owner-msg">-->
-<!--            <script type="text/javascript">-->
-<!--                function f3() {-->
-<!--                    var ts3 = document.getElementById("weu").value;-->
-<!--                    document.getElementById("sd").innerHTML = ts3;-->
-<!--                }-->
-<!--            </script>-->
-<!--            <strong>来自卖家的留言</strong>-->
-<!--            <p>-->
-<!--                <i class="fa fa-quote-left ui-text-success"></i>-->
-<!--                <span th:id="sd">-->
-<!--                </span>-->
-<!--                <i class="fa fa-quote-right ui-text-success"></i>-->
-<!--            </p>-->
-<!--        </div>-->
-
-<!--        <hr>-->
-<!--    </div>-->
-    <!--end item details-->
 
     <!--item aside details-->
     <div class="item-detail-aside">
@@ -190,6 +108,7 @@
 <!--chat box-->
 <a href="#" class="chat-box-btn"><i class="fa fa-comment icon-sw"></i></a>
 
+<!--聊天框-->
 <div class="chat-box">
     <div class="chat-top">
         <section>

@@ -92,13 +92,13 @@ public class GoodsController {
     public String timeQuery(@RequestParam(value = "pageNum",required = false,defaultValue = "1") Integer pageNum,Model model){
         IPage<Goods> goodsIPage = new Page<>(pageNum,2);
         QueryWrapper queryWrapper = new QueryWrapper();
-        queryWrapper.orderByDesc("date");
+        queryWrapper.orderByDesc("date_up");
         goodsIPage = goodsMapper.selectPage(goodsIPage,queryWrapper);
         List<Goods> records = goodsIPage.getRecords();
 
         model.addAttribute("records",records);
         model.addAttribute("goodsIPage",goodsIPage);
-        return "search-results::div1";
+        return "search-results";
     }
 
 }

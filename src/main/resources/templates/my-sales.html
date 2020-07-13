@@ -124,7 +124,10 @@
                     $.ajax({
                         type: "get",
                         url: "/order/findTimeOrder",
-                        data: time1,time2,
+                        data: {
+                            time1,
+                            time2,
+                        },
                         success: function (data) {
                             // alert("选择的时间：" + time1 +"---" + time2)
                             console.log("根据时间查询完成！"+JSON.stringify(data));
@@ -178,7 +181,7 @@
                 <tr th:each="orders,obj : ${allOrdersDetail}" id="queryStatus">
                     <td><strong th:text="${obj.count}"></strong></td>
                     <td class="s-record" th:text="${orders.getGoodsName()}"></td>
-                    <td class="s-record" th:text="${#dates.format(orders.getDate(),'yyyy年MM月dd日')}"></td>
+                    <td class="s-record" th:text="${#dates.format(orders.getDateDown(),'yyyy年MM月dd日')}"></td>
                     <td class="s-record" th:text="${orders.getEmail()}"></td>
                     <td class="s-record" th:text="${orders.getOrderNo()}"></td>
                     <td class="s-record" th:text="${orders.getPrice()}"></td>
@@ -188,7 +191,7 @@
                         <span th:case="'1'">已签收</span>
                         <span th:case="'2'">未签收</span>
                         <span th:case="'3'">已发货</span>
-                        <span th:case="'4'">未发货</span>
+                        <span th:case="'4'">已付款</span>
                     </td>
                 </tr>
             </tbody>
