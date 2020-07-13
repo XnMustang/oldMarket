@@ -1,4 +1,5 @@
 package com.wlrss.oldmarket.controller;
+import com.wlrss.oldmarket.log.MyLog;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,6 +26,7 @@ public class FileController {
     }
 
     @PostMapping(value = "/fileUpload")
+    @MyLog("上传了新头像")
     public String fileUpload(@RequestParam(value = "file") MultipartFile file, Model model, HttpServletRequest request) {
         if (file.isEmpty()) {
             System.out.println("文件为空空");

@@ -1,8 +1,6 @@
 package com.wlrss.oldmarket.mapper;
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.wlrss.oldmarket.entity.Goods;
-import com.wlrss.oldmarket.entity.Orders;
 import com.wlrss.oldmarket.entity.vo.MyOrders;
 import com.wlrss.oldmarket.entity.vo.OrderDateilUserVo;
 import org.apache.ibatis.annotations.Param;

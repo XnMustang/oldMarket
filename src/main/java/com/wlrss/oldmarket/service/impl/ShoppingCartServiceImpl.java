@@ -1,11 +1,7 @@
 package com.wlrss.oldmarket.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.wlrss.oldmarket.entity.*;
-import com.wlrss.oldmarket.mapper.AddressMapper;
-import com.wlrss.oldmarket.mapper.OrderDetailMapper;
-import com.wlrss.oldmarket.mapper.OrderDetailsMapper;
-import com.wlrss.oldmarket.mapper.OrderMapper;
+import com.wlrss.oldmarket.entity.CartItem;
+import com.wlrss.oldmarket.entity.ShoppingCart;
 import com.wlrss.oldmarket.service.ShoppingCartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -18,8 +14,6 @@ import org.springframework.web.util.WebUtils;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 @Service
@@ -28,16 +22,6 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     @Autowired
     @Qualifier("redisTemplate")
     private RedisTemplate redisTemplate;
-
-    @Autowired
-    private OrderDetailsMapper orderDetailsMapper;
-
-    @Autowired
-    private OrderMapper orderMapper;
-
-    @Autowired
-    private AddressMapper addressMapper;
-
 
 
     /**
@@ -193,41 +177,6 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
             HashOperations<String,String,ShoppingCart> vos = redisTemplate.opsForHash();
             vos.put("CACHE_SHOPPINGCART",key, cacheCart);
         }
-    }
-
-    /**
-     * 加入到订单明细
-     * @param o
-     */
-    @Override
-    public void addOrderDetails(OrderDetails o) {
-        System.out.println(o);
-        o.setId(0);
-        orderDetailsMapper.insert(o);
-    }
-
-    @Override
-    public Integer getMaxOrdersId() {
-        return  orderMapper.getMaxOrdersId();
-    }
-
-    @Override
-    public  List<Address> findAddressById(int id) {
-        QueryWrapper<Address> queryWrapper =new QueryWrapper<>();
-        queryWrapper.eq("userid",id);
-        List<Address> addresses = addressMapper.selectList(queryWrapper);
-        return  addresses;
-
-    }
-
-    @Override
-    public void addAddress(Address addAddress) {
-        addressMapper.insert(addAddress);
-    }
-
-    @Override
-    public void addOrder(Orders orders) {
-        orderMapper.insert(orders);
     }
 
 }

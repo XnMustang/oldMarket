@@ -2,6 +2,7 @@ package com.wlrss.oldmarket.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.wlrss.oldmarket.entity.Comment;
+import com.wlrss.oldmarket.log.MyLog;
 import com.wlrss.oldmarket.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,6 +29,7 @@ public class CommentController {
 
     @RequestMapping("/deleteById")
     @ResponseBody
+    @MyLog("被管理员删除了一条评论")
     public void deleteById(Integer id){
         System.out.println("删除的ID"+id);
         commentService.deleteCommentById(id);

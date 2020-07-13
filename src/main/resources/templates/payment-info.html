@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+﻿﻿<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 
@@ -33,129 +33,113 @@
 
 <!--payment info-->
 <div class="payment-info-wrapper">
-
     <div class="payment">
-            <h6><strong>收货人信息</strong></h6>
-            <div class="payment-info-box">
-                <div class="form-group">
-                    <label>收货人 <i class="fa fa-star ui-text-danger"></i></label>
-                    <select class="form-control" id="accept" >
-                        <option th:each="accept,stat:${session.addresses}" th:text="${accept.getAccept()}" th:value="${stat.index}" ></option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>收货地址 <i class="fa fa-star ui-text-danger"></i></label>
-                    <select class="form-control" id="address">
-                        <option  th:each="address,stat:${session.addresses}" th:text="${address.getAddress()}" th:value="${stat.index}"></option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>电话 <i class="fa fa-star ui-text-danger"></i></label>
-                    <select class="form-control"  id="phone">
-                        <option  th:each="phone,stat:${session.addresses}" th:text="${phone.getAcceptphone()}" th:value="${stat.index}"></option>
-                    </select>
-                </div>
-        </div>
-        <script th:src="@{/js/jquery-2.2.3.min.js}"></script>
-        <script>
-            $(function () {
-                $("#accept").change(function () {
-                    let mySkip =  $(this).val();
-                    $("#address").val(mySkip);
-                    $("#phone").val(mySkip);
-                })
-                $("#address").change(function () {
-                    let mySkip =  $(this).val();
-                    $("#accept").val(mySkip);
-                    $("#phone").val(mySkip);
-                })
-                $("#phone").change(function () {
-                    let mySkip =  $(this).val();
-                    $("#accept").val(mySkip);
-                    $("#address").val(mySkip);
-                })
-            })
-
-        </script>
-
-        <p></p>
-        <div class="payment">
-            <h6><strong>订单信息</strong></h6>
+        <h6><strong>订单信息</strong></h6>
         <div class="payment-info-box">
-            <form action="/addOrder" method="post">
+            <form action="order-success.html" method="post">
                 <div class="form-group">
-                    <label>订单编号<i class="fa fa-star ui-text-danger"></i></label>
-                    <p class="form-control"  th:text="${session.orders.getOrderno()}"> 111111111111</p>
-                    <input type="hidden" name="orderNo" th:value="${session.orders.getOrderno()}" >
+                    <label>订单编号 <i class="fa fa-star ui-text-danger"></i></label>
+                    <p class="form-control">189898891293129371298</p>
                 </div>
                 <div class="form-group">
                     <label>下单时间 <i class="fa fa-star ui-text-danger"></i></label>
-                    <p class="form-control"  th:text="${#dates.format(session.orders.getDateDown(),'yyyy-MM-dd HH:mm:ss')}">2020-10-10</p>
-                    <input type="hidden" name="date" th:value="${session.orders.getDateDown()}" >
+                    <p class="form-control">2020-10-10</p>
+                </div>
+                <div class="form-group">
+                    <label>收货人 <i class="fa fa-star ui-text-danger"></i></label>
+                    <p class="form-control">陈曦</p>
                 </div>
                 <div class="form-group">
                     <label>总金额 <i class="fa fa-star ui-text-danger"></i></label>
-                    <p class="form-control"  th:text="${session.orders.getMoney()}">3567元</p>
-                    <input type="hidden" name="money" th:value="${session.orders.getMoney()}" >
+                    <p class="form-control">3567元</p>
                 </div>
                 <div class="form-group">
                     <label>状态 <i class="fa fa-star ui-text-danger"></i></label>
-                    <input type="hidden" name="status" th:value="${session.orders.getStatus()}">
-                    <div th:switch="${session.orders.getStatus()}" >
-                        <p class="form-control"  th:case="'1'">已签收</p>
-                        <p class="form-control"  th:case="'2'">未签收</p>
-                        <p class="form-control"  th:case="'3'">已发货</p>
-                        <p class="form-control"  th:case="'4'">已付款 </p>
-                        <p class="form-control"  th:case="'5'">未付款 </p>
-                    </div>
+                    <p class="form-control">正在打包发往快递中转站</p>
                 </div>
                 <hr>
                 <div class="payment-bottom">
-                    <a th:href="@{/shopping/cart}"><i class="fa fa-angle-left"></i>购物车</a>
+                    <a href="cart.html"><i class="fa fa-angle-left"></i>购物车</a>
                     <button type="submit" class="ui-btn ui-btn-info-outline">付款 <i class="fa fa-credit-card"></i></button>
                 </div>
             </form>
-<!--            <script>-->
-<!--            function addOrder() {-->
-<!--                    $.ajax({-->
-<!--                        type : "POST",-->
-<!--                        url : "/addOrder",-->
-<!--                        data : {-->
-<!--                            "orderNo" : parseInt($("#no").text()),-->
-<!--                            "date" : $("#date").text(),-->
-<!--                            "money" : parseFloat($("#money").text())-->
-<!--                        },-->
-<!--                        success : function (data) {-->
-
-<!--                        }-->
-<!--                    })-->
-<!--            }-->
-<!--            </script>-->
         </div>
     </div>
-    </div>
-
     <div class="order-summary">
-        <div th:each="good : ${session.goods}">
         <h6><strong>订单综述</strong></h6>
         <div class="order-item">
             <div>
-                <strong>物品名称</strong>
-                <span th:text="'✖️'+${good.getNums()}">1x</span>
+                <strong>车辆</strong>
+                <span>1x</span>
             </div>
             <div>
-                <span th:text="${good.getGoodsname()}">大众甲壳虫</span>
-                <strong th:text="${good.getNums()*good.getPrice()}">$2160.00</strong>
+                <span>大众甲壳虫</span>
+                <strong>$2160.00</strong>
             </div>
         </div>
+        <div class="order-item">
+            <div>
+                <strong>机械设备</strong>
+                <span>1x</span>
+            </div>
+            <div>
+                <span>割草机</span>
+                <strong>$780.00</strong>
+            </div>
         </div>
+
+        <div class="order-item">
+            <div>
+                <span>小计</span>
+                <strong>$3460.00</strong>
+            </div>
+            <div>
+                <span>税</span>
+                <strong>$60.00</strong>
+            </div>
+            <hr>
+            <div>
                 <span>合计</span>
-                <h4><strong class="ui-text-info" th:text="${session.orders.getMoney()}">$3520.00</strong></h4>
+                <h4><strong class="ui-text-info">$3520.00</strong></h4>
             </div>
         </div>
     </div>
 </div>
+<!--end payment info-->
 
+<!--chat box-->
+<a href="#" class="chat-box-btn"><i class="fa fa-comment icon-sw"></i></a>
+
+<div class="chat-box">
+    <div class="chat-top">
+        <section>
+            <h6 class="org-name">二手交易平台</h6>
+            <div class="repliers">
+                <div class="r-img">
+                    <img src="/img/avatar2.jpg" alt="">
+                    <strong class="name">Megan</strong>
+                </div>
+                <div class="r-img">
+                    <img src="/img/user2.jpg" alt="">
+                    <strong class="name">Brandon</strong>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="chat-flow" id="chat-flow">
+        <p class="outbound">
+            Hallo, 有人在吗？
+        </p>
+        <p class="inbound">
+            嗨, 在的，很乐意为您效劳.
+        </p>
+    </div>
+    <form class="chat-form" action="#">
+        <input type="text" class="form-control chat-message" placeholder="回复">
+    </form>
+</div>
+
+<!--end chat box-->
 
 <!--page loader-->
 <div class="page-loader">

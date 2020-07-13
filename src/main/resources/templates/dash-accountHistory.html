@@ -92,13 +92,14 @@
 <!--end search box-->
 
 <!--content container-->
-<div class="content-wrapper">
+<div class="content-wrapper" >
 
     <!--account history-->
-    <div class="account-history">
+    <div class="account-history" >
         <div class="date-pane">
-            <strong>今天——2018年6月21日，星期四</strong>
+            <strong>用户操作记录</strong>
         </div>
+        <div id="logs">
         <div class="history-item">
             <label class="label--checkbox">
                 <input type="checkbox" class="checkbox">
@@ -109,8 +110,9 @@
                 <span>为您的帐户编辑用户名和密码</span>
             </div>
         </div>
-        <div class="history-item">
-            <label class="label--checkbox">
+        </div>
+        <!--<div class="history-item">
+            <label class="label&#45;&#45;checkbox">
                 <input type="checkbox" class="checkbox">
                 <strong>1:02 PM</strong>
             </label>
@@ -120,7 +122,7 @@
             </div>
         </div>
         <div class="history-item">
-            <label class="label--checkbox">
+            <label class="label&#45;&#45;checkbox">
                 <input type="checkbox" class="checkbox">
                 <strong>00:13 PM</strong>
             </label>
@@ -128,14 +130,14 @@
                 <i class="fa fa-envelope-o"></i>
                 <span>给梅根发了条消息</span>
             </div>
-        </div>
+        </div>-->
     </div>
-    <div class="account-history">
+    <!--<div class="account-history">
         <div class="date-pane">
-            <strong>昨天-- 2018年6月20日星期三</strong>
+            <strong>昨天&#45;&#45; 2018年6月20日星期三</strong>
         </div>
         <div class="history-item">
-            <label class="label--checkbox">
+            <label class="label&#45;&#45;checkbox">
                 <input type="checkbox" class="checkbox">
                 <strong>2:55 PM</strong>
             </label>
@@ -145,7 +147,7 @@
             </div>
         </div>
         <div class="history-item">
-            <label class="label--checkbox">
+            <label class="label&#45;&#45;checkbox">
                 <input type="checkbox" class="checkbox">
                 <strong>1:02 PM</strong>
             </label>
@@ -155,7 +157,7 @@
             </div>
         </div>
         <div class="history-item">
-            <label class="label--checkbox">
+            <label class="label&#45;&#45;checkbox">
                 <input type="checkbox" class="checkbox">
                 <strong>00:13 PM</strong>
             </label>
@@ -164,7 +166,7 @@
                 <span>编辑列表项信息</span>
             </div>
         </div>
-    </div>
+    </div>-->
     <!--end account history-->
 
 </div>
@@ -191,6 +193,34 @@
 <script src="/vendor/js/typed.js"></script>
 <script src="/js/app.js"></script>
 <!--end scripts-->
+<script>
+    $(function () {
+        $.ajax({
+            url:"/log/listLog",
+            type:"post",
+            dataType:"json",
+            success:function (data) {
+                console.log(data)
+                var str="";
+                for (var i = 0; i < data.length; i++) {
+                    str+="<div class=\"history-item\">\n" +
+                        " <label class=\"label--checkbox\">\n" +
+                        " <input type=\"checkbox\" class=\"checkbox\">\n" +
+                        " <strong>"+data[i].createdate+"</strong>\n" +
+                        " </label>\n" +
+                        " <div class=\"history-info\">\n" +
+                        " <i class=\"fa fa-edit\"></i>\n" +
+                        " <span>"+data[i].username+"&nbsp&nbsp&nbsp&nbsp"+data[i].event+"</span>\n" +
+                        " </div>\n" +
+                        " </div>"
 
+                }
+                $("#logs").html(str);
+
+            }
+        })
+    })
+
+</script>
 </body>
 </html>

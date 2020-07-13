@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+﻿﻿<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -172,7 +172,7 @@
                     let val = $(this).next().val();
                    $.ajax({
                        type: 'POST',
-                       url: "/add",
+                       url: "/shopping/add",
                        data: {
                            "goodsid" :  val
                        },

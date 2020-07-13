@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+﻿﻿﻿<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <!--meta tags-->
@@ -49,9 +49,8 @@
                 <tr th:each="good:${cartItems}">
                     <td>
                         <div>
-                            <input type="hidden" id="good" th:value="${cartItems}">
                             <i class="fa fa-times-circle remove-item ui-text-danger"></i>
-                            <input type="hidden"  class="goodsId" th:value="${good.getGoodsid()}">
+                            <input type="hidden" th:value="${good.getGoodsid()}">
                             <script th:src="@{/layui/layui.js}"></script>
                             <script th:src="@{/js/jquery-2.2.3.min.js}"></script>
                             <script>
@@ -59,7 +58,7 @@
                                         let  val = $(this).next().val();
                                     $.ajax({
                                         type: 'POST',
-                                        url: "/remove",
+                                        url: "/shopping/remove",
                                         data: {
                                             "goodsid" :  val
                                         },
@@ -71,7 +70,7 @@
                                             })
                                             setTimeout(function () {
                                                     location.reload();
-                                            },2000)
+                                            },2500)
                                         },
                                         error: function () {
                                             layui.use(['layer','form'],function () {
@@ -98,7 +97,7 @@
 <!--                            <div class="quantity-change">-->
 <!--                                <span class="minus-item"><i class="fa fa-minus"></i></span>-->
                                 <!--数量-->
-                            <strong id="goodsNums" class="goodsNums"  th:text="${good.getNums()}"></strong>
+                            <strong th:text="${good.getNums()}"></strong>
 <!--                                <input class="" title="" type="text" value="1">-->
 <!--                                <span class="add-item"><i class="fa fa-plus"></i></span>-->
 <!--                            </div>-->
@@ -131,79 +130,9 @@
 
             <p class="cart-bt-act">
                 <a href="items.html"><i class="fa fa-angle-left"></i> 继续购物</a>
-            <span   th:style="${cartItems.size()==0}?'visibility:hidden':'visibility:visible'">
-                <a href="javascript:settlement()" class="continue"  id="set" >立即支付 <i class="fa fa-angle-right"></i></a>
-        </span>
+                <a th:href="@{/shopping/settlement}" class="continue">立即支付 <i class="fa fa-angle-right"></i></a>
             </p>
-
             <script>
-
-                let a ;
-                let b;
-                let goodsId =new  Array()
-                $(".goodsId").each(function () {
-                    a = parseInt($(this).val());
-                    goodsId.push(a);
-                })
-                console.log(goodsId)
-                console.log("长度"+goodsId.length)
-
-                let goodsNums =new  Array()
-                $(".goodsNums").each(function () {
-                    b = parseInt($(this).text());
-                    goodsNums.push(b);
-                })
-                console.log(goodsNums)
-                console.log("长度"+goodsNums.length)
-
-                function settlement(){
-                 $.post("/settlement", {
-                        "goodsId" : JSON.stringify(goodsId),
-                        "goodsNums" : JSON.stringify(goodsNums),
-                    },function (data) {
-                     if(data.code==200){
-                             layui.use(['layer','form'],function () {
-                                 var  layer = layui.layer,
-                                     form = layui.form;
-                                 layer.msg("进入结算页面.........")
-                             })
-                             setTimeout(function () {
-                                 window.location.href="/payment-info.html"
-                             },1500)
-                        }else if (data.code==300) {
-                         //登录
-                            window.location.href="/login-register.html"
-                        }else if (data.code==400) {
-                         //地址
-                         layui.use(['layer','form'],function () {
-                             layer.open({
-                                 type: 2,
-                                 title : '完善收货地址',
-                                 content: ['/addAddress.html','no'],
-                                 area : ['700px','480px'],
-                                 anim : 5,
-                                 success : function () {
-                                 },
-                                 cancel : function (index,layero) {
-                                    if (confirm('确定关闭吗 ？')){
-                                        layer.close(index)
-                                    }
-                                    return false;
-                                 }
-                             });
-                         })
-                        }else {
-                             layui.use(['layer','form'],function () {
-                                 var  layer = layui.layer,
-                                     form = layui.form;
-                                 layer.msg("生成订单失败")
-                             })
-                         }
-                    }
-                )
-            }
-
-
 
             </script>
         </div>

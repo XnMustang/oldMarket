@@ -7,7 +7,7 @@ public interface AddressService {
     void updateAccept(Integer acceptid);
 
     //查找默认收货人
-    Address findDefaultAccept();
+    Address findDefaultAccept(Integer userid);
 
     //根据acceptid删除收货人信息
     void deleteAcceptByid(Integer acceptid);

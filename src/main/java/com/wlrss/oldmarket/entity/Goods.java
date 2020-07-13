@@ -32,7 +32,7 @@ public class Goods {
     private String goodsname;
     @Range(min = 0, message = "价格不能小于0")
     @NotEmpty(message = "价格不能为空")
-    private double price;
+    private BigDecimal price;
     @NotEmpty(message = "商品描述不能为空")
     private String described;
     private String goodsimg;

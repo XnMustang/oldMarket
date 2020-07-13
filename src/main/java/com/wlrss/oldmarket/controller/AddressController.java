@@ -2,6 +2,7 @@ package com.wlrss.oldmarket.controller;
 
 import com.wlrss.oldmarket.entity.Address;
 import com.wlrss.oldmarket.entity.User;
+import com.wlrss.oldmarket.log.MyLog;
 import com.wlrss.oldmarket.service.AddressService;
 import com.wlrss.oldmarket.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +20,11 @@ public class AddressController {
     UserService userService;
 
     //修改默认收货人
+    @MyLog("修改了默认收货人")
     @RequestMapping("/updateAccept")
-    public String updateAcceptAddress(Integer acceptid){
+    public String updateAcceptAddress(Integer acceptid,Integer userid){
         System.out.println("修改为默认的收货人id=="+acceptid);
-        Address address=addressService.findDefaultAccept();
+        Address address=addressService.findDefaultAccept(userid);
 
         addressService.updateAccept(address.getAcceptid());
 
@@ -32,6 +34,7 @@ public class AddressController {
     }
 
     //根据ID删除收货人信息
+    @MyLog("删除了一条收货人信息")
     @RequestMapping("/deleteAcceptById")
     public String deleteAcceptById(Integer acceptid){
         addressService.deleteAcceptByid(acceptid);
@@ -39,6 +42,7 @@ public class AddressController {
     }
 
     //添加新地址
+    @MyLog("添加了收货新地址")
     @RequestMapping("/addAccept")
     public String addAccept(String acceptname, String acceptphone, String address, HttpSession session){
         System.out.println("acceptname="+acceptname+"|"+"{acceptphone="+acceptphone+"|"+"{address="+address);

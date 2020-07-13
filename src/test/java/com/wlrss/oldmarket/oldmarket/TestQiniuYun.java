@@ -2,7 +2,6 @@ package com.wlrss.oldmarket.oldmarket;
 
 import com.wlrss.oldmarket.utils.QiniuUpload;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 /**
@@ -11,11 +10,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 public class TestQiniuYun {
 
-    @Autowired
-    QiniuUpload qiniuUpload;
-
     @Test
     public void test01(){
+        QiniuUpload qiniuUpload = new QiniuUpload();
         /**
          * FilePath: 文件本地的绝对路径
          * FileName: 文件上传到七牛云的名称

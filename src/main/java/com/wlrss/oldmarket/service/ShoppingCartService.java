@@ -1,10 +1,10 @@
 package com.wlrss.oldmarket.service;
 
-import com.wlrss.oldmarket.entity.*;
+import com.wlrss.oldmarket.entity.CartItem;
+import com.wlrss.oldmarket.entity.ShoppingCart;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.List;
 
 
 public interface ShoppingCartService {
@@ -50,23 +50,4 @@ public interface ShoppingCartService {
      * @param item
      */
     void removeCart(HttpServletResponse response , HttpServletRequest request, String email , CartItem item);
-
-    void addOrderDetails(OrderDetails o);
-
-    /**
-     * 查询订单最大id
-     * @return
-     */
-    Integer getMaxOrdersId();
-
-    /**
-     * 通过用户id查询地址
-     * @param id
-     * @return
-     */
-    List<Address> findAddressById(int id);
-
-    void addAddress(Address addAddress);
-
-    void addOrder(Orders orders);
 }

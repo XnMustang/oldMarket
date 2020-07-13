@@ -1,6 +1,8 @@
 package com.wlrss.oldmarket.controller;
 
 import com.wlrss.oldmarket.entity.User;
+import com.wlrss.oldmarket.log.MyExitLog;
+import com.wlrss.oldmarket.log.MyLog;
 import com.wlrss.oldmarket.service.LoginService;
 import com.wlrss.oldmarket.service.MailService;
 import com.wlrss.oldmarket.service.RegisterService;
@@ -34,6 +36,7 @@ public class LoginController {
      * @param model
      * @return
      */
+    @MyLog("登录了账户")
     @RequestMapping("/login")
     public String login(String email, String password, Model model, HttpSession session){
         //判断 邮箱 是否存在
@@ -70,6 +73,7 @@ public class LoginController {
      * @return
      */
     @RequestMapping("/logout")
+    @MyExitLog("退出了登录")
     public  String logout(HttpSession session){
         session.removeAttribute("email");
         session.removeAttribute("status");
