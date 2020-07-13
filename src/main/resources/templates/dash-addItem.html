@@ -30,6 +30,8 @@
 <body>
 
 <!--item-->
+<!--这里添加的隐藏的输入框，用来传递images的参数-->
+<input type="hidden" name="images" class="image">
 <div class="detail-wrapper">
     <div class="layui-upload">
         <button type="button" class="layui-btn" id="test1">上传图片</button>
@@ -38,6 +40,10 @@
             <p id="demoText"></p>
         </div>
     </div>
+    <div>
+        <h3 class="layui-tab-item layui-show"></h3>
+    </div>
+
     <script th:src="@{/layui/layui.js}" charset="utf-8"></script>
     <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
     <script>
@@ -59,6 +65,12 @@
                         return layer.msg('上传失败');
                     }
                     //上传成功
+                    var demoText = $('#demoText');
+                    demoText.html('<span style="color: #4cae4c;">上传成功</span>');
+
+                    var fileupload = $(".image");   //获取到url值存到数据库
+                    fileupload.attr("value",res.data.src);
+                    console.log(fileupload.attr("value"));
                 }
                 , error: function () {
                     //演示失败状态，并实现重传

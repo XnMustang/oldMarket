@@ -1,4 +1,4 @@
-﻿﻿<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 
@@ -9,7 +9,9 @@
     <meta name="keywords" content="HTML,CSS,XML,JavaScript, services, listing">
     <meta name="author" content="Ui-DesignLab">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <!--end meta tags-->
+
     <title>二手交易市场</title>
 
     <!--stylesheets-->
@@ -348,6 +350,10 @@
 
 <script>
     $(function () {
+
+
+
+
             $.ajax({
                 url:"/user/showPersonalData",
                 method: "post",
@@ -389,15 +395,14 @@
 
 
                     //默认地址单选框修改
-                    var uid=data[1].id;
                     $(".q").click(function() {
                         //alert( $(this).next().val());
                         var v=$(this).next().val();
                         $.ajax({
                             url:"/address/updateAccept",
-                            data:{acceptid:v,userid:uid},
+                            data:"acceptid="+v,
                             method:"post",
-                             success:function () {
+                            success:function () {
                                 location.reload();
                             }
                         })

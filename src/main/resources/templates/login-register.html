@@ -1,4 +1,4 @@
-﻿﻿<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <!--meta tags-->
@@ -91,6 +91,7 @@
                 <form th:action="@{/login}" method="post" class="login-form animated">
                     <div class="form-group">
                         <div th:style="${msg==null}?'display:none;':'display:block;'" class="alert alert-danger" role="alert"><span th:text="${msg}==null?'':${msg}"></span></div>
+                        <div th:style="${session.msg==null}?'display:none;':'display:block;'" class="alert alert-danger" role="alert"><span th:text="${session.msg}==null?'':${session.msg}"></span></div>
                         <label for="username">邮箱</label>
                         <input type="username" id="username" name="email" class="form-control" placeholder="请输入用户名">
                     </div>

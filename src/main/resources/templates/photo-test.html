@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+
+<a href="javascript:void(0)" onclick="uploadPhoto()">选择图片</a>
+
+<!--选择图片-->
+<input type="file" id="photoFile" onchange="upload()">
+
+<!--显示图片-->
+<img id="preview_photo" src="" width="200px" height="200px">
+
+</body>
+
+<script>
+    function uploadPhoto() {
+        $("#photoFile").click();
+    }
+    /**
+     * 上传图片
+     */
+    function upload() {
+        if ($("#photoFile").val() == '') {
+            return;
+        }
+        var formData = new FormData();
+        alert(formData);
+        formData.append('photo', document.getElementById('photoFile').files[0]);
+        $.ajax({
+            url:"${pageContext.request.contextPath}/system/uploadPhoto",
+            type:"post",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(data) {
+                if (data.type == "success") {
+                    $("#preview_photo").attr("src", data.filepath+data.filename);
+                    $("#productImg").val(data.filename);
+                } else {
+                    alert(data.msg);
+                }
+            },
+            error:function(data) {
+                alert("上传失败")
+            }
+        });
+    }
+</script>
+
+</html>

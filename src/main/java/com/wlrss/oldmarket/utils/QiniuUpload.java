@@ -97,7 +97,7 @@ public class QiniuUpload {
                 //解析上传成功的结果
                 DefaultPutRet putRet;
                 putRet = new Gson().fromJson(response.bodyString(), DefaultPutRet.class);
-                return VariableName.domain+putRet.key;
+                return VariableName.domain+ "/" +putRet.key;
 
             } catch (QiniuException ex) {
                 Response r = ex.response;
