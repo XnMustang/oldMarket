@@ -31,9 +31,9 @@ public class AddressServiceImpl implements AddressService {
 
     // 查找默认收货人地址
     @Override
-    public Address findDefaultAccept() {
+    public Address findDefaultAccept(Integer userid) {
         QueryWrapper<Address> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("isdefault",1);
+        queryWrapper.eq("isdefault",1).eq("userid",userid);
         Address address=addressMapper.selectOne(queryWrapper);
         return address;
     }

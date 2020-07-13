@@ -29,12 +29,4 @@ public class GoodsServiceImpl implements GoodsService {
         Goods goods = goodsMapper.selectOne(queryWrapper);
         return  goods;
     }
-
-    @Override
-    public Goods findGoodsByCartId(int id) {
-        QueryWrapper<Goods> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("goodsid",id);
-        Goods goods = goodsMapper.selectOne(queryWrapper);
-        return  goods;
-    }
 }

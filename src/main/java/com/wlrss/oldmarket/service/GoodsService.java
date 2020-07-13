@@ -11,6 +11,4 @@ public interface GoodsService{
     List<MyNewGoodsVo> queryAllGoods(String keyword,String type);
 
     Goods findGoodsById(String goodsid);
-
-    Goods findGoodsByCartId(int id);
 }

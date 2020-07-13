@@ -1,6 +1,7 @@
 package com.wlrss.oldmarket.controller;
 
 import com.wlrss.oldmarket.entity.User;
+import com.wlrss.oldmarket.log.MyLog;
 import com.wlrss.oldmarket.service.impl.RegisterServiceImpl;
 import com.wlrss.oldmarket.utils.EmailCheck;
 import com.wlrss.oldmarket.utils.MD5Util;;
@@ -23,6 +24,7 @@ public class RegisterController {
      * 用户注册
      */
     @RequestMapping(value = "/register")
+    @MyLog("注册新用户")
     public String userRegister(String email , String password, String rePassword, Model model){
 
         //数据验证

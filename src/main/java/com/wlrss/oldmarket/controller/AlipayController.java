@@ -6,6 +6,7 @@ import com.alipay.api.domain.AlipayTradeAppPayModel;
 import com.alipay.api.request.AlipayTradePagePayRequest;
 import com.wlrss.oldmarket.config.AlipayConfig;
 import com.wlrss.oldmarket.entity.User;
+import com.wlrss.oldmarket.log.MyLog;
 import com.wlrss.oldmarket.mapper.OrderDetailMapper;
 import com.wlrss.oldmarket.mapper.UserMapper;
 import javafx.scene.control.Alert;
@@ -39,6 +40,7 @@ public class AlipayController {
     UserMapper userMapper;
 
     @GetMapping("/pay")
+    @MyLog("付款购买成功")
     public void pay(HttpServletResponse httpResponse, HttpSession session) throws IOException {
 
 

@@ -3,6 +3,7 @@ package com.wlrss.oldmarket.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.wlrss.oldmarket.entity.Blog;
 import com.wlrss.oldmarket.entity.BlogType;
+import com.wlrss.oldmarket.log.MyLog;
 import com.wlrss.oldmarket.mapper.BlogMapper;
 import com.wlrss.oldmarket.mapper.BlogTypeMapper;
 import com.wlrss.oldmarket.mapper.OrderDetailMapper;
@@ -37,7 +38,7 @@ public class BlogController {
     @Autowired
     BlogTypeMapper blogTypeMapper;
 
-
+    @MyLog("添加了一篇新博客")
     @RequestMapping("/add")
     public String addBlog(HttpSession session, String title, String type) {
 

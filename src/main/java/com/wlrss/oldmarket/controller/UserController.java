@@ -3,6 +3,7 @@ package com.wlrss.oldmarket.controller;
 import com.alibaba.fastjson.JSON;
 import com.wlrss.oldmarket.entity.User;
 import com.wlrss.oldmarket.entity.vo.MyUser;
+import com.wlrss.oldmarket.log.MyLog;
 import com.wlrss.oldmarket.service.impl.UserServiceImpl;
 import com.wlrss.oldmarket.utils.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +40,7 @@ public class UserController {
 
 
     //后台操作用户状态
+    @MyLog("管理员修改了用户状态")
     @RequestMapping("/updateUser")
     @ResponseBody
     public void updateUser(int id,@RequestBody User user){
@@ -75,6 +77,7 @@ public class UserController {
     }
 
     //对个人资料修改
+    @MyLog("修改了个人资料")
     @RequestMapping("/updatePersonalData")
     public String updatePersonalData(MyUser myUser){
         System.out.println(myUser);
@@ -83,6 +86,7 @@ public class UserController {
     }
 
     //
+    @MyLog("修改了登录密码")
     @RequestMapping("/updatePersonalDataPw")
     public String updatePersonalDataPw(int id,String password2){
        String newPw=MD5Util.finishMD5(password2);
