@@ -46,7 +46,9 @@ public class MvcConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new LoginHandlerInterceptor()).
-                addPathPatterns("/**").
+                addPathPatterns(
+                        "/**"
+                ).addPathPatterns("/settlement").
                 excludePathPatterns(
                         "/404.html",
                         "/about.html",
@@ -81,9 +83,14 @@ public class MvcConfig implements WebMvcConfigurer {
                         "/fileUpload",
                         "/address/**",
                         "/orderDetail/**",
-                        "/goodsMessage/**",
-                        "/shopping/**",
-                        "/pay/**"
+                        "/cart",
+                        "/add",
+                        "/remove",
+                        "/settlement",
+                        "/addAddress.html",
+                        "/pay/**",
+                        "/addOrder",
+                        "/success"
                 ).excludePathPatterns(
                         "/admin/**",
                         "/css/**",

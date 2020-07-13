@@ -52,18 +52,11 @@ public class AlipayController {
         alipayRequest.setReturnUrl(AlipayConfig.return_url);
         alipayRequest.setNotifyUrl(AlipayConfig.notify_url);
 
-
+        session.setAttribute("type","VIP1");
         //商品价格总额
 
         String total_amount = "99";
         session.setAttribute("moe", total_amount);
-
-        String email = (String) session.getAttribute("email");
-        int userId = orderDetailMapper.findUserIdByEmail(email);
-        User user = userMapper.selectById(userId);
-
-        user.setVip("1");
-        userMapper.updateById(user);
 
         //商品名称
 
@@ -109,17 +102,11 @@ public class AlipayController {
         alipayRequest.setReturnUrl(AlipayConfig.return_url);
         alipayRequest.setNotifyUrl(AlipayConfig.notify_url);
 
-
+        session.setAttribute("type","VIP2");
         //商品价格总额
 
         String total_amount = "299";
         session.setAttribute("moe", total_amount);
-        String email = (String) session.getAttribute("email");
-        int userId = orderDetailMapper.findUserIdByEmail(email);
-        User user = userMapper.selectById(userId);
-
-        user.setVip("2");
-        userMapper.updateById(user);
 
         //商品名称
 
@@ -165,17 +152,11 @@ public class AlipayController {
         alipayRequest.setReturnUrl(AlipayConfig.return_url);
         alipayRequest.setNotifyUrl(AlipayConfig.notify_url);
 
-
+        session.setAttribute("type","VIP3");
         //商品价格总额
 
         String total_amount = "699";
         session.setAttribute("moe", total_amount);
-        String email = (String) session.getAttribute("email");
-        int userId = orderDetailMapper.findUserIdByEmail(email);
-        User user = userMapper.selectById(userId);
-
-        user.setVip("3");
-        userMapper.updateById(user);
 
         //商品名称
 

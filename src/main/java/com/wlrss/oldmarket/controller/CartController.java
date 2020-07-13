@@ -191,15 +191,17 @@ public class CartController {
     }
 
     @RequestMapping("/addOrder")
-    public void addOrder(HttpServletResponse resp,Double money ,  Long orderNo , Date date , String status,HttpSession session) throws IOException {
+    public void addOrder(HttpServletResponse resp,Double money ,  Long orderNo , Date date , String status,HttpSession session,HttpServletRequest req) throws IOException {
         int id = goodsMessageService.getUserIdByEmail((String) session.getAttribute("email"));
         Orders orders = new Orders();
 
         AtomicReference<Double> m = new AtomicReference<>(money);
 
-        orders.setUserid(id).setStatus("4").setDateDown(date).setMoney(m.get()).setOrderno(orderNo);
+        orders.setUserid(id).setStatus("5").setDateDown(date).setMoney(m.get()).setOrderno(orderNo);
 
-        shoppingCartService.addOrder(orders);
+        redisUtil.del(shoppingCartService.getKey(req,resp,(String) session.getAttribute("email")));
+        session.setAttribute("type","order");
+        session.setAttribute("myOrder",orders);
         redisUtil.del();
 
         AlipayClient alipayClient = new DefaultAlipayClient(AlipayConfig.gatewayUrl, AlipayConfig.app_id, AlipayConfig.merchant_private_key,
@@ -267,11 +269,12 @@ public class CartController {
             user.setVip("3");
             userMapper.updateById(user);
         }else if (type.equals("order")){
-            Orders orders = shoppingCartService.findOrderByUserId(userId);
-            orders.setStatus("4");
-            shoppingCartService.updateOrders(orders);
-            return  "error";
+            Orders myOrder = (Orders)session.getAttribute("myOrder");
+            shoppingCartService.addOrder(myOrder);
+            myOrder.setStatus("4");
+            shoppingCartService.updateOrders(myOrder);
         }
         return  "order-success";
     }
+
 }
