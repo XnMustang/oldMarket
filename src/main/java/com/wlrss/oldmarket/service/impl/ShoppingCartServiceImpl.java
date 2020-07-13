@@ -3,7 +3,6 @@ package com.wlrss.oldmarket.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.wlrss.oldmarket.entity.*;
 import com.wlrss.oldmarket.mapper.AddressMapper;
-import com.wlrss.oldmarket.mapper.OrderDetailMapper;
 import com.wlrss.oldmarket.mapper.OrderDetailsMapper;
 import com.wlrss.oldmarket.mapper.OrderMapper;
 import com.wlrss.oldmarket.service.ShoppingCartService;
@@ -227,6 +226,19 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 
     @Override
     public void addOrder(Orders orders) {
+        orderMapper.insert(orders);
+    }
+
+    @Override
+    public Orders findOrderByUserId(int userId) {
+       QueryWrapper<Orders> queryWrapper  = new QueryWrapper<>();
+       queryWrapper.eq("userid",userId);
+        Orders orders = orderMapper.selectOne(queryWrapper);
+        return orders;
+    }
+
+    @Override
+    public void updateOrders(Orders orders) {
         orderMapper.insert(orders);
     }
 

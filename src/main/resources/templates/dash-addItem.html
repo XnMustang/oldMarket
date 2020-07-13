@@ -31,6 +31,8 @@
 
 <!--item-->
 <div class="detail-wrapper">
+    <!--添加的隐藏的输入框，用来传递images的参数-->
+    <input type="hidden" name="images" class="image">
     <div class="layui-upload">
         <button type="button" class="layui-btn" id="test1">上传图片</button>
         <div class="layui-upload-list" style="margin-left:1px;">
@@ -41,34 +43,40 @@
     <script th:src="@{/layui/layui.js}" charset="utf-8"></script>
     <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
     <script>
-        layui.use('upload', function() {
-            var $ = layui.jquery,
-                upload = layui.upload;
-            //普通图片上传
-            var uploadInst = upload.render({
-                elem: '#test1',
-                url: 'https://httpbin.org/post', //改成您自己的上传接口
-                before: function (obj) {
-                    obj.preview(function (index, file, result) {
-                        $('#demo1').attr('src', result); //图片链接（base64）
-                    });
+        //普通图片上传
+        var uploadInst = upload.render({
+            elem: '#test1'
+            ,url: '/photo/upload'
+            ,accept:'images'
+            ,size:50000
+            ,before: function(obj){
+                obj.preview(function(index, file, result){
+                    $('#demo1').attr('src', result);
+                });
+            }
+            , done: function (res) {
+                //如果上传失败
+                if (res.code > 0) {
+                    return layer.msg('上传失败');
                 }
-                , done: function (res) {
-                    //如果上传失败
-                    if (res.code > 0) {
-                        return layer.msg('上传失败');
-                    }
-                    //上传成功
-                }
-                , error: function () {
-                    //演示失败状态，并实现重传
-                    var demoText = $('#demoText');
-                    demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
-                    demoText.find('.demo-reload').on('click', function () {
-                        uploadInst.upload();
-                    });
-                }
-            })
+                //上传成功
+                //上传成功
+                var demoText = $('#demoText');
+                demoText.html('<span style="color: #4cae4c;">上传成功</span>');
+
+                var fileupload = $(".image");
+                /*res.data.src是获取后端传过来的图片的url,之后给表单的隐藏图片输入框赋值即可*/
+                fileupload.attr("value",res.data.src);
+                console.log(fileupload.attr("value"));
+            }
+            , error: function () {
+                //演示失败状态，并实现重传
+                var demoText = $('#demoText');
+                demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                demoText.find('.demo-reload').on('click', function () {
+                    uploadInst.upload();
+                });
+            }
         })
     </script>
 

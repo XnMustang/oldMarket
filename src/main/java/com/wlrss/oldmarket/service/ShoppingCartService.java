@@ -69,4 +69,8 @@ public interface ShoppingCartService {
     void addAddress(Address addAddress);
 
     void addOrder(Orders orders);
+
+    Orders findOrderByUserId(int userId);
+
+    void updateOrders(Orders orders);
 }

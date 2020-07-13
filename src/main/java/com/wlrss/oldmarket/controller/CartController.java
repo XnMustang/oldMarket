@@ -8,11 +8,13 @@ import com.alipay.api.request.AlipayTradePagePayRequest;
 import com.wlrss.oldmarket.config.AlipayConfig;
 import com.wlrss.oldmarket.entity.*;
 
+import com.wlrss.oldmarket.mapper.UserMapper;
 import com.wlrss.oldmarket.service.GoodsMessageService;
 import com.wlrss.oldmarket.service.OrdersDetailService;
 import com.wlrss.oldmarket.service.impl.GoodsServiceImpl;
 import com.wlrss.oldmarket.service.impl.ShoppingCartServiceImpl;
 import com.wlrss.oldmarket.service.impl.UserServiceImpl;
+import com.wlrss.oldmarket.utils.RedisUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,6 +52,12 @@ public class CartController {
 
     @Autowired
     private GoodsMessageService goodsMessageService;
+
+    @Autowired
+    UserMapper userMapper;
+
+    @Autowired
+    RedisUtil redisUtil;
 
     @GetMapping("/cart")
     public String toIndex(HttpServletRequest request, HttpServletResponse response, Model  model){
@@ -192,6 +200,7 @@ public class CartController {
         orders.setUserid(id).setStatus("4").setDateDown(date).setMoney(m.get()).setOrderno(orderNo);
 
         shoppingCartService.addOrder(orders);
+        redisUtil.del();
 
         AlipayClient alipayClient = new DefaultAlipayClient(AlipayConfig.gatewayUrl, AlipayConfig.app_id, AlipayConfig.merchant_private_key,
                 "json", AlipayConfig.charset, AlipayConfig.alipay_public_key, AlipayConfig.sign_type);
@@ -239,5 +248,30 @@ public class CartController {
         resp.getWriter().flush();
         resp.getWriter().close();
 
+    }
+
+
+    @RequestMapping("/success")
+    public  String success(HttpSession session){
+        String type = (String) session.getAttribute("type");
+        String email = (String) session.getAttribute("email");
+        int userId = ordersDetailService.findUserIdByEmail(email);
+        User user = userMapper.selectById(userId);
+        if (type.equals("VIP1")){
+            user.setVip("1");
+            userMapper.updateById(user);
+        }else if (type.equals("VIP2")){
+            user.setVip("2");
+            userMapper.updateById(user);
+        }else if (type.equals("VIP3")){
+            user.setVip("3");
+            userMapper.updateById(user);
+        }else if (type.equals("order")){
+            Orders orders = shoppingCartService.findOrderByUserId(userId);
+            orders.setStatus("4");
+            shoppingCartService.updateOrders(orders);
+            return  "error";
+        }
+        return  "order-success";
     }
 }
