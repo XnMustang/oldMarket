@@ -6,6 +6,7 @@ import com.wlrss.oldmarket.log.MyLog;
 import com.wlrss.oldmarket.service.LoginService;
 import com.wlrss.oldmarket.service.MailService;
 import com.wlrss.oldmarket.service.RegisterService;
+import com.wlrss.oldmarket.service.UserService;
 import com.wlrss.oldmarket.service.impl.LoginServiceImpl;
 import com.wlrss.oldmarket.service.impl.RegisterServiceImpl;
 import com.wlrss.oldmarket.utils.MD5Util;
@@ -24,10 +25,15 @@ public class LoginController {
 
     @Autowired
     LoginServiceImpl loginService;
+
     @Autowired
     RegisterServiceImpl registerService;
+
     @Autowired
     MailService mailService;
+
+    @Autowired
+    UserService userService;
 
     /**
      * 登录
@@ -49,7 +55,8 @@ public class LoginController {
                    //密码正确
                    session.setAttribute("email",email);
                    session.setAttribute("status","1");
-
+                   User user = userService.findUserByEmail(email);
+                   session.setAttribute("vip",user.getVip());
                    return "redirect:/";
                }else {
                    //密码错误

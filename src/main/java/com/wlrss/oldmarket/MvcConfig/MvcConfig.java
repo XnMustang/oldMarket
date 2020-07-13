@@ -88,9 +88,9 @@ public class MvcConfig implements WebMvcConfigurer {
                         "/remove",
                         "/settlement",
                         "/addAddress.html",
-                        "/pay/**",
                         "/addOrder",
-                        "/success"
+                        "/success",
+                        "/jump/**"
                 ).excludePathPatterns(
                         "/admin/**",
                         "/css/**",
