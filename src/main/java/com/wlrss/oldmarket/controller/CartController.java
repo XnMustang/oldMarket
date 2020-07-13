@@ -199,10 +199,10 @@ public class CartController {
 
         orders.setUserid(id).setStatus("5").setDateDown(date).setMoney(m.get()).setOrderno(orderNo);
 
-        redisUtil.del(shoppingCartService.getKey(req,resp,(String) session.getAttribute("email")));
+        redisUtil.del("CACHE_SHOPPINGCART");
         session.setAttribute("type","order");
         session.setAttribute("myOrder",orders);
-        redisUtil.del();
+
 
         AlipayClient alipayClient = new DefaultAlipayClient(AlipayConfig.gatewayUrl, AlipayConfig.app_id, AlipayConfig.merchant_private_key,
                 "json", AlipayConfig.charset, AlipayConfig.alipay_public_key, AlipayConfig.sign_type);
