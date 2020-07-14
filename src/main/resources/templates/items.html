@@ -1,14 +1,13 @@
-﻿﻿<html lang="en" xmlns:th="http://www.thymeleaf.org">
+﻿<!DOCTYPE html>﻿
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 
     <!--meta tags-->
-
     <meta charset="UTF-8">
     <meta name="description" content="Services Listing HTML5 CSS3 template">
     <meta name="keywords" content="HTML,CSS,XML,JavaScript, services, listing">
     <meta name="author" content="Ui-DesignLab">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <!--end meta tags-->
 
     <title>二手交易市场</title>
@@ -227,7 +226,10 @@
                         "<span style='font-size: 14px' id='goods_date'>" + localTime + "</span>\n" +
                         "</div>\n" +
                         "</div>\n" +
-                        "<a href=\"/jump/it/id=" + data.list[i].goodsid + "\"><i class=\"fa fa-angle-right fa-2x\"></i></a>\n" +
+                        "<a href=\"/jump/it/id=" + data.list[i].goodsid + "\">" +
+                            "<i class=\"fa fa-angle-right fa-2x\">" +
+                            "</i>" +
+                        "</a>\n" +
                         "</div>\n" +
                         "</div>"
                 }

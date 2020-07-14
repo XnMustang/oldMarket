@@ -30,9 +30,9 @@ public class JumpController {
     }
 
     @RequestMapping("/it/{id}")
-    public void itemsDetail(@PathVariable("id") String id,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("11111`1`111112121");
-        request.getRequestDispatcher("item-detail.html").forward(request,response);
+    public String itemsDetail(@PathVariable("id") String id) {
+        System.out.println("传来的商品id："+id);
+        return "redirect:/item-detail.html?"+id;
     }
 
     @RequestMapping("/blog")
@@ -80,8 +80,6 @@ public class JumpController {
     public String accountHistory(){
         return  "dash-accountHistory";
     }
-
-
 
     @RequestMapping("/dash-addItem")
     public String addItem(){
