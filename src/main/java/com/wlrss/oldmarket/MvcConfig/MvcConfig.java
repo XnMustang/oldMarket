@@ -92,6 +92,7 @@ public class MvcConfig implements WebMvcConfigurer {
                         "/addOrder",
                         "/success",
                         "/jump/**",
+                        "/jump/it/**",
                         "/blog/**",
                         "/item-detail?id=**",
                         "/jump/**"

@@ -269,9 +269,8 @@ public class CartController {
             userMapper.updateById(user);
         }else if (type.equals("order")){
             Orders myOrder = (Orders)session.getAttribute("myOrder");
-            shoppingCartService.addOrder(myOrder);
             myOrder.setStatus("4");
-            shoppingCartService.updateOrders(myOrder);
+            shoppingCartService.addOrder(myOrder);
             redisUtil.del("CACHE_SHOPPINGCART");
         }
         return  "order-success";
