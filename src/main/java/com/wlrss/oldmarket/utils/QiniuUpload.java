@@ -8,6 +8,7 @@ import com.qiniu.storage.Configuration;
 import com.qiniu.storage.UploadManager;
 import com.qiniu.storage.model.DefaultPutRet;
 import com.qiniu.util.Auth;
+import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.ByteArrayOutputStream;
@@ -29,8 +30,8 @@ public class QiniuUpload {
     //密钥配置
     private static Auth auth = Auth.create(ACCESS_KEY, SECRET_KEY);
     private static Configuration cfg = new Configuration(Zone.huadong());
-    //创建上传对象
 
+    //创建上传对象
     private static UploadManager uploadManager = new UploadManager(cfg);
 
     //简单上传，使用默认策略，只需要设置上传的空间名就可以了
@@ -55,10 +56,12 @@ public class QiniuUpload {
         String upToken = auth.uploadToken(bucket);
         try {
             Response response = uploadManager.put(FilePath, FileName, upToken);
+            System.out.println(response+"----");
             //解析上传成功的结果
             DefaultPutRet putRet = new Gson().fromJson(response.bodyString(), DefaultPutRet.class);
             System.out.println(putRet.key);
             System.out.println(putRet.hash);
+            System.out.println("uptoken:"+upToken);
             return VariableName.domain+"/"+FileName;
 
         }catch (QiniuException ex){

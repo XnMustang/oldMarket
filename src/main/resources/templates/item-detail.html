@@ -297,7 +297,6 @@
 <!--end scripts-->
 
 <script>
-
     $(function () {
         window.onload = function () {
             init();
@@ -321,7 +320,7 @@
                     var userphone = $("#user_phone").html(data[0].phone);//用户联系方式
                     var userEmail = $("#user_email").html(data[0].email);//用户邮箱
                     var goodsName = $("#goods_name").html(data[0].goodsname);//商品名称
-                    var goodDate = $("#goods_date").html(getLocalTime(data[0].dateUp));//商品时间
+                    var goodDate = $("#goods_date").html(getLocalTime(data[0].dateUp.toString().substring(0,10)));//商品时间
                     var goodPrice = $("#good_price").html('$'+data[0].price);  //商品价格
                     var goodDescribed = $("#good_described").html(data[0].described);//商品描述
                     var sellmassage = $("#sellmassage").html(data[0].sellmassage);//卖家留言
@@ -353,11 +352,18 @@
                 })
             }
         }
-        function getLocalTime(nS) {
-            return new Date(parseInt(nS) * 1000).toLocaleString().replace(/:\d{1,2}$/,' ');
+        /*用来把时间戳显示为整个日期格式   传来的时间戳是经过截取的，多了3个0*/
+        function getLocalTime(timestamp) {
+            var date = new Date(timestamp * 1000);//时间戳为10位需*1000，时间戳为13位的话不需乘1000
+            Y = date.getFullYear() + '-';
+            M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+            D = date.getDate() + ' ';
+            h = date.getHours() + ':';
+            m = date.getMinutes() + ':';
+            s = date.getSeconds();
+            return Y+M+D+h+m+s;
         }
     })
-
 </script>
 
 </body>

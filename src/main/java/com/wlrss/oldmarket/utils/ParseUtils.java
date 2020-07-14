@@ -10,6 +10,8 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Random;
 
 /**
  * 爬虫
@@ -18,7 +20,7 @@ import java.util.ArrayList;
 @Component  //交给spring  直接Autowrid注入
 public class ParseUtils {
 
-    public ArrayList<Content> parseJD(String keyWords) throws IOException {
+    public static ArrayList<Content> parseJD(String keyWords) throws IOException {
         //获取请求  需要联网  ajax不能获取到，因为模拟客户端请求（客户端不能异步）
         String url = "https://search.jd.com/Search?keyword=" + keyWords;
 
@@ -38,14 +40,32 @@ public class ParseUtils {
         //获取元素中的内容  这里的el就是li标签
         for (Element el : elements) {
             //图片特别多的网站，一般都是图片延迟加载，需要检查页面图面哪个标签是指向img的path
-            String img = el.getElementsByTag("img").eq(0).attr("src");
+            String goodsimg = el.getElementsByTag("img").eq(0).attr("src");
             String price = el.getElementsByClass("p-price").eq(0).text();
-            String title = el.getElementsByClass("p-name").eq(0).text();
+            String described = el.getElementsByClass("p-name").eq(0).text();
+
+            String goodsName = described.substring(0,6);   //截取描述信息变为商品名称
+            String describe = described.substring(0,25);   //前100个字为商品描述
+            String goodsImg = described.substring(0,6)+"图片";    //头像填充
 
             Content content = new Content();
-            content.setImg(img);
-            content.setPrice(price);
-            content.setTitle(title);
+            content.setGoodsid(0);
+            content.setGoodsname(goodsName);
+            String[] split = price.split("￥");
+            double prices = Double.parseDouble(split[1]);
+            content.setPrice(prices);
+
+            content.setDescribed(describe);
+            content.setGoodsimg(goodsImg);
+            //商品属于哪个用户，一共5个用户，随机生成id
+            Random rand = new Random();
+            int userid = rand.nextInt(5) + 1;
+
+            content.setUserid(userid);
+            content.setDateUp(new Date());
+            content.setSellmassage(null);
+            content.setStatus(1);
+            content.setNums(0);
 
             goodsList.add(content);
         }
@@ -55,7 +75,7 @@ public class ParseUtils {
     //测试一把
     public static void main(String[] args) throws IOException {
         ParseUtils parseUtils = new ParseUtils();
-        ArrayList<Content> contents = parseUtils.parseJD("日用百货");
+        ArrayList<Content> contents = parseUtils.parseJD("java");
         for (Content content : contents) {
             System.out.println(content);
         }
