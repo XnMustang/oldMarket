@@ -85,4 +85,9 @@ public class JumpController {
     public String addItem(){
         return  "dash-addItem";
     }
+
+    @RequestMapping("/login")
+    public String login(){
+        return  "login-register";
+    }
 }
