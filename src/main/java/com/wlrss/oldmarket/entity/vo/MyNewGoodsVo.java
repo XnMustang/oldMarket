@@ -1,5 +1,6 @@
 package com.wlrss.oldmarket.entity.vo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,6 +22,7 @@ public class MyNewGoodsVo {
     private String goodsName;
     private BigDecimal price;
     private String userName;
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date dateUp;
 
 }

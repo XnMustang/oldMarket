@@ -15,12 +15,12 @@
         </div>
         <ul class="site-menu">
             <li>
-                <a href="index.html">首页</a>
+                <a th:href="@{/jump/main}">首页</a>
             </li>
             <li>
-                <a href="#">导航</a>
+                <a th:href="@{/goods/findAll}">导航</a>
                 <ul class="nav-dropdown">
-                    <li><a href="items.html">最新商品</a></li>
+                    <li><a th:href="@{/jump/items}">最新商品</a></li>
                    <!-- <li><a th:href="@{/items/queryAllGoods}">最新商品</a></li>-->
                     <li>
                         <a th:href="@{/goods/findAll}">搜索</a>
@@ -33,16 +33,16 @@
             </li>
 
             <li>
-                <a href="#">博客 </i></a>
+                <a th:href="@{/jump/blog}">博客 </i></a>
                 <ul class="nav-dropdown">
-                    <li><a href="blog.html">看博客</a></li>
+                    <li><a  th:href="@{/jump/blog}">看博客</a></li>
                     <li><a th:href="@{/blog/findBlogType}">写博客</a></li>
                 </ul>
             </li>
             <li>
-                <a href="about.html">关于我们</i></a>
+                <a th:href="@{/jump/about}">关于我们</i></a>
                 <ul class="nav-dropdown">
-                    <li><a href="about.html">关于我们</a></li>
+                    <li><a th:href="@{/jump/about}">关于我们</a></li>
                 </ul>
             </li>
 
@@ -54,18 +54,18 @@
                     <p th:if="${session.vip}==3"><a th:href="@{/jump/vip}" style="color: aquamarine;text-decoration: none">钻石会员</a></p>
             </li>
 
-            <li ><a href="#" th:text="${session.email==null}?'':'个人中心'"> </i></a>
+            <li ><a th:href="@{/jump/dashboard}" th:text="${session.email==null}?'':'个人中心'"> </i></a>
                 <ul th:style="${session.email==null}?'display:none;':'display:block;'" class="nav-dropdown">
-                    <li><a href="dashboard.html">主页</a></li>
-                    <li><a href="dash-messages.html">留言内容</a></li>
+                    <li><a th:href="@{/jump/dashboard}">主页</a></li>
+                    <li><a href="dash-messages.html" th:href="@{/jump/messages}">留言内容</a></li>
 <!--                    <li><a th:href="@{/goodsMessage/showMsgInfo}">留言内容</a></li>-->
-                    <li><a href="dash-reviews.html">评论</a></li>
-                    <li><a href="dash-items.html">物品</a></li>
-                    <li><a href="dash-addItem.html">新增项目</a></li>
-                    <li><a href="dash-sales.html">销售信息</a></li>
+                    <li><a href="dash-reviews.html" th:href="@{/jump/reviews}">评论</a></li>
+                    <li><a href="dash-items.html" th:href="@{/jump/dash-items}">物品</a></li>
+                    <li><a href="dash-addItem.html" th:href="@{/jump/dash-addItem}">新增项目</a></li>
+                    <li><a href="dash-sales.html" th:href="@{/jump/dash-sales}">销售信息</a></li>
                     <li><a th:href="@{/order/findAllOrder}">我的订单</a></li>
-                    <li><a href="dash-profile.html">个人资料</a></li>
-                    <li><a href="dash-accountHistory.html">账户记录</a></li>
+                    <li><a href="dash-profile.html" th:href="@{/jump/dash-profile}">个人资料</a></li>
+                    <li><a href="dash-accountHistory.html" th:href="@{/jump/dash-accountHistory}">账户记录</a></li>
                 </ul>
             </li>
 

@@ -40,6 +40,7 @@ public class MvcConfig implements WebMvcConfigurer {
         registry.addViewController("/payment_putong.html").setViewName("payment_putong");
         registry.addViewController("/payment_gaoji.html").setViewName("payment_gaoji");
         registry.addViewController("/payment_zungui.html").setViewName("payment_zungui");
+        registry.addViewController("dash-accountHistory.html").setViewName("dash-accountHistory");
 
     }
 
@@ -90,7 +91,8 @@ public class MvcConfig implements WebMvcConfigurer {
                         "/addAddress.html",
                         "/addOrder",
                         "/success",
-                        "/jump/**"
+                        "/jump/**",
+                        "/blog/**"
                 ).excludePathPatterns(
                         "/admin/**",
                         "/css/**",

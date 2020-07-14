@@ -72,16 +72,15 @@
             <a href="dash-profile.html" class="dash-edit-user"><i class="fa fa-pencil"></i></a>
         </div>
         <ul class="list-unstyled dash-menu">
-            <li><a href="dashboard.html"><i class="fa fa-home"></i><span>主页</span></a></li>
-            <li><a href="dash-messages.html" class="current"><i class="fa fa-envelope-o"></i><span>留言</span></a></li>
-            <li><a href="dash-reviews.html"><i class="fa fa-star-o"></i><span>评论</span></a></li>
-            <li><a href="dash-sales.html"><i class="fa fa-money"></i><span>销售信息</span></a></li>
-            <li><a href="my-sales.html"><i class="fa fa-money"></i><span>我的订单</span></a></li>
-            <li><a href="dash-items.html"><i class="fa fa-user"></i><span>物品</span></a></li>
-            <li><a href="dash-addItem.html"><i class="fa fa-plus-circle"></i><span>新增项目</span></a></li>
-            <li><a href="dash-profile.html"><i class="fa fa-user"></i><span>个人资料</span></a></li>
-            <li><a href="dash-accountHistory.html"><i class="fa fa-history"></i><span>账户记录</span></a></li>
-            <li><a href="items.html"><i class="fa fa-sign-out"></i><span>回到首页</span></a></li>
+            <li><a href="dashboard.html" th:href="@{/jump/dashboard}"><i class="fa fa-home"></i><span>主页</span></a></li>
+            <li><a href="dash-messages.html"  th:href="@{/jump/messages}"><i class="fa fa-envelope-o"></i><span>留言</span></a></li>
+            <li><a href="dash-reviews.html" th:href="@{/jump/reviews}"><i class="fa fa-star-o"></i><span>评论</span></a></li>
+            <li><a href="dash-sales.html" th:href="@{/jump/dash-sales}"><i class="fa fa-money"></i><span>销售信息</span></a></li>
+            <li><a th:href="@{/order/findAllOrder}"><i class="fa fa-money"></i><span>我的订单</span></a></li>            <li><a href="dash-items.html" th:href="@{/jump/dash-items}"><i class="fa fa-user"></i><span>物品</span></a></li>
+            <li><a href="dash-addItem.html"  th:href="@{/jump/dash-addItem}"><i class="fa fa-plus-circle"></i><span>新增项目</span></a></li>
+            <li><a href="dash-profile.html" th:href="@{/jump/dash-profile}"><i class="fa fa-user"></i><span>个人资料</span></a></li>
+            <li><a href="dash-accountHistory.html" class="current"  th:href="@{/jump/dash-accountHistory}"><i class="fa fa-history"></i><span>账户记录</span></a></li>
+            <li><a href="items.html" th:href="@{/jump/main}"><i class="fa fa-sign-out"></i><span>回到首页</span></a></li>
         </ul>
     </div>
 </div>

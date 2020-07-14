@@ -199,7 +199,6 @@ public class CartController {
 
         orders.setUserid(id).setStatus("5").setDateDown(date).setMoney(m.get()).setOrderno(orderNo);
 
-        redisUtil.del("CACHE_SHOPPINGCART");
         session.setAttribute("type","order");
         session.setAttribute("myOrder",orders);
 
@@ -273,6 +272,7 @@ public class CartController {
             shoppingCartService.addOrder(myOrder);
             myOrder.setStatus("4");
             shoppingCartService.updateOrders(myOrder);
+            redisUtil.del("CACHE_SHOPPINGCART");
         }
         return  "order-success";
     }
