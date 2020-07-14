@@ -82,7 +82,7 @@ public class CartController {
     }
 
     @RequestMapping("/add")
-    public  void     add(HttpServletResponse response, HttpServletRequest request, CartItem cartItem){
+    public void add(HttpServletResponse response, HttpServletRequest request, CartItem cartItem){
         System.out.println(cartItem.getGoodsid());
         String email =(String) request.getSession().getAttribute("email");
         int userId = userService.findUserIdByGoodsId(cartItem.getGoodsid());

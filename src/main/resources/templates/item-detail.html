@@ -178,10 +178,11 @@
         <div class="lister-info">
             <strong id="user_name"></strong>    <!--用户名-->
             <hr>
-            <span><i class="fa fa-phone ui-text-warn"></i> <em id="user_phone"></em></span> <!--用户电话-->
-<!--            <span><i class="fa fa-map-marker ui-text-success"></i> <em>10100, 台湾</em></span>-->
-<!--            <span><i class="fa fa-globe ui-text-info"></i> <a href="#">www.example.com</a></span>-->
-            <span><i class="fa fa-envelope-o ui-text-danger"></i> <a href="mailto:megan@example.com" id="user_email"></a></span>    <!--用户邮箱-->
+                <span><i class="fa fa-phone ui-text-warn"></i> <em id="user_phone"></em></span> <!--用户电话-->
+    <!--            <span><i class="fa fa-map-marker ui-text-success"></i> <em>10100, 台湾</em></span>-->
+    <!--            <span><i class="fa fa-globe ui-text-info"></i> <a href="#">www.example.com</a></span>-->
+                <span><i class="fa fa-envelope-o ui-text-danger"></i> <a href="mailto:megan@example.com" id="user_email"></a></span>    <!--用户邮箱-->
+                <input type="hidden" id="goodsid">
             <hr>
         </div>
         <div class="contact-lister">
@@ -237,6 +238,32 @@
                     }
                 });
             }
+        }
+
+        /*商品详情界面，加入购物车功能*/
+        function addCart(){
+            var goodsId = window.location.search.split("=")[1];
+            $.ajax({
+                type: 'POST',
+                url: "/add",
+                data: {
+                    "goodsid" : goodsId
+                },
+                success: function () {
+                    layui.use(['layer','form'],function () {
+                        var  layer = layui.layer,
+                            form = layui.form;
+                        layer.msg("加入购物车成功！")
+                    })
+                },
+                error: function () {
+                    layui.use(['layer','form'],function () {
+                        var  layer = layui.layer,
+                            form = layui.form;
+                        layer.msg("加入购物车失败！")
+                    })
+                }
+            })
         }
     </script>
 </div>
@@ -301,7 +328,6 @@
         window.onload = function () {
             init();
         }
-        var goodsId;
 
         function init() {
             //获取到商品的id
@@ -314,7 +340,6 @@
                 success: function (data) {
                     console.log("接收到的商品id："+ goodId);
                     //log内容不允许加字符拼接，会出现转换问题。切记
-                    console.log(data);
                     //返回的data是一个数组，data[0]获取的是较多JSON对象中的第一个。
                     var username = $("#user_name").html(data[0].username);   //用户名
                     var userphone = $("#user_phone").html(data[0].phone);//用户联系方式
@@ -324,33 +349,8 @@
                     var goodPrice = $("#good_price").html('$'+data[0].price);  //商品价格
                     var goodDescribed = $("#good_described").html(data[0].described);//商品描述
                     var sellmassage = $("#sellmassage").html(data[0].sellmassage);//卖家留言
-                    goodsId = data[0].goodsid;
                 }
             });
-            /*商品详情界面，加入购物车功能*/
-            function addCart(){
-                $.ajax({
-                    type: 'POST',
-                    url: "/shopping/add",
-                    data: {
-                        "goodsid" : goodsId
-                    },
-                    success: function () {
-                        layui.use(['layer','form'],function () {
-                            var  layer = layui.layer,
-                                form = layui.form;
-                            layer.msg("加入购物车成功！")
-                        })
-                    },
-                    error: function () {
-                        layui.use(['layer','form'],function () {
-                            var  layer = layui.layer,
-                                form = layui.form;
-                            layer.msg("加入购物车失败！")
-                        })
-                    }
-                })
-            }
         }
         /*用来把时间戳显示为整个日期格式   传来的时间戳是经过截取的，多了3个0*/
         function getLocalTime(timestamp) {
