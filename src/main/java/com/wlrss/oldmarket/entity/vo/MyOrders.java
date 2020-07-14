@@ -23,7 +23,7 @@ import java.util.Date;
 public class MyOrders {
 
     private String goodsName;
-    private Date dateDown;
+    private Date date;
     private String email;
     private String orderNo;
     private String status;

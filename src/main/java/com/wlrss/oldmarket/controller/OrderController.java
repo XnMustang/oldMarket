@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -93,18 +94,9 @@ public class OrderController {
         return "my-sales::div1";
     }
 
-    /**
-     * 根据时间查询
-     * @param time1
-     * @param time2
-     * @param session
-     * @param model
-     * @return
-     */
     @RequestMapping("/findTimeOrder")
     public String findTimeOrder(String time1,String time2,HttpSession session,Model model){
         int userId = getUserId(session);
-        System.out.println("获取到的时间：" + time1 +"====" + time2);
 
         List<MyOrders> timeOrder = ordersDetailService.findTimeOrder(userId,time1, time2);
         System.out.println("根据时间查询的订单：");

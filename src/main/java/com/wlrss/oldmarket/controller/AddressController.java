@@ -24,10 +24,11 @@ public class AddressController {
     @RequestMapping("/updateAccept")
     public String updateAcceptAddress(Integer acceptid,Integer userid){
         System.out.println("修改为默认的收货人id=="+acceptid);
+        //找到当前默认的收货地址(根据状态为1找默认,会有问题,其他用户的默认也会找到)
         Address address=addressService.findDefaultAccept(userid);
-
+        //根据当前默认地址的id,修改当前默认地址状态为0
         addressService.updateAccept(address.getAcceptid());
-
+        //要成为默认的状态改为1
         addressService.updateAccept(acceptid);
 
         return "dash-profile";

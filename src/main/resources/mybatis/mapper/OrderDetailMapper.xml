@@ -5,18 +5,19 @@
 <mapper namespace="com.wlrss.oldmarket.mapper.OrderDetailMapper">
 
     <select id="findAllOrdersDetail" resultType="myOrders">
-       SELECT g.`goodsname`,o.`date_down`,u.`email`,o.`orderno`,g.`price`,od.`nums`,(g.`price` * od.`nums`) totalPrice,o.`status`
-        FROM user u, goods g,order_details od,orders o
-        WHERE u.`id` = o.`userid` AND o.`id` = od.`ordersid` AND g.`goodsid` = od.`goodsid`
-        AND u.`id` = #{userId}
+       SELECT g.`goodsname`,o.`date_down`,u.`email`,o.`orderno`,o.`status`,
+       g.`price`,od.`nums`,(g.`price` * od.`nums`) totalPrice
+        FROM user u, goods g, order_details od, orders o
+        WHERE od.`goodsid` = g.`goodsid` AND od.`ordersid` = o.`id`
+        AND g.`userid` = u.`id` AND u.`id` = #{userId}
     </select>
 
     <select id="findAllOptionCondition" resultType="myOrders">
         SELECT g.`goodsname`,o.`date_down`,u.`email`,o.`orderno`,o.`status`,g.`price`,od.`nums`,(g.`price` * od.`nums`) totalPrice
         FROM user u, goods g, order_details od, orders o
         <where>
-            u.`id` = o.`userid` AND o.`id` = od.`ordersid` AND g.`goodsid` = od.`goodsid`
-            AND u.`id` = #{userId}
+            od.`goodsid` = g.`goodsid` AND od.`ordersid` = o.`id`
+            AND g.`userid` = u.`id` AND u.`id` = #{userId}
             <if test="flag == false and orderNameOrderNum !='' and orderNameOrderNum != null">
                 and g.`goodsname` LIKE concat('%',#{orderNameOrderNum},'%')
             </if>
@@ -35,12 +36,12 @@
         FROM user u, goods g, order_details od, orders o
         <where>
             <if test="optionValue == 0">
-                u.`id` = o.`userid` AND o.`id` = od.`ordersid` AND g.`goodsid` = od.`goodsid`
-                AND u.`id` = #{userId}
+                and od.`goodsid` = g.`goodsid` AND od.`ordersid` = o.`id`
+                AND g.`userid` = u.`id` AND u.`id` = #{userId}
             </if>
             <if test="optionValue != 0">
-                u.`id` = o.`userid` AND o.`id` = od.`ordersid` AND g.`goodsid` = od.`goodsid`
-                AND u.`id` = #{userId}
+                and od.`goodsid` = g.`goodsid` AND od.`ordersid` = o.`id`
+                AND g.`userid` = u.`id` AND u.`id` = #{userId}
                 and o.`status` = #{optionValue}
             </if>
         </where>
@@ -49,11 +50,28 @@
     <select id="findTimeOrder" resultType="myOrders">
         SELECT g.`goodsname`,o.`date_down`,u.`email`,o.`orderno`,o.`status`,g.`price`,od.`nums`,(g.`price` * od.`nums`) totalPrice
         FROM user u, goods g, order_details od, orders o
-        WHERE  u.`id` = o.`userid` AND o.`id` = od.`ordersid` AND g.`goodsid` = od.`goodsid`
-        AND u.`id` = #{userId}
-        AND o.`date_down` &gt; #{time1} AND o.`date_down` &lt; #{time2}
+        WHERE od.`goodsid` = g.`goodsid` AND od.`ordersid` = o.`id`
+        AND g.`userid` = u.`id` AND u.`id` = 1
+        AND o.`date_down` &gt; "2020-06-01" AND o.`date_down` &lt; "2020-07-02";
     </select>
 
+<!--    <resultMap id="orderDetailUser" type="goods">-->
+<!--        <id property="goodsid" column="goodsid"/>-->
+<!--        <result property="goodsname" column="goodsname"/>-->
+<!--        <result property="price" column="price"/>-->
+<!--        <result property="described" column="described"/>-->
+<!--        <result property="goodsimg" column="goodsimg"/>-->
+<!--        <result property="date_up" column="date"/>-->
+<!--        <result property="sellmassage" column="sellmassage"/>-->
+<!--        <association property="userid" javaType="User">-->
+<!--            <id property="id" column="id"></id>-->
+<!--            <result property="username" column="username"/>-->
+<!--            <result property="email" column="email"/>-->
+<!--            <result property="phone" column="phone"/>-->
+<!--            <result property="headimg" column="headimg"/>-->
+<!--        </association>-->
+<!--    </resultMap>-->
+<!--    -->
     <select id="queryOrderDetail" resultType="OrderDateilUserVo">
        SELECT u.`id`,u.`username`,u.`email`,u.`phone`,g.`goodsid`,g.`goodsname`,g.`price`, g.`described`,g.`date_up`,g.`sellmassage`
         FROM user u,goods g

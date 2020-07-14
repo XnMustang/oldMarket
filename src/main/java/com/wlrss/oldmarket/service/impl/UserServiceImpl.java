@@ -35,11 +35,14 @@ public class UserServiceImpl implements UserService {
     public List<User> searchUser(User user) {
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
        if (user.getUsername()!=""&&user.getGender()!=null){
-           queryWrapper.eq("userName",user.getUsername()).eq("gender",user.getGender());
+          // queryWrapper.eq("userName",user.getUsername()).eq("gender",user.getGender());
+           queryWrapper.like("userName",user.getUsername()).like("gender",user.getGender());
        }else if (user.getUsername()==""&&user.getGender()!=null){
-           queryWrapper.eq("gender",user.getGender());
+           //queryWrapper.eq("gender",user.getGender());
+           queryWrapper.like("gender",user.getGender());
        }else if (user.getGender()==null&&user.getUsername()!=""){
-           queryWrapper.eq("userName",user.getUsername());
+          // queryWrapper.eq("userName",user.getUsername());
+           queryWrapper.like("userName",user.getUsername());
        }else {
            queryWrapper=null;
        }

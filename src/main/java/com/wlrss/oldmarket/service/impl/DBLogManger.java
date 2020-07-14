@@ -45,5 +45,17 @@ public class DBLogManger implements ILogManager {
         return logs;
     }
 
+    @Override
+    public void deleteAllLog() {
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        HttpSession session = request.getSession();
+        String email= (String) session.getAttribute("email");
+        User user=userService.findUserByEmail(email);
+        String username=user.getUsername();
+        QueryWrapper<Log> wrapper = new QueryWrapper<>();
+        wrapper.eq("username",username);
+        logMapper.delete(wrapper);
+    }
+
 
 }

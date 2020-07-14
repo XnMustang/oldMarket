@@ -1,6 +1,8 @@
 package com.wlrss.oldmarket.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.wlrss.oldmarket.entity.User;
 import com.wlrss.oldmarket.entity.vo.MyUser;
 import com.wlrss.oldmarket.log.MyLog;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 @RequestMapping("/user")
@@ -28,13 +31,18 @@ public class UserController {
     //后台列出全部用户
     @RequestMapping(value = "getAllUser", produces = {"application/text;charset=UTF-8"})
     @ResponseBody
-    public String listAllUser(){
+    public String listAllUser(Integer limit,Integer page){
+        System.out.println("QWEQWEWQWEW"+limit+"POIOPOIO"+page);
+        PageHelper.startPage(page,limit);
+        List<User> list=userService.listAllUser();
+        PageInfo<User> pi=new PageInfo<>(list);
+        System.out.println("pageinfo"+pi);
+        System.out.println("pi.getPages()="+pi.getTotal());
         String s="{\n" +
                 "  \"code\": 0,\n" +
                 "  \"msg\": \"\",\n" +
-                "  \"count\": 1000,\n" +
-                "  \"data\":"+JSON.toJSONString(userService.listAllUser())+"}";
-        System.out.println("userLIst"+JSON.toJSONString(userService.listAllUser()));
+                "  \"count\": "+pi.getTotal()+",\n" +
+                "  \"data\":"+JSON.toJSONString(list)+"}";
         return s;
     }
 
@@ -55,12 +63,14 @@ public class UserController {
     @RequestMapping("/searchUser")
     @ResponseBody
     public String searchUser(@RequestBody User user){
-        System.out.println("searchUser..."+user);
+        PageHelper.startPage(1,10);
+        List<User> list=userService.searchUser(user);
+        PageInfo<User> pi=new PageInfo<>(list);
         String s="{\n" +
                 "  \"code\": 0,\n" +
                 "  \"msg\": \"\",\n" +
-                "  \"count\": 1000,\n" +
-                "  \"data\":"+JSON.toJSONString(userService.searchUser(user))+"}";
+                "  \"count\": "+pi.getTotal()+",\n" +
+                "  \"data\":"+JSON.toJSONString(list)+"}";
         System.out.println(s);
         return s;
     }

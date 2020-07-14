@@ -18,4 +18,6 @@ public interface ILogManager {
     void insertLog(Log param);
 
     List<Log> listLog();
+
+    void deleteAllLog();
 }

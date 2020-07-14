@@ -79,7 +79,7 @@ public class MvcConfig implements WebMvcConfigurer {
                         "/order/**",
                         "/items/**",
                         "/user/**",
-                        "/Comment/**",
+                        "/comment/**",
                         "/file",
                         "/fileUpload",
                         "/address/**",

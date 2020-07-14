@@ -159,40 +159,10 @@
                         <input type="text" id="phones" name="acceptphone"/>
                     </div>
                     <div class="add-form-group " >
-
                         <label for="ad">地址:</label>
                         <span id="test" style="cursor:pointer;">选择</span><div class="triangle"></div>
                         <input type="text" id="ad" name="address"/>
                     </div>
-
-                    <!--<div class="add-form-group">-->
-                    <!--<label for="province">省份:</label>-->
-                    <!--<select id="province" name="p">-->
-                    <!--<option value =""  selected="selected">四川</option>-->
-                    <!--</select>-->
-                    <!--</div>-->
-                    <!--<div class="add-form-group" name="c">-->
-                    <!--<label for="city">城市:</label>-->
-                    <!--<select id="city">-->
-                    <!--<option value =""  selected="selected">成都</option>-->
-                    <!--</select>-->
-                    <!--</div>-->
-                    <!--<div class="add-form-group">-->
-                    <!--<label for="county">区县:</label>-->
-                    <!--<select id="county" name="d">-->
-                    <!--<option value ="" selected="selected">高新区</option>-->
-                    <!--</select>-->
-                    <!--</div>-->
-                    <!--<div class="add-form-group">-->
-                    <!--<label for="street">街道:</label>-->
-                    <!--<select id="street" name="s">-->
-                    <!--<option value ="" selected="selected">孵化园</option>-->
-                    <!--</select>-->
-                    <!--</div>-->
-                    <!--<div class="add-form-group address-detail">-->
-                    <!--<label for="name">详细地址:</label>-->
-                    <!--<textarea id="detail" name="t"></textarea>-->
-                    <!--</div>-->
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
@@ -207,7 +177,7 @@
 <div class="content-wrapper">
 
     <!--user profile-->
-    <form action="/user/updatePersonalData" method="post" class="profile-wrapper">
+    <form action="/user/updatePersonalData" method="post" class="profile-wrapper" onsubmit="return checkData()">
         <div class="primary-info">
             <div class="user-pic">
                 <div class="pic">
@@ -264,7 +234,7 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="form-group">
                         <label for="phone">手机</label>
-                        <input class="form-control" type="tel" id="phone" name="phone" placeholder="+1 686 398689 55">
+                        <input class="form-control" type="tel" id="phone" name="phone" placeholder="请输入正确的手机号">
                     </div>
                 </div>
             </div>
@@ -352,8 +322,6 @@
     $(function () {
 
 
-
-
             $.ajax({
                 url:"/user/showPersonalData",
                 method: "post",
@@ -393,14 +361,14 @@
                         }
                     })
 
-
                     //默认地址单选框修改
                     $(".q").click(function() {
                         //alert( $(this).next().val());
                         var v=$(this).next().val();
+                        var uid=data[0].id;
                         $.ajax({
                             url:"/address/updateAccept",
-                            data:"acceptid="+v,
+                            data:{acceptid:v,userid:uid},
                             method:"post",
                             success:function () {
                                 location.reload();
@@ -433,8 +401,24 @@
 
 
     })
+    $("#phones").blur(function(){
+        var phone = $("#phones").val();
+        checkPhone(phone);
+    });
+    $("#phone").blur(function(){
+        var ph = $("#phone").val();
+        checkPhone(ph);
+    });
 
-
+    //验证手机号1开头,第二个数为3456789中一个,还有9位
+    function checkPhone(phone){
+        if(!(/^1[3456789]\d{9}$/.test(phone))){
+            alert("手机号码有误，请重填");
+            $("#phones").val(null);
+            $("#phone").val(null);
+            return false;
+        }
+    }
     function validate() {
         var pw1 = document.getElementById("pass1").value;
         var pw2 = document.getElementById("pass2").value;
@@ -455,8 +439,14 @@
         $modal_dialog.css({'margin-top': Math.max(0, ($(window).height() - $modal_dialog.height()) / 4) });
 
     });
+    function checkData() {
+        var ph = $("#phone").val();
+        if (ph==null||ph==""){
+            alert("手机号不能为空!");
+            return false;
+        }
+    }
 
- 
     //省市级联
     var data = getData();
     var address_picker;

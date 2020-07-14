@@ -1,5 +1,4 @@
 package com.wlrss.oldmarket.controller;
-
 import com.alipay.api.AlipayClient;
 import com.alipay.api.DefaultAlipayClient;
 import com.alipay.api.domain.AlipayTradeAppPayModel;
@@ -19,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-
 /**
  * @author jamesBond
  * @createTime 2020/7/4/004 10:08
@@ -35,7 +33,6 @@ public class AlipayController {
      */
     @Autowired
     OrderDetailMapper orderDetailMapper;
-
     @Autowired
     UserMapper userMapper;
 

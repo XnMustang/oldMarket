@@ -12,7 +12,6 @@ import lombok.experimental.Accessors;
 @AllArgsConstructor
 @ToString
 @Accessors(chain = true)
-@TableName(value = "message")
 public class Comment {
     private Integer id;
     private String content;

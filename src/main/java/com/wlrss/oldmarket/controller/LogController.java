@@ -21,4 +21,10 @@ public class LogController {
        return iLogManager.listLog();
 
     }
+
+    @RequestMapping("/del")
+    @ResponseBody
+    public void deleteAll(){
+        iLogManager.deleteAllLog();
+    }
 }

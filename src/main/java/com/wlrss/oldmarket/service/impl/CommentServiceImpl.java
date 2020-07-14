@@ -32,13 +32,13 @@ public class CommentServiceImpl implements CommentService {
         QueryWrapper<Comment> queryWrapper = new QueryWrapper<>();
 
         if (comment.getSelluserid()!=null){
-            queryWrapper.eq("selluserid",comment.getSelluserid());
+            queryWrapper.like("selluserid",comment.getSelluserid());
         }
         if (comment.getBuyuserid()!=null){
-            queryWrapper.eq("buyuserid",comment.getBuyuserid());
+            queryWrapper.like("buyuserid",comment.getBuyuserid());
         }
         if (comment.getGoodsid()!=null){
-            queryWrapper.eq("goodsid",comment.getGoodsid());
+            queryWrapper.like("goodsid",comment.getGoodsid());
         }
 
         return commentMapper.selectList(queryWrapper);

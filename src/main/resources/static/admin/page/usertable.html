@@ -21,7 +21,7 @@
                         <div class="layui-inline">
                             <label class="layui-form-label">用户姓名</label>
                             <div class="layui-input-inline">
-                                <input type="text" name="userName" autocomplete="off" class="layui-input">
+                                <input type="text" name="username" autocomplete="off" class="layui-input">
                             </div>
                         </div>
                         <div class="layui-inline">
@@ -88,7 +88,7 @@
                     {title: '操作', minWidth: 120, toolbar: '#currentTableBar', align: "center"}
                 ]],
                 limits: [10, 15, 20, 25, 50, 100],
-                limit: 15,
+                limit: 5,
                 page: true,
                 skin: 'line'
             });
@@ -108,7 +108,7 @@
                     }
                     , where: {
 
-                        userName:data.field.userName,
+                        username:data.field.username,
                         gender:data.field.gender
                     },
                     method: 'post',

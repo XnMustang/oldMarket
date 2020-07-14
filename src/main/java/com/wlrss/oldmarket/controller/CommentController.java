@@ -1,6 +1,8 @@
 package com.wlrss.oldmarket.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.wlrss.oldmarket.entity.Comment;
 import com.wlrss.oldmarket.log.MyLog;
 import com.wlrss.oldmarket.service.CommentService;
@@ -9,6 +11,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
+
 @Controller
 @RequestMapping("/comment")
 public class CommentController {
@@ -17,13 +22,15 @@ public class CommentController {
 
     @RequestMapping("/commentList")
     @ResponseBody
-    public String listAllComment(){
+    public String listAllComment(Integer limit,Integer page){
+        PageHelper.startPage(page,limit);
+        List<Comment> list=commentService.listAllComment();
+        PageInfo<Comment> pi=new PageInfo<>(list);
         String st="{\n" +
                 "  \"code\": 0,\n" +
                 "  \"msg\": \"\",\n" +
-                "  \"count\": 1000,\n" +
-                "  \"data\":"+JSON.toJSON(commentService.listAllComment())+"}";
-
+                "  \"count\": "+pi.getTotal()+",\n" +
+                "  \"data\":"+JSON.toJSON(list)+"}";
         return st;
     }
 
