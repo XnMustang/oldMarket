@@ -2,6 +2,7 @@ package com.wlrss.oldmarket.entity.vo;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -34,6 +35,7 @@ public class OrderDateilUserVo {
     private String goodsname;
     private BigDecimal price;
     private String described;
+    @JsonFormat(pattern = "yyyy-MM-dd hh : mm : ss")
     private Date dateUp;
     private String sellmassage;
 

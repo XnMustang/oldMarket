@@ -92,7 +92,8 @@ public class MvcConfig implements WebMvcConfigurer {
                         "/addOrder",
                         "/success",
                         "/jump/**",
-                        "/blog/**"
+                        "/blog/**",
+                        "/item-detail?id=**"
                 ).excludePathPatterns(
                         "/admin/**",
                         "/css/**",
