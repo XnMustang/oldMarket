@@ -55,7 +55,7 @@
             <!--<a href="#">价格</a>-->
             <!--<a href="#">名称</a>-->
         <!--</div>-->
-        <div class="row" style="position:absolute;left:1300px;top:450px">
+        <div class="row" style="position:absolute;left:1300px;top:480px">
             <div class="col-lg-6 col-md-6">
                 <div class="form-group">
                     <i style="position:relative;left:-100px;top:30px;color: red;font-weight: bolder">排序方式 :</i>
@@ -202,6 +202,8 @@
             data:{keyword:keyword,type:type,pageNum:nowPage,pageSize:8},
             success:function (data) {
                 console.log(data);
+               // alert("pagenum"+data.pageNum);
+
                 var v = "";
                 for (var i = 0; i < data.list.length; i++) {
 
@@ -242,7 +244,7 @@
 
                 //加载数字  1- pageCount
                 for (var i = 1; i <= pageCount; i++) {
-                    temp += "<a href=\"javascript:listGoods(" + i + ")\" class=\"current\" nowPage='" + i + "' type='num'><span><i>" + i + "</i></span></a>";
+                    temp += "<a href='javascript:void(0)' onclick=\"listGoods(" + i + ")\"  nowPage='" + i + "' type='num'><span><i>" + i + "</i></span></a>";
                 }
                 //下一页
                 temp += "<a href=\"javascript:listGoods(" + (data.pageNum + 1) + ")\"  type='downPage' nowPage='-1'><em>下一页</em>&nbsp;<i class=\"fa fa-angle-right\"></i></a>\n" +
@@ -252,15 +254,16 @@
                 $("#pageId").html(temp);
 
                 var link = document.createElement("link");
+                $("[nowPage='"+data.pageNum+"']").attr("class", "current");
 
-                $(".current").removeAttr("class", "current");
-                var a = $("[type='num']");
-
-                for (i = 0, len = a.length; i < len; i++) {
-                    if (a[i].href == window.location.href) {
-                        $(this).attr("class", "current");
-                    }
-                }
+                // $(".current").removeAttr("class", "current");
+                // var a = $("[type='num']");
+                //
+                // for (i = 0, len = a.length; i < len; i++) {
+                //     if (a[i].href == window.location.href) {
+                //         $(this).attr("class", "current");
+                //     }
+                // }
             }
         })
     }
