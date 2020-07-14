@@ -24,7 +24,7 @@ public class RegisterServiceImpl implements RegisterService {
         //发送邮件
         String subject = "欢迎注册OldMarket！！！";
         String content = "此邮件为OldMarket用户注册激活邮件！请点击下面链接完成激活操作此邮件30分钟有效!" +
-                "http://localhost:8080/activation/"+user.getEmail();
+                "http://182.92.220.1:80/activation/"+user.getEmail();
         String to = user.getEmail();
         mailService.sendSimpleMail(to,subject,content);
         userMapper.insert(user);
