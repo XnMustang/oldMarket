@@ -70,7 +70,7 @@
             </li>
 
             <li th:switch="${session.status}">
-                <a th:case="null"  th:href="@{/login}" class="ui-btn ui-btn-info">登录</a>
+                <a th:case="null"  th:href="@{/jump/login}" class="ui-btn ui-btn-info">登录</a>
                 <a th:case="'1'"  th:href="@{/logout}" class="ui-btn ui-btn-info">登出</a>
             </li>
         </ul>
