@@ -17,6 +17,7 @@ public class PhotoController {
         String allPath = FilePath+"/"+FileName;
         System.out.println("七牛云图片路径" + allPath);
 
+
         QiniuUpload qiniuUpload = new QiniuUpload();
 
         String uploadPic = qiniuUpload.UploadPic(FilePath, FileName);

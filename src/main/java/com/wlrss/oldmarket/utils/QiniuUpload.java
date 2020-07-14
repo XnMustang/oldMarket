@@ -39,7 +39,6 @@ public class QiniuUpload {
         return auth.uploadToken(bucketname);
     }
 
-
     /**
      * 这个方法是根据图片的绝对路径来保存的
      * @param FilePath      第一个参数就是图片的绝对路径

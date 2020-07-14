@@ -4,7 +4,6 @@ package com.wlrss.oldmarket.utils;
  * 存放七牛云AK和SK
  */
 public class VariableName {
-
     //    七牛AK
     public static final String accessKey = "LOkJ9geYaAo8v1S6PhveSnPIVPm889CwtJJMM57a";
     //    七牛SK
