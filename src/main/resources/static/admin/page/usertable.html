@@ -87,8 +87,8 @@
                     {field: 'goodscountyet', width: 120, title: '已上架数', sort: true},
                     {title: '操作', minWidth: 120, toolbar: '#currentTableBar', align: "center"}
                 ]],
-                limits: [10, 15, 20, 25, 50, 100],
-                limit: 5,
+                limits: [4, 8, 12],
+                limit: 4,
                 page: true,
                 skin: 'line'
             });
@@ -151,6 +151,7 @@
 
             table.on('tool(currentTableFilter)', function (obj) {
                 var data = obj.data;
+                //alert(data.id)
                 if (obj.event === 'edit') {
                     var index = layer.open({
                         title: '用户状态管理',
@@ -170,7 +171,7 @@
                                 },
                                 method: 'post',
                                 contentType: "application/json;charset=utf-8",
-                                url: '../../../user/getAllUser',
+                                url: '../../../user/getAllUser?limit=4&&page=1',
                             }, 'data');//data是默认值
 
                         }

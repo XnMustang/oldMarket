@@ -50,23 +50,28 @@ public class MyLogAdvice {
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         HttpSession session = request.getSession();
         String email= (String) session.getAttribute("email");
-        User user=userService.findUserByEmail(email);
-        String username=user.getUsername();
-        Integer userid=user.getId();
+        if (email!=null){
+            User user=userService.findUserByEmail(email);
+            String username=user.getUsername();
+            Integer userid=user.getId();
 
-        //获取参数
-        Object[] args = joinPoint.getArgs();
-        Object toJSON = JSON.toJSON(args);
-        //当前时间
-        Date date = new Date();
-        System.out.println("当前时间:"+date);
-        Log log = new Log();
-        log.setUserid(userid).setEvent(operation).setCreatedate(date).setUsername(username).setCreateday(date);
-        iLogManager.insertLog(log);
+            //获取参数
+            Object[] args = joinPoint.getArgs();
+            Object toJSON = JSON.toJSON(args);
+            //当前时间
+            Date date = new Date();
+            System.out.println("当前时间:"+date);
+            Log log = new Log();
+            log.setUserid(userid).setEvent(operation).setCreatedate(date).setUsername(username).setCreateday(date);
+            iLogManager.insertLog(log);
+            System.out.println("当前用户:"+username+"时间:"+date+"--操作:"+operation+"--参数:"+toJSON);
+        }
+        System.out.println("日志:登录错误!未找到 邮箱");
 
 
 
-        System.out.println("当前用户:"+username+"时间:"+date+"--操作:"+operation+"--参数:"+toJSON);
+
+
 
         //
 

@@ -28,9 +28,9 @@
         <label class="layui-form-label">VIP等级</label>
         <div class="layui-input-block">
             <input type="radio" name="vip" value="0" title="普通">
-            <input type="radio" name="vip" value="1" title="VIP1">
-            <input type="radio" name="vip" value="2" title="VIP2">
-            <input type="radio" name="vip" value="3" title="VIP3">
+            <input type="radio" name="vip" value="1" title="黄金会员">
+            <input type="radio" name="vip" value="2" title="铂金会员">
+            <input type="radio" name="vip" value="3" title="钻石会员">
         </div>
     </div>
 
@@ -76,7 +76,7 @@
 
     function updateUser(index) {
         //alert(window.location.search);
-        var id=window.location.search.split("=")[1].slice(0,1);
+        var id=window.location.search.split("=")[1].split("&")[0];
         $.ajax({
             url:"../../../user/updateUser?id="+id,
             type:"post",

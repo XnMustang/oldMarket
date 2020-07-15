@@ -37,11 +37,7 @@ public class ItemsController {
         PageHelper.startPage(pageNum,pageSize);//固定一页显示4条数据
         List<MyNewGoodsVo> goodList = goodsService.queryAllGoods(keyword,type);
 
-
-
         System.out.println("分页的结果goodlist："+goodList);
-
-
         PageInfo<MyNewGoodsVo> pageInfo = new PageInfo<>(goodList);
         System.out.println(pageInfo);
         String p=JSON.toJSONString(pageInfo);

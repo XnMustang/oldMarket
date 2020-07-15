@@ -1,9 +1,11 @@
 package com.wlrss.oldmarket.entity;
 
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 import lombok.experimental.Accessors;
 import org.hibernate.validator.constraints.Range;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.validation.annotation.Validated;
 
 import javax.validation.constraints.DecimalMin;
@@ -36,6 +38,10 @@ public class Goods {
     @NotEmpty(message = "商品描述不能为空")
     private String described;
     private String goodsimg;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(
+            pattern = "yyyy-MM-dd HH:mm:ss"
+    )
     private Date dateUp;
     @NotEmpty(message = "留言不能为空")
     private String sellmassage;

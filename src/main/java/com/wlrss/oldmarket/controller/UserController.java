@@ -32,7 +32,7 @@ public class UserController {
     @RequestMapping(value = "getAllUser", produces = {"application/text;charset=UTF-8"})
     @ResponseBody
     public String listAllUser(Integer limit,Integer page){
-        System.out.println("QWEQWEWQWEW"+limit+"POIOPOIO"+page);
+        System.out.println("QWEQWEWQWEW==="+limit+"POIOPOIO=="+page);
         PageHelper.startPage(page,limit);
         List<User> list=userService.listAllUser();
         PageInfo<User> pi=new PageInfo<>(list);
@@ -48,7 +48,6 @@ public class UserController {
 
 
     //后台操作用户状态
-    @MyLog("管理员修改了用户状态")
     @RequestMapping("/updateUser")
     @ResponseBody
     public void updateUser(int id,@RequestBody User user){
