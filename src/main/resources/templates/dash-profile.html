@@ -123,7 +123,7 @@
 
             <div class="form-group">
                 <label for="pass1">新密码</label>
-                <input required id="pass1" type="password" name="password1" class="form-control" >
+                <input required id="pass1" type="password" name="password1" class="form-control" onblur="checkPass()">
             </div>
             <div class="form-group">
                 <label for="pass2">确认密码</label>
@@ -176,8 +176,8 @@
 <!--content container-->
 <div class="content-wrapper">
 
-    <!--user profile-->
-    <form action="/user/updatePersonalData" method="post" class="profile-wrapper" onsubmit="return checkData()">
+    <!--user profile  enctype="multipart/form-data" 文件上传编码类型-->
+    <form action="/user/updatePersonalData" enctype="multipart/form-data" method="post" class="profile-wrapper" onsubmit="return checkData()">
         <div class="primary-info">
             <div class="user-pic">
                 <div class="pic">
@@ -419,9 +419,17 @@
             return false;
         }
     }
+    function checkPass(){
+        var pw1 = document.getElementById("pass1").value;
+        if (!(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/.test(pw1))){
+            document.getElementById("tishi").innerHTML="<font color='red'>至少8个字符，至少1个大写字母，1个小写字母和1个数字</font>";
+            $("#pass1").val(null);
+        }
+    }
     function validate() {
         var pw1 = document.getElementById("pass1").value;
         var pw2 = document.getElementById("pass2").value;
+
         if(pw1 == pw2) {
             document.getElementById("tishi").innerHTML="<font color='green'>两次密码相同</font>";
             document.getElementById("submit").disabled = false;
