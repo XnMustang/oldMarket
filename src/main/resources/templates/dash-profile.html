@@ -243,7 +243,7 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="form-group">
                         <label for="email">邮箱</label>
-                        <input class="form-control" type="email" id="email" name="email" placeholder="abc123@126.com">
+                        <input class="form-control" onblur="checkEmail()" type="email" id="email" name="email" placeholder="请输入正确的邮箱."><span id="ema"></span>
                     </div>
                 </div>
             </div>
@@ -426,6 +426,16 @@
             $("#pass1").val(null);
         }
     }
+    function checkEmail() {
+        var em = $("#email").val();
+        if (!(/^[A-Za-z0-9]+([_\.][A-Za-z0-9]+)*@([A-Za-z0-9\-]+\.)+[A-Za-z]{2,6}$/.test(em))){
+            document.getElementById("ema").innerHTML="<font color='red'>邮箱格式错误!!!</font>";
+            $("#email").val(null);
+        }else {
+            document.getElementById("ema").innerHTML="<font color='blue'>邮箱格式通过.</font>";
+        }
+
+    }
     function validate() {
         var pw1 = document.getElementById("pass1").value;
         var pw2 = document.getElementById("pass2").value;
@@ -449,10 +459,17 @@
     });
     function checkData() {
         var ph = $("#phone").val();
+        var em = $("#email").val();
+
         if (ph==null||ph==""){
             alert("手机号不能为空!");
             return false;
         }
+        if (em==null||em==""){
+            alert("邮箱不能为空!");
+            return false;
+        }
+
     }
 
     //省市级联
