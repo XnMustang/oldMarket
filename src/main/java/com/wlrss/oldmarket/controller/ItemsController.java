@@ -32,7 +32,7 @@ public class ItemsController {
                                 @RequestParam(required = false,defaultValue="1",value="pageNum")Integer pageNum,
                                 @RequestParam(required = false,defaultValue="4",value="pageSize")Integer pageSize){
 
-        System.out.println("关键字keyword={"+keyword+"}..类型type={"+type+"}pageNum={"+pageNum+"}pageSize+{"+pageSize);
+        System.out.println("关键字keyword={"+keyword+"}..类型type={"+type+"}pageNum={"+pageNum+"}pageSize={"+pageSize);
 
         PageHelper.startPage(pageNum,pageSize);//固定一页显示4条数据
         List<MyNewGoodsVo> goodList = goodsService.queryAllGoods(keyword,type);

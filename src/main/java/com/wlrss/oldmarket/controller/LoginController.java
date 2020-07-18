@@ -13,7 +13,6 @@ import com.wlrss.oldmarket.utils.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import sun.security.provider.MD5;
@@ -44,7 +43,7 @@ public class LoginController {
      * @return
      */
     @MyLog("登录了账户")
-    @RequestMapping("/MyLogin")
+    @RequestMapping("/login")
     public String login(String email, String password, Model model, HttpSession session){
         //判断 邮箱 是否存在
         if (!registerService.emailIsExist(email)){
@@ -80,7 +79,7 @@ public class LoginController {
      * @param session
      * @return
      */
-    @RequestMapping("/MyLogout")
+    @RequestMapping("/logout")
     @MyExitLog("退出了登录")
     public  String logout(HttpSession session){
         session.removeAttribute("email");

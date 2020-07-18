@@ -8,7 +8,7 @@
     <!--导航栏-->
     <nav class="site-top-nav transparent" th:fragment="navigation">
         <div class="logo">
-            <a th:href="@{/jump/main}">
+            <a href="index.html">
                 <img src="/img/logo.png" alt="">
                 <strong>二手市场</strong>
             </a>
@@ -71,7 +71,7 @@
 
             <li th:switch="${session.status}">
                 <a th:case="null"  th:href="@{/jump/login}" class="ui-btn ui-btn-info">登录</a>
-                <a th:case="'1'"  th:href="@{/MyLogout}" class="ui-btn ui-btn-info">登出</a>
+                <a th:case="'1'"  th:href="@{/logout}" class="ui-btn ui-btn-info">登出</a>
             </li>
         </ul>
         <i class="nav-toggle fa fa-bars"></i>

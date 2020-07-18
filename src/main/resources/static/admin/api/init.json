@@ -40,12 +40,6 @@
           "href": "page/table.html",
           "icon": "fa fa-window-maximize",
           "target": "_self"
-        },
-        {
-          "title": "注销",
-          "href": "http://localhost:8080/logout",
-          "icon": "fa fa-window-maximize",
-          "target": "_blank"
         }
 
 

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+﻿﻿<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <!--meta tags-->
@@ -88,7 +88,7 @@
             </div>
             <div class="forms-c">
                 <!--登录-->
-                <form th:action="@{/MyLogin}" method="post" class="login-form animated">
+                <form th:action="@{/login}" method="post" class="login-form animated">
                     <div class="form-group">
                         <div th:style="${msg==null}?'display:none;':'display:block;'" class="alert alert-danger" role="alert"><span th:text="${msg}==null?'':${msg}"></span></div>
                         <div th:style="${session.msg==null}?'display:none;':'display:block;'" class="alert alert-danger" role="alert"><span th:text="${session.msg}==null?'':${session.msg}"></span></div>
