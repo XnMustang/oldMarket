@@ -16,5 +16,5 @@ public interface LoginService {
 
     boolean checkStatus(String email);
 
-    boolean checkPwd(String ma5);
+    boolean checkPwd(String ma5,String email);
 }

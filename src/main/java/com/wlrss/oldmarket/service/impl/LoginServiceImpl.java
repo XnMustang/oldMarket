@@ -68,10 +68,10 @@ public class LoginServiceImpl implements LoginService {
      * @return
      */
     @Override
-    public boolean checkPwd(String md5) {
+    public boolean checkPwd(String md5,String email) {
         boolean p = false;
         QueryWrapper<User> queryWrapper = new QueryWrapper<User>();
-        queryWrapper.eq("password",md5);
+        queryWrapper.eq("email",email);
         User user = userMapper.selectOne(queryWrapper);
             if (md5.equals(user.getPassword())){
                 //密码正确
