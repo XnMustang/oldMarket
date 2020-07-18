@@ -32,7 +32,6 @@ public class LoginServiceImpl implements LoginService {
         return users;
     }
 
-
     /**
      * 判断邮箱是否激活 true 激活  flase 未激活
      * @param email
