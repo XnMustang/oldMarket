@@ -51,7 +51,7 @@ public class LoginController {
             if (loginService.checkStatus(email)){
                 //已经激活 验证密码
                 String md5 = MD5Util.finishMD5(password);
-               if(loginService.checkPwd(md5)){
+               if(loginService.checkPwd(md5,email)){
                    //密码正确
                    session.setAttribute("email",email);
                    session.setAttribute("status","1");
