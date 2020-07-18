@@ -5,6 +5,8 @@ import com.wlrss.oldmarket.entity.User;
 import com.wlrss.oldmarket.entity.vo.MyOrders;
 import com.wlrss.oldmarket.entity.vo.OrderDateilUserVo;
 
+import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -56,4 +58,20 @@ public interface OrdersDetailService {
      * @return
      */
     List<OrderDateilUserVo> queryOrderDetail(Integer goodId);
+
+    /**
+     * 执行商品添加
+     * @param goodsId       商品id
+     * @param goodsName     名称
+     * @param goodsPrice    价格
+     * @param goodsDescribed 描述
+     * @param imgName       图片
+     * @param userId        谁添加的
+     * @param goodsTime     添加时间
+     * @param status        状态
+     * @param nums          数量
+     * @return
+     */
+    int addGoods(int goodsId, String goodsName, BigDecimal goodsPrice, String goodsDescribed, String imgName, int userId, Date goodsTime,String messageGoods, int status, int nums);
+
 }

@@ -6,6 +6,9 @@ import com.wlrss.oldmarket.service.OrdersDetailService;
 import com.wlrss.oldmarket.entity.vo.MyOrders;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 
@@ -81,5 +84,23 @@ public class OrdersDetailServiceImpl implements OrdersDetailService {
     @Override
     public  List<OrderDateilUserVo> queryOrderDetail(Integer goodId) {
         return orderDetailMapper.queryOrderDetail(goodId);
+    }
+
+    /**
+     * 添加商品
+     * @param goodsId       商品id
+     * @param goodsName     名称
+     * @param goodsPrice    价格
+     * @param goodsDescribed 描述
+     * @param imgName       图片
+     * @param userId        谁添加的
+     * @param goodsTime     添加时间
+     * @param status        状态
+     * @param nums          数量
+     * @return
+     */
+    @Override
+    public int addGoods(int goodsId, String goodsName, BigDecimal goodsPrice, String goodsDescribed, String imgName, int userId, Date goodsTime, String messageGoods,int status, int nums) {
+        return orderDetailMapper.addGoods(goodsId,goodsName,goodsPrice,goodsDescribed,imgName,userId,goodsTime,messageGoods,status,nums);
     }
 }

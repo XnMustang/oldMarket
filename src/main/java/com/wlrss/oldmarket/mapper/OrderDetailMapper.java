@@ -3,9 +3,12 @@ package com.wlrss.oldmarket.mapper;
 import com.wlrss.oldmarket.entity.Goods;
 import com.wlrss.oldmarket.entity.vo.MyOrders;
 import com.wlrss.oldmarket.entity.vo.OrderDateilUserVo;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -60,4 +63,21 @@ public interface OrderDetailMapper {
      * @return
      */
     List<OrderDateilUserVo> queryOrderDetail(Integer goodId);
+
+    /**
+     * 添加商品
+     * @param goodsId
+     * @param goodsName
+     * @param goodsPrice
+     * @param goodsDescribed
+     * @param imgName
+     * @param userId
+     * @param goodsTime
+     * @param status
+     * @param nums
+     * @return
+     */
+    @Insert("INSERT INTO goods (goodsid,goodsname,price,described,goodsimg,userid,date_up,sellmassage,status,nums) VALUES(#{goodsId},#{goodsName},#{goodsPrice},#{goodsDescribed},#{imgName},#{userId},#{goodsTime},#{messageGoods},#{status},#{nums})")
+    int addGoods(int goodsId, String goodsName, BigDecimal goodsPrice, String goodsDescribed, String imgName, int userId, Date goodsTime,String messageGoods, int status, int nums);
+
 }

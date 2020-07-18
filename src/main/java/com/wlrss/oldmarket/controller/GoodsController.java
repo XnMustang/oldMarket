@@ -5,14 +5,16 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.wlrss.oldmarket.entity.Goods;
 import com.wlrss.oldmarket.mapper.GoodsMapper;
+import com.wlrss.oldmarket.service.OrdersDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.constraints.NotEmpty;
+import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -21,6 +23,9 @@ public class GoodsController {
 
     @Autowired
     GoodsMapper goodsMapper;
+
+    @Autowired
+    OrdersDetailService ordersDetailService;
 
     static Integer flag = 1;
 
@@ -99,6 +104,49 @@ public class GoodsController {
         model.addAttribute("records",records);
         model.addAttribute("goodsIPage",goodsIPage);
         return "search-results";
+    }
+
+    @RequestMapping("/addGoods")
+    @ResponseBody
+    public String addGoods(String goodsName, BigDecimal goodsPrice, String goodsDescribed, String goodsMessage, HttpSession session){
+        System.out.println("接收到的参数：" + goodsName+","+goodsPrice+","+goodsDescribed+","+goodsMessage);
+
+        /**
+         * 添加商品所需要的参数：
+         *  商品id,名称，价格，描述，img，哪个用户上传的，上传时间，卖家留言信息，状态，数量
+         */
+        int goodsId = 0;
+        String imgName = goodsName + "img";
+        String email = (String) session.getAttribute("email");
+        int userId = ordersDetailService.findUserIdByEmail(email);
+        Date goodsTime = new Date();
+        int status = 1;
+        int nums = 0;
+        String messageGoods = "";
+
+        /**
+         * 执行商品添加
+         * @param goodsId       商品id
+         * @param goodsName     名称
+         * @param goodsPrice    价格
+         * @param goodsDescribed 描述
+         * @param imgName       图片
+         * @param userId        谁添加的
+         * @param goodsTime     添加时间
+         *                      卖家留言
+         * @param status        状态
+         * @param nums          数量
+         * @return
+         */
+        int addResult = ordersDetailService.addGoods(goodsId,goodsName,goodsPrice,goodsDescribed,imgName,userId,goodsTime,messageGoods,status,nums);
+        if(addResult > 0){
+            //添加成功，刷新页面
+            System.out.println("添加成功！");
+        }else {
+            //添加失败！
+            System.out.println("添加失败！");
+        }
+        return "ok";
     }
 
 }
