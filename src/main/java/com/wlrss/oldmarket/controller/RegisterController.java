@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  * 用户注册，邮箱验证
@@ -23,7 +24,7 @@ public class RegisterController {
     /**
      * 用户注册
      */
-    @RequestMapping(value = "/register")
+    @RequestMapping(value = "/register",method = RequestMethod.POST)
     @MyLog("注册新用户")
     public String userRegister(String email , String password, String rePassword, Model model){
 
