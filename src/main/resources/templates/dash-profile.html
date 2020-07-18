@@ -409,6 +409,15 @@
         var ph = $("#phone").val();
         checkPhone(ph);
     });
+    $("#username").blur(function () {
+        var u=$("#username").val();
+        if (u==null||u==""){
+            alert("用户名不能为空!");
+           // $("#username").focus();
+
+        }
+
+    })
 
     //验证手机号1开头,第二个数为3456789中一个,还有9位
     function checkPhone(phone){
@@ -449,7 +458,7 @@
             document.getElementById("submit").disabled = true;
         }
     }
-
+        //模态框位置
     $('#myModal').on('show.bs.modal', function(){
         var $this = $(this);
         var $modal_dialog = $this.find('.modal-dialog');
@@ -460,6 +469,7 @@
     function checkData() {
         var ph = $("#phone").val();
         var em = $("#email").val();
+        var u=$("#username").val();
 
         if (ph==null||ph==""){
             alert("手机号不能为空!");
@@ -469,6 +479,11 @@
             alert("邮箱不能为空!");
             return false;
         }
+        if (u==null||u==""){
+            alert("用户名不能为空!");
+            return false;
+        }
+
 
     }
 

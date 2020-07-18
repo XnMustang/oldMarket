@@ -162,6 +162,7 @@
                         area: ['100%', '100%'],
                         content: '../page/table/useredit.html?id='+data.id+"&status="+data.status+"&vip="+data.vip,
                         end:function(){
+                            location.reload();
                             table.reload('currentTableId', {//testReload是组件名称,表格名
                                 page: {//page参数是指重新刷新后从第几页开始
                                     curr: 1 //重新从第 1 页开始
@@ -171,7 +172,7 @@
                                 },
                                 method: 'post',
                                 contentType: "application/json;charset=utf-8",
-                                url: '../../../user/getAllUser?limit=4&&page=1',
+                                url: '../../../user/getAllUser',
                             }, 'data');//data是默认值
 
                         }
