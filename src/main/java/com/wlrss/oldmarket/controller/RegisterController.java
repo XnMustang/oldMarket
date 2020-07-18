@@ -41,7 +41,7 @@ public class RegisterController {
                             setGoodscount(0).setGoodscountyet(0).setEmail(email).setPassword(md5);
                     //存入数据库
                     registerService.addUser(user);
-                    return "redirect:/";
+                    return "redirect:/index.html";
                 }else {
                     //两次密码不一致
                     model.addAttribute("msg","两次密码不一致");
