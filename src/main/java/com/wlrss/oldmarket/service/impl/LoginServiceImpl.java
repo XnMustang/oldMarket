@@ -72,8 +72,7 @@ public class LoginServiceImpl implements LoginService {
         AtomicBoolean p = new AtomicBoolean(false);
         QueryWrapper<User> queryWrapper = new QueryWrapper<User>();
         queryWrapper.eq("password",md5);
-        List<User> users = userMapper.selectList(queryWrapper);
-        users.forEach(user -> {
+        User user = userMapper.selectOne(queryWrapper);
             if (md5.equals(user.getPassword())){
                 //密码正确
                 p.set(true);
@@ -82,8 +81,8 @@ public class LoginServiceImpl implements LoginService {
                 //密码不正确
                 p.set(false);
             }
-        });
         return p.get();
-    }
+        }
+
 
 }
