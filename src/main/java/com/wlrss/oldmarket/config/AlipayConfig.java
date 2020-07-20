@@ -15,10 +15,10 @@ public class AlipayConfig {
     public static String alipay_public_key = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmSYGw5z3mFTB1dX/S9vW/5HNfYJYtk2xNKCBRHlIClnBDOUHN1pKOWlvDQhEKi5BKkbgEoxDirdA3LVXOkOIcNxA6tWKDU/918NXobnuIUCJkIVv/Ct7EYD/mmtVC3ZlP2zAsE4ryK8EwC927ai4j7OfPy/mZGI/1J+PNGPWCK0WtXCumAXphHf/+LQSzPxfs0QejhO9AKIp3ltpfjZfCGqFYDmveBcHy7x1i+23SsiFkCs9VHoyF9UcZmhbetLyhmDeyrjD3zuBc5bGAa0YVzlALsf8XCa3veA/81C792nK7ibsoAZRP1bDg0ATFD8wvxytW2FT4RBPzNystnyK9wIDAQAB";
 
     // 服务器异步通知页面路径
-    public static String notify_url = "http://182.92.220.1:80/success";
+    public static String notify_url = "http://localhost:8080/success";
 
     // 页面跳转同步通知页面路径
-    public static String return_url = "http://182.92.220.1:80/success";
+    public static String return_url = "http://localhost:8080/success";
 
     // 签名方式
     public static String sign_type = "RSA2";
