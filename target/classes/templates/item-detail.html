@@ -1,0 +1,370 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!--meta tags-->
+    <meta charset="UTF-8">
+    <meta name="description" content="Services Listing HTML5 CSS3 template">
+    <meta name="keywords" content="HTML,CSS,XML,JavaScript, services, listing">
+    <meta name="author" content="Ui-DesignLab">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--end meta tags-->
+    <title>二手交易市场</title>
+    <!--stylesheets-->
+    <link rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/vendor/css/animate.min.css">
+    <link rel="stylesheet" href="/vendor/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/vendor/OwlCarousel2-2.2.1/owl.carousel.min.css">
+    <link rel="stylesheet" href="/vendor/OwlCarousel2-2.2.1/owl.theme.green.min.css">
+    <link rel="stylesheet" href="/vendor/perfect-scrollbar/css/perfect-scrollbar.min.css">
+    <link rel="stylesheet" href="/css/app.css">
+    <link rel="stylesheet" href="layui/css/layui.css">
+    <!--end stylesheets-->
+    <!--google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Cairo%7CNosifer%7CPoppins%7CQuicksand:700%7CRaleway%7CTangerine%7CHind+Vadodara" rel="stylesheet">
+    <!--end google fonts-->
+
+    <script th:src="@{/layui/layui.js}"></script>
+    <script th:src="@{/js/jquery-2.2.3.min.js}"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        let webSocket = null;
+
+        if ('WebSocket' in window) {
+            webSocket = new WebSocket("ws://http://182.92.220.1:80/ws");
+        } else {
+            console.log('webSocket not support')
+        }
+
+        webSocket.onopen = function () {
+            show("已连接");
+        };
+
+        webSocket.onmessage = function (event) {
+            $('#message').append('<div class="ms">' + event.data + '</div>')
+        };
+
+        webSocket.onclose = function () {
+            show("已关闭");
+        };
+
+        webSocket.onerror = function () {
+            show("连接错误");
+        };
+
+        function closeWebSocket() {
+            webSocket.close();
+        }
+
+        function show(innerHTML) {
+            document.getElementById('status').innerHTML = innerHTML;
+        }
+
+        function send() {
+            let message = document.getElementById('ta').value;
+            webSocket.send(message);
+            document.getElementById('ta').value = '';
+        }
+
+        window.onbeforeunload = function () {
+            webSocket.close();
+        };
+
+    </script>
+
+</head>
+<body>
+
+<!--导航栏-->
+<div class="site-top-nav" th:insert="~{commons/commons::navigation}">
+</div>
+
+<!--item-->
+<div class="detail-wrapper">
+    <!--item details-->
+    <div class="item-details">
+        <img src="/img/items/item-detail.jpg" alt="">
+        <div class="title-price">
+            <strong class="titlet" id="goods_name"></strong><!--商品名称-->
+            <span>
+                价格: <strong class="price" id="good_price"></strong> <!--商品价格-->
+            </span>
+        </div>
+
+        <div class="item-status">
+            <div class="status-box">
+                <strong>上架时间</strong>
+                <span id="goods_date"></span>   <!--商品上架时间-->
+            </div>
+            <div class="status-box">
+                <strong>地址</strong>
+                <span><i class="fa fa-map-marker"></i> 10100, 台湾</span>
+            </div>
+            <div class="status-box"></div>
+        </div>
+
+        <p class="description">
+            <strong>物品说明</strong>
+            <br>
+            <span id="good_described"></span> <!--商品描述-->
+            <a href="#" class="show-more"><i class="fa fa-angle-double-down"></i></a>
+        </p>
+        <div class="item-features">
+            <div class="feat">
+                <i class="fa fa-check-circle ui-text-info"></i>
+                <span>高端</span>
+            </div>
+            <div class="feat">
+                <i class="fa fa-check-circle ui-text-info"></i>
+                <span>大气</span>
+            </div>
+            <div class="feat">
+                <i class="fa fa-check-circle ui-text-info"></i>
+                <span>上档次</span>
+            </div>
+            <div class="feat">
+                <i class="fa fa-check-circle ui-text-info"></i>
+                <span>省油</span>
+            </div>
+        </div>
+
+        <div class="owner-msg">
+            <strong>卖家留言</strong>
+            <p>
+                <i class="fa fa-quote-left ui-text-success"></i>
+                <span id="sellmassage"> <!--卖家留言-->
+
+                </span>
+                <i class="fa fa-quote-right ui-text-success"></i>
+            </p>
+            <br>
+            <div>
+                <button type="button" class="btn btn-success" onclick="addCart()" style="margin-left: 700px">加入购物车</button>
+            </div>
+        </div>
+        <hr>
+        <div class="similar-items">
+            <strong>相关产品</strong>
+            <div>
+                <div class="rel-item">
+                    <img src="/img/item2.jpg" alt="">
+                    <a href="item-detail.html">八手捷达</a>
+                </div>
+                <div class="rel-item">
+                    <img src="/img/item3.jpg" alt="">
+                    <a href="item-detail.html">九手奥拓</a>
+                </div>
+                <div class="rel-item">
+                    <img src="/img/item5.jpg" alt="">
+                    <a href="item-detail.html">99款桑坦纳</a>
+                </div>
+                <div class="rel-item">
+                    <img src="/img/item6.jpg" alt="">
+                    <a href="item-detail.html">兰博</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--end item details-->
+
+    <!--item aside details-->
+    <div class="item-detail-aside">
+        <div class="listed-by">
+            <div class="lister">
+                <img src="/img/lister.jpg" alt="">
+            </div>
+        </div>
+        <div class="lister-info">
+            <strong id="user_name"></strong>    <!--用户名-->
+            <hr>
+                <span><i class="fa fa-phone ui-text-warn"></i> <em id="user_phone"></em></span> <!--用户电话-->
+    <!--            <span><i class="fa fa-map-marker ui-text-success"></i> <em>10100, 台湾</em></span>-->
+    <!--            <span><i class="fa fa-globe ui-text-info"></i> <a href="#">www.example.com</a></span>-->
+                <span><i class="fa fa-envelope-o ui-text-danger"></i> <a href="mailto:megan@example.com" id="user_email"></a></span>    <!--用户邮箱-->
+                <input type="hidden" id="goodsid">
+            <hr>
+        </div>
+        <div class="contact-lister">
+            <form action="#" method="post">
+                <div class="form-group">
+                    <label for="msg">留言:</label>
+                    <textarea id="msg" name="msg" placeholder="请留言..." rows="6" class="form-control"></textarea>
+                </div>
+                <div class="form-group">
+                    <button class="ui-btn ui-btn-info form-control" type="button" onclick="goodsMessage()">发送 <i class="fa fa-send-o"></i></button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!--end item aside details-->
+    <script>
+        //发送商品留言给商家
+        function goodsMessage() {
+            var messageInfo = $("#msg").val();  //留言内容
+            var goodId = window.location.search.split("=")[1];  //获取到商品的id
+
+            if (messageInfo == null || messageInfo == ""){
+                layui.use(['layer','form'],function () {
+                    var  layer = layui.layer,
+                        form = layui.form;
+                    layer.msg("留言内容为空！")
+                })
+            }else {
+                $.ajax({
+                    type: "post",
+                    url: "/goodsMessage/sendMessage",
+                    data: {
+                        "messageInfo" : messageInfo,
+                        "goodsId" : goodId,
+                    },
+                    success: function (data) {
+                        console.log("来自商品的留言：" + data);
+                        layui.use(['layer','form'],function () {
+                            var  layer = layui.layer,
+                                form = layui.form;
+                            layer.msg("留言成功！");
+                            setTimeout(function(){
+                                location.reload();  //刷新当前页面
+                            }, 2000);
+                        })
+                    },
+                    error: function () {
+                        layui.use(['layer','form'],function () {
+                            var  layer = layui.layer,
+                                form = layui.form;
+                            layer.msg("请先登录在留言吧！")
+                        })
+                    }
+                });
+            }
+        }
+
+        /*商品详情界面，加入购物车功能*/
+        function addCart(){
+            var goodsId = window.location.search.split("=")[1];
+            $.ajax({
+                type: 'POST',
+                url: "/add",
+                data: {
+                    "goodsid" : goodsId
+                },
+                success: function () {
+                    layui.use(['layer','form'],function () {
+                        var  layer = layui.layer,
+                            form = layui.form;
+                        layer.msg("加入购物车成功！")
+                    })
+                },
+                error: function () {
+                    layui.use(['layer','form'],function () {
+                        var  layer = layui.layer,
+                            form = layui.form;
+                        layer.msg("加入购物车失败！")
+                    })
+                }
+            })
+        }
+    </script>
+</div>
+<!--end item-->
+
+<!--chat box-->
+<a href="#" class="chat-box-btn"><i class="fa fa-comment icon-sw"></i></a>
+
+<!--咨询窗口-->
+<div class="chat-box">
+    <div class="container" style="padding: 20px">
+        <div class="status">
+            连接状态：<span id="status">未连接</span>
+            <a href="javascript:void(0)" onclick="closeWebSocket()">关闭连接</a>
+        </div>
+        <hr>
+        <div id="message" style="min-height: 200px; margin: 20px 0 10px">
+
+        </div>
+        <hr>
+        <div class="text">
+            <textarea name="" id="ta" cols="37" rows="6"></textarea>
+            <br>
+            <button onclick="send()">发送</button>
+        </div>
+    </div>
+
+</div>
+<!--end chat box-->
+
+<!--page loader-->
+<div class="page-loader">
+    <div class="loader"><img src="/img/logo.png" alt=""></div>
+</div>
+<!--end page loader-->
+
+<div class="bottom-strip">
+    <div class="copyright" style="margin: 0 auto">
+        <i class="fa fa-copyright"></i>
+        <span>二手交易平台. 保留所有解释权利</span>
+    </div>
+</div>
+
+<!--scripts-->
+<script src="/vendor/js/jquery-3.2.1.min.js"></script>
+<script src="/vendor/js/popper.js"></script>
+<script src="/vendor/js/bootstrap.min.js"></script>
+<script src="/vendor/js/alertify.js"></script>
+<script src="/vendor/js/jquery.knob.min.js"></script>
+<!--[if IE]>
+<script type="text/javascript" src="/vendor/js/excanvas.js"></script><![endif]-->
+<script src="/vendor/js/summernote-bs4.min.js"></script>
+<script src="/vendor/js/dropzone.js"></script>
+<script src="/vendor/OwlCarousel2-2.2.1/owl.carousel.min.js"></script>
+<script src="/vendor/perfect-scrollbar/js/perfect-scrollbar.jquery.min.js"></script>
+<script src="/vendor/js/typed.js"></script>
+<script src="/js/app.js"></script>
+<!--end scripts-->
+
+<script>
+    $(function () {
+        window.onload = function () {
+            init();
+        }
+
+        function init() {
+            //获取到商品的id
+            var goodId = window.location.search.split("=")[1];
+            //初始化查询当前页面所有数据。通过商品id联合user表
+            $.ajax({
+                type: "get",
+                url: "/orderDetail/queryOrderDetail/"+goodId,
+                dataType: "json",
+                success: function (data) {
+                    console.log("接收到的商品id："+ goodId);
+                    //log内容不允许加字符拼接，会出现转换问题。切记
+                    //返回的data是一个数组，data[0]获取的是较多JSON对象中的第一个。
+                    var username = $("#user_name").html(data[0].username);   //用户名
+                    var userphone = $("#user_phone").html(data[0].phone);//用户联系方式
+                    var userEmail = $("#user_email").html(data[0].email);//用户邮箱
+                    var goodsName = $("#goods_name").html(data[0].goodsname);//商品名称
+                    var goodDate = $("#goods_date").html(getLocalTime(data[0].dateUp.toString().substring(0,10)));//商品时间
+                    var goodPrice = $("#good_price").html('$'+data[0].price);  //商品价格
+                    var goodDescribed = $("#good_described").html(data[0].described);//商品描述
+                    var sellmassage = $("#sellmassage").html(data[0].sellmassage);//卖家留言
+                }
+            });
+        }
+        /*用来把时间戳显示为整个日期格式   传来的时间戳是经过截取的，多了3个0*/
+        function getLocalTime(timestamp) {
+            var date = new Date(timestamp * 1000);//时间戳为10位需*1000，时间戳为13位的话不需乘1000
+            Y = date.getFullYear() + '-';
+            M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+            D = date.getDate() + ' ';
+            h = date.getHours() + ':';
+            m = date.getMinutes() + ':';
+            s = date.getSeconds();
+            return Y+M+D+h+m+s;
+        }
+    })
+</script>
+
+</body>
+</html>

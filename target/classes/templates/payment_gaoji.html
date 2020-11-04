@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <!--meta tags-->
+
+    <meta charset="UTF-8">
+    <meta name="description" content="Services Listing HTML5 CSS3 template">
+    <meta name="keywords" content="HTML,CSS,XML,JavaScript, services, listing">
+    <meta name="author" content="Ui-DesignLab">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--end meta tags-->
+
+    <title>二手交易市场</title>
+    <!--stylesheets-->
+    <link rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/vendor/css/animate.min.css">
+    <link rel="stylesheet" href="/vendor/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/vendor/perfect-scrollbar/css/perfect-scrollbar.min.css">
+    <link rel="stylesheet" href="/css/app.css">
+    <!--end stylesheets-->
+
+    <!--google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Cairo%7CNosifer%7CPoppins%7CQuicksand:700%7CRaleway%7CTangerine%7CHind+Vadodara" rel="stylesheet">
+    <!--end google fonts-->
+</head>
+<body>
+
+<!--导航栏-->
+
+<!--payment info-->
+<div class="payment-info-wrapper">
+    <div class="payment">
+        <h6><strong>订单信息</strong></h6>
+        <div class="payment-info-box">
+            <form action="/alipay/pay1" method="get">
+                <div class="form-group">
+                    <label>高级会员服务<i class="fa ui-text-danger"></i></label>
+                    <p class="form-control">高级会员x1</p>
+                </div>
+                <div class="form-group">
+                    <label>当前登录账户<i class="fa ui-text-danger"></i></label>
+                    <p class="form-control" th:text="${user.email}"></p>
+                </div>
+                <div class="form-group">
+                    <label>共计 <i class="fa ui-text-danger"></i></label>
+                    <p class="form-control">299</p>
+                </div>
+                <hr>
+                <div class="payment-bottom">
+                    <input type="submit" value="付款" class="ui-btn ui-btn-info-outline">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!--end payment info-->
+
+<!--chat box-->
+
+
+
+<!--end chat box-->
+
+<!--page loader-->
+<div class="page-loader">
+    <div class="loader"><img src="/img/logo.png" alt=""></div>
+</div>
+<!--end page loader-->
+
+<!--footer section-->
+<!--end footer section-->
+
+<!--scripts-->
+<script src="/vendor/js/jquery-3.2.1.min.js"></script>
+<script src="/vendor/js/popper.js"></script>
+<script src="/vendor/js/bootstrap.min.js"></script>
+<script src="/vendor/js/alertify.js"></script>
+<script src="/vendor/js/jquery.knob.min.js"></script>
+<!--[if IE]>
+<script type="text/javascript" src="/vendor/js/excanvas.js"></script><![endif]-->
+<script src="/vendor/js/summernote-bs4.min.js"></script>
+<script src="/vendor/js/dropzone.js"></script>
+<script src="/vendor/OwlCarousel2-2.2.1/owl.carousel.min.js"></script>
+<script src="/vendor/perfect-scrollbar/js/perfect-scrollbar.jquery.min.js"></script>
+<script src="/vendor/js/typed.js"></script>
+<script src="/js/app.js"></script>
+<!--end scripts-->
+
+</body>
+</html>

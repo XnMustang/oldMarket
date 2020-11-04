@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!--meta tags-->
+    <meta charset="UTF-8">
+    <meta name="description" content="Services Listing HTML5 CSS3 template">
+    <meta name="keywords" content="HTML,CSS,XML,JavaScript, services, listing">
+    <meta name="author" content="Ui-DesignLab">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--end meta tags-->
+
+    <title>二手交易市场</title>
+    <!--stylesheets-->
+    <link rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/vendor/css/animate.min.css">
+    <link rel="stylesheet" href="/vendor/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/vendor/perfect-scrollbar/css/perfect-scrollbar.min.css">
+    <link rel="stylesheet" href="/css/app.css">
+    <!--end stylesheets-->
+
+    <!--google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Cairo%7CNosifer%7CPoppins%7CQuicksand:700%7CRaleway%7CTangerine%7CHind+Vadodara" rel="stylesheet">
+    <!--end google fonts-->
+    <link rel="stylesheet" href="layui/css/layui.css">
+</head>
+<body>
+
+
+<!--导航栏-->
+<div class="site-top-nav" th:insert="~{commons/commons::navigation}">
+</div>
+
+<!--cart section-->
+<div class="cart-wrapper">
+    <div class="cart">
+        <table class="table table-responsive cart-table">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th><span class="ui-text-success">名称</span></th>
+                    <th><span class="ui-text-success">价格</span>/<span class="ui-text-success">数量</span></th>
+                    <th><span class="ui-text-success">总价</span></th>
+                </tr>
+            </thead>
+
+            <!--查询位置 -->
+            <tbody id="t">
+                <tr th:each="good:${cartItems}">
+                    <td>
+                        <div>
+                            <input type="hidden" id="good" th:value="${cartItems}">
+                            <i class="fa fa-times-circle remove-item ui-text-danger"></i>
+                            <input type="hidden"  class="goodsId" th:value="${good.getGoodsid()}">
+                            <script th:src="@{/layui/layui.js}"></script>
+                            <script th:src="@{/js/jquery-2.2.3.min.js}"></script>
+                            <script>
+                                $(".fa").click(function () {
+                                        let  val = $(this).next().val();
+                                    $.ajax({
+                                        type: 'POST',
+                                        url: "/remove",
+                                        data: {
+                                            "goodsid" :  val
+                                        },
+                                        success: function () {
+                                            layui.use(['layer','form'],function () {
+                                                var  layer = layui.layer,
+                                                    form = layui.form;
+                                                layer.msg("删除成功！")
+                                            })
+                                            setTimeout(function () {
+                                                    location.reload();
+                                            },2000)
+                                        },
+                                        error: function () {
+                                            layui.use(['layer','form'],function () {
+                                                var  layer = layui.layer,
+                                                    form = layui.form;
+                                                layer.msg("删除失败！")
+                                            })
+                                        }
+                                    })
+                                })
+                            </script>
+                                <!--图片-->
+                            <div class="item-img"><img th:src="${good.getGoodsimg()}" alt=""></div>
+                        </div>
+                    </td>
+                    <td>
+                        <strong th:text="${good.getGoodsname()}">商品名称</strong>
+                    </td>
+                    <td>
+                        <div class="price-control">
+                            <strong class="unit-price">$ <span data-price="72"  th:text="${good.getPrice()}">72.00</span></strong>
+                            <span>x</span>
+
+<!--                            <div class="quantity-change">-->
+<!--                                <span class="minus-item"><i class="fa fa-minus"></i></span>-->
+                                <!--数量-->
+                            <strong id="goodsNums" class="goodsNums"  th:text="${good.getNums()}"></strong>
+<!--                                <input class="" title="" type="text" value="1">-->
+<!--                                <span class="add-item"><i class="fa fa-plus"></i></span>-->
+<!--                            </div>-->
+
+                        </div>
+                    </td>
+                    <td>
+                        <strong>$<span class="total" >[[${good.getPrice()*good.getNums()}]]</span></strong>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="cart-bottom"  >
+
+            <div th:switch="${cartItems.size()}">
+                <p th:case="'0'" style="text-align: center; color: #dc3545;font-size: 18px">购物车空空如也！！！</p>
+                <h3 th:case="*">
+                    <span>小计:</span>$<strong class="sub-total ui-text-success" id="sum"></strong>
+                </h3>
+            </div>
+
+            <script>
+                let sum=0 ;
+            $(".total").each(function () {
+                    let a= parseInt($(this).text());
+                    sum+=a;
+            })
+            $("#sum").text(sum);
+            </script>
+
+            <p class="cart-bt-act">
+                <a href="items.html"><i class="fa fa-angle-left"></i> 继续购物</a>
+            <span   th:style="${cartItems.size()==0}?'visibility:hidden':'visibility:visible'">
+                <a href="javascript:settlement()" class="continue"  id="set" >立即支付 <i class="fa fa-angle-right"></i></a>
+        </span>
+            </p>
+
+            <script>
+
+                let a ;
+                let b;
+                let goodsId =new  Array()
+                $(".goodsId").each(function () {
+                    a = parseInt($(this).val());
+                    goodsId.push(a);
+                })
+                console.log(goodsId)
+                console.log("长度"+goodsId.length)
+
+                let goodsNums =new  Array()
+                $(".goodsNums").each(function () {
+                    b = parseInt($(this).text());
+                    goodsNums.push(b);
+                })
+                console.log(goodsNums)
+                console.log("长度"+goodsNums.length)
+
+                function settlement(){
+                 $.post("/settlement", {
+                        "goodsId" : JSON.stringify(goodsId),
+                        "goodsNums" : JSON.stringify(goodsNums),
+                    },function (data) {
+                     if(data.code==200){
+                             layui.use(['layer','form'],function () {
+                                 var  layer = layui.layer,
+                                     form = layui.form;
+                                 layer.msg("进入结算页面.........")
+                             })
+                             setTimeout(function () {
+                                 window.location.href="/payment-info.html"
+                             },1500)
+                        }else if (data.code==300) {
+                         //登录
+                            window.location.href="/login-register.html"
+                        }else if (data.code==400) {
+                         //地址
+                         layui.use(['layer','form'],function () {
+                             layer.open({
+                                 type: 2,
+                                 title : '完善收货地址',
+                                 content: ['/addAddress.html','no'],
+                                 area : ['700px','480px'],
+                                 anim : 5,
+                                 success : function () {
+                                 },
+                                 cancel : function (index,layero) {
+                                    if (confirm('确定关闭吗 ？')){
+                                        layer.close(index)
+                                    }
+                                    return false;
+                                 }
+                             });
+                         })
+                        }else {
+                             layui.use(['layer','form'],function () {
+                                 var  layer = layui.layer,
+                                     form = layui.form;
+                                 layer.msg("生成订单失败")
+                             })
+                         }
+                    }
+                )
+            }
+
+
+
+            </script>
+        </div>
+    </div>
+</div>
+<!--end cart section-->
+
+<!--chat box-->
+
+<!--咨询窗口-->
+
+<!--end chat box-->
+
+<!--page loader-->
+<div class="page-loader">
+    <div class="loader"><img src="/img/logo.png" alt=""></div>
+</div>
+<!--end page loader-->
+
+<!--footer section-->
+<div class="bottom-strip">
+    <div class="copyright" style="margin: 0 auto">
+        <i class="fa fa-copyright"></i>
+        <span>二手交易平台. 保留所有解释权利</span>
+    </div>
+</div>
+<!--end footer section-->
+
+<!--scripts-->
+<script src="/vendor/js/jquery-3.2.1.min.js"></script>
+<script src="/vendor/js/popper.js"></script>
+<script src="/vendor/js/bootstrap.min.js"></script>
+<script src="/vendor/js/alertify.js"></script>
+<script src="/vendor/js/jquery.knob.min.js"></script>
+<!--[if IE]>
+<script type="text/javascript" src="/vendor/js/excanvas.js"></script><![endif]-->
+<script src="/vendor/js/summernote-bs4.min.js"></script>
+<script src="/vendor/js/dropzone.js"></script>
+<script src="/vendor/OwlCarousel2-2.2.1/owl.carousel.min.js"></script>
+<script src="/vendor/perfect-scrollbar/js/perfect-scrollbar.jquery.min.js"></script>
+<script src="/vendor/js/typed.js"></script>
+<script src="/js/app.js"></script>
+<!--end scripts-->
+
+</body>
+</html>

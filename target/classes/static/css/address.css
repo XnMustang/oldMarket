@@ -1,0 +1,74 @@
+#address-main{
+	width: 1000px;
+	margin: 0 auto;
+	height: auto;
+}
+.i-delete{
+	position: absolute;
+	top:50%;
+	right: 20px;
+	margin-top: -10px;
+	width:50px;
+	text-align: center;
+	z-index: 3;
+	cursor: pointer;
+}
+
+#add-address{
+	width: 500px;
+	margin: 0 auto;
+}
+.add-form-group{
+	padding:5px 10px;
+	box-sizing: border-box;
+	height: 50px;
+	border-bottom: 1px solid #F1F1F1;
+	overflow: hidden;
+	
+}
+.add-form-group input,
+.add-form-group select,
+.add-form-group textarea{
+	transition: all 0.5s;
+	box-sizing: border-box;
+	border-radius: 5px;
+	border:1px solid #ccc;
+	outline: none;
+	padding:10px;
+}
+.add-form-group input:focus,
+.add-form-group select:focus,
+.add-form-group textarea:focus{
+	border: 1px solid #1E90FF;
+	box-shadow:0 0 5px #1E90FF;
+}
+
+.add-form-group label{
+	display: inline-block;
+	width: 70px;
+}
+.add-form-group input{
+	width: 400px;
+	height: 30px;
+	
+	
+}
+.add-form-group select{
+	height: 43px;
+	width: 150px;
+	padding:10px;
+}
+
+.add-form-group textarea{
+	resize: none;
+	width: 393px;
+	height: 50px;
+}
+.address-detail{
+	height: 100px;
+}
+
+/* 添加按钮 */
+.add-button{
+	text-align: center;
+}

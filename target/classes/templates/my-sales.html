@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <!--meta tags-->
+    <meta charset="UTF-8">
+    <meta name="description" content="Services Listing HTML5 CSS3 template">
+    <meta name="keywords" content="HTML,CSS,XML,JavaScript, services, listing">
+    <meta name="author" content="Ui-DesignLab">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--end meta tags-->
+    <title>二手交易市场</title>
+    <!--stylesheets-->
+    <link rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/vendor/css/animate.min.css">
+    <link rel="stylesheet" href="/vendor/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/vendor/perfect-scrollbar/css/perfect-scrollbar.min.css">
+    <link rel="stylesheet" href="/css/app.css">
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <script th:src="@{/js/jquery-2.2.3.min.js}"></script>
+    <!--end stylesheets-->
+
+    <!--google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Cairo%7CNosifer%7CPoppins%7CQuicksand:700%7CRaleway%7CTangerine%7CHind+Vadodara" rel="stylesheet">
+    <!--end google fonts-->
+
+</head>
+<body class="dashboard">
+
+<!--top navigation-->
+<div class="top-nav">
+    <i class="fa fa-bars toggle-dash-menu"></i>
+    <ul class="list-inline">
+        <li class="list-inline-item"><a href="#" class="show-search"><i class="fa fa-search"></i></a></li>
+        <li class="list-inline-item"><a href="dash-messages.html"><i class="fa fa-envelope"></i><span><em>4</em></span></a></li>
+        <li class="list-inline-item"><a href="dashboard.html"><i class="fa fa-bell"></i><span><em>8</em></span></a></li>
+        <li class="list-inline-item"><a href="dash-profile.html"><i class="fa fa-user"></i></a></li>
+    </ul>
+</div>
+<!--end top navigation-->
+
+<!--side navigation-->
+<div class="dash-side-nav-wrapper" id="dash-side-menu">
+    <div class="dash-side-nav perfect-scroll">
+        <div class="dash-logo">
+            <h5><a href="dashboard.html">二手市场</a></h5>
+            <span>仪表盘</span>
+        </div>
+        <div class="user-info">
+            <div class="dash-user-img"><img src="/img/user2.jpg" alt=""></div>
+            <div class="dash-user-info">
+                <span>当前账户:</span>
+                <strong th:text="${session.email}"></strong>
+            </div>
+            <a href="dash-profile.html" class="dash-edit-user"><i class="fa fa-pencil"></i></a>
+        </div>
+        <ul class="list-unstyled dash-menu">
+            <li><a href="/dashboard.html"><i class="fa fa-home"></i><span>主页</span></a></li>
+            <li><a href="/dash-messages.html"><i class="fa fa-envelope-o"></i><span>留言</span></a></li>
+            <li><a href="/dash-reviews.html"><i class="fa fa-star-o"></i><span>评论</span></a></li>
+            <li><a href="/dash-sales.html"><i class="fa fa-money"></i><span>销售信息</span></a></li>
+            <li><a th:href="@{/order/findAllOrder}" class="current"><i class="fa fa-money"></i><span>我的订单</span></a></li>
+            <li><a href="/dash-items.html"><i class="fa fa-user"></i><span>物品</span></a></li>
+            <li><a href="/dash-addItem.html"><i class="fa fa-plus-circle"></i><span>新增项目</span></a></li>
+            <li><a href="/dash-profile.html"><i class="fa fa-user"></i><span>个人资料</span></a></li>
+            <li><a href="/dash-accountHistory.html"><i class="fa fa-history"></i><span>账户记录</span></a></li>
+            <li><a href="/index.html"><i class="fa fa-sign-out"></i><span>回到首页</span></a></li>
+        </ul>
+    </div>
+</div>
+<!--end side navigation-->
+
+<!--search box-->
+<div class="dash-search-box" id="dash-search-box">
+    <div class="d-search-box">
+        <form action="#" method="post">
+            <div class="form-group">
+                <input required list="ui-list" class="form-control" type="search" placeholder="搜索">
+            </div>
+            <button class="btn"><i class="fa fa-search"></i></button>
+        </form>
+        <datalist id="ui-list">
+            <option>Monthly sales</option>
+            <option>Salaries</option>
+            <option>Invoice</option>
+            <option>Messages</option>
+            <option>Reviews</option>
+            <option>Active items</option>
+        </datalist>
+    </div>
+</div>
+<!--end search box-->
+
+<!--content container-->
+<div class="content-wrapper">
+    <!--sales records-->
+    <div class="sales-records">
+        <p class="st"><strong>我的订单</strong></p>
+        <form class="form-inline" th:action="@{/order/findAllOption}">
+            <div>
+                <input style="font-size: 14px" th:value="${scanfInfo}" type="text" name="orderNameOrderNum" placeholder="输入名称或订单号搜索">
+            </div>
+            <button type="submit" style="font-size: 14px">搜索</button>
+
+            <script>
+                //发送ajax请求：查看订单的状态，查询orders表中的内容，返回到视图显示
+                function statusValue() {
+                    var optionValue = $("#optionValue").val();
+                    $.ajax({
+                        type: "get",
+                        url: "/order/findStatus/"+optionValue,
+                        success: function (data) {
+                            // console.log("接收到了参数"+optionValue);
+                            dataStr = JSON.stringify(data);
+                            // console.log("接收返回的数据" + dataStr)
+                            var html = $("#div1").html(data);
+                        }
+                    });
+                }
+                //根据时间查看订单
+                function findTimeOrder() {
+                    var time1 = $("#test1").val();
+                    var time2 = $("#test2").val();
+                    $.ajax({
+                        type: "get",
+                        url: "/order/findTimeOrder",
+                        data: {
+                            time1,
+                            time2,
+                        },
+                        success: function (data) {
+                            // alert("选择的时间：" + time1 +"---" + time2)
+                            console.log("根据时间查询完成！"+JSON.stringify(data));
+                            var html = $("#div1").html(data);
+                        }
+                    });
+                }
+            </script>
+            <label style="margin-left: 100px">交易状态</label> &nbsp;
+            <select style="font-size: 14px" onchange="statusValue()" id="optionValue" th:value="${optionValue}">
+                <option th:value="0">全部</option>
+                <option th:value="1">已签收</option>
+                <option th:value="2">未签收</option>
+                <option th:value="3">已发货</option>
+                <option th:value="4">已付款</option>
+            </select>
+            <label style="margin-left: 65px">成交时间</label>&nbsp;
+            <input style="font-size:14px;" th:value="${time1}" name="startTime" type="text" id="test1" placeholder="选择时间范围开始">
+            -
+            <input style="font-size: 14px" th:value="${time2}" name="endTime" type="text" id="test2" placeholder="选择时间范围结束">
+            <button type="button" style="font-size: 14px" onclick="findTimeOrder()">搜索</button>
+
+            <script src="/js/laydate/laydate.js"></script>
+            <script>
+                laydate.render({
+                    elem: '#test1'
+                });
+                //执行一个laydate实例
+                laydate.render({
+                    elem: '#test2'
+                });
+            </script>
+        </form>
+
+        <hr>
+        <table class="table table-striped" style="font-size: 14px" id="div1" th:fragment="div1">
+            <thead>
+            <tr>
+                <th style="width: 80px">编号</th>
+                <th style="width: 140px">名称</th>
+                <th style="width: 200px">日期</th>
+                <th style="width: 210px">卖家邮箱</th>
+                <th style="width: 150px">订单编号</th>
+                <th style="width: 100px">单价</th>
+                <th style="width: 100px">数量</th>
+                <th style="width: 100px">总价</th>
+                <th style="width: 100px">状态</th>
+            </tr>
+            </thead>
+            <tbody id="resultOrder">
+            <tr th:each="orders,obj : ${allOrdersDetail}" id="queryStatus">
+                <td><strong th:text="${obj.count}"></strong></td>
+                <td class="s-record" th:text="${orders.getGoodsName()}"></td>
+                <td class="s-record" th:text="${#dates.format(orders.getDateDown(),'yyyy年MM月dd日')}"></td>
+                <td class="s-record" th:text="${orders.getEmail()}"></td>
+                <td class="s-record" th:text="${orders.getOrderNo()}"></td>
+                <td class="s-record" th:text="${orders.getPrice()}"></td>
+                <td class="s-record" th:text="${orders.getNums()}"></td>
+                <td class="s-record" th:text="${orders.getTotalPrice()}"></td>
+                <td class="s-record" th:switch="${orders.getStatus()}">
+                    <span th:case="'1'">已签收</span>
+                    <span th:case="'2'">未签收</span>
+                    <span th:case="'3'">已发货</span>
+                    <span th:case="'4'">已付款</span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <hr>
+    </div>
+
+</div>
+<!--end content container-->
+
+<!--page loader-->
+<div class="page-loader">
+    <div class="loader"><img src="/img/logo.png" alt=""></div>
+</div>
+<!--end page loader-->
+
+<!--scripts-->
+<script src="/vendor/js/jquery-3.2.1.min.js"></script>
+<script src="/vendor/js/popper.js"></script>
+<script src="/vendor/js/bootstrap.min.js"></script>
+<script src="/vendor/js/alertify.js"></script>
+<script src="/vendor/js/jquery.knob.min.js"></script>
+<!--[if IE]>
+<script type="text/javascript" src="/vendor/js/excanvas.js"></script><![endif]-->
+<script src="/vendor/js/summernote-bs4.min.js"></script>
+<script src="/vendor/js/dropzone.js"></script>
+<script src="/vendor/OwlCarousel2-2.2.1/owl.carousel.min.js"></script>
+<script src="/vendor/perfect-scrollbar/js/perfect-scrollbar.jquery.min.js"></script>
+<script src="/vendor/js/typed.js"></script>
+<script src="/js/app.js"></script>
+<!--end scripts-->
+
+</body>
+</html>

@@ -1,0 +1,112 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <!--meta tags-->
+    <meta charset="UTF-8">
+    <meta name="description" content="Services Listing HTML5 CSS3 template">
+    <meta name="keywords" content="HTML,CSS,XML,JavaScript, services, listing">
+    <meta name="author" content="Ui-DesignLab">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--end meta tags-->
+
+    <title>二手交易市场</title>
+    <!--stylesheets-->
+    <link rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/vendor/css/animate.min.css">
+    <link rel="stylesheet" href="/vendor/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/vendor/perfect-scrollbar/css/perfect-scrollbar.min.css">
+    <link rel="stylesheet" href="/css/app.css">
+    <!--end stylesheets-->
+
+    <!--google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Cairo%7CNosifer%7CPoppins%7CQuicksand:700%7CRaleway%7CTangerine%7CHind+Vadodara"
+          rel="stylesheet">
+    <!--end google fonts-->
+
+    <style type="text/css">
+        .toolbar {
+            border: 1px solid #ccc;
+            width: 800px;
+        }
+
+        .text {
+            border: 1px solid #ccc;
+            height: 400px;
+            width: 800px;
+        }
+        .dd{
+            width: 800px;
+            height: 600px;
+            margin:  0 auto;
+        }
+
+        .r{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<!--导航栏-->
+
+
+<!--main post section-->
+<!--end main post section-->
+
+<!--chat box-->
+
+
+<div class="dd">
+    <div >
+        <form action="/blog/add" method="get">
+            <div id="div1" class="toolbar" style="text-align:center">
+            </div >
+            <div style="padding: 5px 0; color: #ccc"></div>
+
+            <div style="text-align:center"><input th:name="title" class="r" th:placeholder="请输入标题" style="width: 550px"></div>
+            <select th:name="type">
+                <option th:each="b :${blogTypeList}" th:text="${b.type}"></option>
+            </select>
+            <div id="div2" class="text" th:placeholder="请输入内容"> <!--可使用 min-height 实现编辑区域自动增加高度-->
+
+            </div>
+            <div style="text-align:center"> <input type="submit" value="确认发布"> </div>
+
+        </form>
+    </div>
+</div>
+
+
+
+
+<!-- 注意， 只需要引用 JS，无需引用任何 CSS ！！！-->
+<script type="text/javascript" src="/js/wangEditor.js"></script>
+<script type="text/javascript">
+    var E = window.wangEditor
+    var editor = new E('#editor')
+    // 或者 var editor = new E( document.getElementById('editor') )
+    editor.create()
+</script>
+
+
+<script type="text/javascript" src="/js/wangEditor.js"></script>
+<script type="text/javascript">
+    var E = window.wangEditor
+    var editor1 = new E('#div1', '#div2')  // 两个参数也可以传入 elem 对象，class 选择器
+    editor1.create()
+</script>
+<!--end chat box-->
+
+<!--page loader-->
+
+<!--end page loader-->
+
+<!--footer section-->
+<!--end footer section-->
+
+<!--scripts-->
+
+</body>
+</html>

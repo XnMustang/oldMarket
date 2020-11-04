@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wlrss.oldmarket.mapper.OrderDetailMapper">
+
+    <select id="findAllOrdersDetail" resultType="myOrders">
+       SELECT g.`goodsname`,o.`date_down`,u.`email`,o.`orderno`,g.`price`,od.`nums`,(g.`price` * od.`nums`) totalPrice,o.`status`
+        FROM user u, goods g,order_details od,orders o
+        WHERE u.`id` = o.`userid` AND o.`id` = od.`ordersid` AND g.`goodsid` = od.`goodsid`
+        AND u.`id` = #{userId}
+    </select>
+
+    <select id="findAllOptionCondition" resultType="myOrders">
+        SELECT g.`goodsname`,o.`date_down`,u.`email`,o.`orderno`,o.`status`,g.`price`,od.`nums`,(g.`price` * od.`nums`) totalPrice
+        FROM user u, goods g, order_details od, orders o
+        <where>
+            u.`id` = o.`userid` AND o.`id` = od.`ordersid` AND g.`goodsid` = od.`goodsid`
+            AND u.`id` = #{userId}
+            <if test="flag == false and orderNameOrderNum !='' and orderNameOrderNum != null">
+                and g.`goodsname` LIKE concat('%',#{orderNameOrderNum},'%')
+            </if>
+            <if test="flag == true and orderNameOrderNum !='' and orderNameOrderNum != null">
+                AND o.`orderno` LIKE '%${orderNameOrderNum}%'
+            </if>
+        </where>
+    </select>
+
+    <select id="findUserIdByEmail" resultType="int">
+        select id from user where email = #{email}
+    </select>
+
+    <select id="findStatus" resultType="myOrders">
+        SELECT g.`goodsname`,o.`date_down`,u.`email`,o.`orderno`,o.`status`,g.`price`,od.`nums`,(g.`price` * od.`nums`) totalPrice
+        FROM user u, goods g, order_details od, orders o
+        <where>
+            <if test="optionValue == 0">
+                u.`id` = o.`userid` AND o.`id` = od.`ordersid` AND g.`goodsid` = od.`goodsid`
+                AND u.`id` = #{userId}
+            </if>
+            <if test="optionValue != 0">
+                u.`id` = o.`userid` AND o.`id` = od.`ordersid` AND g.`goodsid` = od.`goodsid`
+                AND u.`id` = #{userId}
+                and o.`status` = #{optionValue}
+            </if>
+        </where>
+    </select>
+
+    <select id="findTimeOrder" resultType="myOrders">
+        SELECT g.`goodsname`,o.`date_down`,u.`email`,o.`orderno`,o.`status`,g.`price`,od.`nums`,(g.`price` * od.`nums`) totalPrice
+        FROM user u, goods g, order_details od, orders o
+        WHERE  u.`id` = o.`userid` AND o.`id` = od.`ordersid` AND g.`goodsid` = od.`goodsid`
+        AND u.`id` = #{userId}
+        AND o.`date_down` &gt; #{time1} AND o.`date_down` &lt; #{time2}
+    </select>
+
+    <select id="queryOrderDetail" resultType="OrderDateilUserVo">
+       SELECT u.`id`,u.`username`,u.`email`,u.`phone`,g.`goodsid`,g.`goodsname`,g.`price`, g.`described`,g.`date_up`,g.`sellmassage`
+        FROM user u,goods g
+        WHERE u.`id` = g.`userid`
+        AND
+        g.`goodsid`= #{goodId}
+    </select>
+
+</mapper>

@@ -1,0 +1,166 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <!--meta tags-->
+
+    <meta charset="UTF-8">
+    <meta name="description" content="Services Listing HTML5 CSS3 template">
+    <meta name="keywords" content="HTML,CSS,XML,JavaScript, services, listing">
+    <meta name="author" content="Ui-DesignLab">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--end meta tags-->
+
+    <title>二手交易市场</title>
+
+    <!--stylesheets-->
+    <link rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/vendor/css/animate.min.css">
+    <link rel="stylesheet" href="/vendor/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/vendor/perfect-scrollbar/css/perfect-scrollbar.min.css">
+    <link rel="stylesheet" href="/css/app.css">
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <!--end stylesheets-->
+
+    <!--google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Cairo%7CNosifer%7CPoppins%7CQuicksand:700%7CRaleway%7CTangerine%7CHind+Vadodara" rel="stylesheet">
+    <!--end google fonts-->
+</head>
+<body class="dashboard">
+
+
+<!--top navigation-->
+<div class="top-nav">
+    <i class="fa fa-bars toggle-dash-menu"></i>
+    <ul class="list-inline">
+        <li class="list-inline-item"><a href="#" class="show-search"><i class="fa fa-search"></i></a></li>
+        <li class="list-inline-item"><a href="dash-messages.html"><i class="fa fa-envelope"></i><span><em>4</em></span></a></li>
+        <li class="list-inline-item"><a href="dashboard.html"><i class="fa fa-bell"></i><span><em>8</em></span></a></li>
+        <li class="list-inline-item"><a href="dash-profile.html"><i class="fa fa-user"></i></a></li>
+    </ul>
+</div>
+<!--end top navigation-->
+
+<!--side navigation-->
+<div class="dash-side-nav-wrapper" id="dash-side-menu">
+    <div class="dash-side-nav perfect-scroll">
+        <div class="dash-logo">
+            <h5><a href="dashboard.html">二手市场</a></h5>
+            <span>仪表盘</span>
+        </div>
+        <div class="user-info">
+            <div class="dash-user-img"><img src="/img/user2.jpg" alt=""></div>
+            <div class="dash-user-info">
+                <span>当前账户:</span>
+                <strong th:text="${session.email}"></strong>
+            </div>
+            <a href="dash-profile.html" class="dash-edit-user"><i class="fa fa-pencil"></i></a>
+        </div>
+        <ul class="list-unstyled dash-menu">
+            <li><a href="dashboard.html" th:href="@{/jump/dashboard}"><i class="fa fa-home"></i><span>主页</span></a></li>
+            <li><a href="dash-messages.html"  th:href="@{/jump/messages}"><i class="fa fa-envelope-o"></i><span>留言</span></a></li>
+            <li><a href="dash-reviews.html" th:href="@{/jump/reviews}"><i class="fa fa-star-o"></i><span>评论</span></a></li>
+            <li><a href="dash-sales.html" th:href="@{/jump/dash-sales}"><i class="fa fa-money"></i><span>销售信息</span></a></li>
+            <li><a th:href="@{/order/findAllOrder}"><i class="fa fa-money"></i><span>我的订单</span></a></li>            <li><a href="dash-items.html" th:href="@{/jump/dash-items}"><i class="fa fa-user"></i><span>物品</span></a></li>
+            <li><a href="dash-addItem.html"  th:href="@{/jump/dash-addItem}"><i class="fa fa-plus-circle"></i><span>新增项目</span></a></li>
+            <li><a href="dash-profile.html" th:href="@{/jump/dash-profile}"><i class="fa fa-user"></i><span>个人资料</span></a></li>
+            <li><a href="dash-accountHistory.html"  th:href="@{/jump/dash-accountHistory}"><i class="fa fa-history"></i><span>账户记录</span></a></li>
+            <li><a href="items.html" th:href="@{/jump/main}"><i class="fa fa-sign-out"></i><span>回到首页</span></a></li>
+        </ul>
+    </div>
+</div>
+<!--end side navigation-->
+
+<!--search box-->
+<div class="dash-search-box" id="dash-search-box">
+    <div class="d-search-box">
+        <form action="#" method="post">
+            <div class="form-group">
+                <input required list="ui-list" class="form-control" type="search" placeholder="Search">
+            </div>
+            <button class="btn"><i class="fa fa-search"></i></button>
+        </form>
+        <datalist id="ui-list">
+            <option>Monthly sales</option>
+            <option>Salaries</option>
+            <option>Invoice</option>
+            <option>Messages</option>
+            <option>Reviews</option>
+            <option>Active items</option>
+        </datalist>
+    </div>
+</div>
+<!--end search box-->
+
+<!--content container-->
+<div class="content-wrapper">
+
+<!--earnings history    -->
+    <!--这里就是大的图片-->
+<!--    <div class="earnings-history">-->
+<!--        <canvas id="myChart" width="100" height="350"></canvas>-->
+<!--    </div>-->
+<!-- end earnings history    -->
+
+<!--latest notifications and messages-->
+    <div class="latest">
+        <div class="notifications">
+            <strong>通知 <i class="fa fa-bell-o ui-text-success"></i></strong>
+            <hr>
+            <div>
+                <p><a href="dash-messages.html">一旦有了元素或上下文，就可以进行瞬时处理了...</a></p>
+                <span class="ui-text-success">12 Jan, 2017</span>
+            </div>
+            <div>
+                <p><a href="dash-messages.html">这里放了别人发给你的留言，会联系到右上角的小铃铛...</a></p>
+                <span class="ui-text-success">12 Jan, 2017</span>
+            </div>
+
+        </div>
+        <div class="notifications">
+            <strong>新消息 <i class="fa fa-envelope-o ui-text-info"></i></strong>
+            <hr>
+            <div>
+                <p><a href="dash-messages.html">这里是给你发的邮件信息...</a></p>
+                <span class="ui-text-success">12 Jan, 2017</span>
+            </div>
+            <div>
+                <p><a href="dash-messages.html">会在右上角的邮件图标显示...</a></p>
+                <span class="ui-text-success">12 Jan, 2017</span>
+            </div>
+
+        </div>
+    </div>
+<!--end latest notifications and messages-->
+
+</div>
+<!--end content container-->
+
+<!--page loader-->
+<div class="page-loader">
+    <div class="loader"><img src="/img/logo.png" alt=""></div>
+</div>
+<!--end page loader-->
+
+<!--scripts-->
+<script src="/vendor/js/jquery-3.2.1.min.js"></script>
+<script src="/vendor/js/popper.js"></script>
+<script src="/vendor/js/bootstrap.min.js"></script>
+<script src="/vendor/js/alertify.js"></script>
+<script src="/vendor/js/jquery.knob.min.js"></script>
+<!--[if IE]>
+<script type="text/javascript" src="/vendor/js/excanvas.js"></script><![endif]-->
+<script src="/vendor/js/summernote-bs4.min.js"></script>
+<script src="/vendor/js/dropzone.js"></script>
+<script src="/vendor/js/Chart.bundle.js"></script>
+<script src="/vendor/js/utils.js"></script>
+<script src="/vendor/OwlCarousel2-2.2.1/owl.carousel.min.js"></script>
+<script src="/vendor/perfect-scrollbar/js/perfect-scrollbar.jquery.min.js"></script>
+<script src="/js/graph.js"></script>
+<script src="/vendor/js/typed.js"></script>
+<script src="/js/app.js"></script>
+<!--end scripts-->
+
+</body>
+</html>

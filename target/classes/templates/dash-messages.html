@@ -1,0 +1,337 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!--meta tags-->
+    <meta charset="UTF-8">
+    <meta name="description" content="Services Listing HTML5 CSS3 template">
+    <meta name="keywords" content="HTML,CSS,XML,JavaScript, services, listing">
+    <meta name="author" content="Ui-DesignLab">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--end meta tags-->
+    <title>二手交易市场</title>
+    <!--stylesheets-->
+    <link rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/vendor/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/vendor/perfect-scrollbar/css/perfect-scrollbar.min.css">
+    <link rel="stylesheet" href="/css/app.css">
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <!--end stylesheets-->
+
+    <!--google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Cairo%7CNosifer%7CPoppins%7CQuicksand:700%7CRaleway%7CTangerine%7CHind+Vadodara" rel="stylesheet">
+    <!--end google fonts-->
+</head>
+<body class="dashboard">
+
+<!--top navigation-->
+<div class="top-nav">
+    <i class="fa fa-bars toggle-dash-menu"></i>
+    <ul class="list-inline">
+        <li class="list-inline-item"><a href="#" class="show-search"><i class="fa fa-search"></i></a></li>
+        <li class="list-inline-item">
+            <a href="dash-messages.html">
+                <i class="fa fa-envelope"></i>
+                <span>
+                    <em>4</em>
+                </span>
+            </a>
+        </li>
+
+        <li class="list-inline-item">
+            <a href="dashboard.html">
+                <i class="fa fa-bell"></i>
+                <span>
+                    <em>8</em>
+                </span>
+            </a>
+        </li>
+
+        <li class="list-inline-item">
+            <a href="dash-profile.html">
+                <i class="fa fa-user"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+<!--end top navigation-->
+
+<!--side navigation-->
+<div class="dash-side-nav-wrapper" id="dash-side-menu">
+    <div class="dash-side-nav perfect-scroll">
+        <div class="dash-logo">
+            <h5><a href="dashboard.html">二手市场</a></h5>
+            <span>仪表盘</span>
+        </div>
+        <div class="user-info">
+            <div class="dash-user-img"><img src="/img/user2.jpg" alt=""></div>
+            <div class="dash-user-info">
+                <span>当前账户:</span>
+                <strong th:text="${session.email}"></strong>
+            </div>
+            <a href="dash-profile.html" class="dash-edit-user"><i class="fa fa-pencil"></i></a>
+        </div>
+        <ul class="list-unstyled dash-menu">
+            <li><a href="dashboard.html" th:href="@{/jump/dashboard}"><i class="fa fa-home"></i><span>主页</span></a></li>
+            <li><a href="dash-messages.html"  th:href="@{/jump/messages}"><i class="fa fa-envelope-o"></i><span>留言</span></a></li>
+            <li><a href="dash-reviews.html" th:href="@{/jump/reviews}"><i class="fa fa-star-o"></i><span>评论</span></a></li>
+            <li><a href="dash-sales.html" th:href="@{/jump/dash-sales}"><i class="fa fa-money"></i><span>销售信息</span></a></li>
+            <li><a th:href="@{/order/findAllOrder}"><i class="fa fa-money"></i><span>我的订单</span></a></li>            <li><a href="dash-items.html" th:href="@{/jump/dash-items}"><i class="fa fa-user"></i><span>物品</span></a></li>
+            <li><a href="dash-addItem.html"  th:href="@{/jump/dash-addItem}"><i class="fa fa-plus-circle"></i><span>新增项目</span></a></li>
+            <li><a href="dash-profile.html" th:href="@{/jump/dash-profile}"><i class="fa fa-user"></i><span>个人资料</span></a></li>
+            <li><a href="dash-accountHistory.html"  th:href="@{/jump/dash-accountHistory}"><i class="fa fa-history"></i><span>账户记录</span></a></li>
+            <li><a href="items.html" th:href="@{/jump/main}"><i class="fa fa-sign-out"></i><span>回到首页</span></a></li>
+        </ul>
+    </div>
+</div>
+<!--end side navigation-->
+
+<!--search box-->
+<div class="dash-search-box" id="dash-search-box">
+    <div class="d-search-box">
+        <form action="#" method="post">
+            <div class="form-group">
+                <input required list="ui-list" class="form-control" type="search" placeholder="Search">
+            </div>
+            <button class="btn"><i class="fa fa-search"></i></button>
+        </form>
+        <datalist id="ui-list">
+            <option>Monthly sales</option>
+            <option>Salaries</option>
+            <option>Invoice</option>
+            <option>Messages</option>
+            <option>Reviews</option>
+            <option>Active items</option>
+        </datalist>
+    </div>
+</div>
+<!--end search box-->
+
+<!--content container-->
+<div class="content-wrapper">
+    <!--messages-->
+    <div class="dash-messages list-page">
+        <!--左侧消息展示列（待办）-->
+        <div class="messages-list">
+            <div class="msg-top-strip">
+                <form action="#" method="post" class="msg-search">
+                    <input type="search" placeholder="搜索">
+                    <button type="submit"><i class="fa fa-search"></i></button>
+                </form>
+            </div>
+            <ul class="list-unstyled msg-items" id="eachMsgLeft">
+                <!--左侧待办内容-->
+            </ul>
+            <!--刷新按钮-->
+            <div class="load-more">
+                <i class="fa fa-refresh"></i>
+            </div>
+        </div>
+
+        <!--留言信息具体展示页面（右侧）-->
+        <div class="message-details">
+            <div class="msg">
+                <!--发送留言-->
+                <div class="sender-info">
+                    <div class="sender-img">
+<!--                        <img src="/img/user.jpg" alt="">-->
+                    </div>
+                    <p>
+                        <strong id="msg_name_right"></strong><!--留言姓名-->
+                        <input type="hidden" id="msg_person_id">
+                        <input type="hidden" id="msg_goodsid">
+                        <span id="msg_time"></span> <!--留言时间-->
+                    </p>
+                </div>
+                <br>
+                <p class="message-info" id="msg_centent">
+                    <!--留言内容-->
+                </p>
+
+                <br>
+                <!--回复留言-->
+                <div class="sender-info">
+                    <div class="sender-img">
+<!--                        <img src="/img/user2.jpg" alt="">-->
+                    </div>
+                    <p>
+                        <strong id="accept_name"></strong>
+                        <span id="accept_time"></span>
+                    </p>
+                </div>
+                <p class="message-info" id="accept_centent">
+
+                    <br>
+                </p>
+                <br>
+                <!--新增留言框-->
+                <div id="msgNewInfo">
+
+                </div>
+
+                <!--回复信息填写框-->
+                <div id="msg_board" hidden="hidden" class="reply-frm">
+                    <div class="form-group">
+                        <textarea id="msg_text" required name="msg" rows="5" class="form-control" placeholder="输入你要回复的内容!"></textarea>
+                    </div>
+                    <div class="form-action">
+                        <button onclick="submit_msg()">
+                            <i class="fa fa-send-o"></i>
+                            发送
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--end messages-->
+</div>
+<!--end content container-->
+
+<!--page loader-->
+<div class="page-loader">
+    <div class="loader"><img src="/img/logo.png" alt=""></div>
+</div>
+<!--end page loader-->
+
+<!--scripts-->
+<script src="/vendor/js/jquery-3.2.1.min.js"></script>
+<script src="/vendor/js/popper.js"></script>
+<script src="/vendor/js/bootstrap.min.js"></script>
+<script src="/vendor/js/alertify.js"></script>
+<script src="/vendor/js/jquery.knob.min.js"></script>
+<!--[if IE]>
+<script src="/vendor/js/excanvas.js"></script>
+<![endif]-->
+<script src="/vendor/js/summernote-bs4.min.js"></script>
+<script src="/vendor/js/dropzone.js"></script>
+<script src="/vendor/OwlCarousel2-2.2.1/owl.carousel.min.js"></script>
+<script src="/vendor/perfect-scrollbar/js/perfect-scrollbar.jquery.min.js"></script>
+<script src="/vendor/js/typed.js"></script>
+<script src="/js/app.js"></script>
+<!--end scripts-->
+
+<script>
+    $(function () {
+        window.onload = function () {
+            init();
+        }
+        function init() {
+            //查询当前登录的id
+            $.ajax({
+                type: "get",
+                url: "/goodsMessage/showMsgInfoLeft",
+                success: function (data) {
+                    console.log(data);
+                    var msgStr = "";
+                    for(var i =0; i<data.length; i++){
+                        msgStr += " " +
+                            "<li class=\"msg-item\">\n" +
+                            // "  <a href=\"javascript:sendMsgLeftRight("+data[i].sendPerson+")\">\n" +
+                            "  <a href='javascript:sendMsgLeftRight("+data[i].sendPerson+","+data[i].goodsid+")\'>\n" +
+                            "      <strong id=\"msg_name\">"+data[i].username+"</strong>\n" +
+                            "      <span id=\"msg_content\">"+data[i].msgContent+"</span>\n" +
+                            "      <em id=\"msg_content_time\">"+data[i].msgContentTime+"</em>\n" +
+                            "      <p id=\"msg_goodsid\" hidden='hidden'>"+data[i].goodsid+"</p>\n" +
+                            "  </a>\n" +
+                            "</li>"
+                    }
+                    $("#eachMsgLeft").html(msgStr);
+                }
+            });
+        }
+    })
+    function sendMsgLeftRight(sendPerson,goodsid){
+        /*发送请求，查询右侧发送人信息*/
+        $.ajax({
+            type: "get",
+            url: "/goodsMessage/showMsgInfoRightTop",
+            data: {
+                sendPerson : sendPerson,
+                goodsid : goodsid,
+            },
+            success: function (data) {
+                console.log("留言者返回信息：======================");
+                console.log(data);
+                $("#msg_name_right").html(data.username);
+                $("#msg_time").html(data.msgContentTime);
+                $("#msg_person_id").val(data.sendPerson);
+                $("#msg_centent").html(data.msgContent);
+                $("#msg_goodsid").val(data.goodsid);
+                $("#msg_board").removeAttr("hidden");
+                sendMsgLeftRightbottom(sendPerson,goodsid);
+            }
+        });
+        /*发送请求，查询右侧接收人信息*/
+        function sendMsgLeftRightbottom(sendPerson,goodsid){
+            $.ajax({
+                type: "get",
+                url: "/goodsMessage/sendMsgLeftRightBottom",
+                data: {
+                    sendPerson : sendPerson,
+                    goodsid : goodsid,
+                },
+                success: function (data) {
+                    console.log("接收者返回信息：==========" + data);
+                    if(data.msgReply == null){
+                        $("#accept_name").html(null);
+                        $("#accept_time").html(null);
+                        $("#accept_centent").html(null);
+                    }else {
+                        $("#accept_name").html(data.username);
+                        $("#accept_time").html(data.msgReplyTime);
+                        $("#accept_centent").html(data.msgReply);
+                    }
+                }
+            });
+        }
+    }
+
+    //发送请求  添加一个留言框
+    // function submit_msg() {
+    //     var msgNew = "";
+    //     msgNew += "<div class=\"sender-info\" style=\"background-color: #9F9F9F\">\n" +
+    //         "           <div class=\"sender-img\">\n" +
+    //         "               </div>\n" +
+    //         "                   <p>\n" +
+    //         "                       <strong id=\"msg_name_right\">张三</strong><!--留言时间-->\n" +
+    //         "                       <span id=\"msg_time\">2020-03-23</span> <!--留言时间-->\n" +
+    //         "                   </p>\n" +
+    //         "               </div>\n" +
+    //         "           <br>\n" +
+    //         "           <p class=\"message-info\" id=\"msg_centent\">\n" +
+    //         "               哈哈哈哈哈<!--留言内容-->\n" +
+    //         "           </p>";
+    //     $("#msgNewInfo").html(msgNew);
+    // }
+
+    function submit_msg() {
+        var msgValue = $("#msg_text").val();
+        var msgSendPersonId = $("#msg_person_id").val();
+        var msgGoodsid = $("#msg_goodsid").val();
+        if(msgValue == null || msgValue == ""){
+           alert("留言回复为空！");
+        }else {
+            $.ajax({
+                type: "get",
+                url: "/goodsMessage/updateMessageInfo",
+                data: {
+                    msgValue : msgValue,
+                    msgSendPersonId: msgSendPersonId,
+                    msgGoodsid: msgGoodsid,
+                },
+                success: function (data) {
+                    console.log("更新之后的信息：" + data);
+                    $("#msg_text").val(null);
+                    $("#accept_name").html(data.username);
+                    $("#accept_time").html(data.msgReplyTime);
+                    $("#accept_centent").html(data.msgReply);
+                    alert("留言回复成功！");
+                },
+            });
+        }
+    }
+</script>
+
+</body>
+</html>

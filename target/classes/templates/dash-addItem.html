@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!--meta tags-->
+    <meta charset="UTF-8">
+    <meta name="description" content="Services Listing HTML5 CSS3 template">
+    <meta name="keywords" content="HTML,CSS,XML,JavaScript, services, listing">
+    <meta name="author" content="Ui-DesignLab">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--end meta tags-->
+    <title>二手交易市场</title>
+    <!--stylesheets-->
+    <link rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/vendor/css/animate.min.css">
+    <link rel="stylesheet" href="/vendor/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/vendor/OwlCarousel2-2.2.1/owl.carousel.min.css">
+    <link rel="stylesheet" href="/vendor/OwlCarousel2-2.2.1/owl.theme.green.min.css">
+    <link rel="stylesheet" href="/vendor/perfect-scrollbar/css/perfect-scrollbar.min.css">
+    <link rel="stylesheet" href="/css/app.css">
+    <link rel="stylesheet" href="/layui/layui.js">
+    <link rel="stylesheet" href="/layui/css/layui.css">
+    <!--end stylesheets-->
+
+    <!--google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Cairo%7CNosifer%7CPoppins%7CQuicksand:700%7CRaleway%7CTangerine%7CHind+Vadodara"
+          rel="stylesheet">
+    <!--end google fonts-->
+</head>
+<body>
+
+<!--item-->
+<div class="detail-wrapper">
+    <!--添加的隐藏的输入框，用来传递images的参数-->
+    <input type="hidden" name="images" class="image">
+    <div class="layui-upload">
+        <button type="button" class="layui-btn" id="test1">上传图片</button>
+        <div class="layui-upload-list" style="margin-left:1px;">
+            <img class="layui-upload-img" id="demo1" style="width: 700px;height: 500px">
+            <p id="demoText"></p>
+        </div>
+    </div>
+    <script th:src="@{/layui/layui.js}" charset="utf-8"></script>
+
+    <!--item aside details-->
+    <div class="item-detail-aside">
+        <a th:href="@{/index.html}" style="margin-left:20px;font-size: 19px;color: #3b50ce">回到首页</a>
+        <br>
+        <br>
+        <div class="contact-lister">
+            <strong>商品的详细信息</strong>
+            <form action="/goods/addGood" method="post" >
+                <div class="form-group">
+                    <input type="text" id="goodsName" placeholder="商品名称" class="form-control"/>
+                </div>
+                <div class="form-group">
+                    <input name="price" id="goodsPrice" type="number" placeholder="价格" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="goodsDescribed">物品说明:</label>
+                    <textarea id="goodsDescribed"  placeholder="在这里写描述" rows="6" class="form-control"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="goodsMessage">留言:</label>
+                    <textarea id="goodsMessage" placeholder="在这里写留言" rows="6" class="form-control"></textarea>
+                </div>
+                <div class="form-group">
+                    <button class="ui-btn ui-btn-info form-control" type="button" onclick="addGoods()">保存发布<i class="fa fa-send-o"></i></button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!--end item aside details-->
+</div>
+<!--end item-->
+
+<!--chat box-->
+<a href="#" class="chat-box-btn"><i class="fa fa-comment icon-sw"></i></a>
+
+<!--聊天框-->
+<div class="chat-box">
+    <div class="chat-top">
+        <section>
+            <h6 class="org-name">OldsMarket</h6>
+            <div class="repliers">
+                <div class="r-img">
+                    <img src="/img/avatar2.jpg" alt="">
+                    <strong class="name">Megan</strong>
+                </div>
+                <div class="r-img">
+                    <img src="/img/user2.jpg" alt="">
+                    <strong class="name">Brandon</strong>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="chat-flow" id="chat-flow">
+        <p class="outbound">
+            Hallo, Anyone there?
+        </p>
+        <p class="inbound">
+            Hi, Vincent here. How may I be of service.
+        </p>
+    </div>
+    <form class="chat-form" action="#">
+        <input type="text" class="form-control chat-message" placeholder="Send a Message">
+    </form>
+</div>
+
+<!--end chat box-->
+
+<!--page loader-->
+<div class="page-loader">
+    <div class="loader"><img src="/img/logo.png" alt=""></div>
+</div>
+<!--end page loader-->
+
+<!--footer section-->
+<!--end footer section-->
+
+<!--scripts-->
+<script src="/vendor/js/jquery-3.2.1.min.js"></script>
+<script src="/vendor/js/popper.js"></script>
+<script src="/vendor/js/bootstrap.min.js"></script>
+<script src="/vendor/js/alertify.js"></script>
+<script src="/vendor/js/jquery.knob.min.js"></script>
+<!--[if IE]>
+<script type="text/javascript" src="/vendor/js/excanvas.js"></script><![endif]-->
+<script src="/vendor/js/summernote-bs4.min.js"></script>
+<script src="/vendor/js/dropzone.js"></script>
+<script src="/vendor/OwlCarousel2-2.2.1/owl.carousel.min.js"></script>
+<script src="/vendor/perfect-scrollbar/js/perfect-scrollbar.jquery.min.js"></script>
+<script src="/vendor/js/typed.js"></script>
+<script src="/js/app.js"></script>
+<!--end scripts-->
+</body>
+
+<script>
+    /*新增商品*/
+    function addGoods() {
+        var goodsName = $("#goodsName").val();
+        var goodsPrice = $("#goodsPrice").val();
+        var goodsDescribed = $("#goodsDescribed").val();
+        var goodsMessage = $("#goodsMessage").val();
+
+        if(goodsName == null || goodsName == "" || goodsPrice == null || goodsPrice == "" || goodsDescribed == null || goodsDescribed == "" || goodsMessage == null || goodsMessage == ""){
+            alert("商品信息输入错误！");
+        }else {
+            $.ajax({
+                url: "/goods/addGoods",
+                type: "post",
+                data: {
+                    goodsName: goodsName,
+                    goodsPrice: goodsPrice,
+                    goodsDescribed: goodsDescribed,
+                    goodsMessage: goodsMessage
+                },
+                success: function (data) {
+                    if(data == "ok"){
+                        setTimeout(function(){
+                            location.reload();  //刷新当前页面
+                        }, 1000);
+                        alert("添加商品成功！");
+                    }else {
+                       alert("添加商品失败！");
+                    }
+                },
+                error: function () {
+                    alert("添加商品失败！")
+                }
+            });
+        }
+    }
+</script>
+
+</html>

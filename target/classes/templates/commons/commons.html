@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <!--导航栏-->
+    <nav class="site-top-nav transparent" th:fragment="navigation">
+        <div class="logo">
+            <a href="index.html">
+                <img src="/img/logo.png" alt="">
+                <strong>二手市场</strong>
+            </a>
+        </div>
+        <ul class="site-menu">
+            <li>
+                <a th:href="@{/jump/main}">首页</a>
+            </li>
+            <li>
+                <a th:href="@{/goods/findAll}">导航</a>
+                <ul class="nav-dropdown">
+                    <li><a th:href="@{/jump/items}">最新商品</a></li>
+                   <!-- <li><a th:href="@{/items/queryAllGoods}">最新商品</a></li>-->
+                    <li>
+                        <a th:href="@{/goods/findAll}">搜索</a>
+<!--                        <a href="search-results.html">搜索</a>-->
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a th:href="@{/cart}">购物车</a>
+            </li>
+
+            <li>
+                <a th:href="@{/jump/blog}">博客 </i></a>
+                <ul class="nav-dropdown">
+                    <li><a  th:href="@{/jump/blog}">看博客</a></li>
+                    <li><a th:href="@{/blog/findBlogType}">写博客</a></li>
+                </ul>
+            </li>
+            <li>
+                <a th:href="@{/jump/about}">关于我们</i></a>
+                <ul class="nav-dropdown">
+                    <li><a th:href="@{/jump/about}">关于我们</a></li>
+                </ul>
+            </li>
+
+            <li>
+                    <p th:if="${session.vip}==null"><a th:href="@{/jump/vip}" style="color: white ;text-decoration: none">会员充值</a></p>
+                    <p th:if="${session.vip}==0"><a th:href="@{/jump/vip}" style="color: white ;text-decoration: none">会员充值</a></p>
+                    <p th:if="${session.vip}==1"><a th:href="@{/jump/vip}" style="color: #c7bb00;text-decoration: none">黄金会员</a></p>
+                    <p th:if="${session.vip}==2"><a th:href="@{/jump/vip}" style="color: #007DDB;text-decoration: none">铂金会员</a></p>
+                    <p th:if="${session.vip}==3"><a th:href="@{/jump/vip}" style="color: aquamarine;text-decoration: none">钻石会员</a></p>
+            </li>
+
+            <li ><a th:href="@{/jump/dashboard}" th:text="${session.email==null}?'':'个人中心'"> </i></a>
+                <ul th:style="${session.email==null}?'display:none;':'display:block;'" class="nav-dropdown">
+                    <li><a th:href="@{/jump/dashboard}">主页</a></li>
+                    <li><a href="dash-messages.html" th:href="@{/jump/messages}">留言内容</a></li>
+<!--                    <li><a th:href="@{/goodsMessage/showMsgInfo}">留言内容</a></li>-->
+                    <li><a href="dash-reviews.html" th:href="@{/jump/reviews}">评论</a></li>
+                    <li><a href="dash-items.html" th:href="@{/jump/dash-items}">物品</a></li>
+                    <li><a href="dash-addItem.html" th:href="@{/jump/dash-addItem}">新增项目</a></li>
+                    <li><a href="dash-sales.html" th:href="@{/jump/dash-sales}">销售信息</a></li>
+                    <li><a th:href="@{/order/findAllOrder}">我的订单</a></li>
+                    <li><a href="dash-profile.html" th:href="@{/jump/dash-profile}">个人资料</a></li>
+                    <li><a href="dash-accountHistory.html" th:href="@{/jump/dash-accountHistory}">账户记录</a></li>
+                </ul>
+            </li>
+
+            <li th:switch="${session.status}">
+                <a th:case="null"  th:href="@{/jump/login}" class="ui-btn ui-btn-info">登录</a>
+                <a th:case="'1'"  th:href="@{/logout}" class="ui-btn ui-btn-info">登出</a>
+            </li>
+        </ul>
+        <i class="nav-toggle fa fa-bars"></i>
+    </nav>
+</body>
+</html>

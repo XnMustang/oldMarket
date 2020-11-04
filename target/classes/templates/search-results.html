@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <!--meta tags-->
+    <meta charset="UTF-8">
+    <meta name="description" content="Services Listing HTML5 CSS3 template">
+    <meta name="keywords" content="HTML,CSS,XML,JavaScript, services, listing">
+    <meta name="author" content="Ui-DesignLab">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--end meta tags-->
+    <title>二手交易市场</title>
+    <!--stylesheets-->
+    <link rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/vendor/css/animate.min.css">
+    <link rel="stylesheet" href="/vendor/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/vendor/perfect-scrollbar/css/perfect-scrollbar.min.css">
+    <link rel="stylesheet" href="/css/app.css">
+    <link rel="stylesheet" href="layui/css/layui.css">
+    <!--end stylesheets-->
+
+    <!--google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Cairo%7CNosifer%7CPoppins%7CQuicksand:700%7CRaleway%7CTangerine%7CHind+Vadodara" rel="stylesheet">
+    <!--end google fonts-->
+</head>
+<body>
+
+<!--导航栏-->
+<div class="site-top-nav" th:insert="~{commons/commons::navigation}">
+</div>
+
+<!--banner-->
+<div class="search-banner back-photo">
+    <h5>最简单的方法 <strong class="ui-text-info">卖出</strong> 物品</h5>
+    <form class="form-inline" th:action="@{/goods/findAll}" method="get">
+        <div class="form-group mx-sm-3 mb-2">
+            <input th:value="${queryGoods}" type="text" name="queryGoods" class="form-control" placeholder="在这里搜索..." style="width: 540px">
+        </div>
+        <button type="submit" class="btn btn-primary mb-2">搜索</button>
+    </form>
+</div>
+<!--end banner-->
+
+<!--search results-->
+<div class="results-wrapper">
+    <div class="filter-section">
+        <div class="filter-group">
+            <strong>按价格:</strong>
+            <label class="label--radio">
+                <input id="radio1" type="radio" name="radios" class="radio" checked>
+                <span class="outer"><span class="inner"></span></span>
+                <i>最低价格</i>
+            </label>
+            <label class="label--radio">
+                <input id="radio2" type="radio" name="radios" class="radio">
+                <span class="outer"><span class="inner"></span></span>
+                <i>中等价位</i>
+            </label>
+            <label class="label--radio">
+                <input id="radio3" type="radio" name="radios" class="radio">
+                <span class="outer"><span class="inner"></span></span>
+                <i>最高价格</i>
+            </label>
+            <label class="label--radio">
+                <input id="radio4" type="radio" name="radios" class="radio">
+                <span class="outer"><span class="inner"></span></span>
+                <i>低于 $50</i>
+            </label>
+            <label class="label--radio">
+                <input id="radio5" type="radio" name="radios" class="radio">
+                <span class="outer"><span class="inner"></span></span>
+                <i>高于 $50</i>
+            </label>
+        </div>
+        <div class="filter-group">
+            <strong>按日期:</strong>
+            <label class="label--radio">
+                <input id="radio6" type="radio" name="radios2" class="radio">
+                <span class="outer"><span class="inner"></span></span>
+                <i>最新</i>
+            </label>
+            <label class="label--radio">
+                <input id="radio7" type="radio" name="radios2" class="radio">
+                <span class="outer"><span class="inner"></span></span>
+                <i>上周</i>
+            </label>
+            <label class="label--radio">
+                <input id="radio8" type="radio" name="radios2" class="radio" checked>
+                <span class="outer"><span class="inner"></span></span>
+                <i>上个月</i>
+            </label>
+            <label class="label--radio">
+                <input id="radio9" type="radio" name="radios2" class="radio">
+                <span class="outer"><span class="inner"></span></span>
+                <i>今年</i>
+            </label>
+            <label class="label--radio">
+                <input id="radio10" type="radio" name="radios2" class="radio">
+                <span class="outer"><span class="inner"></span></span>
+                <i>最旧的</i>
+            </label>
+        </div>
+    </div>
+    
+    <script>
+        function newGoods() {
+        //     $.ajax({
+        //        type: "get",
+        //        url: "/goods/timeQuery",
+        //        success: function (data) {
+        //             console.log("最新上市查询完成："+JSON.stringify(data))
+        //             var html = $("#div1").html(data);
+        //        }
+        //     });
+        }
+    </script>
+    
+    <div class="results-section">
+        <div class="sort-sec">
+            <div>
+                <strong>排序方式:</strong>
+                <a th:href="@{/goods/findAll}">综合</a>|
+                <a th:href="@{/goods/timeQuery}">最新上市</a>|
+                <span>
+                    <a th:href="@{/goods/priceSort}">价格</a>
+                     <svg width="1em" height="0.8em" viewBox="0 0 16 16" class="bi bi-chevron-expand" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M3.646 9.146a.5.5 0 0 1 .708 0L8 12.793l3.646-3.647a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 0-.708zm0-2.292a.5.5 0 0 0 .708 0L8 3.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708z"/>
+                     </svg>
+                </span>
+            </div>
+            <a href="#"><span>刷新</span><i class="fa fa-refresh"></i></a>
+        </div>
+
+        <!--查询结果 页面显示位置-->
+        <!--图片，名字，单价-->
+
+        <div class="result-item" th:each="good :${records}">
+
+            <div class="result-item-img">
+                <div>
+                    <img src="/img/items/l-item2.png" alt="">
+                </div>
+            </div>
+            <div class="result-item-info">
+                <a th:href="@{/jump/item-detail}">
+                    <!--goodsId   根据goodsId查询userId nums date-->
+                    <strong id="goodname" th:text="${good.getGoodsname()}"></strong>
+                </a>
+                <p th:text="${good.getDescribed()}">
+
+                </p>
+                <span>上市时间:
+                    <em class="ui-text-info" th:text="${#dates.format(good.getDateUp(),'yyyy-MM-dd')}"></em>
+                </span>
+                <span>
+                    <i class="fa fa-map-marker"></i> 10100-91, 台湾
+                </span>
+            </div>
+            <div class="result-item-price">
+                <span>价格:</span>
+                <h3 th:text="'$'+${good.getPrice()}"></h3>
+                <a href="javascript:void(0)" class="add-to-cart"  id="btn" >加入购物车
+                  </a>
+                <input type="hidden" class="goodsId" th:value="${good.getGoodsid()}">
+            </div>
+        </div>
+
+        <script th:src="@{/layui/layui.js}"></script>
+        <script th:src="@{/js/jquery-2.2.3.min.js}"></script>
+        <script>
+           $(".add-to-cart").click(function () {
+                    let val = $(this).next().val();
+                   $.ajax({
+                       type: 'POST',
+                       url: "/add",
+                       data: {
+                           "goodsid" :  val
+                       },
+                       success: function () {
+                           layui.use(['layer','form'],function () {
+                               var  layer = layui.layer,
+                                   form = layui.form;
+                               layer.msg("加入购物车成功！")
+                           })
+                       },
+                       error: function () {
+                           layui.use(['layer','form'],function () {
+                               var  layer = layui.layer,
+                                   form = layui.form;
+                               layer.msg("加入购物车失败！")
+                           })
+                       }
+                   })
+               })
+
+
+
+
+        </script>
+        <nav aria-label="Page navigation example" style="margin-top: 100px">
+            <ul class="pagination justify-content-end">
+                <li class="page-item" th:classappend="${goodsIPage.getCurrent()==1}?' disabled'">
+                    <a th:href="@{/goods/findAll/(pageNum=${goodsIPage.getCurrent()-1})}" class="page-link">上一页</a>
+                </li>
+                <li class="page-item" th:classappend="${goodsIPage.getCurrent()==1}?' disabled'">
+                    <a class="page-link" th:href="@{/goods/findAll/(pageNum=1)}">1</a>
+                </li>
+                <li class="page-item" th:classappend="${goodsIPage.getCurrent()==2}?' disabled'">
+                    <a class="page-link" th:href="@{/goods/findAll/(pageNum=2)}">2</a>
+                </li>
+                <li class="page-item" th:classappend="${goodsIPage.getCurrent()==3}?' disabled'">
+                    <a class="page-link" th:href="@{/goods/findAll/(pageNum=3)}">3</a>
+                </li>
+                <li class="page-item"><span class="page-link">...</span></li>
+                <li class="page-item" th:classappend="${goodsIPage.getCurrent() == goodsIPage.getPages()}?' disabled'">
+                    <a th:href="@{/goods/findAll/(pageNum=${goodsIPage.getCurrent()+1})}" class="page-link">下一页</a>
+                </li>
+                <li class="page-item"><span class="page-link" th:text="'共'+${goodsIPage.getPages()}+'页'"></span></li>
+            </ul>
+        </nav>
+
+
+
+
+<!--        <div class="site-pagination">-->
+<!--            <a th:href="@{/goods/findAll/(pageNum=${goodsIPage.getCurrent()-1})}">-->
+<!--                <i class="fa fa-angle-left"></i>&nbsp;-->
+<!--                <em>上一页</em>-->
+<!--            </a>-->
+<!--            <a th:href="@{/goods/findAll/(pageNum=${goodsIPage.getCurrent()+1})}">-->
+<!--                <em>下一页</em>&nbsp;-->
+<!--                <i class="fa fa-angle-right"></i>-->
+<!--            </a>-->
+<!--        </div>-->
+    </div>
+</div>
+<!--end search results-->
+
+<!--chat box-->
+
+<!--咨询窗口-->
+<!--end chat box-->
+
+<!--page loader-->
+<div class="page-loader">
+    <div class="loader"><img src="/img/logo.png" alt=""></div>
+</div>
+<!--end page loader-->
+
+<!--footer section-->
+<div class="bottom-strip">
+    <div class="copyright" style="margin: 0 auto">
+        <i class="fa fa-copyright"></i>
+        <span>二手交易平台. 保留所有解释权利</span>
+    </div>
+</div>
+<!--end footer section-->
+
+<!--scripts-->
+<script src="/vendor/js/jquery-3.2.1.min.js"></script>
+<script src="/vendor/js/popper.js"></script>
+<script src="/vendor/js/bootstrap.min.js"></script>
+<script src="/vendor/js/alertify.js"></script>
+<script src="/vendor/js/jquery.knob.min.js"></script>
+<!--[if IE]>
+<script type="text/javascript" src="/vendor/js/excanvas.js"></script><![endif]-->
+<script src="/vendor/js/summernote-bs4.min.js"></script>
+<script src="/vendor/js/dropzone.js"></script>
+<script src="/vendor/OwlCarousel2-2.2.1/owl.carousel.min.js"></script>
+<script src="/vendor/perfect-scrollbar/js/perfect-scrollbar.jquery.min.js"></script>
+<script src="/vendor/js/typed.js"></script>
+<script src="/js/app.js"></script>
+<!--end scripts-->
+
+</body>
+</html>

@@ -1,0 +1,237 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <!--meta tags-->
+    <meta charset="UTF-8">
+    <meta name="description" content="Services Listing HTML5 CSS3 template">
+    <meta name="keywords" content="HTML,CSS,XML,JavaScript, services, listing">
+    <meta name="author" content="Ui-DesignLab">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--end meta tags-->
+    <title>二手交易市场</title>
+    <!--stylesheets-->
+    <link rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/vendor/css/animate.min.css">
+    <link rel="stylesheet" href="/vendor/css/alertify.css">
+    <link rel="stylesheet" href="/vendor/perfect-scrollbar/css/perfect-scrollbar.min.css">
+    <link rel="stylesheet" href="/vendor/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/app.css">
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <!--end stylesheets-->
+    <!--google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Cairo%7CNosifer%7CPoppins%7CQuicksand:700%7CRaleway%7CTangerine%7CHind+Vadodara" rel="stylesheet">
+    <!--end google fonts-->
+</head>
+<body class="dashboard">
+
+<!--top navigation-->
+<div class="top-nav">
+    <i class="fa fa-bars toggle-dash-menu"></i>
+    <ul class="list-inline">
+        <li class="list-inline-item"><a href="#" class="show-search"><i class="fa fa-search"></i></a></li>
+        <li class="list-inline-item"><a href="dash-messages.html"><i class="fa fa-envelope"></i><span><em>4</em></span></a></li>
+        <li class="list-inline-item"><a href="dashboard.html"><i class="fa fa-bell"></i><span><em>8</em></span></a></li>
+        <li class="list-inline-item"><a href="dash-profile.html"><i class="fa fa-user"></i></a></li>
+    </ul>
+</div>
+<!--end top navigation-->
+<!--side navigation-->
+<div class="dash-side-nav-wrapper" id="dash-side-menu">
+    <div class="dash-side-nav perfect-scroll">
+        <div class="dash-logo">
+            <h5><a href="dashboard.html">二手市场</a></h5>
+            <span>仪表盘</span>
+        </div>
+        <div class="user-info">
+            <div class="dash-user-img"><img src="/img/user2.jpg" alt=""></div>
+            <div class="dash-user-info">
+                <span>当前账户:</span>
+                <strong th:text="${session.email}"></strong>
+            </div>
+            <a href="dash-profile.html" class="dash-edit-user"><i class="fa fa-pencil"></i></a>
+        </div>
+        <ul class="list-unstyled dash-menu">
+            <li><a href="dashboard.html" th:href="@{/jump/dashboard}"><i class="fa fa-home"></i><span>主页</span></a></li>
+            <li><a href="dash-messages.html"  th:href="@{/jump/messages}"><i class="fa fa-envelope-o"></i><span>留言</span></a></li>
+            <li><a href="dash-reviews.html" th:href="@{/jump/reviews}"><i class="fa fa-star-o"></i><span>评论</span></a></li>
+            <li><a href="dash-sales.html" th:href="@{/jump/dash-sales}"><i class="fa fa-money"></i><span>销售信息</span></a></li>
+            <li><a th:href="@{/order/findAllOrder}"><i class="fa fa-money"></i><span>我的订单</span></a></li>            <li><a href="dash-items.html" th:href="@{/jump/dash-items}"><i class="fa fa-user"></i><span>物品</span></a></li>
+            <li><a href="dash-addItem.html"  th:href="@{/jump/dash-addItem}"><i class="fa fa-plus-circle"></i><span>新增项目</span></a></li>
+            <li><a href="dash-profile.html" th:href="@{/jump/dash-profile}"><i class="fa fa-user"></i><span>个人资料</span></a></li>
+            <li><a href="dash-accountHistory.html"  th:href="@{/jump/dash-accountHistory}"><i class="fa fa-history"></i><span>账户记录</span></a></li>
+            <li><a href="items.html" th:href="@{/jump/main}"><i class="fa fa-sign-out"></i><span>回到首页</span></a></li>
+        </ul>
+    </div>
+</div>
+<!--end side navigation-->
+
+<!--search box-->
+<div class="dash-search-box" id="dash-search-box">
+    <div class="d-search-box">
+        <form action="#" method="post">
+            <div class="form-group">
+                <input required list="ui-list" class="form-control" type="search" placeholder="搜索">
+            </div>
+            <button class="btn"><i class="fa fa-search"></i></button>
+        </form>
+        <datalist id="ui-list">
+            <option>Monthly sales</option>
+            <option>Salaries</option>
+            <option>Invoice</option>
+            <option>Messages</option>
+            <option>Reviews</option>
+            <option>Active items</option>
+        </datalist>
+    </div>
+</div>
+<!--end search box-->
+
+<!--ux-box-->
+<div id="ux-box" class="ux-box-wrapper">
+    <div class="ux-box">
+        <strong>项目统计</strong>
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-6">
+                <div class="stt">
+                    <i class="fa fa-eye fa-2x"></i>
+                    <h6><strong>75 浏览</strong></h6>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6">
+                <div class="stt">
+                    <i class="fa fa-comment-o fa-2x"></i>
+                    <h6><strong>7 评论</strong></h6>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6">
+                <div class="stt">
+                    <i class="fa fa-twitter fa-2x"></i>
+                    <h6><strong>21 分享</strong></h6>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6">
+                <div class="stt">
+                    <i class="fa fa-envelope-o fa-2x"></i>
+                    <h6><strong>3 留言</strong></h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--end ux-box-->
+
+<!--content container-->
+<div class="content-wrapper">
+    <!--items-->
+    <div class="dash-items">
+        <div class="items-mini-menu">
+            <a href="dash-addItem.html"><i class="fa fa-plus-circle text-info"></i> <span><em>新增物品</em></span></a>
+            <div>
+                <a href="#"><i class="fa fa-check-circle-o text-success"></i> <span><em>已售出</em> <em>02</em></span></a>
+                <a href="#"><i class="fa fa-trash-o text-danger"></i> <span><em>已删除</em> <em>01</em></span></a>
+            </div>
+
+        </div>
+
+        <div id="goodsList">
+
+        </div>
+
+
+    </div>
+    <!--end items-->
+
+    <!--分页-->
+    <div class="dash-pagination" id="qaq">
+        <a href="#"><i class="fa fa-angle-left"></i></a>
+        <a href="javascript:p1(1,'as7d6')" class="pagebtn" id="as7d6">1</a>
+        <a href="javascript:p1(2,'as7d1')" class="pagebtn" id="as7d1">2</a>
+        <a href="javascript:p1(3,'as7d2')" class="pagebtn" id="as7d2">3</a>
+        <a href="#"><i class="fa fa-angle-right"></i></a>
+    </div>
+</div>
+<!--end content container-->
+
+<!--page loader-->
+<div class="page-loader">
+    <div class="loader"><img src="/img/logo.png" alt=""></div>
+</div>
+<!--end page loader-->
+
+<!--scripts-->
+<script src="/vendor/js/jquery-3.2.1.min.js"></script>
+<script src="/vendor/js/popper.js"></script>
+<script src="/vendor/js/bootstrap.min.js"></script>
+<script src="/vendor/js/alertify.js"></script>
+<script src="/vendor/js/jquery.knob.min.js"></script>
+<!--[if IE]>
+<script type="text/javascript" src="/vendor/js/excanvas.js"></script><![endif]-->
+<script src="/vendor/js/summernote-bs4.min.js"></script>
+<script src="/vendor/js/dropzone.js"></script>
+<script src="/vendor/OwlCarousel2-2.2.1/owl.carousel.min.js"></script>
+<script src="/vendor/perfect-scrollbar/js/perfect-scrollbar.jquery.min.js"></script>
+<script src="/vendor/js/typed.js"></script>
+<script src="/js/app.js"></script>
+<!--end scripts-->
+<script>
+
+</script>
+<script>
+
+    function p1(t,id) {
+        $(".pagebtn").removeAttr("class","current")
+        $("#"+id).attr("class","current pagebtn")
+        $.ajax({
+            url:"/go/list",
+            method:"post",
+            dataType:"json",
+            data:{now:t,size:3},
+            success:function (data) {
+                console.log(data);
+                var str = "";
+                for (var i = 0; i < data.records.length; i++) {
+                    str+="<div class=\"product-item\">\n" +
+                        "\n" +
+                        "            <div class=\"item-img\"><img src=\""+data.records[i].goodsimg+"\" alt=\"\"></div>\n" +
+                        "            <div class=\"item-info\">\n" +
+                        "                <h5>"+data.records[i].goodsname+"</h5>\n" +
+                        "                <p>\n" +
+                        "                    "+data.records[i].described.substring(0,40)+"\n" +
+                        "                ...</p>\n" +
+                        "                <span class=\"text-success\"></span><span></span><span class=\"text-info\">发售:"+data.records[i].dateup+"</span>\n" +
+                        "            </div>\n" +
+                        "            <div class=\"item-action\">\n" +
+                        "                <a href=\"http://oldsmarket.neonweb.me/dash-addItem.html\"><span><i class=\"fa fa-pencil\"></i></span><em>编辑</em></a>\n" +
+                        "                <a href=\"item-detail.html\"><span><i class=\"fa fa-eye\"></i></span><em>详情</em></a>\n" +
+                        "                <a href=\"#\" class=\"show-box\"><span><i class=\"fa fa-bar-chart\"></i></span><em>统计</em></a>\n" +
+                        "                <a href=\"#\" class=\"delete-item\"><span><i class=\"fa fa-trash-o\"></i></span><em>删除</em></a>\n" +
+                        "            </div></div>"
+                }
+                $("#goodsList").html(str);
+                let pageNum= data.pages;
+
+                let pageNow = data.current;
+
+
+                let temp = "";
+                temp+="<a href=\"javascript:p1("+(pageNow-1)+",'as7d6')\"><i class=\"fa fa-angle-left\"></i></a>"
+
+                for (let i = 0; i < pageNum; i++) {
+                    temp+="<a href=\"javascript:p1("+(i+1)+",'as7d1')\" class=\"pagebtn\" id=\"as7d6\">"+(i+1)+"</a>"
+                }
+
+                temp+="<a href=\"javascript:p1("+(pageNow+1)+",'as7d2')\"><i class=\"fa fa-angle-right\"></i></a>"
+
+                $("#qaq").html(temp);
+            }
+        })
+    }
+
+    $(function () {
+        p1();
+    })
+</script>
+
+</body>
+</html>

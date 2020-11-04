@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wlrss.oldmarket.mapper.GoodsMapper">
+
+    <select id="queryAllGoods" resultType="MyNewGoodsVo">
+        SELECT g.goodsid,g.`goodsname`,g.`price`,u.`username`,g.`date_up` FROM user u,goods g
+        <where>
+            u.`id` = g.`userid`
+            <if test="keyword != null and keyword != ''">
+                and g.`goodsname` LIKE '%${keyword}%'
+            </if>
+
+            ORDER BY ${type}
+
+        </where>
+
+    </select>
+
+</mapper>
