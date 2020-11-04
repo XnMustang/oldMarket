@@ -2,16 +2,16 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
-    password: 123456
+    password: ******
     url: jdbc:mysql://localhost:3306/oldmarket?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
     type: com.alibaba.druid.pool.DruidDataSource
   ###QQ邮箱配置
   mail:
     host: smtp.qq.com
-    username: 574154759@qq.com
-    password: digwwuuopvxmbegf
+    username: ********@qq.com
+    password: *********
     properties.mail.smtp.port: 465
-    from: 574154759@qq.com
+    from: ********@qq.com
     properties.mail.smtp.starttls.enable: true
     properties.mail.smtp.starttls.required: true
     properties.mail.smtp.ssl.enable: true
